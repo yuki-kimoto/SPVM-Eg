@@ -1,0 +1,7 @@
+class TestCase::Eg {
+  use Eg;
+  static method test : int () {
+    
+    return 1;
+  }
+}

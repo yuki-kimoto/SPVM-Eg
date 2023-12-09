@@ -2,5 +2,11 @@
 # MIT License
 
 class Eg::Element {
+  use Hash;
+  use List;
+  use StringBuffer;
   
+  has elements : List of Eg::Element;
+  has attributes : Hash of string;
+  has text : StringBuffer;
 }

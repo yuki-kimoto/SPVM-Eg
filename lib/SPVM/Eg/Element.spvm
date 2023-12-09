@@ -8,7 +8,13 @@ class Eg::Element {
   use List;
   use StringBuffer;
   
+  enum {
+    TYPE_ELEMENT,
+    TYPE_TEXT,
+  }
+  
   # Fields
+  has type : int;
   has elements : List of Eg::Element;
   has attributes : Hash of string;
   has tag_name : string;

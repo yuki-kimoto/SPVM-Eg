@@ -2,6 +2,34 @@ class TestCase::Eg {
   use Eg;
   static method test : int () {
     
+    {
+      my $div = Eg->div;
+    }
+    
+    {
+      my $div = Eg->div([Eg->text("foo")]);
+    }
+    
+    {
+      my $div = Eg->div(
+        [Eg->div, Eg->text("foo")],
+        {class => "foo bar", id => "foo", style => "color:red"}
+      );
+      warn dump $div;
+    }
+    
+    {
+      my $ul = Eg->ul(
+        [
+          Eg->li([Eg->text("1")]),
+          Eg->li([Eg->text("2")]),
+          Eg->li([Eg->text("3")]),
+        ],
+        {class => "foo bar", id => "foo", style => "color:red"}
+      );
+      warn dump $ul;
+    }
+    
     return 1;
   }
 }

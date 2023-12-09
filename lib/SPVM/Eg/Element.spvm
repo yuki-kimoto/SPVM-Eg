@@ -2,11 +2,23 @@
 # MIT License
 
 class Eg::Element {
+  allow Eg;
+  
   use Hash;
   use List;
   use StringBuffer;
   
+  # Fields
   has elements : List of Eg::Element;
   has attributes : Hash of string;
+  has tag_name : string;
   has text : StringBuffer;
+  
+  # Class Methods
+  static method new : Eg::Element () {
+    
+    my $self = new Eg::Element;
+    
+    return $self;
+  }
 }

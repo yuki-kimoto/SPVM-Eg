@@ -3,4 +3,25 @@
 
 class Eg {
   version "0.001";
+  
+  use Eg::Element;
+  use List;
+  
+  static method tag : Eg::Element ($tag_name : string, $elements : Eg::Element[] = undef, $attributes : Hash of string = undef) {
+    
+    my $new_element = Eg::Element->new;
+    
+    $new_element->{tag_name} = $tag_name;
+    
+    $new_element->{elements} = List->new($elements);
+    
+    $new_element->{attributes} = $attributes;
+    
+    return $new_element;
+  }
+  
+  static method div : Eg::Element ($elements : Eg::Element[] = undef, $attributes : Hash of string = undef) {
+    return &tag("div", $elements, $attributes);
+  }
+  
 }

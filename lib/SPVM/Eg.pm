@@ -6,11 +6,11 @@ our $VERSION = "0.001";
 
 =head1 Name
 
-SPVM::Eg - Short Description
+SPVM::Eg - SPVM Engine
 
 =head1 Description
 
-The Eg class of L<SPVM> has methods to do someting.
+The Eg class in L<SPVM> has methods to manipulate SPVM Engine.
 
 =head1 Usage
 

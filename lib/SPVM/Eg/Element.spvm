@@ -14,17 +14,29 @@ class Eg::Element {
   }
   
   # Fields
-  has type : int;
-  has elements : List of Eg::Element;
-  has attributes : Hash of string;
-  has tag_name : string;
-  has text : StringBuffer;
+  has type : ro int;
+  
+  has elements : ro List of Eg::Element;
+  
+  has attributes : ro Hash of string;
+  
+  has tag_name : ro string;
+  
+  has text_buffer : StringBuffer;
   
   # Class Methods
-  static method new : Eg::Element () {
+  private static method new : Eg::Element () {
     
     my $self = new Eg::Element;
     
     return $self;
+  }
+  
+  # Instance Methods
+  method text : string () {
+    
+    my $text = $self->{text_buffer}->to_string;
+    
+    return $text;
   }
 }

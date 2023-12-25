@@ -15,7 +15,6 @@ class TestCase::Eg {
         [Eg->div, Eg->text("foo")],
         {class => "foo bar", id => "foo", style => "color:red"}
       );
-      warn dump $div;
     }
     
     {
@@ -27,7 +26,20 @@ class TestCase::Eg {
         ],
         {class => "foo bar", id => "foo", style => "color:red"}
       );
-      warn dump $ul;
+    }
+    
+    {
+      my $table = Eg->table(
+        [
+          Eg->tr([
+            Eg->td([Eg->text("1-1")]), Eg->td([Eg->text("1-2")])
+          ]),
+          Eg->tr([
+            Eg->td([Eg->text("2-1")]), Eg->td([Eg->text("2-2")])
+          ]),
+        ],
+        {class => "foo bar", id => "foo", style => "color:red"}
+      );
     }
     
     return 1;

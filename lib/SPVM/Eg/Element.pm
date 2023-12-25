@@ -15,6 +15,34 @@ The Eg::Element class in L<SPVM> has methods to manipulate HTML elements, attrib
 =head1 Usage
 
   use Eg::Element;
+  
+  {
+    my $text = Eg->text("foo");
+    
+    my $text_string = $text->text->to_string
+  }
+  
+  {
+    my $ul = Eg->ul(
+      [
+        Eg->li([Eg->text("1")]),
+        Eg->li([Eg->text("2")]),
+        Eg->li([Eg->text("3")]),
+      ],
+      {class => "foo bar", id => "foo", style => "color:red"}
+    );
+    
+    # 1
+    my $li1 = $ul->elements->get(0)->(Eg::Element);
+    my $text_string1 = $li1->elements->get(0)->(Eg::Element)->text->to_string;
+    
+    # 2
+    my $li2 = $ul->elements->get(1)->(Eg::Element);
+    my $text_string2 = $li2->elements->get(0)->(Eg::Element)->text->to_string;
+    
+    # color:red
+    my $attr = $div->attributes->get_string("style")
+  }
 
 =head1 Enumerations
 
@@ -46,7 +74,7 @@ C<has elements : ro List of L<Eg::Element|SPVM::Eg::Element>;>
 
 =head2 attributes
 
-C<has attributes : ro Hash of string;>
+C<has attributes : ro L<Hash|SPVM::Hash> of string;>
 
 =head2 tag_name
 

@@ -6,11 +6,11 @@ our $VERSION = "0.001";
 
 =head1 Name
 
-SPVM::Eg - HTML Elements, Attributes, Text.
+SPVM::Eg - HTML
 
 =head1 Description
 
-The Eg class in L<SPVM> has methods to manipulate HTML elements, attributes, text.
+The Eg class in L<SPVM> has methods to manipulate HTML.
 
 =head1 Usage
 

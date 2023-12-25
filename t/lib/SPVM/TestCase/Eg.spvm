@@ -8,6 +8,31 @@ class TestCase::Eg {
     
     {
       my $div = Eg->div([Eg->text("foo")]);
+      
+      unless ($div->tag_name eq "div") {
+        return 0;
+      }
+      
+      unless ($div->type == Eg::Element->TYPE_ELEMENT) {
+        return 0;
+      }
+      
+    }
+    
+    {
+      my $div = Eg->div([Eg->text("foo")], {attr1 => "attrval1"});
+      
+      unless ($div->tag_name eq "div") {
+        return 0;
+      }
+      
+      unless ($div->type == Eg::Element->TYPE_ELEMENT) {
+        return 0;
+      }
+      
+      unless ($div->attributes->get_string("attr1") eq "attrval1") {
+        return 0;
+      }
     }
     
     {
@@ -26,6 +51,14 @@ class TestCase::Eg {
         ],
         {class => "foo bar", id => "foo", style => "color:red"}
       );
+      
+      unless ($ul->elements->get(0)->(Eg::Element)->elements->get(0)->(Eg::Element)->text->to_string eq "1") {
+        return 0;
+      }
+      
+      unless ($ul->elements->get(1)->(Eg::Element)->elements->get(0)->(Eg::Element)->text->to_string eq "2") {
+        return 0;
+      }
     }
     
     {
@@ -40,6 +73,18 @@ class TestCase::Eg {
         ],
         {class => "foo bar", id => "foo", style => "color:red"}
       );
+    }
+    
+    {
+      my $text = Eg->text("foo");
+      
+      unless ($text->type == Eg::Element->TYPE_TEXT) {
+        return 0;
+      }
+      
+      unless ($text->text->to_string eq "foo") {
+        return 0;
+      }
     }
     
     return 1;

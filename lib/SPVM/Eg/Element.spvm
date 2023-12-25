@@ -22,7 +22,7 @@ class Eg::Element {
   
   has tag_name : ro string;
   
-  has text_buffer : StringBuffer;
+  has text : ro StringBuffer;
   
   # Class Methods
   private static method new : Eg::Element () {
@@ -32,11 +32,4 @@ class Eg::Element {
     return $self;
   }
   
-  # Instance Methods
-  method text : string () {
-    
-    my $text = $self->{text_buffer}->to_string;
-    
-    return $text;
-  }
 }

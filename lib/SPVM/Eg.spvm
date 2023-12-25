@@ -607,7 +607,7 @@ class Eg {
     
     $text_buffer->push($text);
     
-    $new_element->{text_buffer} = $text_buffer;
+    $new_element->{text} = $text_buffer;
     
     return $new_element;
   }

@@ -1,3 +1,21 @@
+0.002 2023-12-26
+  [Incompatible Changes]
+    * Rename Eg::Element to Eg::Node.
+    * Rename the elements field in the Eg::Node to nodes.
+    * Change enumeration for the type field in the Eg::Node.
+    
+      enum {
+        TYPE_ELEMENT_NODE = 1,
+        TYPE_ATTRIBUTE_NODE = 2,
+        TYPE_TEXT_NODE = 3,
+        TYPE_CDATA_SECTION_NODE = 4,
+        TYPE_PROCESSING_INSTRUCTION_NODE = 7,
+        TYPE_COMMENT_NODE = 8,
+        TYPE_DOCUMENT_NODE = 9,
+        TYPE_DOCUMENT_TYPE_NODE = 10,
+        TYPE_DOCUMENT_FRAGMENT_NODE = 11,
+      }
+
 0.001 2023-12-25
   [Changes]
     * First release.

@@ -1,4 +1,4 @@
-package SPVM::Eg::Element;
+package SPVM::Eg::Node;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::Eg::Element;
 
 =head1 Name
 
-SPVM::Eg::Element - HTML Elements, Attributes, Text.
+SPVM::Eg::Node - HTML Nodes, Attributes, Text.
 
 =head1 Description
 
-The Eg::Element class in L<SPVM> has methods to manipulate HTML elements, attributes, text.
+The Eg::Node class in L<SPVM> has methods to manipulate HTML nodes, attributes, text.
 
 =head1 Usage
 
-  use Eg::Element;
+  use Eg::Node;
   
   {
     my $text = Eg->text("foo");
@@ -33,12 +33,12 @@ The Eg::Element class in L<SPVM> has methods to manipulate HTML elements, attrib
     );
     
     # 1
-    my $li1 = $ul->elements->get(0)->(Eg::Element);
-    my $text_string1 = $li1->elements->get(0)->(Eg::Element)->text->to_string;
+    my $li1 = $ul->nodes->get(0)->(Eg::Node);
+    my $text_string1 = $li1->nodes->get(0)->(Eg::Node)->text->to_string;
     
     # 2
-    my $li2 = $ul->elements->get(1)->(Eg::Element);
-    my $text_string2 = $li2->elements->get(0)->(Eg::Element)->text->to_string;
+    my $li2 = $ul->nodes->get(1)->(Eg::Node);
+    my $text_string2 = $li2->nodes->get(0)->(Eg::Node)->text->to_string;
     
     # color:red
     my $attr = $div->attributes->get_string("style")
@@ -50,17 +50,17 @@ The Eg::Element class in L<SPVM> has methods to manipulate HTML elements, attrib
 
 The constant values for the L</"type"> field.
 
-=head3 TYPE_ELEMENT
-
-Returns 0.
-
-The node is an HTML element.
-
-=head3 TYPE_TEXT
-
-Returns 1.
-
-The node is a text node.
+  enum {
+    TYPE_ELEMENT_NODE = 1,
+    TYPE_ATTRIBUTE_NODE = 2,
+    TYPE_TEXT_NODE = 3,
+    TYPE_CDATA_SECTION_NODE = 4,
+    TYPE_PROCESSING_INSTRUCTION_NODE = 7,
+    TYPE_COMMENT_NODE = 8,
+    TYPE_DOCUMENT_NODE = 9,
+    TYPE_DOCUMENT_TYPE_NODE = 10,
+    TYPE_DOCUMENT_FRAGMENT_NODE = 11,
+  }
 
 =head1 Fields
 
@@ -68,9 +68,9 @@ The node is a text node.
 
 C<has type : ro int;>
 
-=head2 elements
+=head2 nodes
 
-C<has elements : ro List of L<Eg::Element|SPVM::Eg::Element>;>
+C<has nodes : ro List of L<Eg::Node|SPVM::Eg::Node>;>
 
 =head2 attributes
 

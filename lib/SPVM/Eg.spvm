@@ -4,611 +4,611 @@
 class Eg {
   version "0.001";
   
-  use Eg::Element;
+  use Eg::Node;
   use Hash;
   use List;
   use StringBuffer;
   
-  static method tag : Eg::Element ($tag_name : string, $elements : Eg::Element[] = undef, $attributes : object[] = undef) {
+  static method tag : Eg::Node ($tag_name : string, $nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
     
-    my $new_element = Eg::Element->new;
+    my $new_node = Eg::Node->new;
     
-    $new_element->{type} = Eg::Element->TYPE_ELEMENT;
+    $new_node->{type} = Eg::Node->TYPE_ELEMENT_NODE;
     
-    $new_element->{tag_name} = $tag_name;
+    $new_node->{tag_name} = $tag_name;
     
-    $new_element->{elements} = List->new($elements);
+    $new_node->{nodes} = List->new($nodes);
     
-    $new_element->{attributes} = Hash->new($attributes);
+    $new_node->{attributes} = Hash->new($attributes);
     
-    return $new_element;
+    return $new_node;
   }
   
-  static method a : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("a", $elements, $attributes);
+  static method a : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("a", $nodes, $attributes);
   }
 
 
-  static method abbr : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("abbr", $elements, $attributes);
+  static method abbr : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("abbr", $nodes, $attributes);
   }
 
 
-  static method address : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("address", $elements, $attributes);
+  static method address : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("address", $nodes, $attributes);
   }
 
 
-  static method area : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("area", $elements, $attributes);
+  static method area : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("area", $nodes, $attributes);
   }
 
 
-  static method article : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("article", $elements, $attributes);
+  static method article : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("article", $nodes, $attributes);
   }
 
 
-  static method aside : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("aside", $elements, $attributes);
+  static method aside : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("aside", $nodes, $attributes);
   }
 
 
-  static method audio : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("audio", $elements, $attributes);
+  static method audio : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("audio", $nodes, $attributes);
   }
 
 
-  static method b : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("b", $elements, $attributes);
+  static method b : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("b", $nodes, $attributes);
   }
 
 
-  static method base : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("base", $elements, $attributes);
+  static method base : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("base", $nodes, $attributes);
   }
 
 
-  static method bdi : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("bdi", $elements, $attributes);
+  static method bdi : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("bdi", $nodes, $attributes);
   }
 
 
-  static method bdo : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("bdo", $elements, $attributes);
+  static method bdo : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("bdo", $nodes, $attributes);
   }
 
 
-  static method blockquote : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("blockquote", $elements, $attributes);
+  static method blockquote : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("blockquote", $nodes, $attributes);
   }
 
 
-  static method body : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("body", $elements, $attributes);
+  static method body : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("body", $nodes, $attributes);
   }
 
 
-  static method br : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("br", $elements, $attributes);
+  static method br : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("br", $nodes, $attributes);
   }
 
 
-  static method button : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("button", $elements, $attributes);
+  static method button : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("button", $nodes, $attributes);
   }
 
 
-  static method canvas : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("canvas", $elements, $attributes);
+  static method canvas : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("canvas", $nodes, $attributes);
   }
 
 
-  static method caption : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("caption", $elements, $attributes);
+  static method caption : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("caption", $nodes, $attributes);
   }
 
 
-  static method cite : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("cite", $elements, $attributes);
+  static method cite : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("cite", $nodes, $attributes);
   }
 
 
-  static method code : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("code", $elements, $attributes);
+  static method code : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("code", $nodes, $attributes);
   }
 
 
-  static method col : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("col", $elements, $attributes);
+  static method col : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("col", $nodes, $attributes);
   }
 
 
-  static method colgroup : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("colgroup", $elements, $attributes);
+  static method colgroup : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("colgroup", $nodes, $attributes);
   }
 
 
-  static method command : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("command", $elements, $attributes);
+  static method command : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("command", $nodes, $attributes);
   }
 
 
-  static method datalist : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("datalist", $elements, $attributes);
+  static method datalist : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("datalist", $nodes, $attributes);
   }
 
 
-  static method dd : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("dd", $elements, $attributes);
+  static method dd : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("dd", $nodes, $attributes);
   }
 
 
-  static method del : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("del", $elements, $attributes);
+  static method del : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("del", $nodes, $attributes);
   }
 
 
-  static method details : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("details", $elements, $attributes);
+  static method details : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("details", $nodes, $attributes);
   }
 
 
-  static method dfn : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("dfn", $elements, $attributes);
+  static method dfn : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("dfn", $nodes, $attributes);
   }
 
 
-  static method dialog : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("dialog", $elements, $attributes);
+  static method dialog : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("dialog", $nodes, $attributes);
   }
 
 
-  static method dir : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("dir", $elements, $attributes);
+  static method dir : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("dir", $nodes, $attributes);
   }
 
 
-  static method div : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("div", $elements, $attributes);
+  static method div : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("div", $nodes, $attributes);
   }
 
 
-  static method dl : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("dl", $elements, $attributes);
+  static method dl : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("dl", $nodes, $attributes);
   }
 
 
-  static method dt : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("dt", $elements, $attributes);
+  static method dt : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("dt", $nodes, $attributes);
   }
 
 
-  static method em : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("em", $elements, $attributes);
+  static method em : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("em", $nodes, $attributes);
   }
 
 
-  static method embed : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("embed", $elements, $attributes);
+  static method embed : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("embed", $nodes, $attributes);
   }
 
 
-  static method fieldset : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("fieldset", $elements, $attributes);
+  static method fieldset : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("fieldset", $nodes, $attributes);
   }
 
 
-  static method figcaption : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("figcaption", $elements, $attributes);
+  static method figcaption : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("figcaption", $nodes, $attributes);
   }
 
 
-  static method figure : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("figure", $elements, $attributes);
+  static method figure : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("figure", $nodes, $attributes);
   }
 
 
-  static method font : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("font", $elements, $attributes);
+  static method font : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("font", $nodes, $attributes);
   }
 
 
-  static method footer : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("footer", $elements, $attributes);
+  static method footer : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("footer", $nodes, $attributes);
   }
 
 
-  static method form : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("form", $elements, $attributes);
+  static method form : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("form", $nodes, $attributes);
   }
 
 
-  static method frame : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("frame", $elements, $attributes);
+  static method frame : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("frame", $nodes, $attributes);
   }
 
 
-  static method frameset : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("frameset", $elements, $attributes);
+  static method frameset : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("frameset", $nodes, $attributes);
   }
 
 
-  static method h1 : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("h1", $elements, $attributes);
+  static method h1 : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("h1", $nodes, $attributes);
   }
 
 
-  static method h2 : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("h2", $elements, $attributes);
+  static method h2 : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("h2", $nodes, $attributes);
   }
 
 
-  static method h3 : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("h3", $elements, $attributes);
+  static method h3 : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("h3", $nodes, $attributes);
   }
 
 
-  static method h4 : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("h4", $elements, $attributes);
+  static method h4 : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("h4", $nodes, $attributes);
   }
 
 
-  static method h5 : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("h5", $elements, $attributes);
+  static method h5 : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("h5", $nodes, $attributes);
   }
 
 
-  static method h6 : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("h6", $elements, $attributes);
+  static method h6 : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("h6", $nodes, $attributes);
   }
 
 
-  static method head : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("head", $elements, $attributes);
+  static method head : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("head", $nodes, $attributes);
   }
 
 
-  static method header : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("header", $elements, $attributes);
+  static method header : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("header", $nodes, $attributes);
   }
 
 
-  static method hgroup : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("hgroup", $elements, $attributes);
+  static method hgroup : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("hgroup", $nodes, $attributes);
   }
 
 
-  static method hr : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("hr", $elements, $attributes);
+  static method hr : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("hr", $nodes, $attributes);
   }
 
 
-  static method html : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("html", $elements, $attributes);
+  static method html : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("html", $nodes, $attributes);
   }
 
 
-  static method i : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("i", $elements, $attributes);
+  static method i : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("i", $nodes, $attributes);
   }
 
 
-  static method iframe : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("iframe", $elements, $attributes);
+  static method iframe : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("iframe", $nodes, $attributes);
   }
 
 
-  static method img : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("img", $elements, $attributes);
+  static method img : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("img", $nodes, $attributes);
   }
 
 
-  static method input : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("input", $elements, $attributes);
+  static method input : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("input", $nodes, $attributes);
   }
 
 
-  static method ins : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("ins", $elements, $attributes);
+  static method ins : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("ins", $nodes, $attributes);
   }
 
 
-  static method kbd : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("kbd", $elements, $attributes);
+  static method kbd : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("kbd", $nodes, $attributes);
   }
 
 
-  static method label : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("label", $elements, $attributes);
+  static method label : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("label", $nodes, $attributes);
   }
 
 
-  static method legend : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("legend", $elements, $attributes);
+  static method legend : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("legend", $nodes, $attributes);
   }
 
 
-  static method li : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("li", $elements, $attributes);
+  static method li : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("li", $nodes, $attributes);
   }
 
 
-  static method link : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("link", $elements, $attributes);
+  static method link : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("link", $nodes, $attributes);
   }
 
 
-  static method listing : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("listing", $elements, $attributes);
+  static method listing : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("listing", $nodes, $attributes);
   }
 
 
-  static method main : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("main", $elements, $attributes);
+  static method main : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("main", $nodes, $attributes);
   }
 
 
-  static method map : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("map", $elements, $attributes);
+  static method map : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("map", $nodes, $attributes);
   }
 
 
-  static method mark : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("mark", $elements, $attributes);
+  static method mark : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("mark", $nodes, $attributes);
   }
 
 
-  static method menu : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("menu", $elements, $attributes);
+  static method menu : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("menu", $nodes, $attributes);
   }
 
 
-  static method meta : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("meta", $elements, $attributes);
+  static method meta : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("meta", $nodes, $attributes);
   }
 
 
-  static method meter : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("meter", $elements, $attributes);
+  static method meter : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("meter", $nodes, $attributes);
   }
 
 
-  static method nav : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("nav", $elements, $attributes);
+  static method nav : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("nav", $nodes, $attributes);
   }
 
 
-  static method noscript : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("noscript", $elements, $attributes);
+  static method noscript : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("noscript", $nodes, $attributes);
   }
 
 
-  static method object : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("object", $elements, $attributes);
+  static method object : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("object", $nodes, $attributes);
   }
 
 
-  static method ol : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("ol", $elements, $attributes);
+  static method ol : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("ol", $nodes, $attributes);
   }
 
 
-  static method optgroup : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("optgroup", $elements, $attributes);
+  static method optgroup : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("optgroup", $nodes, $attributes);
   }
 
 
-  static method option : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("option", $elements, $attributes);
+  static method option : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("option", $nodes, $attributes);
   }
 
 
-  static method output : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("output", $elements, $attributes);
+  static method output : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("output", $nodes, $attributes);
   }
 
 
-  static method p : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("p", $elements, $attributes);
+  static method p : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("p", $nodes, $attributes);
   }
 
 
-  static method param : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("param", $elements, $attributes);
+  static method param : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("param", $nodes, $attributes);
   }
 
 
-  static method pre : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("pre", $elements, $attributes);
+  static method pre : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("pre", $nodes, $attributes);
   }
 
 
-  static method progress : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("progress", $elements, $attributes);
+  static method progress : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("progress", $nodes, $attributes);
   }
 
 
-  static method q : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("q", $elements, $attributes);
+  static method q : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("q", $nodes, $attributes);
   }
 
 
-  static method ruby : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("ruby", $elements, $attributes);
+  static method ruby : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("ruby", $nodes, $attributes);
   }
 
 
-  static method rp : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("rp", $elements, $attributes);
+  static method rp : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("rp", $nodes, $attributes);
   }
 
 
-  static method rt : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("rt", $elements, $attributes);
+  static method rt : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("rt", $nodes, $attributes);
   }
 
 
-  static method s : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("s", $elements, $attributes);
+  static method s : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("s", $nodes, $attributes);
   }
 
 
-  static method samp : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("samp", $elements, $attributes);
+  static method samp : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("samp", $nodes, $attributes);
   }
 
 
-  static method script : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("script", $elements, $attributes);
+  static method script : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("script", $nodes, $attributes);
   }
 
 
-  static method section : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("section", $elements, $attributes);
+  static method section : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("section", $nodes, $attributes);
   }
 
 
-  static method select : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("select", $elements, $attributes);
+  static method select : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("select", $nodes, $attributes);
   }
 
 
-  static method small : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("small", $elements, $attributes);
+  static method small : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("small", $nodes, $attributes);
   }
 
 
-  static method source : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("source", $elements, $attributes);
+  static method source : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("source", $nodes, $attributes);
   }
 
 
-  static method span : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("span", $elements, $attributes);
+  static method span : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("span", $nodes, $attributes);
   }
 
 
-  static method strong : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("strong", $elements, $attributes);
+  static method strong : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("strong", $nodes, $attributes);
   }
 
 
-  static method style : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("style", $elements, $attributes);
+  static method style : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("style", $nodes, $attributes);
   }
 
 
-  static method sub : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("sub", $elements, $attributes);
+  static method sub : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("sub", $nodes, $attributes);
   }
 
 
-  static method summary : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("summary", $elements, $attributes);
+  static method summary : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("summary", $nodes, $attributes);
   }
 
 
-  static method sup : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("sup", $elements, $attributes);
+  static method sup : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("sup", $nodes, $attributes);
   }
 
 
-  static method table : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("table", $elements, $attributes);
+  static method table : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("table", $nodes, $attributes);
   }
 
 
-  static method tbody : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("tbody", $elements, $attributes);
+  static method tbody : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("tbody", $nodes, $attributes);
   }
 
 
-  static method td : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("td", $elements, $attributes);
+  static method td : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("td", $nodes, $attributes);
   }
 
 
-  static method textarea : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("textarea", $elements, $attributes);
+  static method textarea : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("textarea", $nodes, $attributes);
   }
 
 
-  static method tfoot : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("tfoot", $elements, $attributes);
+  static method tfoot : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("tfoot", $nodes, $attributes);
   }
 
 
-  static method th : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("th", $elements, $attributes);
+  static method th : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("th", $nodes, $attributes);
   }
 
 
-  static method thead : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("thead", $elements, $attributes);
+  static method thead : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("thead", $nodes, $attributes);
   }
 
 
-  static method time : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("time", $elements, $attributes);
+  static method time : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("time", $nodes, $attributes);
   }
 
 
-  static method title : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("title", $elements, $attributes);
+  static method title : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("title", $nodes, $attributes);
   }
 
 
-  static method tr : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("tr", $elements, $attributes);
+  static method tr : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("tr", $nodes, $attributes);
   }
 
 
-  static method tt : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("tt", $elements, $attributes);
+  static method tt : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("tt", $nodes, $attributes);
   }
 
 
-  static method u : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("u", $elements, $attributes);
+  static method u : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("u", $nodes, $attributes);
   }
 
 
-  static method ul : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("ul", $elements, $attributes);
+  static method ul : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("ul", $nodes, $attributes);
   }
 
 
-  static method var : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("var", $elements, $attributes);
+  static method var : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("var", $nodes, $attributes);
   }
 
 
-  static method video : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("video", $elements, $attributes);
+  static method video : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("video", $nodes, $attributes);
   }
 
 
-  static method wbr : Eg::Element ($elements : Eg::Element[] = undef, $attributes : object[] = undef) {
-    return &tag("wbr", $elements, $attributes);
+  static method wbr : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    return &tag("wbr", $nodes, $attributes);
   }
   
-  static method text : Eg::Element ($text : string) {
+  static method text : Eg::Node ($text : string) {
     
     unless ($text) {
       die "\$text must be defined.";
     }
     
-    my $new_element = Eg::Element->new;
+    my $new_node = Eg::Node->new;
     
-    $new_element->{type} = Eg::Element->TYPE_TEXT;
+    $new_node->{type} = Eg::Node->TYPE_TEXT_NODE;
     
     my $text_buffer = StringBuffer->new;
     
     $text_buffer->push($text);
     
-    $new_element->{text} = $text_buffer;
+    $new_node->{text} = $text_buffer;
     
-    return $new_element;
+    return $new_node;
   }
 }

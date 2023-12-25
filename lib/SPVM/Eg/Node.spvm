@@ -1,0 +1,42 @@
+# Copyright (c) 2023 Yuki Kimoto
+# MIT License
+
+class Eg::Node {
+  allow Eg;
+  
+  use Hash;
+  use List;
+  use StringBuffer;
+  
+  enum {
+    TYPE_ELEMENT_NODE = 1,
+    TYPE_ATTRIBUTE_NODE = 2,
+    TYPE_TEXT_NODE = 3,
+    TYPE_CDATA_SECTION_NODE = 4,
+    TYPE_PROCESSING_INSTRUCTION_NODE = 7,
+    TYPE_COMMENT_NODE = 8,
+    TYPE_DOCUMENT_NODE = 9,
+    TYPE_DOCUMENT_TYPE_NODE = 10,
+    TYPE_DOCUMENT_FRAGMENT_NODE = 11,
+  }
+  
+  # Fields
+  has type : ro int;
+  
+  has nodes : ro List of Eg::Node;
+  
+  has attributes : ro Hash of string;
+  
+  has tag_name : ro string;
+  
+  has text : ro StringBuffer;
+  
+  # Class Methods
+  private static method new : Eg::Node () {
+    
+    my $self = new Eg::Node;
+    
+    return $self;
+  }
+  
+}

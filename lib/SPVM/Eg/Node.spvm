@@ -36,37 +36,48 @@ class Eg::Node {
   has parent : Eg::Node;
   
   # Class Methods
-  private static method new : Eg::Node () {
+  private static method new : Eg::Node ($type : int, $nodes : Eg::Node[] = undef) {
     
     my $self = new Eg::Node;
+    
+    $self->{type} = $type;
+    
+    $self->{nodes} = List->new($nodes);
+    
+    if ($nodes) {
+      for my $node (@$nodes) {
+        $node->{parent} = $self;
+        weaken $node->{parent};
+      }
+    }
     
     return $self;
   }
   
   static method new_element : Eg::Node ($tag_name : string, $nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
     
-    my $new_node = Eg::Node->new;
+    unless ($tag_name) {
+      die "\$tag_namet must be defined.";
+    }
     
-    $new_node->{type} = Eg::Node->TYPE_ELEMENT_NODE;
+    my $self = Eg::Node->new(Eg::Node->TYPE_ELEMENT_NODE, $nodes);
     
-    $new_node->{tag_name} = $tag_name;
-    
-    $new_node->{nodes} = List->new($nodes);
+    $self->{tag_name} = $tag_name;
     
     {
       my $attributes = Hash->new($attributes);
       
-      $new_node->{attributes} = $attributes;
+      $self->{attributes} = $attributes;
       
-      my $style = $new_node->{attributes}->delete("style");
+      my $style = $self->{attributes}->delete("style");
       
       {
         my $style = Hash->new((object[])$style);
-        $new_node->{style} = $style;
+        $self->{style} = $style;
       }
     }
     
-    return $new_node;
+    return $self;
   }
   
   static method new_text : Eg::Node ($text : string) {
@@ -75,9 +86,7 @@ class Eg::Node {
       die "\$text must be defined.";
     }
     
-    my $self = Eg::Node->new;
-    
-    $self->{type} = Eg::Node->TYPE_TEXT_NODE;
+    my $self = Eg::Node->new(Eg::Node->TYPE_TEXT_NODE);
     
     my $text_buffer = StringBuffer->new;
     

@@ -43,6 +43,32 @@ class Eg::Node {
     return $self;
   }
   
+  static method new_element : Eg::Node ($tag_name : string, $nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+    
+    my $new_node = Eg::Node->new;
+    
+    $new_node->{type} = Eg::Node->TYPE_ELEMENT_NODE;
+    
+    $new_node->{tag_name} = $tag_name;
+    
+    $new_node->{nodes} = List->new($nodes);
+    
+    {
+      my $attributes = Hash->new($attributes);
+      
+      $new_node->{attributes} = $attributes;
+      
+      my $style = $new_node->{attributes}->delete("style");
+      
+      {
+        my $style = Hash->new((object[])$style);
+        $new_node->{style} = $style;
+      }
+    }
+    
+    return $new_node;
+  }
+  
   static method new_text : Eg::Node ($text : string) {
     
     unless ($text) {

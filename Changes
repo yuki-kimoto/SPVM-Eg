@@ -1,6 +1,7 @@
 0.004 2023-12-26
   [New Features]
     * Add the new_text method to the Eg::Node class.
+    * Add the new_element method to the Eg::Node class.
     * Add the parent field to the Eg::Node class.
 0.003 2023-12-26
   [New Features]

@@ -1,3 +1,6 @@
+0.004 2023-12-26
+  [New Features]
+    * Add the new_text method to the Eg::Node class.
 0.003 2023-12-26
   [New Features]
     * Add the style field to the Eg::Node.

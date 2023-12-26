@@ -84,6 +84,12 @@ C<has tag_name : ro string;>
 
 C<has text : ro L<StringBuffer|SPVM::StringBuffer>;>
 
+=head1 Class Methods
+
+=head2 new_text
+
+C<static method new_text : Eg::Node ($text : string);>
+
 =head1 Copyright & License
 
 Copyright (c) 2023 Yuki Kimoto

@@ -33,6 +33,8 @@ class Eg::Node {
   
   has text : ro StringBuffer;
   
+  has parent : Eg::Node;
+  
   # Class Methods
   private static method new : Eg::Node () {
     
@@ -41,4 +43,22 @@ class Eg::Node {
     return $self;
   }
   
+  static method new_text : Eg::Node ($text : string) {
+    
+    unless ($text) {
+      die "\$text must be defined.";
+    }
+    
+    my $self = Eg::Node->new;
+    
+    $self->{type} = Eg::Node->TYPE_TEXT_NODE;
+    
+    my $text_buffer = StringBuffer->new;
+    
+    $text_buffer->push($text);
+    
+    $self->{text} = $text_buffer;
+    
+    return $self;
+  }
 }

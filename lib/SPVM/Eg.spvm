@@ -563,62 +563,42 @@ class Eg {
   static method time : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
     return &tag("time", $nodes, $attributes);
   }
-
-
+  
   static method title : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
     return &tag("title", $nodes, $attributes);
   }
-
-
+  
   static method tr : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
     return &tag("tr", $nodes, $attributes);
   }
-
-
+  
   static method tt : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
     return &tag("tt", $nodes, $attributes);
   }
-
-
+  
   static method u : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
     return &tag("u", $nodes, $attributes);
   }
-
-
+  
   static method ul : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
     return &tag("ul", $nodes, $attributes);
   }
-
-
+  
   static method var : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
     return &tag("var", $nodes, $attributes);
   }
-
-
+  
   static method video : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
     return &tag("video", $nodes, $attributes);
   }
-
-
+  
   static method wbr : Eg::Node ($nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
     return &tag("wbr", $nodes, $attributes);
   }
   
   static method text : Eg::Node ($text : string) {
     
-    unless ($text) {
-      die "\$text must be defined.";
-    }
-    
-    my $new_node = Eg::Node->new;
-    
-    $new_node->{type} = Eg::Node->TYPE_TEXT_NODE;
-    
-    my $text_buffer = StringBuffer->new;
-    
-    $text_buffer->push($text);
-    
-    $new_node->{text} = $text_buffer;
+    my $new_node = Eg::Node->new_text($text);
     
     return $new_node;
   }

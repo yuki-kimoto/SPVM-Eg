@@ -19,7 +19,18 @@ class Eg {
     
     $new_node->{nodes} = List->new($nodes);
     
-    $new_node->{attributes} = Hash->new($attributes);
+    {
+      my $attributes = Hash->new($attributes);
+      
+      $new_node->{attributes} = $attributes;
+      
+      my $style = $new_node->{attributes}->delete("style");
+      
+      {
+        my $style = Hash->new((object[])$style);
+        $new_node->{style} = $style;
+      }
+    }
     
     return $new_node;
   }

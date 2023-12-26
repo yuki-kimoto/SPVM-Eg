@@ -1,3 +1,8 @@
+0.003 2023-12-26
+  [New Features]
+    * Add the style field to the Eg::Node.
+  [Incompatible Changes]
+    * The style attribute is removed from the key of the attribute field, and the style field is set to the value.
 0.002 2023-12-26
   [Incompatible Changes]
     * Rename Eg::Element to Eg::Node.

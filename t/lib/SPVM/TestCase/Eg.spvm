@@ -43,6 +43,18 @@ class TestCase::Eg {
     }
     
     {
+      my $div = Eg->div(undef, {style => {color => "red"}});
+      
+      if ($div->attributes->get("style")) {
+        return 0;
+      }
+      
+      unless ($div->style->get_string("color") eq "red") {
+        return 0;
+      }
+    }
+    
+    {
       my $div = Eg->div;
     }
     
@@ -78,7 +90,7 @@ class TestCase::Eg {
     {
       my $div = Eg->div(
         [Eg->div, Eg->text("foo")],
-        {class => "foo bar", id => "foo", style => "color:red"}
+        {class => "foo bar", id => "foo", style => {color => "red"}}
       );
     }
     
@@ -89,7 +101,7 @@ class TestCase::Eg {
           Eg->li([Eg->text("2")]),
           Eg->li([Eg->text("3")]),
         ],
-        {class => "foo bar", id => "foo", style => "color:red"}
+        {class => "foo bar", id => "foo", style => {color => "red"}}
       );
       
       unless ($ul->nodes->get(0)->(Eg::Node)->nodes->get(0)->(Eg::Node)->text->to_string eq "1") {
@@ -111,7 +123,7 @@ class TestCase::Eg {
             Eg->td([Eg->text("2-1")]), Eg->td([Eg->text("2-2")])
           ]),
         ],
-        {class => "foo bar", id => "foo", style => "color:red"}
+        {class => "foo bar", id => "foo", style => {color => "red"}}
       );
     }
     

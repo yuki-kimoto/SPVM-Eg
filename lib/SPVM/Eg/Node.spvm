@@ -27,6 +27,8 @@ class Eg::Node {
   
   has attributes : ro Hash of string;
   
+  has style : ro Hash of string;
+  
   has tag_name : ro string;
   
   has text : ro StringBuffer;

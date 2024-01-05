@@ -27,7 +27,7 @@ class Eg::Node {
   
   has nodes : ro List of Eg::Node;
   
-  has attributes : ro Eg::Attributes;
+  has attributes : rw Eg::Attributes;
   
   has tag_name : ro string;
   
@@ -95,22 +95,13 @@ class Eg::Node {
   }
   
   # Instance Methods
-  method style_all : Eg::Style () {
+  method style : Eg::Style () {
     
     return $self->{attributes}->{style};
   }
   
-  method set_style_all : void ($style : Eg::Style) {
+  method set_style : void ($style : Eg::Style) {
     $self->{attributes}->{style} = $style;
-  }
-  
-  method attributes_all : Eg::Attributes () {
-    
-    return $self->{attributes};
-  }
-  
-  method set_attributes_all : void ($attributes : Eg::Attributes) {
-    $self->{attributes} = $attributes;
   }
   
   method css : string ($name : string) {

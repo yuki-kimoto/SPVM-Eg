@@ -8,8 +8,12 @@
 Changes
 lib/SPVM/Eg.pm
 lib/SPVM/Eg.spvm
+lib/SPVM/Eg/Attributes.pm
+lib/SPVM/Eg/Attributes.spvm
 lib/SPVM/Eg/Node.pm
 lib/SPVM/Eg/Node.spvm
+lib/SPVM/Eg/Style.pm
+lib/SPVM/Eg/Style.spvm
 LICENSE
 Makefile.PL
 MANIFEST			This list of files

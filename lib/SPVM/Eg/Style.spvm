@@ -3,6 +3,7 @@
 
 class Eg::Style {
   allow Eg;
+  allow Eg::Node;
   
   use Eg::Style::Color;
   use Regex;

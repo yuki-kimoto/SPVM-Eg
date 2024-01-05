@@ -31,7 +31,7 @@ class Eg::Node {
   
   has tag_name : ro string;
   
-  has text : ro StringBuffer;
+  has text_buffer : ro StringBuffer;
   
   has parent : Eg::Node;
   
@@ -89,7 +89,7 @@ class Eg::Node {
     
     $text_buffer->push($text);
     
-    $self->{text} = $text_buffer;
+    $self->{text_buffer} = $text_buffer;
     
     return $self;
   }
@@ -123,4 +123,5 @@ class Eg::Node {
     
     $self->{attributes}->{attributes_h}->set_string($name, $value);
   }
+  
 }

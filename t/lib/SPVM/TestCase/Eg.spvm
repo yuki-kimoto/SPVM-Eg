@@ -97,9 +97,9 @@ class TestCase::Eg {
       my $ul = Eg->ul_(
         {class => "foo bar", id => "foo", style => {color => "red"}},
         [
-          Eg->li([Eg->text("1")]),
-          Eg->li([Eg->text("2")]),
-          Eg->li([Eg->text("3")]),
+          Eg->li("1"),
+          Eg->li("2"),
+          Eg->li("3"),
         ],
       );
       
@@ -117,10 +117,10 @@ class TestCase::Eg {
         {class => "foo bar", id => "foo", style => {color => "red"}},
         [
           Eg->tr([
-            Eg->td([Eg->text("1-1")]), Eg->td([Eg->text("1-2")])
+            Eg->td("1-1"), Eg->td("1-2")
           ]),
           Eg->tr([
-            Eg->td([Eg->text("2-1")]), Eg->td([Eg->text("2-2")])
+            Eg->td("2-1"), Eg->td("2-2")
           ]),
         ],
       );
@@ -153,7 +153,21 @@ class TestCase::Eg {
     }
     
     {
-      my $div = Eg->div([Eg->text("foo")]);
+      my $div = Eg->div("foo");
+      
+      unless ($div->text eq "foo") {
+        return 0;
+      }
+      
+      $div->set_text("bar");
+      
+      unless ($div->text eq "bar") {
+        return 0;
+      }
+    }
+    
+    {
+      my $div = Eg->div_({atrr => "value"}, "foo");
       
       unless ($div->text eq "foo") {
         return 0;

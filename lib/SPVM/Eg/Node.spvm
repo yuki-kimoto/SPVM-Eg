@@ -36,7 +36,7 @@ class Eg::Node {
   has parent : Eg::Node;
   
   # Class Methods
-  private static method new : Eg::Node ($type : int, $nodes : Eg::Node[] = undef) {
+  static method new : Eg::Node ($type : int, $nodes : Eg::Node[] = undef) {
     
     my $self = new Eg::Node;
     

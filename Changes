@@ -1,6 +1,7 @@
 0.006 2024-01-06
   [Incompatible Changes]
     * Rename the text field in the Eg::Node class to the text_buffer method.
+    * Allow tag methods the string type argument.
   [New Features]
     * Add the text method to the Eg::Node class.
     * Add the set_text method to the Eg::Node class.

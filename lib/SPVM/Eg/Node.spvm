@@ -124,4 +124,49 @@ class Eg::Node {
     $self->{attributes}->{attributes_h}->set_string($name, $value);
   }
   
+  method text : string () {
+    my $nodes = $self->{nodes};
+    
+    my $nodes_length = $nodes->length;
+    
+    my $text = (string)undef;
+    
+    if ($nodes_length > 0) {
+      my $first_child = (Eg::Node)$nodes->get(0);
+      
+      if ($first_child->type == &TYPE_TEXT_NODE) {
+        $text = $first_child->{text_buffer}->to_string;
+      }
+      else {
+        die "The first child is not a text node.";
+      }
+    }
+    else {
+      return "";
+    }
+    
+    return $text;
+  }
+  
+  method set_text : string ($text : string) {
+    my $nodes = $self->{nodes};
+    
+    my $nodes_length = $nodes->length;
+    
+    if ($nodes_length > 0) {
+      my $first_child = (Eg::Node)$nodes->get(0);
+      
+      if ($first_child->type == &TYPE_TEXT_NODE) {
+        $first_child->{text_buffer}->set($text);
+      }
+      else {
+        die "The first child is not a text node.";
+      }
+    }
+    else {
+      $self->{nodes} = List->new([&new_text($text)]);
+    }
+    
+  }
+  
 }

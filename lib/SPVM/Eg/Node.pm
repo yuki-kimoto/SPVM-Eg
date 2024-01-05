@@ -80,9 +80,9 @@ C<has attributes : ro L<Hash|SPVM::Hash> of string;>
 
 C<has tag_name : ro string;>
 
-=head2 text
+=head2 text_buffer
 
-C<has text : ro L<StringBuffer|SPVM::StringBuffer>;>
+C<has text_buffer : ro L<StringBuffer|SPVM::StringBuffer>;>
 
 =head1 Class Methods
 

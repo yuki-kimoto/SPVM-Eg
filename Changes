@@ -1,6 +1,10 @@
 0.006 2024-01-06
   [Incompatible Changes]
     * Rename the text field in the Eg::Node class to the text_buffer method.
+  [New Features]
+    * Add the text method to the Eg::Node class.
+    * Add the set_text method to the Eg::Node class.
+    
 0.005 2024-01-05
   [Incompatible Changes]
     * All are drastically changed.

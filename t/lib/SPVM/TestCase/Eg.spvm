@@ -138,6 +138,34 @@ class TestCase::Eg {
       }
     }
     
+    {
+      my $div = Eg->div;
+      
+      unless ($div->text eq "") {
+        return 0;
+      }
+      
+      $div->set_text("bar");
+      
+      unless ($div->text eq "bar") {
+        return 0;
+      }
+    }
+    
+    {
+      my $div = Eg->div([Eg->text("foo")]);
+      
+      unless ($div->text eq "foo") {
+        return 0;
+      }
+      
+      $div->set_text("bar");
+      
+      unless ($div->text eq "bar") {
+        return 0;
+      }
+    }
+    
     return 1;
   }
 }

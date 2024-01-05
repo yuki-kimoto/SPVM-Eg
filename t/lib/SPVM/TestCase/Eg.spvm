@@ -49,7 +49,7 @@ class TestCase::Eg {
         return 0;
       }
     
-      unless ($div->style->style_h->get_string("color") eq "red") {
+      unless ($div->style_all->style_h->get_string("color") eq "red") {
         return 0;
       }
     }

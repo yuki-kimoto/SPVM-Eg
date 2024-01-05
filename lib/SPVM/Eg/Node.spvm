@@ -95,11 +95,21 @@ class Eg::Node {
   }
   
   # Instance Methods
-  method style : Eg::Style () {
+  method style_all : Eg::Style () {
+    
     return $self->{attributes}->{style};
   }
   
-  method set_style : void ($style : Eg::Style) {
+  method set_style_all : void ($style : Eg::Style) {
     $self->{attributes}->{style} = $style;
+  }
+  
+  method attributes_all : Eg::Attributes () {
+    
+    return $self->{attributes};
+  }
+  
+  method set_attributes_all : void ($attributes : Eg::Attributes) {
+    $self->{attributes} = $attributes;
   }
 }

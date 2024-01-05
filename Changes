@@ -1,6 +1,8 @@
 0.005 2024-01-05
   [Incompatible Changes]
     * All are drastically changed.
+  [Requirement Changes]
+    * Require SPVM::Regex 0.244.
 0.004 2023-12-26
   [New Features]
     * Add the new_text method to the Eg::Node class.

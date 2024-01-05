@@ -54,7 +54,7 @@ class Eg::Node {
     return $self;
   }
   
-  static method new_element : Eg::Node ($tag_name : string, $nodes : Eg::Node[] = undef, $attributes : object[] = undef) {
+  static method new_element : Eg::Node ($tag_name : string, $attributes : object[] = undef, $nodes : Eg::Node[] = undef) {
     
     unless ($tag_name) {
       die "\$tag_namet must be defined.";

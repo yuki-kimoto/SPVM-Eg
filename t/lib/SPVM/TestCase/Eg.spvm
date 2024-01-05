@@ -43,7 +43,7 @@ class TestCase::Eg {
     }
     
     {
-      my $div = Eg->div(undef, {style => {color => "red"}});
+      my $div = Eg->div_({style => {color => "red"}});
       
       if ($div->attributes->get("style")) {
         return 0;
@@ -72,7 +72,7 @@ class TestCase::Eg {
     }
     
     {
-      my $div = Eg->div([Eg->text("foo")], {attr1 => "attrval1"});
+      my $div = Eg->div_({attr1 => "attrval1"}, [Eg->text("foo")]);
       
       unless ($div->tag_name eq "div") {
         return 0;
@@ -88,20 +88,19 @@ class TestCase::Eg {
     }
     
     {
-      my $div = Eg->div(
+      my $div = Eg->div_({class => "foo bar", id => "foo", style => {color => "red"}},
         [Eg->div, Eg->text("foo")],
-        {class => "foo bar", id => "foo", style => {color => "red"}}
       );
     }
     
     {
-      my $ul = Eg->ul(
+      my $ul = Eg->ul_(
+        {class => "foo bar", id => "foo", style => {color => "red"}},
         [
           Eg->li([Eg->text("1")]),
           Eg->li([Eg->text("2")]),
           Eg->li([Eg->text("3")]),
         ],
-        {class => "foo bar", id => "foo", style => {color => "red"}}
       );
       
       unless ($ul->nodes->get(0)->(Eg::Node)->nodes->get(0)->(Eg::Node)->text->to_string eq "1") {
@@ -114,7 +113,8 @@ class TestCase::Eg {
     }
     
     {
-      my $table = Eg->table(
+      my $table = Eg->table_(
+        {class => "foo bar", id => "foo", style => {color => "red"}},
         [
           Eg->tr([
             Eg->td([Eg->text("1-1")]), Eg->td([Eg->text("1-2")])
@@ -123,7 +123,6 @@ class TestCase::Eg {
             Eg->td([Eg->text("2-1")]), Eg->td([Eg->text("2-2")])
           ]),
         ],
-        {class => "foo bar", id => "foo", style => {color => "red"}}
       );
     }
     

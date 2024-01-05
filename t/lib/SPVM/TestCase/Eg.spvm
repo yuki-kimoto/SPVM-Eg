@@ -44,12 +44,12 @@ class TestCase::Eg {
     
     {
       my $div = Eg->div_({style => {color => "red"}});
-      
-      if ($div->attributes->get("style")) {
+    
+      unless ($div->attributes->style) {
         return 0;
       }
-      
-      unless ($div->style->get_string("color") eq "red") {
+    
+      unless ($div->style->style_h->get_string("color") eq "red") {
         return 0;
       }
     }
@@ -82,7 +82,7 @@ class TestCase::Eg {
         return 0;
       }
       
-      unless ($div->attributes->get_string("attr1") eq "attrval1") {
+      unless ($div->attributes->attributes_h->get_string("attr1") eq "attrval1") {
         return 0;
       }
     }

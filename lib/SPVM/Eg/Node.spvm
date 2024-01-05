@@ -7,6 +7,8 @@ class Eg::Node {
   use Hash;
   use List;
   use StringBuffer;
+  use Eg::Attributes;
+  use Eg::Style;
   
   enum {
     TYPE_ELEMENT_NODE = 1,
@@ -25,9 +27,7 @@ class Eg::Node {
   
   has nodes : ro List of Eg::Node;
   
-  has attributes : ro Hash of string;
-  
-  has style : ro Hash of string;
+  has attributes : ro Eg::Attributes;
   
   has tag_name : ro string;
   
@@ -54,7 +54,7 @@ class Eg::Node {
     return $self;
   }
   
-  static method new_element : Eg::Node ($tag_name : string, $attributes : object[] = undef, $nodes : Eg::Node[] = undef) {
+  static method new_element : Eg::Node ($tag_name : string, $attribute_pairs : object[] = undef, $nodes : Eg::Node[] = undef) {
     
     unless ($tag_name) {
       die "\$tag_namet must be defined.";
@@ -64,18 +64,15 @@ class Eg::Node {
     
     $self->{tag_name} = $tag_name;
     
-    {
-      my $attributes = Hash->new($attributes);
-      
-      $self->{attributes} = $attributes;
-      
-      my $style = $self->{attributes}->delete("style");
-      
-      {
-        my $style = Hash->new((object[])$style);
-        $self->{style} = $style;
-      }
-    }
+    my $attributes = Eg::Attributes->new($attribute_pairs);
+    
+    $self->{attributes} = $attributes;
+    
+    my $style_pairs = (object[])$attributes->attributes_h->delete("style");
+    
+    my $style = Eg::Style->new($style_pairs);
+    
+    $attributes->{style} = $style;
     
     return $self;
   }
@@ -95,5 +92,14 @@ class Eg::Node {
     $self->{text} = $text_buffer;
     
     return $self;
+  }
+  
+  # Instance Methods
+  method style : Eg::Style () {
+    return $self->{attributes}->{style};
+  }
+  
+  method set_style : void ($style : Eg::Style) {
+    $self->{attributes}->{style} = $style;
   }
 }

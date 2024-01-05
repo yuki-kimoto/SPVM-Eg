@@ -10,7 +10,7 @@ class Eg::Attributes {
   # Fields
   has attributes_h : ro Hash of string;
   
-  has style : Eg::Style;
+  has style : ro Eg::Style;
   
   # Class Methods
   static method new : Eg::Attributes ($attribute_pairs : object[] = undef) {

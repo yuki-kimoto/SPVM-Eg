@@ -64,35 +64,43 @@ The constant values for the L</"type"> field.
 
 =head1 Fields
 
-=head2 type
-
-C<has type : ro int;>
-
-=head2 nodes
-
-C<has nodes : ro List of L<Eg::Node|SPVM::Eg::Node>;>
-
-=head2 attributes
-
-C<has attributes : rw  L<Hash|SPVM::Hash> of string;>
-
-=head2 style
-
-C<has attributes : ro L<Hash|SPVM::Hash> of string;>
-
-=head2 tag_name
-
-C<has tag_name : ro string;>
-
-=head2 text_buffer
-
-C<has text_buffer : ro L<StringBuffer|SPVM::StringBuffer>;>
-
+  has type : ro int;
+  
+  has nodes : ro List of Eg::Node;
+  
+  has attributes : rw Eg::Attributes;
+  
+  has style : rw Eg::Style;
+  
+  has tag_name : ro string;
+  
+  has text_buffer : ro StringBuffer;
+  
+  has parent : Eg::Node;
+  
 =head1 Class Methods
 
-=head2 new_text
+  static method new : Eg::Node ($type : int, $nodes : Eg::Node[] = undef);
+  
+  static method new_document : Eg::Node ($root_node : Eg::Node);
+  
+  static method new_element : Eg::Node ($tag_name : string, $attribute_pairs : object[] = undef, $nodes : Eg::Node[] = undef);
+  
+  static method new_text : Eg::Node ($text : string);
 
-C<static method new_text : Eg::Node ($text : string);>
+=head1 Instance Methods
+
+  method css : string ($name : string);
+  
+  method set_css : void ($name : string, $value : string);
+  
+  method attr : string ($name : string);
+  
+  method set_attr : void ($name : string, $value : string);
+  
+  method text : string ();
+  
+  method set_text : string ($text : string);
 
 =head1 Copyright & License
 

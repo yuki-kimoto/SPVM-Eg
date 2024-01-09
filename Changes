@@ -1,6 +1,9 @@
 0.007 2024-01-09
   [New Features]
     * Add the new_document method to the Eg::Node class.
+    * Add the document method to the Eg class.
+  [Incompatible Changes]
+    * The html and html_ methods in the Eg checks nodes.
 0.006 2024-01-06
   [Incompatible Changes]
     * Rename the text field in the Eg::Node class to the text_buffer method.

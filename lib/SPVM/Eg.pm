@@ -16,7 +16,22 @@ The Eg class in L<SPVM> has methods to manipulate Web architecture, such as HTML
 
   use Eg;
   
-  # <div>foo</div>
+  # HTML document
+  # <html><head>...</head><body>...</body></html>
+  {
+    my $document = Eg->document(
+      Eg->html([
+        Eg->head([
+          
+        ]),
+        Eg->body([
+          
+        ])
+      ]);
+    );
+  }
+  
+  # <div style="color:red">foo</div>
   {
     my $div = Eg->div_(
       {class => "foo bar", id => "foo", style => {"color" => "red"}},
@@ -24,7 +39,7 @@ The Eg class in L<SPVM> has methods to manipulate Web architecture, such as HTML
     );
   }
   
-  # <ul><li>1</li><li>2</li><li>3</li></ul>
+  # <ul style="color:red"><li>1</li><li>2</li><li>3</li></ul>
   {
     my $ul = Eg->ul_(
       {class => "foo bar", id => "foo", style => {"color" => "red"}},
@@ -52,6 +67,10 @@ The Eg class in L<SPVM> has methods to manipulate Web architecture, such as HTML
   }
   
 =head1 Class Methods
+
+=head2 document
+
+C<static method document : Eg::Node ($root_node : Eg::Node);>
 
 =head2 text
 

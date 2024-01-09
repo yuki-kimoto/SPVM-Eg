@@ -74,6 +74,10 @@ C<has nodes : ro List of L<Eg::Node|SPVM::Eg::Node>;>
 
 =head2 attributes
 
+C<has attributes : rw  L<Hash|SPVM::Hash> of string;>
+
+=head2 style
+
 C<has attributes : ro L<Hash|SPVM::Hash> of string;>
 
 =head2 tag_name

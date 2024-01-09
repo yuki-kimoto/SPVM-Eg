@@ -45,7 +45,7 @@ class TestCase::Eg {
     {
       my $div = Eg->div_({style => {color => "red"}});
     
-      unless ($div->attributes->style) {
+      unless ($div->style) {
         return 0;
       }
     

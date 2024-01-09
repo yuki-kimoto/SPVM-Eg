@@ -4,6 +4,8 @@
     * Add the document method to the Eg class.
   [Incompatible Changes]
     * The html and html_ methods in the Eg checks nodes.
+    * Remove the style field from the Eg::Attributes class and add the style field to the Eg::Node class.
+    
 0.006 2024-01-06
   [Incompatible Changes]
     * Rename the text field in the Eg::Node class to the text_buffer method.

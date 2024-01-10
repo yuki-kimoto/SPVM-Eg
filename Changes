@@ -1,3 +1,8 @@
+0.008 2024-01-10
+  [Incompatible Changes]
+    * Remove the Eg::Attributes class.
+    * Remove the attributes field from the Eg::Node.
+    * Attributes in the Eg::Node is created on demand.
 0.007 2024-01-09
   [New Features]
     * Add the new_document method to the Eg::Node class.

@@ -7,7 +7,6 @@ class Eg::Node {
   use Hash;
   use List;
   use StringBuffer;
-  use Eg::Attributes;
   use Eg::Style;
   
   enum {
@@ -27,7 +26,7 @@ class Eg::Node {
   
   has nodes : ro List of Eg::Node;
   
-  has attributes : rw Eg::Attributes;
+  has attributes_h : Hash;
   
   has style : rw Eg::Style;
   
@@ -73,15 +72,17 @@ class Eg::Node {
     
     $self->{tag_name} = $tag_name;
     
-    my $attributes = Eg::Attributes->new($attribute_pairs);
-    
-    $self->{attributes} = $attributes;
-    
-    my $style_pairs = (object[])$attributes->attributes_h->delete("style");
-    
-    my $style = Eg::Style->new($style_pairs);
-    
-    $self->{style} = $style;
+    if ($attribute_pairs) {
+      $self->{attributes_h} = Hash->new($attribute_pairs);
+      
+      my $attributes_h = $self->{attributes_h};
+      
+      my $style_pairs = (object[])$attributes_h->delete("style");
+      
+      my $style = Eg::Style->new($style_pairs);
+      
+      $self->{style} = $style;
+    }
     
     return $self;
   }
@@ -120,16 +121,24 @@ class Eg::Node {
   
   method attr : string ($name : string) {
     
-    my $attributes = $self->{attributes};
+    unless ($self->{attributes_h}) {
+      return undef;
+    }
     
-    return $attributes->{attributes_h}->get_string($name);
+    my $attributes_h = $self->{attributes_h};
+    
+    return $attributes_h->get_string($name);
   }
   
   method set_attr : void ($name : string, $value : string) {
     
-    my $attributes = $self->{attributes};
+    unless ($self->{attributes_h}) {
+      $self->{attributes_h} = Hash->new;
+    }
     
-    $attributes->{attributes_h}->set_string($name, $value);
+    my $attributes_h = $self->{attributes_h};
+    
+    $attributes_h->set_string($name, $value);
   }
   
   method text : string () {

@@ -58,14 +58,14 @@ class Eg::Node {
     return $self;
   }
   
-  static method new_document : Eg::Node ($root_node : Eg::Node) {
+  static method new_document_node : Eg::Node ($root_node : Eg::Node) {
     
     my $self = Eg::Node->new(Eg::Node->TYPE_DOCUMENT_NODE, [$root_node]);
     
     return $self;
   }
   
-  static method new_element : Eg::Node ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes : Eg::Node[] = undef) {
+  static method new_element_node : Eg::Node ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes : Eg::Node[] = undef) {
     
     unless ($tag_name) {
       die "\$tag_namet must be defined.";
@@ -92,7 +92,7 @@ class Eg::Node {
     return $self;
   }
   
-  static method new_text : Eg::Node ($text : string) {
+  static method new_text_node : Eg::Node ($text : string) {
     
     unless ($text) {
       die "\$text must be defined.";
@@ -300,7 +300,7 @@ class Eg::Node {
       }
     }
     else {
-      $self->{child_nodes_list} = List->new([&new_text($text)]);
+      $self->{child_nodes_list} = List->new([&new_text_node($text)]);
     }
     
   }

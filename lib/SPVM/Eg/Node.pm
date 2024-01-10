@@ -74,7 +74,7 @@ The constant values for the L</"type"> field.
   
   has tag_name : ro string;
   
-  has text_buffer : ro StringBuffer;
+  has value_buffer : ro StringBuffer;
   
   has parent : Eg::Node;
   

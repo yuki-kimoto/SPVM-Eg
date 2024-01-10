@@ -185,18 +185,18 @@ class TestCase::Eg {
       
       $div->remove_css("css3");
       
-      unless (Array->equals_string($div->styles_pairs, ["css2" => "cssval2"])) {
+      unless (Array->equals_string($div->style_pairs, ["css2" => "cssval2"])) {
         return 0;
       }
     }
     
-    # styles_pairs
+    # style_pairs
     {
       my $div = Eg->div_({style => {css1 => "cssval1", css2 => "cssval2"}});
       
-      my $styles_pairs = $div->styles_pairs;
+      my $style_pairs = $div->style_pairs;
       
-      unless (Array->equals_string($styles_pairs, ["css1", "cssval1", "css2", "cssval2"])) {
+      unless (Array->equals_string($style_pairs, ["css1", "cssval1", "css2", "cssval2"])) {
         return 0;
       }
     }

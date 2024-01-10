@@ -120,7 +120,7 @@ The constant values for the L</"type"> field.
   
   method remove_css : void ($name : string);
   
-  method styles_pairs : string[] ();
+  method style_pairs : string[] ();
   
 =head1 Copyright & License
 

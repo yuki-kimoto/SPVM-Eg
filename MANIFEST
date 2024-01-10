@@ -17,6 +17,8 @@ lib/SPVM/Eg/Document.pm
 lib/SPVM/Eg/Document.spvm
 lib/SPVM/Eg/EventTarget.pm
 lib/SPVM/Eg/EventTarget.spvm
+lib/SPVM/Eg/History.pm
+lib/SPVM/Eg/History.spvm
 lib/SPVM/Eg/Location.pm
 lib/SPVM/Eg/Location.spvm
 lib/SPVM/Eg/Node.pm

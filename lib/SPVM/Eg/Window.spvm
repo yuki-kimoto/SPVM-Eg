@@ -3,10 +3,16 @@
 
 class Eg::Window extends Eg::EventTarget {
   use Eg::API;
+  use Eg::Location;
+  use Eg::History;
   
   has api : Eg::API;
   
+  has location : ro Eg::Location;
+  
   has document : ro Eg::Document;
+  
+  has history : ro Eg::History;
   
   method outer_width : int () {
     my $api = $self->{api};

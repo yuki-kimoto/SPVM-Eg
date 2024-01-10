@@ -26,15 +26,15 @@ class Eg::Node {
   
   has nodes_list : ro List of Eg::Node;
   
-  has attributes_h : Hash of string;
+  has attributes_h : ro Hash of string;
   
-  has styles_h : Hash of string;
+  has styles_h : ro Hash of string;
   
   has tag_name : ro string;
   
   has value_buffer : ro StringBuffer;
   
-  has parent : Eg::Node;
+  has parent : ro Eg::Node;
   
   # Class Methods
   static method new : Eg::Node ($type : int, $nodes : Eg::Node[] = undef) {

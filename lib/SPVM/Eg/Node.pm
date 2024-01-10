@@ -66,17 +66,17 @@ The constant values for the L</"type"> field.
 
   has type : ro int;
   
-  has nodes : ro List of Eg::Node;
+  has nodes_list : ro List of Eg::Node;
   
-  has attributes : rw Eg::Attributes;
+  has attributes_h : ro Hash of string;
   
-  has style : rw Eg::Style;
+  has styles_h : ro Hash of string;
   
   has tag_name : ro string;
   
   has value_buffer : ro StringBuffer;
   
-  has parent : Eg::Node;
+  has parent : ro Eg::Node;
   
 =head1 Class Methods
 
@@ -102,6 +102,26 @@ The constant values for the L</"type"> field.
   
   method set_text : string ($text : string);
 
+  method attr : string ($name : string);
+  
+  method set_attr : void ($name : string, $value : string);
+  
+  method exists_attr : int ($name : string);
+  
+  method remove_attr : void ($name : string);
+  
+  method attributes : string[] ();
+  
+  method css : string ($name : string);
+  
+  method set_css : void ($name : string, $value : string);
+  
+  method exists_css : int ($name : string);
+  
+  method remove_css : void ($name : string);
+  
+  method styles : string[] ();
+  
 =head1 Copyright & License
 
 Copyright (c) 2023 Yuki Kimoto

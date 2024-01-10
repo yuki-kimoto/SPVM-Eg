@@ -1,6 +1,11 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class Eg::API {
+class Eg::API : interface_t {
+  use Eg::API::Window;
+  
+  # Interface methods
+  
+  method window : Eg::API::Window ();
   
 }

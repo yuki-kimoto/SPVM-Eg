@@ -2,5 +2,32 @@
 # MIT License
 
 class Eg::Window extends Eg::EventTarget {
+  use Eg::API;
+  
+  has api : Eg::API;
+  
+  method outer_width : int () {
+    my $api = $self->{api};
+    
+    return $api->window->outer_width;
+  }
+  
+  method inner_width : int () {
+    my $api = $self->{api};
+    
+    return $api->window->inner_width;
+  }
+  
+  method outer_height : int () {
+    my $api = $self->{api};
+    
+    return $api->window->outer_height;
+  }
+  
+  method inner_height : int () {
+    my $api = $self->{api};
+    
+    return $api->window->inner_height;
+  }
   
 }

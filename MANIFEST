@@ -10,6 +10,8 @@ lib/SPVM/Eg.pm
 lib/SPVM/Eg.spvm
 lib/SPVM/Eg/API.pm
 lib/SPVM/Eg/API.spvm
+lib/SPVM/Eg/API/Window.pm
+lib/SPVM/Eg/API/Window.spvm
 lib/SPVM/Eg/Attributes.pm
 lib/SPVM/Eg/Document.pm
 lib/SPVM/Eg/Document.spvm

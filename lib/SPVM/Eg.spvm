@@ -8,6 +8,7 @@ class Eg {
   use Hash;
   use List;
   use StringBuffer;
+  use Eg::Window;
   
   static method document : Eg::Node ($root_node : Eg::Node) {
     unless ($root_node) {

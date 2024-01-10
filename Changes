@@ -6,6 +6,7 @@
     * Add the styles method to the Eg::Node class.
     * Add the exists_css method to the Eg::Node class.
     * Add the remove_css method to the Eg::Node class.
+    * Add the children method to the Eg::Node class.
     
   [Incompatible Changes]
     * Remove the Eg::Attributes class.

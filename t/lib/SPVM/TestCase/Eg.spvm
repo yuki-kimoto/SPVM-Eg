@@ -226,6 +226,50 @@ class TestCase::Eg {
       }
     }
     
+    # children
+    {
+      {
+        my $ul = Eg->ul_(
+          {class => "foo bar", id => "foo", style => {color => "red"}},
+          [
+            Eg->li("1"),
+            Eg->li("2"),
+            Eg->li("3"),
+          ],
+        );
+        
+        my $child_nodes = $ul->children;
+        
+        unless (@$child_nodes == 3) {
+          return 0;
+        }
+        
+        unless ($child_nodes->[0]->text eq "1") {
+          return 0;
+        }
+        
+        unless ($child_nodes->[1]->text eq "2") {
+          return 0;
+        }
+        
+        unless ($child_nodes->[2]->text eq "3") {
+          return 0;
+        }
+      }
+      
+      {
+        my $ul = Eg->ul_(
+          {class => "foo bar", id => "foo", style => {color => "red"}},
+        );
+        
+        my $child_nodes = $ul->children;
+        
+        unless (@$child_nodes == 0) {
+          return 0;
+        }
+      }
+    }
+    
     {
       my $table = Eg->table_(
         {class => "foo bar", id => "foo", style => {color => "red"}},

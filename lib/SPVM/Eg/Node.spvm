@@ -43,6 +43,9 @@ class Eg::Node {
     
     $self->{type} = $type;
     
+    unless ($child_nodes) {
+      $child_nodes = new Eg::Node[0];
+    }
     $self->{child_nodes_list} = List->new($child_nodes);
     
     if ($child_nodes) {
@@ -302,4 +305,17 @@ class Eg::Node {
     
   }
   
+  method children : Eg::Node[] () {
+    my $child_nodes_list = $self->{child_nodes_list};
+    
+    my $child_nodes = (Eg::Node[])undef;
+    if ($child_nodes_list) {
+      $child_nodes = (Eg::Node[])$child_nodes_list->to_array;
+    }
+    else {
+      $child_nodes = new Eg::Node[0];
+    }
+    
+    return $child_nodes;
+  }
 }

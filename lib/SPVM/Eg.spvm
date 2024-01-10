@@ -2,7 +2,7 @@
 # MIT License
 
 class Eg {
-  version "0.008";
+  version "0.009";
   
   use Eg::Node;
   use Hash;

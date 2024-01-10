@@ -1,3 +1,9 @@
+0.010 2024-01-11
+  [New Features]
+    * Add the Eg::EventTarget class.
+    * Add the Eg::Window class.
+    * Add the Eg::Document class.
+    * The Eg::Node class extends The Eg::EventTarget class.
 0.009 2024-01-10
   [Incompatible Changes]
     * Rename the attribute method in the Eg::Node class to the attribute_pairs method.

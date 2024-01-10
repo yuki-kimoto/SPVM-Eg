@@ -44,11 +44,9 @@ class TestCase::Eg {
     
     {
       my $div = Eg->div_({style => {color => "red"}});
-    
-      unless ($div->style) {
-        return 0;
-      }
-    
+      
+      warn dump $div->css("color");
+      
       unless ($div->css("color") eq "red") {
         return 0;
       }
@@ -121,18 +119,84 @@ class TestCase::Eg {
       
       $div->remove_attr("attr3");
       
-      unless (Array->equals_string($div->attrs, ["attr2" => "attrval2"])) {
+      unless (Array->equals_string($div->attributes, ["attr2" => "attrval2"])) {
         return 0;
       }
     }
     
-    # attrs
+    # attributes
     {
       my $div = Eg->div_({attr1 => "attrval1", attr2 => "attrval2"});
       
-      my $attrs = $div->attrs;
+      my $attributes = $div->attributes;
       
-      unless (Array->equals_string($attrs, ["attr1", "attrval1", "attr2", "attrval2"])) {
+      unless (Array->equals_string($attributes, ["attr1", "attrval1", "attr2", "attrval2"])) {
+        return 0;
+      }
+    }
+    
+    # css
+    {
+      my $div = Eg->div_({style => {css1 => "cssval1"}});
+      
+      unless ($div->css("css1") eq "cssval1") {
+        return 0;
+      }
+      
+      if ($div->css("css2")) {
+        return 0;
+      }
+    }
+    
+    # set_css
+    {
+      my $div = Eg->div_({style => {}});
+      
+      $div->set_css("css1", "cssval1");
+      
+      unless ($div->css("css1") eq "cssval1") {
+        return 0;
+      }
+      
+    }
+    
+    # exists_css
+    {
+      my $div = Eg->div_({style => {css1 => "cssval1", css2 => undef}});
+      
+      unless ($div->exists_css("css1")) {
+        return 0;
+      }
+      
+      unless ($div->exists_css("css2")) {
+        return 0;
+      }
+      
+      if ($div->exists_css("css3")) {
+        return 0;
+      }
+    }
+    
+    # delete_css
+    {
+      my $div = Eg->div_({style => {css1 => "cssval1", css2 => "cssval2"}});
+      
+      $div->remove_css("css1");
+      
+      $div->remove_css("css3");
+      
+      unless (Array->equals_string($div->styles, ["css2" => "cssval2"])) {
+        return 0;
+      }
+    }
+    
+    # styles
+    {
+      my $div = Eg->div_({style => {css1 => "cssval1", css2 => "cssval2"}});
+      
+      my $styles = $div->styles;
+      
+      unless (Array->equals_string($styles, ["css1", "cssval1", "css2", "cssval2"])) {
         return 0;
       }
     }

@@ -1,8 +1,11 @@
 0.008 2024-01-10
   [New Features]
-    * Add the attrs method to the Eg::Node class.
+    * Add the attributes method to the Eg::Node class.
     * Add the exists_attr method to the Eg::Node class.
     * Add the remove_attr method to the Eg::Node class.
+    * Add the styles method to the Eg::Node class.
+    * Add the exists_css method to the Eg::Node class.
+    * Add the remove_css method to the Eg::Node class.
     
   [Incompatible Changes]
     * Remove the Eg::Attributes class.

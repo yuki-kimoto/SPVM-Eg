@@ -26,9 +26,9 @@ class Eg::Node {
   
   has nodes : ro List of Eg::Node;
   
-  has attributes_h : Hash;
+  has attributes_h : Hash of string;
   
-  has style : rw Eg::Style;
+  has styles_h : Hash of string;
   
   has tag_name : ro string;
   
@@ -77,11 +77,13 @@ class Eg::Node {
       
       my $attributes_h = $self->{attributes_h};
       
-      my $style_pairs = (object[])$attributes_h->delete("style");
+      my $styles_pairs = (object[])$attributes_h->delete("style");
       
-      my $style = Eg::Style->new($style_pairs);
-      
-      $self->{style} = $style;
+      if ($styles_pairs) {
+        my $styles_h = Hash->new($styles_pairs);
+        
+        $self->{styles_h} = $styles_h;
+      }
     }
     
     return $self;
@@ -105,20 +107,6 @@ class Eg::Node {
   }
   
   # Instance Methods
-  method css : string ($name : string) {
-    
-    my $style = $self->{style};
-    
-    return $style->{style_h}->get_string($name);
-  }
-  
-  method set_css : void ($name : string, $value : string) {
-    
-    my $style = $self->{style};
-    
-    $style->{style_h}->set_string($name, $value);
-  }
-  
   method attr : string ($name : string) {
     
     my $attributes_h = $self->{attributes_h};
@@ -166,11 +154,11 @@ class Eg::Node {
     }
   }
   
-  method attrs : string[] () {
+  method attributes : string[] () {
     
     my $attributes_h = $self->{attributes_h};
     
-    my $attrs = (string[])undef;
+    my $attributes = (string[])undef;
     
     if ($attributes_h) {
       my $names = $attributes_h->keys;
@@ -185,13 +173,88 @@ class Eg::Node {
         $attributes_pairs_list->push($value);
       }
       
-      $attrs = $attributes_pairs_list->to_array;
+      $attributes = $attributes_pairs_list->to_array;
     }
     else {
-      $attrs = new string[0];
+      $attributes = new string[0];
     }
     
-    return $attrs;
+    return $attributes;
+  }
+  
+  method css : string ($name : string) {
+    
+    my $styles_h = $self->{styles_h};
+    
+    unless ($self->{styles_h}) {
+      return undef;
+    }
+    
+    my $css = (string)$styles_h->get($name);
+    
+    return $css;
+  }
+  
+  method set_css : void ($name : string, $value : string) {
+    
+    my $styles_h = $self->{styles_h};
+    
+    unless ($styles_h) {
+      $styles_h = $self->{styles_h} = Hash->new;
+    }
+    
+    $styles_h->set_string($name, $value);
+  }
+  
+  method exists_css : int ($name : string) {
+    
+    my $styles_h = $self->{styles_h};
+    
+    my $exists = 0;
+    if ($styles_h) {
+      $exists = $styles_h->exists($name);
+    }
+    
+    return $exists;
+  }
+  
+  method remove_css : void ($name : string) {
+    
+    my $styles_h = $self->{styles_h};
+    
+    my $deleted_css = (string)undef;
+    
+    if ($self->{styles_h}) {
+      $styles_h->delete($name);
+    }
+  }
+  
+  method styles : string[] () {
+    
+    my $styles_h = $self->{styles_h};
+    
+    my $styles = (string[])undef;
+    
+    if ($styles_h) {
+      my $names = $styles_h->keys;
+      
+      Sort->sort_string_asc($names);
+      
+      my $styles_pairs_list = StringList->new;
+      for my $name (@$names) {
+        my $value = $styles_h->get_string($name);
+        
+        $styles_pairs_list->push($name);
+        $styles_pairs_list->push($value);
+      }
+      
+      $styles = $styles_pairs_list->to_array;
+    }
+    else {
+      $styles = new string[0];
+    }
+    
+    return $styles;
   }
   
   method text : string () {

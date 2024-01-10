@@ -24,7 +24,7 @@ class Eg::Node {
   # Fields
   has type : ro int;
   
-  has nodes : ro List of Eg::Node;
+  has nodes_list : ro List of Eg::Node;
   
   has attributes_h : Hash of string;
   
@@ -43,7 +43,7 @@ class Eg::Node {
     
     $self->{type} = $type;
     
-    $self->{nodes} = List->new($nodes);
+    $self->{nodes_list} = List->new($nodes);
     
     if ($nodes) {
       for my $node (@$nodes) {
@@ -258,7 +258,7 @@ class Eg::Node {
   }
   
   method text : string () {
-    my $nodes = $self->{nodes};
+    my $nodes = $self->{nodes_list};
     
     my $nodes_length = $nodes->length;
     
@@ -282,7 +282,7 @@ class Eg::Node {
   }
   
   method set_text : string ($text : string) {
-    my $nodes = $self->{nodes};
+    my $nodes = $self->{nodes_list};
     
     my $nodes_length = $nodes->length;
     
@@ -297,7 +297,7 @@ class Eg::Node {
       }
     }
     else {
-      $self->{nodes} = List->new([&new_text($text)]);
+      $self->{nodes_list} = List->new([&new_text($text)]);
     }
     
   }

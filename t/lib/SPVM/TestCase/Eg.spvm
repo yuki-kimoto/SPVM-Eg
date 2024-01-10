@@ -217,11 +217,11 @@ class TestCase::Eg {
         ],
       );
       
-      unless ($ul->nodes->get(0)->(Eg::Node)->nodes->get(0)->(Eg::Node)->value_buffer->to_string eq "1") {
+      unless ($ul->nodes_list->get(0)->(Eg::Node)->nodes_list->get(0)->(Eg::Node)->value_buffer->to_string eq "1") {
         return 0;
       }
       
-      unless ($ul->nodes->get(1)->(Eg::Node)->nodes->get(0)->(Eg::Node)->value_buffer->to_string eq "2") {
+      unless ($ul->nodes_list->get(1)->(Eg::Node)->nodes_list->get(0)->(Eg::Node)->value_buffer->to_string eq "2") {
         return 0;
       }
     }
@@ -302,15 +302,15 @@ class TestCase::Eg {
         ])
       );
       
-      unless ($document->nodes->get(0)->(Eg::Node)->tag_name eq "html") {
+      unless ($document->nodes_list->get(0)->(Eg::Node)->tag_name eq "html") {
         return 0;
       }
       
-      unless ($document->nodes->get(0)->(Eg::Node)->nodes->get(0)->(Eg::Node)->tag_name eq "head") {
+      unless ($document->nodes_list->get(0)->(Eg::Node)->nodes_list->get(0)->(Eg::Node)->tag_name eq "head") {
         return 0;
       }
       
-      unless ($document->nodes->get(0)->(Eg::Node)->nodes->get(1)->(Eg::Node)->tag_name eq "body") {
+      unless ($document->nodes_list->get(0)->(Eg::Node)->nodes_list->get(1)->(Eg::Node)->tag_name eq "body") {
         return 0;
       }
       

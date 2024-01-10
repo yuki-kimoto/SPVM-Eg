@@ -119,18 +119,18 @@ class TestCase::Eg {
       
       $div->remove_attr("attr3");
       
-      unless (Array->equals_string($div->attributes, ["attr2" => "attrval2"])) {
+      unless (Array->equals_string($div->attribute_pairs, ["attr2" => "attrval2"])) {
         return 0;
       }
     }
     
-    # attributes
+    # attribute_pairs
     {
       my $div = Eg->div_({attr1 => "attrval1", attr2 => "attrval2"});
       
-      my $attributes = $div->attributes;
+      my $attribute_pairs = $div->attribute_pairs;
       
-      unless (Array->equals_string($attributes, ["attr1", "attrval1", "attr2", "attrval2"])) {
+      unless (Array->equals_string($attribute_pairs, ["attr1", "attrval1", "attr2", "attrval2"])) {
         return 0;
       }
     }
@@ -185,18 +185,18 @@ class TestCase::Eg {
       
       $div->remove_css("css3");
       
-      unless (Array->equals_string($div->styles, ["css2" => "cssval2"])) {
+      unless (Array->equals_string($div->styles_pairs, ["css2" => "cssval2"])) {
         return 0;
       }
     }
     
-    # styles
+    # styles_pairs
     {
       my $div = Eg->div_({style => {css1 => "cssval1", css2 => "cssval2"}});
       
-      my $styles = $div->styles;
+      my $styles_pairs = $div->styles_pairs;
       
-      unless (Array->equals_string($styles, ["css1", "cssval1", "css2", "cssval2"])) {
+      unless (Array->equals_string($styles_pairs, ["css1", "cssval1", "css2", "cssval2"])) {
         return 0;
       }
     }

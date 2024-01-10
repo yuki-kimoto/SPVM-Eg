@@ -110,7 +110,7 @@ The constant values for the L</"type"> field.
   
   method remove_attr : void ($name : string);
   
-  method attributes : string[] ();
+  method attribute_pairs : string[] ();
   
   method css : string ($name : string);
   
@@ -120,7 +120,7 @@ The constant values for the L</"type"> field.
   
   method remove_css : void ($name : string);
   
-  method styles : string[] ();
+  method styles_pairs : string[] ();
   
 =head1 Copyright & License
 

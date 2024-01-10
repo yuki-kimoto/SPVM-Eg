@@ -1,3 +1,7 @@
+0.009 2024-01-10
+  [Incompatible Changes]
+    * Rename the attribute method in the Eg::Node class to the attribute_pairs method.
+    * Rename the styles method in the Eg::Node class to the styles_pairs method.
 0.008 2024-01-10
   [New Features]
     * Add the attributes method to the Eg::Node class.

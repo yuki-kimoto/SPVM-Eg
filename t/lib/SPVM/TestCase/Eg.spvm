@@ -71,18 +71,68 @@ class TestCase::Eg {
       
     }
     
+    # attr
     {
-      my $div = Eg->div_({attr1 => "attrval1"}, [Eg->text("foo")]);
-      
-      unless ($div->tag_name eq "div") {
-        return 0;
-      }
-      
-      unless ($div->type == Eg::Node->TYPE_ELEMENT_NODE) {
-        return 0;
-      }
+      my $div = Eg->div_({attr1 => "attrval1"});
       
       unless ($div->attr("attr1") eq "attrval1") {
+        return 0;
+      }
+      
+      if ($div->attr("attr2")) {
+        return 0;
+      }
+    }
+    
+    # set_attr
+    {
+      my $div = Eg->div_({});
+      
+      $div->set_attr("attr1", "attrval1");
+      
+      unless ($div->attr("attr1") eq "attrval1") {
+        return 0;
+      }
+      
+    }
+    
+    # exists_attr
+    {
+      my $div = Eg->div_({attr1 => "attrval1", attr2 => undef});
+      
+      unless ($div->exists_attr("attr1")) {
+        return 0;
+      }
+      
+      unless ($div->exists_attr("attr2")) {
+        return 0;
+      }
+      
+      if ($div->exists_attr("attr3")) {
+        return 0;
+      }
+    }
+    
+    # delete_attr
+    {
+      my $div = Eg->div_({attr1 => "attrval1", attr2 => "attrval2"});
+      
+      $div->remove_attr("attr1");
+      
+      $div->remove_attr("attr3");
+      
+      unless (Array->equals_string($div->attrs, ["attr2" => "attrval2"])) {
+        return 0;
+      }
+    }
+    
+    # attrs
+    {
+      my $div = Eg->div_({attr1 => "attrval1", attr2 => "attrval2"});
+      
+      my $attrs = $div->attrs;
+      
+      unless (Array->equals_string($attrs, ["attr1", "attrval1", "attr2", "attrval2"])) {
         return 0;
       }
     }

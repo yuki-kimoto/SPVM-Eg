@@ -121,24 +121,77 @@ class Eg::Node {
   
   method attr : string ($name : string) {
     
+    my $attributes_h = $self->{attributes_h};
+    
     unless ($self->{attributes_h}) {
       return undef;
     }
     
-    my $attributes_h = $self->{attributes_h};
+    my $attr = (string)$attributes_h->get($name);
     
-    return $attributes_h->get_string($name);
+    return $attr;
   }
   
   method set_attr : void ($name : string, $value : string) {
     
-    unless ($self->{attributes_h}) {
-      $self->{attributes_h} = Hash->new;
+    my $attributes_h = $self->{attributes_h};
+    
+    unless ($attributes_h) {
+      $attributes_h = $self->{attributes_h} = Hash->new;
     }
+    
+    $attributes_h->set_string($name, $value);
+  }
+  
+  method exists_attr : int ($name : string) {
     
     my $attributes_h = $self->{attributes_h};
     
-    $attributes_h->set_string($name, $value);
+    my $exists = 0;
+    if ($attributes_h) {
+      $exists = $attributes_h->exists($name);
+    }
+    
+    return $exists;
+  }
+  
+  method remove_attr : void ($name : string) {
+    
+    my $attributes_h = $self->{attributes_h};
+    
+    my $deleted_attr = (string)undef;
+    
+    if ($self->{attributes_h}) {
+      $attributes_h->delete($name);
+    }
+  }
+  
+  method attrs : string[] () {
+    
+    my $attributes_h = $self->{attributes_h};
+    
+    my $attrs = (string[])undef;
+    
+    if ($attributes_h) {
+      my $names = $attributes_h->keys;
+      
+      Sort->sort_string_asc($names);
+      
+      my $attributes_pairs_list = StringList->new;
+      for my $name (@$names) {
+        my $value = $attributes_h->get_string($name);
+        
+        $attributes_pairs_list->push($name);
+        $attributes_pairs_list->push($value);
+      }
+      
+      $attrs = $attributes_pairs_list->to_array;
+    }
+    else {
+      $attrs = new string[0];
+    }
+    
+    return $attrs;
   }
   
   method text : string () {

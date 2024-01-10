@@ -6,6 +6,8 @@ class Eg::Window extends Eg::EventTarget {
   
   has api : Eg::API;
   
+  has document : ro Eg::Document;
+  
   method outer_width : int () {
     my $api = $self->{api};
     

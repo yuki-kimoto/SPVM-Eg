@@ -6,6 +6,7 @@
     * The Eg::Node class extends The Eg::EventTarget class.
     * Add the Eg::API class.
     * Add the Eg::API::Window class.
+    * Add the Eg::Location class.
 0.009 2024-01-10
   [Incompatible Changes]
     * Rename the attribute method in the Eg::Node class to the attribute_pairs method.

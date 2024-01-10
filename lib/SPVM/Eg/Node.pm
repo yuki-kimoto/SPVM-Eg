@@ -66,7 +66,7 @@ The constant values for the L</"type"> field.
 
   has type : ro int;
   
-  has nodes_list : ro List of Eg::Node;
+  has child_nodes_list : ro List of Eg::Node;
   
   has attributes_h : ro Hash of string;
   
@@ -80,11 +80,11 @@ The constant values for the L</"type"> field.
   
 =head1 Class Methods
 
-  static method new : Eg::Node ($type : int, $nodes : Eg::Node[] = undef);
+  static method new : Eg::Node ($type : int, $child_nodes : Eg::Node[] = undef);
   
   static method new_document : Eg::Node ($root_node : Eg::Node);
   
-  static method new_element : Eg::Node ($tag_name : string, $attribute_pairs : object[] = undef, $nodes : Eg::Node[] = undef);
+  static method new_element : Eg::Node ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes : Eg::Node[] = undef);
   
   static method new_text : Eg::Node ($text : string);
 

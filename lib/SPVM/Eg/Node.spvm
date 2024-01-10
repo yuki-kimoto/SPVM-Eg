@@ -24,7 +24,7 @@ class Eg::Node {
   # Fields
   has type : ro int;
   
-  has nodes_list : ro List of Eg::Node;
+  has child_nodes_list : ro List of Eg::Node;
   
   has attributes_h : ro Hash of string;
   
@@ -37,16 +37,16 @@ class Eg::Node {
   has parent : ro Eg::Node;
   
   # Class Methods
-  static method new : Eg::Node ($type : int, $nodes : Eg::Node[] = undef) {
+  static method new : Eg::Node ($type : int, $child_nodes : Eg::Node[] = undef) {
     
     my $self = new Eg::Node;
     
     $self->{type} = $type;
     
-    $self->{nodes_list} = List->new($nodes);
+    $self->{child_nodes_list} = List->new($child_nodes);
     
-    if ($nodes) {
-      for my $node (@$nodes) {
+    if ($child_nodes) {
+      for my $node (@$child_nodes) {
         $node->{parent} = $self;
         weaken $node->{parent};
       }
@@ -62,13 +62,13 @@ class Eg::Node {
     return $self;
   }
   
-  static method new_element : Eg::Node ($tag_name : string, $attribute_pairs : object[] = undef, $nodes : Eg::Node[] = undef) {
+  static method new_element : Eg::Node ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes : Eg::Node[] = undef) {
     
     unless ($tag_name) {
       die "\$tag_namet must be defined.";
     }
     
-    my $self = Eg::Node->new(Eg::Node->TYPE_ELEMENT_NODE, $nodes);
+    my $self = Eg::Node->new(Eg::Node->TYPE_ELEMENT_NODE, $child_nodes);
     
     $self->{tag_name} = $tag_name;
     
@@ -258,14 +258,14 @@ class Eg::Node {
   }
   
   method text : string () {
-    my $nodes = $self->{nodes_list};
+    my $child_nodes = $self->{child_nodes_list};
     
-    my $nodes_length = $nodes->length;
+    my $child_nodes_length = $child_nodes->length;
     
     my $text = (string)undef;
     
-    if ($nodes_length > 0) {
-      my $first_child = (Eg::Node)$nodes->get(0);
+    if ($child_nodes_length > 0) {
+      my $first_child = (Eg::Node)$child_nodes->get(0);
       
       if ($first_child->type == &TYPE_TEXT_NODE) {
         $text = $first_child->{value_buffer}->to_string;
@@ -282,12 +282,12 @@ class Eg::Node {
   }
   
   method set_text : string ($text : string) {
-    my $nodes = $self->{nodes_list};
+    my $child_nodes = $self->{child_nodes_list};
     
-    my $nodes_length = $nodes->length;
+    my $child_nodes_length = $child_nodes->length;
     
-    if ($nodes_length > 0) {
-      my $first_child = (Eg::Node)$nodes->get(0);
+    if ($child_nodes_length > 0) {
+      my $first_child = (Eg::Node)$child_nodes->get(0);
       
       if ($first_child->type == &TYPE_TEXT_NODE) {
         $first_child->{value_buffer}->set($text);
@@ -297,7 +297,7 @@ class Eg::Node {
       }
     }
     else {
-      $self->{nodes_list} = List->new([&new_text($text)]);
+      $self->{child_nodes_list} = List->new([&new_text($text)]);
     }
     
   }

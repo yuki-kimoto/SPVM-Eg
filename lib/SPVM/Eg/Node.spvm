@@ -7,7 +7,6 @@ class Eg::Node {
   use Hash;
   use List;
   use StringBuffer;
-  use Eg::Style;
   
   enum {
     TYPE_ELEMENT_NODE = 1,

@@ -23,6 +23,8 @@ lib/SPVM/Eg/Node.pm
 lib/SPVM/Eg/Node.spvm
 lib/SPVM/Eg/Style.pm
 lib/SPVM/Eg/Style/Color.spvm
+lib/SPVM/Eg/URLSearchParams.pm
+lib/SPVM/Eg/URLSearchParams.spvm
 lib/SPVM/Eg/Window.pm
 lib/SPVM/Eg/Window.spvm
 LICENSE

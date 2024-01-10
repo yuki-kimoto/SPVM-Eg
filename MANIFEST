@@ -9,6 +9,8 @@ Changes
 lib/SPVM/Eg.pm
 lib/SPVM/Eg.spvm
 lib/SPVM/Eg/Attributes.pm
+lib/SPVM/Eg/Document.pm
+lib/SPVM/Eg/Document.spvm
 lib/SPVM/Eg/Node.pm
 lib/SPVM/Eg/Node.spvm
 lib/SPVM/Eg/Style.pm

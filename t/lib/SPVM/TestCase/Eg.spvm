@@ -339,7 +339,7 @@ class TestCase::Eg {
     }
     
     {
-      my $document = Eg->document(
+      my $document = Eg->new_document(
         Eg->html([
           Eg->head,
           Eg->body,

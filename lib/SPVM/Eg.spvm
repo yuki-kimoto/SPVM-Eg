@@ -10,7 +10,7 @@ class Eg {
   use StringBuffer;
   use Eg::Window;
   
-  static method document : Eg::Node ($root_node : Eg::Node) {
+  static method new_document : Eg::Node ($root_node : Eg::Node) {
     unless ($root_node) {
       die "\$root_node must be defined.";
     }

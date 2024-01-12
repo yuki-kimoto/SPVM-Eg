@@ -19,7 +19,7 @@ The Eg class in L<SPVM> has methods to manipulate Web architecture, such as HTML
   # HTML document
   # <html><head>...</head><body>...</body></html>
   {
-    my $document = Eg->document(
+    my $document = Eg->new_document(
       Eg->html([
         Eg->head([
           
@@ -68,9 +68,9 @@ The Eg class in L<SPVM> has methods to manipulate Web architecture, such as HTML
   
 =head1 Class Methods
 
-=head2 document
+=head2 new_document
 
-C<static method document : Eg::Node ($root_node : Eg::Node);>
+C<static method new_document : Eg::Node ($root_node : Eg::Node);>
 
 =head2 text
 

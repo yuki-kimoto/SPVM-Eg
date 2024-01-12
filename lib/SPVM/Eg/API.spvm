@@ -1,11 +1,19 @@
-# Copyright (c) 2024 Yuki Kimoto
-# MIT License
-
-class Eg::API : interface_t {
+class Eg::API {
+  
+  use Eg::API::App;
   use Eg::API::Window;
   
-  # Interface methods
+  # Fields
+  has app : rw Eg::API::App;
   
-  method window : Eg::API::Window ();
+  has window : rw Eg::API::Window;
+  
+  # Class Methods
+  static method new : Eg::API () {
+    
+    my $self = new Eg::API;
+    
+    return $self;
+  }
   
 }

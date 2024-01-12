@@ -10,6 +10,7 @@ lib/SPVM/Eg.pm
 lib/SPVM/Eg.spvm
 lib/SPVM/Eg/API.pm
 lib/SPVM/Eg/API.spvm
+lib/SPVM/Eg/API/App.spvm
 lib/SPVM/Eg/API/Window.pm
 lib/SPVM/Eg/API/Window.spvm
 lib/SPVM/Eg/Attributes.pm
@@ -23,6 +24,9 @@ lib/SPVM/Eg/Location.pm
 lib/SPVM/Eg/Location.spvm
 lib/SPVM/Eg/Node.pm
 lib/SPVM/Eg/Node.spvm
+lib/SPVM/Eg/OS.spvm
+lib/SPVM/Eg/OS/API.spvm
+lib/SPVM/Eg/Runtime.spvm
 lib/SPVM/Eg/Style.pm
 lib/SPVM/Eg/URLSearchParams.pm
 lib/SPVM/Eg/URLSearchParams.spvm

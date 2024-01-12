@@ -1,6 +1,7 @@
 0.011 2024-01-12
   [Incompatible Changes]
     * Rename the document method in the Eg class to the new_document method.
+    * Many things are drastically changed.
 0.010 2024-01-11
   [New Features]
     * Add the Eg::EventTarget class.

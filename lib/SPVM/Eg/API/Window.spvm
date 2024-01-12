@@ -2,7 +2,6 @@
 # MIT License
 
 class Eg::API::Window : interface_t {
-  use Eg::Document;
   
   method outer_width : int ();
   

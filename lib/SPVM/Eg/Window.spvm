@@ -2,40 +2,51 @@
 # MIT License
 
 class Eg::Window extends Eg::EventTarget {
+  allow Eg::Runtime;
+  
   use Eg::API;
   use Eg::Location;
   use Eg::History;
+  use Eg::Document;
   
-  has api : Eg::API;
+  # Class Methods
+  static method new : Eg::Window () {
+    
+    my $self = new Eg::Window;
+    
+    return $self;
+  }
+  
+  has runtime : rw Eg::Runtime;
   
   has location : ro Eg::Location;
   
-  has document : ro Eg::Document;
+  has document : rw Eg::Document;
   
   has history : ro Eg::History;
   
   method outer_width : int () {
-    my $api = $self->{api};
+    my $runtime = $self->runtime;
     
-    return $api->window->outer_width;
+    return $runtime->api->window->outer_width;
   }
   
   method inner_width : int () {
-    my $api = $self->{api};
+    my $runtime = $self->runtime;
     
-    return $api->window->inner_width;
+    return $runtime->api->window->inner_width;
   }
   
   method outer_height : int () {
-    my $api = $self->{api};
+    my $runtime = $self->runtime;
     
-    return $api->window->outer_height;
+    return $runtime->api->window->outer_height;
   }
   
   method inner_height : int () {
-    my $api = $self->{api};
+    my $runtime = $self->runtime;
     
-    return $api->window->inner_height;
+    return $runtime->api->window->inner_height;
   }
   
 }

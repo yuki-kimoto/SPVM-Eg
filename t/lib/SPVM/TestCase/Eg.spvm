@@ -346,15 +346,15 @@ class TestCase::Eg {
         ])
       );
       
-      unless ($document->child_nodes_list->get(0)->(Eg::Node)->tag_name eq "html") {
+      unless ($document->html->tag_name eq "html") {
         return 0;
       }
       
-      unless ($document->child_nodes_list->get(0)->(Eg::Node)->child_nodes_list->get(0)->(Eg::Node)->tag_name eq "head") {
+      unless ($document->head->tag_name eq "head") {
         return 0;
       }
       
-      unless ($document->child_nodes_list->get(0)->(Eg::Node)->child_nodes_list->get(1)->(Eg::Node)->tag_name eq "body") {
+      unless ($document->body->tag_name eq "body") {
         return 0;
       }
       

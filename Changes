@@ -1,3 +1,13 @@
+0.012 2024-01-13
+  [New Features]
+    * Add the append method to the Eg::Node class.
+    * Add the prepend method to the Eg::Node class.
+    * Add the after method to the Eg::Node class.
+    * Add the before method to the Eg::Node class.
+    
+  [Incompatible Changes]
+    * The Eg::Document class extends Eg::Node.
+    
 0.011 2024-01-12
   [Incompatible Changes]
     * Rename the document method in the Eg class to the new_document method.

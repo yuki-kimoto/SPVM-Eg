@@ -16,6 +16,7 @@ lib/SPVM/Eg/API/Window.pm
 lib/SPVM/Eg/API/Window.spvm
 lib/SPVM/Eg/Document.pm
 lib/SPVM/Eg/Document.spvm
+lib/SPVM/Eg/Element.spvm
 lib/SPVM/Eg/EventTarget.pm
 lib/SPVM/Eg/EventTarget.spvm
 lib/SPVM/Eg/History.pm
@@ -30,6 +31,7 @@ lib/SPVM/Eg/OS/API.pm
 lib/SPVM/Eg/OS/API.spvm
 lib/SPVM/Eg/Runtime.pm
 lib/SPVM/Eg/Runtime.spvm
+lib/SPVM/Eg/Text.spvm
 lib/SPVM/Eg/URLSearchParams.pm
 lib/SPVM/Eg/URLSearchParams.spvm
 lib/SPVM/Eg/Window.pm

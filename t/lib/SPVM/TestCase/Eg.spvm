@@ -45,8 +45,6 @@ class TestCase::Eg {
     {
       my $div = Eg->div_({style => {color => "red"}});
       
-      warn dump $div->css("color");
-      
       unless ($div->css("color") eq "red") {
         return 0;
       }
@@ -269,15 +267,15 @@ Foo
           return 0;
         }
         
-        unless ($child_nodes->[0]->node_value eq "1") {
+        unless ($child_nodes->[0]->(Eg::Element)->text eq "1") {
           return 0;
         }
         
-        unless ($child_nodes->[1]->node_value eq "2") {
+        unless ($child_nodes->[1]->(Eg::Element)->text eq "2") {
           return 0;
         }
         
-        unless ($child_nodes->[2]->node_value eq "3") {
+        unless ($child_nodes->[2]->(Eg::Element)->text eq "3") {
           return 0;
         }
       }

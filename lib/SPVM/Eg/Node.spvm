@@ -8,6 +8,11 @@ class Eg::Node {
   use List;
   use StringBuffer;
   use Eg::Text;
+  use Eg::CSS::Box;
+  use Eg::Text;
+  use Eg::Comment;
+  use Eg::Document;
+  use Eg::DocumentFragment;
   
   enum {
     TYPE_ELEMENT_NODE = 1,
@@ -22,30 +27,23 @@ class Eg::Node {
   }
   
   # Fields
-  has type : ro int;
+  has node_type : ro int;
   
-  has child_nodes_list : ro List of Eg::Node;
+  has parent_node : ro Eg::Node;
   
-  has attributes_h : ro Hash of string;
+  has next_sibling : ro Eg::Node;
   
-  has styles_h : ro Hash of string;
+  has previous_sibling : ro Eg::Node;
   
-  has tag_name : ro string;
+  has first_child : ro Eg::Node;
   
-  has value_buffer : ro StringBuffer;
+  has last_child : ro Eg::Node;
   
-  has parent : ro Eg::Node;
+  has node_value_buffer : ro StringBuffer;
   
-  # Class Methods
-  static method new : Eg::Node ($type : int, $child_nodes : Eg::Node[] = undef) {
-    
-    my $self = new Eg::Node;
-    
-    $self->init($type, $child_nodes);
-    
-    return $self;
-  }
+  has box : Eg::CSS::Box;
   
+  # Private Class Methods
   private static method copy_object_with_proto : object[] ($array : object[], $proto : object[], $cloner : Cloner = undef, $offset : int = 0, $length : int = -1) {
     
     unless ($array) {
@@ -88,9 +86,9 @@ class Eg::Node {
   }
   
   # Instance Methods
-  protected method init : void ($type : int, $child_nodes : Eg::Node[] = undef) {
+  protected method init : void ($node_type : int, $child_nodes : Eg::Node[] = undef) {
     
-    $self->{type} = $type;
+    $self->{node_type} = $node_type;
     
     if ($child_nodes) {
       unless ($child_nodes is_type Eg::Node[]) {
@@ -101,298 +99,442 @@ class Eg::Node {
       $child_nodes = new Eg::Node[0];
     }
     
-    $self->{child_nodes_list} = List->new($child_nodes);
-    
+    # Tree
     if ($child_nodes) {
-      for my $node (@$child_nodes) {
-        $node->{parent} = $self;
-        weaken $node->{parent};
-      }
-    }
-    
-  }
-  
-  method attr : string ($name : string) {
-    
-    my $attributes_h = $self->{attributes_h};
-    
-    unless ($self->{attributes_h}) {
-      return undef;
-    }
-    
-    my $attr = (string)$attributes_h->get($name);
-    
-    return $attr;
-  }
-  
-  method set_attr : void ($name : string, $value : string) {
-    
-    my $attributes_h = $self->{attributes_h};
-    
-    unless ($attributes_h) {
-      $attributes_h = $self->{attributes_h} = Hash->new;
-    }
-    
-    $attributes_h->set_string($name, $value);
-  }
-  
-  method exists_attr : int ($name : string) {
-    
-    my $attributes_h = $self->{attributes_h};
-    
-    my $exists = 0;
-    if ($attributes_h) {
-      $exists = $attributes_h->exists($name);
-    }
-    
-    return $exists;
-  }
-  
-  method remove_attr : void ($name : string) {
-    
-    my $attributes_h = $self->{attributes_h};
-    
-    my $deleted_attr = (string)undef;
-    
-    if ($self->{attributes_h}) {
-      $attributes_h->delete($name);
-    }
-  }
-  
-  method attribute_pairs : string[] () {
-    
-    my $attributes_h = $self->{attributes_h};
-    
-    my $attribute_pairs = (string[])undef;
-    
-    if ($attributes_h) {
-      my $names = $attributes_h->keys;
       
-      Sort->sort_string_asc($names);
+      my $child_nodes_length = @$child_nodes;
       
-      my $attribute_pairs_list = StringList->new;
-      for my $name (@$names) {
-        my $value = $attributes_h->get_string($name);
+      if ($child_nodes_length > 0) {
         
-        $attribute_pairs_list->push($name);
-        $attribute_pairs_list->push($value);
-      }
-      
-      $attribute_pairs = $attribute_pairs_list->to_array;
-    }
-    else {
-      $attribute_pairs = new string[0];
-    }
-    
-    return $attribute_pairs;
-  }
-  
-  method css : string ($name : string) {
-    
-    my $styles_h = $self->{styles_h};
-    
-    unless ($self->{styles_h}) {
-      return undef;
-    }
-    
-    my $css = (string)$styles_h->get($name);
-    
-    return $css;
-  }
-  
-  method set_css : void ($name : string, $value : string) {
-    
-    my $styles_h = $self->{styles_h};
-    
-    unless ($styles_h) {
-      $styles_h = $self->{styles_h} = Hash->new;
-    }
-    
-    $styles_h->set_string($name, $value);
-  }
-  
-  method exists_css : int ($name : string) {
-    
-    my $styles_h = $self->{styles_h};
-    
-    my $exists = 0;
-    if ($styles_h) {
-      $exists = $styles_h->exists($name);
-    }
-    
-    return $exists;
-  }
-  
-  method remove_css : void ($name : string) {
-    
-    my $styles_h = $self->{styles_h};
-    
-    my $deleted_css = (string)undef;
-    
-    if ($self->{styles_h}) {
-      $styles_h->delete($name);
-    }
-  }
-  
-  method style_pairs : string[] () {
-    
-    my $styles_h = $self->{styles_h};
-    
-    my $style_pairs = (string[])undef;
-    
-    if ($styles_h) {
-      my $names = $styles_h->keys;
-      
-      Sort->sort_string_asc($names);
-      
-      my $style_pairs_list = StringList->new;
-      for my $name (@$names) {
-        my $value = $styles_h->get_string($name);
+        $self->{first_child} = $child_nodes->[0];
         
-        $style_pairs_list->push($name);
-        $style_pairs_list->push($value);
+        $self->{last_child} = $child_nodes->[$child_nodes_length - 1];
+        
+        for (my $i = 0; $i < $child_nodes_length; $i++) {
+          my $child_node = $child_nodes->[$i];
+          
+          if ($i + 1 < $child_nodes_length) {
+            my $next_sibling_node = $child_nodes->[$i + 1];
+            $child_node->{next_sibling} = $next_sibling_node;
+          }
+          
+          if ($i - 1 >= 0) {
+            my $previous_sibling_node = $child_nodes->[$i - 1];
+            $child_node->{previous_sibling} = $previous_sibling_node;
+            weaken $child_node->{previous_sibling};
+          }
+          
+          $child_node->{parent_node} = $self;
+          weaken $child_node->{parent_node};
+        }
       }
-      
-      $style_pairs = $style_pairs_list->to_array;
-    }
-    else {
-      $style_pairs = new string[0];
     }
     
-    return $style_pairs;
+    my $box = Eg::CSS::Box->new;
+    
+    $self->{box} = $box;
   }
   
-  method text : string () {
-    my $child_nodes = $self->{child_nodes_list};
+  method child_nodes : Eg::Node[] () {
     
-    my $child_nodes_length = $child_nodes->length;
+    my $current_node = $self->{first_child};
     
-    my $text = (string)undef;
+    my $child_nodes_list = List->new(new Eg::Node[0]);
     
-    if ($child_nodes_length > 0) {
-      my $first_child = (Eg::Node)$child_nodes->get(0);
+    while (1) {
+      unless ($current_node) {
+        last;
+      }
       
-      if ($first_child->type == &TYPE_TEXT_NODE) {
-        $text = $first_child->{value_buffer}->to_string;
-      }
-      else {
-        die "The first child is not a text node.";
-      }
-    }
-    else {
-      return "";
+      $child_nodes_list->push($current_node);
+      $current_node = $current_node->{next_sibling};
     }
     
-    return $text;
-  }
-  
-  method set_text : string ($text : string) {
-    my $child_nodes = $self->{child_nodes_list};
-    
-    my $child_nodes_length = $child_nodes->length;
-    
-    if ($child_nodes_length > 0) {
-      my $first_child = (Eg::Node)$child_nodes->get(0);
-      
-      if ($first_child->type == &TYPE_TEXT_NODE) {
-        $first_child->{value_buffer}->set($text);
-      }
-      else {
-        die "The first child is not a text node.";
-      }
-    }
-    else {
-      $self->{child_nodes_list} = List->new([Eg::Text->new($text)]);
-    }
-    
-  }
-  
-  method children : Eg::Node[] () {
-    my $child_nodes_list = $self->{child_nodes_list};
-    
-    my $child_nodes = (Eg::Node[])undef;
-    if ($child_nodes_list) {
-      $child_nodes = (Eg::Node[])$child_nodes_list->to_array;
-    }
-    else {
-      $child_nodes = new Eg::Node[0];
-    }
+    my $child_nodes = (Eg::Node[])$child_nodes_list->to_array;
     
     return $child_nodes;
   }
   
-  method append : void ($node : Eg::Node) {
+  method node_value : string () {
     
-    unless ($node) {
-      die "\$node must be defined.";
+    my $node_type = $self->{node_type};
+    
+    my $node_value = (string)undef;
+    
+    switch ($node_type) {
+      case &TYPE_CDATA_SECTION_NODE :
+      case &TYPE_COMMENT_NODE :
+      case &TYPE_TEXT_NODE :
+      {
+        my $node_value_buffer = $self->{node_value_buffer};
+        
+        if ($node_value_buffer) {
+          $node_value = $node_value_buffer->to_string;
+        }
+      }
+      case &TYPE_ELEMENT_NODE :
+      case &TYPE_ATTRIBUTE_NODE :
+      case &TYPE_DOCUMENT_NODE :
+      case &TYPE_DOCUMENT_TYPE_NODE :
+      case &TYPE_DOCUMENT_FRAGMENT_NODE :
+      {
+        # undef
+      }
+      case &TYPE_PROCESSING_INSTRUCTION_NODE : {
+        die "ProcessingInstruction is not supported.";
+      }
+      default : {
+        die "The type of the node is unexpected type";
+      }
     }
     
-    my $child_nodes_list = $self->{child_nodes_list};
-    
-    $child_nodes_list->push($node);
+    return $node_value;
   }
   
-  method prepend : void ($node : Eg::Node) {
+  method get_root_node : Eg::Node () {
     
-    unless ($node) {
-      die "\$node must be defined.";
-    }
+    my $current_node = $self;
     
-    my $child_nodes_list = $self->{child_nodes_list};
+    my $root_node = (Eg::Node)undef;
     
-    $child_nodes_list->unshift($node);
-  }
-  
-  method after : void ($node : Eg::Node) {
-    
-    unless ($node) {
-      die "\$node must be defined.";
-    }
-    
-    my $parent = $self->{parent};
-    
-    unless ($node) {
-      die "The parent of \$node must be defined.";
-    }
-    
-    my $sibling_nodes_list = $parent->{child_nodes_list};
-    
-    my $sibling_nodes_length = $sibling_nodes_list->length;
-    
-    for (my $i = 0; $i < $sibling_nodes_length; $i++) {
-      my $sibling = $sibling_nodes_list->get($i);
+    while (1) {
+      my $parent_node = $current_node->{parent_node};
       
-      if ($sibling == $self) {
-        $sibling_nodes_list->insert($i + 1, $node);
+      if ($parent_node) {
+        $current_node = $parent_node;
+      }
+      else {
+        $root_node = $current_node;
         last;
       }
     }
+    
+    return $root_node;
   }
   
-  method before : void ($node : Eg::Node) {
+  method node_name : string () {
     
-    unless ($node) {
-      die "\$node must be defined.";
-    }
+    my $node_name = (string)undef;
     
-    my $parent = $self->{parent};
+    my $node_type = $self->{node_type};
     
-    unless ($node) {
-      die "The parent of \$node must be defined.";
-    }
-    
-    my $sibling_nodes_list = $parent->{child_nodes_list};
-    
-    my $sibling_nodes_length = $sibling_nodes_list->length;
-    
-    for (my $i = 0; $i < $sibling_nodes_length; $i++) {
-      my $sibling = $sibling_nodes_list->get($i);
-      
-      if ($sibling == $self) {
-        $sibling_nodes_list->insert($i, $node);
-        last;
+    switch ($node_type) {
+      case &TYPE_DOCUMENT_NODE : {
+        $node_name = "#document";
+      }
+      case &TYPE_ELEMENT_NODE : {
+        $node_name = Fn->uc($self->(Eg::Element)->tag_name);
+      }
+      case &TYPE_TEXT_NODE : {
+        $node_name = "#text";
+      }
+      case &TYPE_COMMENT_NODE : {
+        $node_name = "#comment";
+      }
+      default : {
+        die "The node type $node_type is not supported.";
       }
     }
+    
+    return $node_name;
+  }
+  
+  method owner_document : Eg::Document () {
+    
+    my $current_node = $self;
+    
+    my $document_node = (Eg::Document)undef;
+    
+    unless ($current_node is_type Eg::Document) {
+      
+      while (1) {
+        my $parent_node = $current_node->{parent_node};
+        
+        unless ($parent_node) {
+          last;
+        }
+        
+        if ($parent_node is_type Eg::Document) {
+          $document_node = (Eg::Document)$current_node;
+          last;
+        }
+        else {
+          $current_node = $parent_node;
+        }
+      }
+    }
+    
+    return $document_node;
+  }
+  
+  method remove_child : Eg::Node ($child_node : Eg::Node) {
+    unless ($child_node) {
+      die "\$child_node must be defined.";
+    }
+    
+    my $node_root = (Eg::Node)$self;
+    my $node_cur = $node_root;
+    my $finish = 0;
+    while ($node_cur) {
+      
+      # [START]Preorder traversal position
+      
+      if ($node_cur->first_child) {
+        $node_cur = (Eg::Node)$node_cur->first_child;
+      }
+      else {
+        while (1) {
+          # [START]Postorder traversal position
+          unless ($node_cur == $self) {
+            if ($node_cur == $child_node) {
+              my $parent = $child_node->{parent_node};
+              
+              $child_node->{parent_node} = undef;
+              
+              my $next_sibling = $child_node->{next_sibling};
+              
+              my $previous_sibling = $child_node->{previous_sibling};
+              
+              if ($next_sibling) {
+                $next_sibling->{previous_sibling} = $child_node->{previous_sibling};
+                
+                $child_node->{previous_sibling} = undef;
+              }
+              
+              if ($previous_sibling) {
+                $previous_sibling->{next_sibling} = $child_node->{next_sibling};
+                
+                $child_node->{next_sibling} = undef;
+              }
+              
+              if ($parent) {
+                if ($parent->{first_child} == $child_node) {
+                  $parent->{first_child} = $child_node->{next_sibling};
+                }
+                
+                if ($parent->{last_child} == $child_node) {
+                  $parent->{last_child} = $child_node->{previous_sibling};
+                }
+              }
+              
+              return $child_node;
+            }
+          }
+          
+          if ($node_cur == $node_root) {
+            
+            $finish = 1;
+            
+            last;
+          }
+          
+          # Next sibling
+          if ($node_cur->next_sibling) {
+            $node_cur = $node_cur->next_sibling;
+            last;
+          }
+          # Next is parent
+          else {
+            $node_cur = $node_cur->parent_node;
+          }
+        }
+        if ($finish) {
+          last;
+        }
+      }
+    }
+    
+    die "\$child_node is not found.";
+  }
+  
+  method append_child : Eg::Node ($new_node : Eg::Node) {
+    return $self->insert_before($new_node, undef);
+  }
+  
+  method insert_before : Eg::Node ($new_node : Eg::Node, $reference_node : Eg::Node) {
+    
+    unless ($new_node) {
+      die "\$new_node must be defined.";
+    }
+    
+    my $parent_node = $new_node->{parent_node};
+    
+    if ($parent_node) {
+      die "\$new_node cannot have its parent.";
+    }
+    
+    unless ($self is_type Eg::Document || $self is_type Eg::DocumentFragment || $self is_type Eg::Element) {
+      die "The type of this instance must be the Eg::Document class or the Eg::DocumentFragment class or the Eg::Element class";
+    }
+    
+    my $new_nodes = (Eg::Node[])undef;
+    
+    if ($new_node is_type Eg::DocumentFragment) {
+      $new_nodes = $new_node->child_nodes;
+    }
+    else {
+      $new_nodes = [$new_node];
+    }
+    
+    unless (@$new_nodes) {
+      die "\$new_node must be defined.";
+    }
+    
+    for my $new_node (@$new_nodes ) {
+      unless ($new_node is_type Eg::Element || $new_node is_type Eg::Text || $new_node is_type Eg::Comment) {
+        die "The type of \$new_node(or each child of DocumentFragment) must be the Eg::Element class or is the Eg::Text class or the Eg::Comment.";
+      }
+    }
+    
+    my $found_reference_node = 0;
+    {
+      my $node_root = (Eg::Node)$self;
+      my $node_cur = $node_root;
+      my $finish = 0;
+      while ($node_cur) {
+        
+        # [START]Preorder traversal position
+        
+        if ($node_cur->first_child) {
+          $node_cur = (Eg::Node)$node_cur->{first_child};
+        }
+        else {
+          while (1) {
+            # [START]Postorder traversal position
+            for my $new_node (@$new_nodes ) {
+              if ($new_node == $node_cur) {
+                die "\$new_node(or each child of DocumentFragment) cannot be this instance or the children of this instance or the grand children of this instance.";
+              }
+            }
+            
+            if ($reference_node && $node_cur == $reference_node) {
+              $found_reference_node = 1;
+            }
+            
+            if ($node_cur == $node_root) {
+              
+              $finish = 1;
+              
+              last;
+            }
+            
+            # Next sibling
+            if ($node_cur->next_sibling) {
+              $node_cur = $node_cur->{next_sibling};
+              last;
+            }
+            # Next is parent
+            else {
+              $node_cur = $node_cur->{parent_node};
+            }
+          }
+          if ($finish) {
+            last;
+          }
+        }
+      }
+    }
+    
+    if ($reference_node && !$found_reference_node) {
+      die "\$reference_node cannot be found.";
+    }
+    
+    my $new_nodes_length = @$new_nodes;
+    
+    my $self_child_nodes = $self->child_nodes;
+    
+    if ($self is_type Eg::Document) {
+      
+      unless (@$self_child_nodes == 0) {
+        die "If the type of this instance is Eg::Document, the length of its children must be 0.";
+      }
+      
+      unless ($new_nodes_length == 1) {
+        die "If the type of this instance is Eg::Document, the length of the children of \$new_node(this is Eg::DocumentFragment).";
+      }
+      
+      my $new_node = $new_nodes->[0];
+      
+      if ($new_node is_type Eg::Element) {
+        die "If the type of this instance is Eg::Document, the type of \$new_node must be the Eg::Element.";
+      }
+    }
+    
+    {
+      my $node_root = (Eg::Node)$self;
+      my $node_cur = $node_root;
+      my $finish = 0;
+      while ($node_cur) {
+        
+        # [START]Preorder traversal position
+        
+        if ($node_cur->first_child) {
+          $node_cur = (Eg::Node)$node_cur->{first_child};
+        }
+        else {
+          while (1) {
+            # [START]Postorder traversal position
+            if (!$reference_node || $node_cur == $reference_node) {
+              my $reference_node_parent = (Eg::Node)undef;
+              if ($reference_node) {
+                $reference_node_parent = $reference_node->{parent_node};
+              }
+              else {
+                $reference_node_parent = $self;
+              }
+              
+              my $first_insert_node = $new_nodes->[0];
+              
+              my $last_insert_node = $new_nodes->[$new_nodes_length - 1];
+              
+              $last_insert_node->{next_sibling} = $reference_node;
+              if ($reference_node) {
+                $reference_node->{previous_sibling} = $last_insert_node;
+                weaken $reference_node->{previous_sibling};
+              }
+              
+              if ($reference_node) {
+                $first_insert_node->{previous_sibling} = $reference_node->{previous_sibling};
+                weaken $first_insert_node->{previous_sibling};
+              }
+              else {
+                $first_insert_node->{previous_sibling} = $self->{last_child};
+                weaken $first_insert_node->{previous_sibling};
+              }
+              
+              for my $new_node (@$new_nodes) {
+                $new_node->{parent_node} = $reference_node_parent;
+                weaken $new_node->{parent_node};
+              }
+              
+              last;
+            }
+            
+            if ($node_cur == $node_root) {
+              
+              $finish = 1;
+              
+              last;
+            }
+            
+            # Next sibling
+            if ($node_cur->next_sibling) {
+              $node_cur = $node_cur->{next_sibling};
+              last;
+            }
+            # Next is parent
+            else {
+              $node_cur = $node_cur->{parent_node};
+            }
+          }
+          if ($finish) {
+            last;
+          }
+        }
+      }
+    }
+    
+    return $new_node;
   }
   
 }

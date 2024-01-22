@@ -1,0 +1,91 @@
+class Cotton {
+  use Eg;
+  use Eg::Runtime;
+  use Eg::OS;
+  use Sys::OS;
+  use Eg::CSS::Box;
+  
+  
+  # Class Methods
+  static method main : int ($start_file : string, $args : string[]) {
+    my $runtime = Eg::Runtime->new;
+    
+    my $os = (Eg::OS)undef;
+    
+    if (Sys::OS->is_windows) {
+      if (require Eg::OS::Windows) {
+        $os = Eg::OS::Windows->new;
+      }
+    }
+    
+    unless ($os) {
+      die "This system is not supported.";
+    }
+    
+    $os->build_runtime($runtime);
+    
+    Eg->SET_RUNTIME($runtime);
+    
+    my $document = &document;
+    
+    my $window = $runtime->window;
+    
+    $window->set_document($document);
+    
+    my $api = $runtime->api;
+    
+    $api->app->open_main_window;
+    
+    warn $api->window->inner_width;
+    
+    warn Eg->window->inner_width;
+    
+    warn $api->window->inner_height;
+    
+    warn Eg->window->inner_height;
+    
+    warn $api->window->outer_width;
+    
+    warn Eg->window->outer_width;
+    
+    warn $api->window->outer_height;
+    
+    warn Eg->window->outer_height;
+    
+    $api->app->start_event_loop;
+  }
+  
+  static method document : Eg::Document () {
+    
+    my $div1 = Eg->div_(
+      {style => {"background-color" => "#00FF00", "color" => "#0000FF", "font-size" => "60px", "font-weight" => "bold"}},
+      "あああああ"
+    );
+    
+    my $body = Eg->body_({},[
+      $div1,
+      Eg->div_({style => {left => "300px", top => "400px", width => "100px", height => "100px", "background-color" => "#FF0000"}}),
+      Eg->div_({style => {left => "400px", top => "500px", width => "100px", height => "100px", "background-color" => "#FF0000"}}),
+      Eg->div_({style => {left => "100px", top => "100px", width => "100px", height => "100px", "background-color" => "#FFFF00"}}),
+      Eg->div_({style => {left => "200px", top => "200px", width => "100px", height => "100px", "background-color" => "#FFFF00"}}),
+    ]);
+    
+    my $title = "コットン";
+    
+    my $html = Eg->html(
+      [
+        Eg->head([
+          Eg->title($title)
+        ]),
+        $body
+      ]
+    );
+    
+    my $document = Eg->new_document($html);
+    
+    $document->set_title($title);
+    
+    return $document;
+  }
+  
+}

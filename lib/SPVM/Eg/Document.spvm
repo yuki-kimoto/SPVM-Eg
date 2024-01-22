@@ -3,35 +3,45 @@
 
 class Eg::Document extends Eg::Node {
   allow Eg;
+  allow Eg::Node;
+  
+  use Hash;
   
   has title : rw string;
   
+  has nodes_h : Hash;
+  
   # Class Methods
-  static method new : Eg::Document ($root_node : Eg::Node) {
+  static method new : Eg::Document ($root_node : Eg::Element) {
     
     my $self = new Eg::Document;
     
     $self->init(Eg::Node->TYPE_DOCUMENT_NODE, [$root_node]);
     
+    $self->{nodes_h} = Hash->new;
+    
     return $self;
   }
   
-  method document_element : Eg::Node () {
-    my $root_node = (Eg::Node)$self->child_nodes_list->get(0);
+  method document_element : Eg::Element () {
+    my $root_node = (Eg::Element)$self->first_child;
     
     return $root_node;
   }
   
-  method head : Eg::Node () {
-    my $root_node = (Eg::Node)$self->document_element;
+  method head : Eg::Element () {
+    my $root_node = $self->document_element;
     
-    return (Eg::Node)$root_node->child_nodes_list->get(0);
+    return (Eg::Element)$root_node->first_child;
   }
   
-  method body : Eg::Node () {
-    my $root_node = (Eg::Node)$self->document_element;
+  method body : Eg::Element () {
+    my $root_node = $self->document_element;
     
-    return (Eg::Node)$root_node->child_nodes_list->get(1);
+    return (Eg::Element)$root_node->first_child->next_sibling;
   }
   
+  method parent_node : Eg::Node () {
+    return undef;
+  }
 }

@@ -34,6 +34,8 @@ lib/SPVM/Eg/History.pm
 lib/SPVM/Eg/History.spvm
 lib/SPVM/Eg/HTMLElement.pm
 lib/SPVM/Eg/HTMLElement.spvm
+lib/SPVM/Eg/HTMLHtmlElement.pm
+lib/SPVM/Eg/HTMLHtmlElement.spvm
 lib/SPVM/Eg/HTMLUnknownElement.pm
 lib/SPVM/Eg/HTMLUnknownElement.spvm
 lib/SPVM/Eg/Location.pm

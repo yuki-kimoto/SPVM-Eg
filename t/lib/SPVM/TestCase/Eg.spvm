@@ -1,8 +1,11 @@
 class TestCase::Eg {
   use Eg;
   use Eg::Node;
+  use Eg::DOMImplementation;
   
   static method test : int () {
+    
+    my $dom_impl = Eg::DOMImplementation->new;
     
     {
       unless (Eg::Node->TYPE_ELEMENT_NODE == 1) {

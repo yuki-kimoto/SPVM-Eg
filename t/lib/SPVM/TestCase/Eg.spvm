@@ -203,13 +203,13 @@ class TestCase::Eg {
     
     {
       my $div = Eg->tag_("div", {class => "foo bar", id => "foo", style => {color => "red"}},
-        [(Eg::Node)Eg->div, $document->create_text_node("foo")],
+        [(Eg::Node)Eg->tag("div", "foo")],
       );
     }
     
     {
       my $div = Eg->tag_("div", {class => "foo bar", id => "foo", style => {color => "red"}},
-        [Eg->div, Eg->span("foo")],
+        [Eg->tag("div"), Eg->tag("span", "foo")],
       );
     }
     
@@ -367,28 +367,6 @@ Foo
       unless ($div->text eq "bar") {
         return 0;
       }
-    }
-    
-    {
-      my $document = Eg->new_document(
-        Eg->html([
-          Eg->head,
-          Eg->body,
-        ])
-      );
-      
-      unless ($document->document_element->tag_name eq "html") {
-        return 0;
-      }
-      
-      unless ($document->head->tag_name eq "head") {
-        return 0;
-      }
-      
-      unless ($document->body->tag_name eq "body") {
-        return 0;
-      }
-      
     }
     
     # jQuery

@@ -82,7 +82,7 @@ class Eg::Document extends Eg::Node {
   has nodes_h : Hash;
   
   # Class Methods
-  static method new : Eg::Document ($root_node : Eg::Element) {
+  static method new : Eg::Document ($root_node : Eg::Element = undef) {
     
     my $self = new Eg::Document;
     

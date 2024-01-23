@@ -3,4 +3,14 @@
 
 class Eg::Document::HTML extends Eg::Document {
   allow Eg::Document;
+  
+  # Class Methods
+  static method new : Eg::Document::HTML () {
+    
+    my $self = new Eg::Document::HTML;
+    
+    $self->init(Eg::Node->TYPE_DOCUMENT_NODE);
+    
+    return $self;
+  }
 }

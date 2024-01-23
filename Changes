@@ -3,6 +3,7 @@
     * Add the create_element method to the Eg::Document class.
     * Add the create_text_node method to the Eg::Document class.
     * Add the create_comment method to the Eg::Document class.
+    * Add the document method to the Eg class.
     * Add many Eg::HTMLElement classes.
     * Add the Eg::DOMImplementation class.
   [Incompatible Changes]

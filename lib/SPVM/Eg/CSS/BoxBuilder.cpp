@@ -13,24 +13,6 @@ static const char* FILE_NAME = "Eg/CSS/BoxBuilder.cpp";
 
 extern "C" {
 
-static int16_t* encode_utf16(SPVM_ENV* env, SPVM_VALUE* stack, const char* string) {
-  int32_t error_id = 0;
-  
-  void* obj_string =  env->new_string_nolen(env, stack, string);
-  
-  void* obj_string_utf8_to_utf16 = NULL;
-  {
-    stack[0].oval = obj_string;
-    env->call_class_method_by_name(env, stack, "Encode", "encode_utf16", 1, &error_id, __func__, FILE_NAME, __LINE__);
-    if (error_id) { return NULL; }
-    obj_string_utf8_to_utf16 = stack[0].oval;
-  }
-  
-  int16_t* string_utf8_to_utf16 = env->get_elems_short(env, stack, obj_string_utf8_to_utf16);
-  
-  return string_utf8_to_utf16;
-}
-
 static int32_t parse_css_length_value (SPVM_ENV* env, SPVM_VALUE* stack, const char* style_value, int32_t style_value_length, int32_t* style_value_type, double* length) {
   
   int32_t success = 0;

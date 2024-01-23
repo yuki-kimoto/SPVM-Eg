@@ -3,4 +3,5 @@
 
 class Eg::Element::HTML::Html extends Eg::Element::HTML {
   allow Eg::Document;
+  allow Eg::DOMImplementation;
 }

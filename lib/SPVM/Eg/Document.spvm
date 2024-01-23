@@ -4,6 +4,9 @@
 class Eg::Document extends Eg::Node {
   allow Eg;
   allow Eg::Node;
+  allow Eg::DOMImplementation;
+  
+  has namespace_uri : string;
   
   use Hash;
   use Regex;
@@ -12,7 +15,6 @@ class Eg::Document extends Eg::Node {
   use Eg::Element::HTML;
   use Eg::Element::HTML::Unknown;
   use Eg::Element::HTML::Anchor;
-  use Eg::Element::HTML::Applet;
   use Eg::Element::HTML::Area;
   use Eg::Element::HTML::Audio;
   use Eg::Element::HTML::Base;
@@ -23,7 +25,6 @@ class Eg::Document extends Eg::Node {
   use Eg::Element::HTML::DataList;
   use Eg::Element::HTML::Details;
   use Eg::Element::HTML::Dialog;
-  use Eg::Element::HTML::Directory;
   use Eg::Element::HTML::Div;
   use Eg::Element::HTML::DList;
   use Eg::Element::HTML::Embed;
@@ -31,7 +32,6 @@ class Eg::Document extends Eg::Node {
   use Eg::Element::HTML::Font;
   use Eg::Element::HTML::Form;
   use Eg::Element::HTML::Frame;
-  use Eg::Element::HTML::FrameSet;
   use Eg::Element::HTML::Head;
   use Eg::Element::HTML::Heading;
   use Eg::Element::HTML::HR;
@@ -61,7 +61,6 @@ class Eg::Document extends Eg::Node {
   use Eg::Element::HTML::Quote;
   use Eg::Element::HTML::Script;
   use Eg::Element::HTML::Select;
-  use Eg::Element::HTML::Shadow;
   use Eg::Element::HTML::Source;
   use Eg::Element::HTML::Span;
   use Eg::Element::HTML::Style;
@@ -323,8 +322,6 @@ class Eg::Document extends Eg::Node {
       else {
         $element = new Eg::Element::HTML::Unknown;
       }
-      
-      $element->{namespace_uri} = "http://www.w3.org/1999/xhtml";
     }
     else {
       $element = new Eg::Element;
@@ -339,13 +336,6 @@ class Eg::Document extends Eg::Node {
     $element->{box} = $box;
     
     return $element;
-  }
-  
-  method create_element_ns : Eg::Element ($name_space_url : string, $tag_name : string) {
-    
-    my $element = $self->create_element($tag_name);
-    
-    $element->{namespace_uri} = $name_space_url;
   }
   
 }

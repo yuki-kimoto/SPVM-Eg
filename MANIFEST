@@ -31,6 +31,8 @@ lib/SPVM/Eg/Document/HTML.spvm
 lib/SPVM/Eg/Document/XML.pm
 lib/SPVM/Eg/Document/XML.spvm
 lib/SPVM/Eg/DocumentFragment.spvm
+lib/SPVM/Eg/DOMImplementation.pm
+lib/SPVM/Eg/DOMImplementation.spvm
 lib/SPVM/Eg/Element.spvm
 lib/SPVM/Eg/Element/HTML.pm
 lib/SPVM/Eg/Element/HTML.spvm

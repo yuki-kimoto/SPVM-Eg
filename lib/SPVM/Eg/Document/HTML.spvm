@@ -3,6 +3,7 @@
 
 class Eg::Document::HTML extends Eg::Document {
   allow Eg::Document;
+  allow Eg::DOMImplementation;
   
   # Class Methods
   static method new : Eg::Document::HTML () {

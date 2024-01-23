@@ -4,8 +4,7 @@
 class Eg::Element extends Eg::Node {
   allow Eg;
   allow Eg::Document;
-  
-  has namespace_uri : ro string;
+  allow Eg::DOMImplementation;
   
   has attributes_h : ro Hash of string;
   

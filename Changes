@@ -3,7 +3,7 @@
     * Add the create_element method to the Eg::Document class.
     * Add the create_element_ns method to the Eg::Document class.
     * Add many Eg::HTMLElement classes.
-    
+    * Add the Eg::DOMImplementation class.
   [Incompatible Changes]
     * Many things are changed.
 0.012 2024-01-13

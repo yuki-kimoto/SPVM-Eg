@@ -143,10 +143,6 @@ class Eg::Document extends Eg::Node {
       if ($tag_name eq "a") {
         $element = new Eg::Element::HTML::Anchor;
       }
-      # None
-      elsif ($tag_name eq "applet") {
-        $element = new Eg::Element::HTML::Applet;
-      }
       elsif ($tag_name eq "area") {
         $element = new Eg::Element::HTML::Area;
       }
@@ -177,10 +173,6 @@ class Eg::Document extends Eg::Node {
       elsif ($tag_name eq "dialog") {
         $element = new Eg::Element::HTML::Dialog;
       }
-      # Deprecated
-      elsif ($tag_name eq "directory") {
-        $element = new Eg::Element::HTML::Directory;
-      }
       elsif ($tag_name eq "div") {
         $element = new Eg::Element::HTML::Div;
       }
@@ -201,10 +193,6 @@ class Eg::Document extends Eg::Node {
       }
       elsif ($tag_name eq "frame") {
         $element = new Eg::Element::HTML::Frame;
-      }
-      # Deprecated
-      elsif ($tag_name eq "frameset") {
-        $element = new Eg::Element::HTML::FrameSet;
       }
       elsif ($tag_name eq "head") {
         $element = new Eg::Element::HTML::Head;
@@ -289,10 +277,6 @@ class Eg::Document extends Eg::Node {
       }
       elsif ($tag_name eq "select") {
         $element = new Eg::Element::HTML::Select;
-      }
-      # Deprecated
-      elsif ($tag_name eq "shadow") {
-        $element = new Eg::Element::HTML::Shadow;
       }
       elsif ($tag_name eq "source") {
         $element = new Eg::Element::HTML::Source;

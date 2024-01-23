@@ -508,11 +508,12 @@ class Eg::Node {
                 weaken $new_node->{parent_node};
               }
               
+              $finish = 1;
+              
               last;
             }
             
             if ($node_cur == $node_root) {
-              
               $finish = 1;
               
               last;

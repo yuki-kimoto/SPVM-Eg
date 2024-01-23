@@ -7,6 +7,8 @@ class TestCase::Eg {
     
     my $dom_impl = Eg::DOMImplementation->new;
     
+    my $document = $dom_impl->create_html_document;
+    
     {
       unless (Eg::Node->TYPE_ELEMENT_NODE == 1) {
         return 0;

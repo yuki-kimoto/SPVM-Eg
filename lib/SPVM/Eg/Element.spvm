@@ -53,7 +53,9 @@ class Eg::Element extends Eg::Node {
       return undef;
     }
     
-    if ($self isa Eg::Element::HTML) {
+    my $owner_document = $self->owner_document;
+    
+    if ($owner_document && $owner_document isa Eg::Document::HTML && $self isa Eg::Element::HTML) {
       $name = Fn->lc($name);
     }
     

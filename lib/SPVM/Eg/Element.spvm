@@ -124,53 +124,6 @@ class Eg::Element extends Eg::Node {
     return $exists;
   }
   
-  method attr : string ($name : string) {
-    
-    my $attributes_h = $self->{attributes_h};
-    
-    unless ($self->{attributes_h}) {
-      return undef;
-    }
-    
-    my $attr = (string)$attributes_h->get($name);
-    
-    return $attr;
-  }
-  
-  method set_attr : void ($name : string, $value : string) {
-    
-    my $attributes_h = $self->{attributes_h};
-    
-    unless ($attributes_h) {
-      $attributes_h = $self->{attributes_h} = Hash->new;
-    }
-    
-    $attributes_h->set_string($name, $value);
-  }
-  
-  method exists_attr : int ($name : string) {
-    
-    my $attributes_h = $self->{attributes_h};
-    
-    my $exists = 0;
-    if ($attributes_h) {
-      $exists = $attributes_h->exists($name);
-    }
-    
-    return $exists;
-  }
-  
-  method remove_attr : void ($name : string) {
-    
-    my $attributes_h = $self->{attributes_h};
-    
-    my $deleted_attr = (string)undef;
-    
-    if ($self->{attributes_h}) {
-      $attributes_h->delete($name);
-    }
-  }
-  
   method attribute_pairs : string[] () {
     
     my $attributes_h = $self->{attributes_h};
@@ -349,6 +302,24 @@ class Eg::Element extends Eg::Node {
       $self->{last_child } = $text_node;
     }
     
+  }
+  
+  # jQuery Instance Methods
+  method attr : string ($name : string) {
+    
+    my $attr = $self->get_attribute($name);
+    
+    return $attr;
+  }
+  
+  method set_attr : void ($name : string, $value : string) {
+    
+    $self->set_attribute($name, $value);
+  }
+  
+  method remove_attr : void ($name : string) {
+    
+    $self->remove_attribute($name);
   }
   
 }

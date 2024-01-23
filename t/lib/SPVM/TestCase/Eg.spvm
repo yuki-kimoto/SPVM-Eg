@@ -68,6 +68,61 @@ class TestCase::Eg {
       
     }
     
+    # attribute
+    {
+      my $div = Eg->div_({attribute1 => "attributeval1"});
+      
+      unless ($div->get_attribute("attribute1") eq "attributeval1") {
+        return 0;
+      }
+      
+      if ($div->get_attribute("attribute2")) {
+        return 0;
+      }
+    }
+    
+    # set_attribute
+    {
+      my $div = Eg->div_({});
+      
+      $div->set_attribute("attribute1", "attributeval1");
+      
+      unless ($div->get_attribute("attribute1") eq "attributeval1") {
+        return 0;
+      }
+      
+    }
+    
+    # has_attribute
+    {
+      my $div = Eg->div_({attribute1 => "attributeval1", attribute2 => undef});
+      
+      unless ($div->has_attribute("attribute1")) {
+        return 0;
+      }
+      
+      unless ($div->has_attribute("attribute2")) {
+        return 0;
+      }
+      
+      if ($div->has_attribute("attribute3")) {
+        return 0;
+      }
+    }
+    
+    # remove_attribute
+    {
+      my $div = Eg->div_({attribute1 => "attributeval1", attribute2 => "attributeval2"});
+      
+      $div->remove_attribute("attribute1");
+      
+      $div->remove_attribute("attribute3");
+      
+      unless (Array->equals_string($div->attribute_pairs, ["attribute2" => "attributeval2"])) {
+        return 0;
+      }
+    }
+    
     # attr
     {
       my $div = Eg->div_({attr1 => "attrval1"});
@@ -93,24 +148,7 @@ class TestCase::Eg {
       
     }
     
-    # exists_attr
-    {
-      my $div = Eg->div_({attr1 => "attrval1", attr2 => undef});
-      
-      unless ($div->exists_attr("attr1")) {
-        return 0;
-      }
-      
-      unless ($div->exists_attr("attr2")) {
-        return 0;
-      }
-      
-      if ($div->exists_attr("attr3")) {
-        return 0;
-      }
-    }
-    
-    # delete_attr
+    # remove_attr
     {
       my $div = Eg->div_({attr1 => "attrval1", attr2 => "attrval2"});
       

@@ -340,6 +340,8 @@ class Eg::Document extends Eg::Node {
       else {
         $element = new Eg::HTMLUnknownElement;
       }
+      
+      $element->{namespace_uri} = "http://www.w3.org/1999/xhtml";
     }
     else {
       $element = new Eg::Element;
@@ -354,6 +356,13 @@ class Eg::Document extends Eg::Node {
     $element->{box} = $box;
     
     return $element;
+  }
+  
+  method create_element_ns : Eg::Element ($name_space_url : string, $tag_name : string) {
+    
+    my $element = $self->create_element($tag_name);
+    
+    $element->{namespace_uri} = $name_space_url;
   }
   
 }

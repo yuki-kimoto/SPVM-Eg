@@ -45,6 +45,27 @@ class Eg::Element extends Eg::Node {
     return $self;
   }
   
+  method get_attribute : string ($name : string) {
+    
+    my $attributes_h = $self->{attributes_h};
+    
+    unless ($self->{attributes_h}) {
+      return undef;
+    }
+    
+    if ($self isa Eg::Element::HTML) {
+      $name = Fn->lc($name);
+    }
+    
+    if ($name eq "nonce") {
+      return "";
+    }
+    
+    my $attribute = $attributes_h->get_string($name);
+    
+    return $attribute;
+  }
+  
   method attr : string ($name : string) {
     
     my $attributes_h = $self->{attributes_h};

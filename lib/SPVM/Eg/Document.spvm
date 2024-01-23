@@ -74,6 +74,7 @@ class Eg::Document extends Eg::Node {
   use Eg::Element::HTML::TextArea;
   use Eg::Element::HTML::Title;
   use Eg::Element::HTML::Track;
+  use Eg::Element::HTML::UList;
   use Eg::Element::HTML::Video;
 
   has title : rw string;
@@ -128,6 +129,8 @@ class Eg::Document extends Eg::Node {
       die "\$tag_name cannot contains \":\"";
     }
     
+    $tag_name = Fn->lc($tag_name);
+    
     my $element = (Eg::Element)undef;
     
     if ($self is_type Eg::Document::HTML) {
@@ -137,9 +140,10 @@ class Eg::Document extends Eg::Node {
         die "\$tag_name must consist of word characters.";
       }
       
-      if ($tag_name eq "anchor") {
+      if ($tag_name eq "a") {
         $element = new Eg::Element::HTML::Anchor;
       }
+      # None
       elsif ($tag_name eq "applet") {
         $element = new Eg::Element::HTML::Applet;
       }
@@ -173,13 +177,14 @@ class Eg::Document extends Eg::Node {
       elsif ($tag_name eq "dialog") {
         $element = new Eg::Element::HTML::Dialog;
       }
+      # Deprecated
       elsif ($tag_name eq "directory") {
         $element = new Eg::Element::HTML::Directory;
       }
       elsif ($tag_name eq "div") {
         $element = new Eg::Element::HTML::Div;
       }
-      elsif ($tag_name eq "dlist") {
+      elsif ($tag_name eq "dl") {
         $element = new Eg::Element::HTML::DList;
       }
       elsif ($tag_name eq "embed") {
@@ -197,13 +202,14 @@ class Eg::Document extends Eg::Node {
       elsif ($tag_name eq "frame") {
         $element = new Eg::Element::HTML::Frame;
       }
+      # Deprecated
       elsif ($tag_name eq "frameset") {
         $element = new Eg::Element::HTML::FrameSet;
       }
       elsif ($tag_name eq "head") {
         $element = new Eg::Element::HTML::Head;
       }
-      elsif ($tag_name eq "heading") {
+      elsif ($tag_name eq "h1" || $tag_name eq "h2" || $tag_name eq "h3" || $tag_name eq "h4" || $tag_name eq "h5" || $tag_name eq "h6") {
         $element = new Eg::Element::HTML::Heading;
       }
       elsif ($tag_name eq "hr") {
@@ -236,9 +242,6 @@ class Eg::Document extends Eg::Node {
       elsif ($tag_name eq "map") {
         $element = new Eg::Element::HTML::Map;
       }
-      elsif ($tag_name eq "media") {
-        $element = new Eg::Element::HTML::Media;
-      }
       elsif ($tag_name eq "menu") {
         $element = new Eg::Element::HTML::Menu;
       }
@@ -248,10 +251,10 @@ class Eg::Document extends Eg::Node {
       elsif ($tag_name eq "meter") {
         $element = new Eg::Element::HTML::Meter;
       }
-      elsif ($tag_name eq "mod") {
+      elsif ($tag_name eq "del" || $tag_name eq "ins") {
         $element = new Eg::Element::HTML::Mod;
       }
-      elsif ($tag_name eq "olist") {
+      elsif ($tag_name eq "ol") {
         $element = new Eg::Element::HTML::OList;
       }
       elsif ($tag_name eq "object") {
@@ -263,7 +266,7 @@ class Eg::Document extends Eg::Node {
       elsif ($tag_name eq "option") {
         $element = new Eg::Element::HTML::Option;
       }
-      elsif ($tag_name eq "paragraph") {
+      elsif ($tag_name eq "p") {
         $element = new Eg::Element::HTML::Paragraph;
       }
       elsif ($tag_name eq "param") {
@@ -278,7 +281,7 @@ class Eg::Document extends Eg::Node {
       elsif ($tag_name eq "progress") {
         $element = new Eg::Element::HTML::Progress;
       }
-      elsif ($tag_name eq "quote") {
+      elsif ($tag_name eq "blockquote" || $tag_name eq "q") {
         $element = new Eg::Element::HTML::Quote;
       }
       elsif ($tag_name eq "script") {
@@ -287,6 +290,7 @@ class Eg::Document extends Eg::Node {
       elsif ($tag_name eq "select") {
         $element = new Eg::Element::HTML::Select;
       }
+      # Deprecated
       elsif ($tag_name eq "shadow") {
         $element = new Eg::Element::HTML::Shadow;
       }
@@ -299,22 +303,22 @@ class Eg::Document extends Eg::Node {
       elsif ($tag_name eq "style") {
         $element = new Eg::Element::HTML::Style;
       }
-      elsif ($tag_name eq "tablecaption") {
+      elsif ($tag_name eq "caption") {
         $element = new Eg::Element::HTML::TableCaption;
       }
-      elsif ($tag_name eq "tablecell") {
+      elsif ($tag_name eq "th" || $tag_name eq "td") {
         $element = new Eg::Element::HTML::TableCell;
       }
-      elsif ($tag_name eq "tablecol") {
+      elsif ($tag_name eq "colgroup" || $tag_name eq "col") {
         $element = new Eg::Element::HTML::TableCol;
       }
       elsif ($tag_name eq "table") {
         $element = new Eg::Element::HTML::Table;
       }
-      elsif ($tag_name eq "tablerow") {
+      elsif ($tag_name eq "tr") {
         $element = new Eg::Element::HTML::TableRow;
       }
-      elsif ($tag_name eq "tablesection") {
+      elsif ($tag_name eq "thead" || $tag_name eq "tbody" || $tag_name eq "tfoot") {
         $element = new Eg::Element::HTML::TableSection;
       }
       elsif ($tag_name eq "textarea") {
@@ -325,6 +329,9 @@ class Eg::Document extends Eg::Node {
       }
       elsif ($tag_name eq "track") {
         $element = new Eg::Element::HTML::Track;
+      }
+      elsif ($tag_name eq "ul") {
+        $element = new Eg::Element::HTML::UList;
       }
       elsif ($tag_name eq "video") {
         $element = new Eg::Element::HTML::Video;

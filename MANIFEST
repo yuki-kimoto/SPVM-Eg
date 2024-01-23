@@ -36,8 +36,6 @@ lib/SPVM/Eg/Element/HTML.pm
 lib/SPVM/Eg/Element/HTML.spvm
 lib/SPVM/Eg/Element/HTML/Anchor.pm
 lib/SPVM/Eg/Element/HTML/Anchor.spvm
-lib/SPVM/Eg/Element/HTML/Applet.pm
-lib/SPVM/Eg/Element/HTML/Applet.spvm
 lib/SPVM/Eg/Element/HTML/Area.pm
 lib/SPVM/Eg/Element/HTML/Area.spvm
 lib/SPVM/Eg/Element/HTML/Audio.pm
@@ -60,16 +58,12 @@ lib/SPVM/Eg/Element/HTML/Details.pm
 lib/SPVM/Eg/Element/HTML/Details.spvm
 lib/SPVM/Eg/Element/HTML/Dialog.pm
 lib/SPVM/Eg/Element/HTML/Dialog.spvm
-lib/SPVM/Eg/Element/HTML/Directory.pm
-lib/SPVM/Eg/Element/HTML/Directory.spvm
 lib/SPVM/Eg/Element/HTML/Div.pm
 lib/SPVM/Eg/Element/HTML/Div.spvm
 lib/SPVM/Eg/Element/HTML/DList.pm
 lib/SPVM/Eg/Element/HTML/DList.spvm
 lib/SPVM/Eg/Element/HTML/DO.pm
 lib/SPVM/Eg/Element/HTML/DO.spvm
-lib/SPVM/Eg/Element/HTML/DOMImpleme.pm
-lib/SPVM/Eg/Element/HTML/DOMImpleme.spvm
 lib/SPVM/Eg/Element/HTML/Embed.pm
 lib/SPVM/Eg/Element/HTML/Embed.spvm
 lib/SPVM/Eg/Element/HTML/FieldSet.pm
@@ -80,8 +74,6 @@ lib/SPVM/Eg/Element/HTML/Form.pm
 lib/SPVM/Eg/Element/HTML/Form.spvm
 lib/SPVM/Eg/Element/HTML/Frame.pm
 lib/SPVM/Eg/Element/HTML/Frame.spvm
-lib/SPVM/Eg/Element/HTML/FrameSet.pm
-lib/SPVM/Eg/Element/HTML/FrameSet.spvm
 lib/SPVM/Eg/Element/HTML/Head.pm
 lib/SPVM/Eg/Element/HTML/Head.spvm
 lib/SPVM/Eg/Element/HTML/Heading.pm
@@ -140,8 +132,6 @@ lib/SPVM/Eg/Element/HTML/Script.pm
 lib/SPVM/Eg/Element/HTML/Script.spvm
 lib/SPVM/Eg/Element/HTML/Select.pm
 lib/SPVM/Eg/Element/HTML/Select.spvm
-lib/SPVM/Eg/Element/HTML/Shadow.pm
-lib/SPVM/Eg/Element/HTML/Shadow.spvm
 lib/SPVM/Eg/Element/HTML/Source.pm
 lib/SPVM/Eg/Element/HTML/Source.spvm
 lib/SPVM/Eg/Element/HTML/Span.pm

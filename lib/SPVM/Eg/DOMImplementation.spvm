@@ -30,6 +30,8 @@ class Eg::DOMImplementation {
     
     $root_element->{tag_name} = $qualified_name_str;;
     
+    $document->append_child($root_element);
+    
     return $document;
   }
   
@@ -42,6 +44,8 @@ class Eg::DOMImplementation {
     my $root_element = new Eg::Element::HTML::Html;
     
     $root_element->{tag_name} = "html";
+    
+    $document->append_child($root_element);
     
     return $document;
   }

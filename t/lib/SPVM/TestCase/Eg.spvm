@@ -61,7 +61,7 @@ class TestCase::Eg {
     }
     
     {
-      my $div = Eg->div([Eg->text("foo")]);
+      my $div = Eg->div([$document->create_text_node("foo")]);
       
       unless ($div->tag_name eq "div") {
         return 0;
@@ -207,7 +207,7 @@ class TestCase::Eg {
     
     {
       my $div = Eg->div_({class => "foo bar", id => "foo", style => {color => "red"}},
-        [(Eg::Node)Eg->div, Eg->text("foo")],
+        [(Eg::Node)Eg->div, $document->create_text_node("foo")],
       );
     }
     
@@ -313,7 +313,7 @@ Foo
     }
     
     {
-      my $text = Eg->text("foo");
+      my $text = $document->create_text_node("foo");
       
       unless ($text->node_type == Eg::Node->TYPE_TEXT_NODE) {
         return 0;
@@ -325,7 +325,7 @@ Foo
     }
     
     {
-      my $div = Eg->div;
+      my $div = $document->create_element("div");
       
       unless ($div->text eq "") {
         return 0;

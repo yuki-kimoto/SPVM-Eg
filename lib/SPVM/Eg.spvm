@@ -31,13 +31,6 @@ class Eg {
     return $new_document;
   }
   
-  static method text : Eg::Text ($text : string) {
-    
-    my $new_text_node = Eg::Text->new($text);
-    
-    return $new_text_node;
-  }
-  
   static method tag : Eg::Element ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
     
     my $child_nodes = (Eg::Node[])undef;

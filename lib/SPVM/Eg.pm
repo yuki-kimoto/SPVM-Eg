@@ -72,12 +72,6 @@ The Eg class in L<SPVM> has methods to manipulate Web architecture, such as HTML
 
 C<static method new_document : Eg::Node ($root_node : Eg::Node);>
 
-=head2 text
-
-C<static method text : L<Eg::Node|SPVM::Eg::Node> ($text : string);>
-
-Creates a new text node and returns it.
-
 =head2 tag
 
 C<static method tag : L<Eg::Node|SPVM::Eg::Node> ($tag_name : string, $child_nodes_or_text : object of L<Eg::Node|SPVM::Eg::Node>[]|string = undef);>

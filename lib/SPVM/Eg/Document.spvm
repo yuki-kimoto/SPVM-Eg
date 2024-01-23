@@ -6,7 +6,81 @@ class Eg::Document extends Eg::Node {
   allow Eg::Node;
   
   use Hash;
+  use Regex;
+  use Eg::HTMLDocument;
+  use Eg::HTMLElement;
   
+  use Eg::HTMLUnknownElement;
+  use Eg::HTMLAnchorElement;
+  use Eg::HTMLAppletElement;
+  use Eg::HTMLAreaElement;
+  use Eg::HTMLAudioElement;
+  use Eg::HTMLBaseElement;
+  use Eg::HTMLBodyElement;
+  use Eg::HTMLBRElement;
+  use Eg::HTMLButtonElement;
+  use Eg::HTMLCanvasElement;
+  use Eg::HTMLCollection;
+  use Eg::HTMLDataListElement;
+  use Eg::HTMLDetailsElement;
+  use Eg::HTMLDialogElement;
+  use Eg::HTMLDirectoryElement;
+  use Eg::HTMLDivElement;
+  use Eg::HTMLDListElement;
+  use Eg::HTMLDocument;
+  use Eg::HTMLDOMImplementation;
+  use Eg::HTMLDOMParser;
+  use Eg::HTMLEmbedElement;
+  use Eg::HTMLFieldSetElement;
+  use Eg::HTMLFontElement;
+  use Eg::HTMLFormElement;
+  use Eg::HTMLFrameElement;
+  use Eg::HTMLFrameSetElement;
+  use Eg::HTMLHeadElement;
+  use Eg::HTMLHeadingElement;
+  use Eg::HTMLHRElement;
+  use Eg::HTMLHtmlElement;
+  use Eg::HTMLIFrameElement;
+  use Eg::HTMLImageElement;
+  use Eg::HTMLInputElement;
+  use Eg::HTMLLabelElement;
+  use Eg::HTMLLegendElement;
+  use Eg::HTMLLIElement;
+  use Eg::HTMLLinkElement;
+  use Eg::HTMLMapElement;
+  use Eg::HTMLMediaElement;
+  use Eg::HTMLMenuElement;
+  use Eg::HTMLMetaElement;
+  use Eg::HTMLMeterElement;
+  use Eg::HTMLModElement;
+  use Eg::HTMLOListElement;
+  use Eg::HTMLObjectElement;
+  use Eg::HTMLOptGroupElement;
+  use Eg::HTMLOptionElement;
+  use Eg::HTMLParagraphElement;
+  use Eg::HTMLParamElement;
+  use Eg::HTMLPictureElement;
+  use Eg::HTMLPreElement;
+  use Eg::HTMLProgressElement;
+  use Eg::HTMLQuoteElement;
+  use Eg::HTMLScriptElement;
+  use Eg::HTMLSelectElement;
+  use Eg::HTMLShadowElement;
+  use Eg::HTMLSourceElement;
+  use Eg::HTMLSpanElement;
+  use Eg::HTMLStyleElement;
+  use Eg::HTMLTableCaptionElement;
+  use Eg::HTMLTableCellElement;
+  use Eg::HTMLTableColElement;
+  use Eg::HTMLTableElement;
+  use Eg::HTMLTableRowElement;
+  use Eg::HTMLTableSectionElement;
+  use Eg::HTMLTextAreaElement;
+  use Eg::HTMLTitleElement;
+  use Eg::HTMLTrackElement;
+  use Eg::HTMLUListElement;
+  use Eg::HTMLVideoElement;
+
   has title : rw string;
   
   has nodes_h : Hash;
@@ -44,4 +118,242 @@ class Eg::Document extends Eg::Node {
   method parent_node : Eg::Node () {
     return undef;
   }
+  
+  method create_element : Eg::Element ($tag_name : string) {
+    
+    unless ($tag_name) {
+      die "\$tag_name must be defined.";
+    }
+    
+    unless (length $tag_name) {
+      die "\$tag_name must have its length.";
+    }
+    
+    if (Fn->contains($tag_name, ":")) {
+      die "\$tag_name cannot contains \":\"";
+    }
+    
+    my $element = (Eg::Element)undef;
+    
+    if ($self is_type Eg::HTMLDocument) {
+      $element = new Eg::HTMLElement;
+      
+      unless (Regex->new("^[a-zA-Z_]\w+$")->match($tag_name)) {
+        die "\$tag_name must consist of word characters.";
+      }
+      
+      if ($tag_name eq "anchor") {
+        $element = new Eg::HTMLAnchorElement;
+      }
+      elsif ($tag_name eq "applet") {
+        $element = new Eg::HTMLAppletElement;
+      }
+      elsif ($tag_name eq "area") {
+        $element = new Eg::HTMLAreaElement;
+      }
+      elsif ($tag_name eq "audio") {
+        $element = new Eg::HTMLAudioElement;
+      }
+      elsif ($tag_name eq "base") {
+        $element = new Eg::HTMLBaseElement;
+      }
+      elsif ($tag_name eq "body") {
+        $element = new Eg::HTMLBodyElement;
+      }
+      elsif ($tag_name eq "br") {
+        $element = new Eg::HTMLBRElement;
+      }
+      elsif ($tag_name eq "button") {
+        $element = new Eg::HTMLButtonElement;
+      }
+      elsif ($tag_name eq "canvas") {
+        $element = new Eg::HTMLCanvasElement;
+      }
+      elsif ($tag_name eq "datalist") {
+        $element = new Eg::HTMLDataListElement;
+      }
+      elsif ($tag_name eq "details") {
+        $element = new Eg::HTMLDetailsElement;
+      }
+      elsif ($tag_name eq "dialog") {
+        $element = new Eg::HTMLDialogElement;
+      }
+      elsif ($tag_name eq "directory") {
+        $element = new Eg::HTMLDirectoryElement;
+      }
+      elsif ($tag_name eq "div") {
+        $element = new Eg::HTMLDivElement;
+      }
+      elsif ($tag_name eq "dlist") {
+        $element = new Eg::HTMLDListElement;
+      }
+      elsif ($tag_name eq "embed") {
+        $element = new Eg::HTMLEmbedElement;
+      }
+      elsif ($tag_name eq "fieldset") {
+        $element = new Eg::HTMLFieldSetElement;
+      }
+      elsif ($tag_name eq "font") {
+        $element = new Eg::HTMLFontElement;
+      }
+      elsif ($tag_name eq "form") {
+        $element = new Eg::HTMLFormElement;
+      }
+      elsif ($tag_name eq "frame") {
+        $element = new Eg::HTMLFrameElement;
+      }
+      elsif ($tag_name eq "frameset") {
+        $element = new Eg::HTMLFrameSetElement;
+      }
+      elsif ($tag_name eq "head") {
+        $element = new Eg::HTMLHeadElement;
+      }
+      elsif ($tag_name eq "heading") {
+        $element = new Eg::HTMLHeadingElement;
+      }
+      elsif ($tag_name eq "hr") {
+        $element = new Eg::HTMLHRElement;
+      }
+      elsif ($tag_name eq "html") {
+        $element = new Eg::HTMLHtmlElement;
+      }
+      elsif ($tag_name eq "iframe") {
+        $element = new Eg::HTMLIFrameElement;
+      }
+      elsif ($tag_name eq "image") {
+        $element = new Eg::HTMLImageElement;
+      }
+      elsif ($tag_name eq "input") {
+        $element = new Eg::HTMLInputElement;
+      }
+      elsif ($tag_name eq "label") {
+        $element = new Eg::HTMLLabelElement;
+      }
+      elsif ($tag_name eq "legend") {
+        $element = new Eg::HTMLLegendElement;
+      }
+      elsif ($tag_name eq "li") {
+        $element = new Eg::HTMLLIElement;
+      }
+      elsif ($tag_name eq "link") {
+        $element = new Eg::HTMLLinkElement;
+      }
+      elsif ($tag_name eq "map") {
+        $element = new Eg::HTMLMapElement;
+      }
+      elsif ($tag_name eq "media") {
+        $element = new Eg::HTMLMediaElement;
+      }
+      elsif ($tag_name eq "menu") {
+        $element = new Eg::HTMLMenuElement;
+      }
+      elsif ($tag_name eq "meta") {
+        $element = new Eg::HTMLMetaElement;
+      }
+      elsif ($tag_name eq "meter") {
+        $element = new Eg::HTMLMeterElement;
+      }
+      elsif ($tag_name eq "mod") {
+        $element = new Eg::HTMLModElement;
+      }
+      elsif ($tag_name eq "olist") {
+        $element = new Eg::HTMLOListElement;
+      }
+      elsif ($tag_name eq "object") {
+        $element = new Eg::HTMLObjectElement;
+      }
+      elsif ($tag_name eq "optgroup") {
+        $element = new Eg::HTMLOptGroupElement;
+      }
+      elsif ($tag_name eq "option") {
+        $element = new Eg::HTMLOptionElement;
+      }
+      elsif ($tag_name eq "paragraph") {
+        $element = new Eg::HTMLParagraphElement;
+      }
+      elsif ($tag_name eq "param") {
+        $element = new Eg::HTMLParamElement;
+      }
+      elsif ($tag_name eq "picture") {
+        $element = new Eg::HTMLPictureElement;
+      }
+      elsif ($tag_name eq "pre") {
+        $element = new Eg::HTMLPreElement;
+      }
+      elsif ($tag_name eq "progress") {
+        $element = new Eg::HTMLProgressElement;
+      }
+      elsif ($tag_name eq "quote") {
+        $element = new Eg::HTMLQuoteElement;
+      }
+      elsif ($tag_name eq "script") {
+        $element = new Eg::HTMLScriptElement;
+      }
+      elsif ($tag_name eq "select") {
+        $element = new Eg::HTMLSelectElement;
+      }
+      elsif ($tag_name eq "shadow") {
+        $element = new Eg::HTMLShadowElement;
+      }
+      elsif ($tag_name eq "source") {
+        $element = new Eg::HTMLSourceElement;
+      }
+      elsif ($tag_name eq "span") {
+        $element = new Eg::HTMLSpanElement;
+      }
+      elsif ($tag_name eq "style") {
+        $element = new Eg::HTMLStyleElement;
+      }
+      elsif ($tag_name eq "tablecaption") {
+        $element = new Eg::HTMLTableCaptionElement;
+      }
+      elsif ($tag_name eq "tablecell") {
+        $element = new Eg::HTMLTableCellElement;
+      }
+      elsif ($tag_name eq "tablecol") {
+        $element = new Eg::HTMLTableColElement;
+      }
+      elsif ($tag_name eq "table") {
+        $element = new Eg::HTMLTableElement;
+      }
+      elsif ($tag_name eq "tablerow") {
+        $element = new Eg::HTMLTableRowElement;
+      }
+      elsif ($tag_name eq "tablesection") {
+        $element = new Eg::HTMLTableSectionElement;
+      }
+      elsif ($tag_name eq "textarea") {
+        $element = new Eg::HTMLTextAreaElement;
+      }
+      elsif ($tag_name eq "title") {
+        $element = new Eg::HTMLTitleElement;
+      }
+      elsif ($tag_name eq "track") {
+        $element = new Eg::HTMLTrackElement;
+      }
+      elsif ($tag_name eq "ulist") {
+        $element = new Eg::HTMLUListElement;
+      }
+      elsif ($tag_name eq "video") {
+        $element = new Eg::HTMLVideoElement;
+      }
+      else {
+        $element = new Eg::HTMLUnknownElement;
+      }
+    }
+    else {
+      $element = new Eg::Element;
+    }
+    
+    $element->{tag_name} = $tag_name;
+    
+    $element->{node_type} = Eg::Node->TYPE_ELEMENT_NODE;
+    
+    my $box = Eg::CSS::Box->new;
+    
+    $element->{box} = $box;
+    
+    return $element;
+  }
+  
 }

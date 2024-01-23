@@ -2,5 +2,5 @@
 # MIT License
 
 class Eg::HTMLHtmlElement extends Eg::HTMLElement {
-  
+  allow Eg::Document;
 }

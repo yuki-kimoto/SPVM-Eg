@@ -3,6 +3,7 @@
 
 class Eg::Element extends Eg::Node {
   allow Eg;
+  allow Eg::Document;
   
   has attributes_h : ro Hash of string;
   

@@ -3,6 +3,7 @@
 
 class Eg::Node {
   allow Eg;
+  allow Eg::Document;
   
   use Hash;
   use List;

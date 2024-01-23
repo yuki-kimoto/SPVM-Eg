@@ -354,4 +354,19 @@ class Eg::Document extends Eg::Node {
     return $text_node;
   }
   
+  method create_comment : Eg::Text ($data : string) {
+    
+    unless ($data) {
+      die "\$data must be defined.";
+    }
+    
+    my $comment_node = new Eg::Text;
+    
+    $comment_node->{node_type} = Eg::Node->TYPE_COMMENT_NODE;
+    
+    $comment_node->{node_value_buffer} = StringBuffer->new($data);
+    
+    return $comment_node;
+  }
+  
 }

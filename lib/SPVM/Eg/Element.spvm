@@ -6,6 +6,8 @@ class Eg::Element extends Eg::Node {
   allow Eg::Document;
   allow Eg::DOMImplementation;
   
+  use Eg::DOMImplementation;
+  
   has attributes_h : ro Hash of string;
   
   has styles_h : ro Hash of string;
@@ -294,7 +296,7 @@ class Eg::Element extends Eg::Node {
       }
     }
     else {
-      my $text_node = Eg::Text->new($text);
+      my $text_node = Eg::DOMImplementation->new->create_html_document->create_text_node($text);
       
       $self->{first_child} = $text_node;
       

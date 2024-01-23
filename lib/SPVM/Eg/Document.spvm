@@ -11,6 +11,7 @@ class Eg::Document extends Eg::Node {
   use Hash;
   use Regex;
   use Eg::Document::HTML;
+  use StringBuffer;
   
   use Eg::Element::HTML;
   use Eg::Element::HTML::Unknown;
@@ -336,6 +337,21 @@ class Eg::Document extends Eg::Node {
     $element->{box} = $box;
     
     return $element;
+  }
+  
+  method create_text_node : Eg::Text ($data : string) {
+    
+    unless ($data) {
+      die "\$data must be defined.";
+    }
+    
+    my $text_node = new Eg::Text;
+    
+    $text_node->{node_type} = Eg::Node->TYPE_TEXT_NODE;
+    
+    $text_node->{node_value_buffer} = StringBuffer->new($data);
+    
+    return $text_node;
   }
   
 }

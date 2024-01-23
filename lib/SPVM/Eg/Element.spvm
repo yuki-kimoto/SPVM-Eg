@@ -47,6 +47,10 @@ class Eg::Element extends Eg::Node {
   
   method get_attribute : string ($name : string) {
     
+    unless ($name) {
+      die "\$name must be defined.";
+    }
+    
     my $attributes_h = $self->{attributes_h};
     
     unless ($self->{attributes_h}) {
@@ -55,7 +59,7 @@ class Eg::Element extends Eg::Node {
     
     my $owner_document = $self->owner_document;
     
-    if ($owner_document && $owner_document isa Eg::Document::HTML && $self isa Eg::Element::HTML) {
+    if ($owner_document && $owner_document is_type Eg::Document::HTML && $self isa Eg::Element::HTML) {
       $name = Fn->lc($name);
     }
     
@@ -66,6 +70,58 @@ class Eg::Element extends Eg::Node {
     my $attribute = $attributes_h->get_string($name);
     
     return $attribute;
+  }
+  
+  method set_attribute : void ($name : string, $value : string) {
+    
+    unless ($name) {
+      die "\$name must be defined.";
+    }
+    
+    unless ($value) {
+      die "\$value must be defined.";
+    }
+    
+    my $attributes_h = $self->{attributes_h};
+    
+    my $owner_document = $self->owner_document;
+    
+    if ($owner_document && $owner_document is_type Eg::Document::HTML && $self isa Eg::Element::HTML) {
+      $name = Fn->lc($name);
+    }
+    
+    unless ($attributes_h) {
+      $attributes_h = $self->{attributes_h} = Hash->new;
+    }
+    
+    $attributes_h->set_string($name, $value);
+  }
+  
+  method remove_attribute : void ($name : string) {
+    
+    unless ($name) {
+      die "\$name must be defined.";
+    }
+    
+    my $attributes_h = $self->{attributes_h};
+    
+    my $deleted_attribute = (string)undef;
+    
+    if ($self->{attributes_h}) {
+      $attributes_h->delete($name);
+    }
+  }
+  
+  method has_attribute : int ($name : string) {
+    
+    my $attributes_h = $self->{attributes_h};
+    
+    my $exists = 0;
+    if ($attributes_h) {
+      $exists = $attributes_h->exists($name);
+    }
+    
+    return $exists;
   }
   
   method attr : string ($name : string) {

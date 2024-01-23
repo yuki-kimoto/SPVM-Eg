@@ -1,6 +1,0 @@
-# Copyright (c) 2024 Yuki Kimoto
-# MIT License
-
-class Eg::HTMLDocument extends Eg::Document {
-  allow Eg::Document;
-}

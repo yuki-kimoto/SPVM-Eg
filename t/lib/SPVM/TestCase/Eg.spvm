@@ -3,6 +3,44 @@ class TestCase::Eg {
   use Eg::Node;
   use Eg::DOMImplementation;
   
+  static method tag : Eg::Element ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
+    
+    my $child_nodes = (Eg::Node[])undef;
+    if ($child_nodes_or_text) {
+      if ($child_nodes_or_text is_type string) {
+        $child_nodes = [Eg::Text->new((string)$child_nodes_or_text)];
+      }
+      elsif ($child_nodes_or_text isa Eg::Node[]) {
+        $child_nodes = (Eg::Node[])$child_nodes_or_text;
+      }
+      else {
+        die "The type of \$child_nodes_or_text must inherit Eg::Element or must be string.";
+      }
+    }
+    
+    my $new_element_node = Eg::Element->new($tag_name, undef, $child_nodes);
+    
+    return $new_element_node;
+  }
+  
+  static method tag_ : Eg::Element ($tag_name : string, $attributes : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
+    my $child_nodes = (Eg::Node[])undef;
+    if ($child_nodes_or_text) {
+      if ($child_nodes_or_text is_type string) {
+        $child_nodes = [Eg::Text->new((string)$child_nodes_or_text)];
+      }
+      elsif ($child_nodes_or_text isa Eg::Node[]) {
+        $child_nodes = (Eg::Node[])$child_nodes_or_text;
+      }
+      else {
+        die "The type of \$child_nodes_or_text must inherit Eg::Node or must be string.";
+      }
+    }
+    
+    my $new_element_node = Eg::Element->new($tag_name, $attributes, $child_nodes);
+    
+    return $new_element_node;
+  }
   static method test : int () {
     
     my $dom_impl = Eg::DOMImplementation->new;
@@ -48,7 +86,7 @@ class TestCase::Eg {
     }
     
     {
-      my $div = Eg->tag_("div", {style => {color => "red"}});
+      my $div = &tag_("div", {style => {color => "red"}});
       
       unless ($div->css("color") eq "red") {
         return 0;
@@ -57,7 +95,7 @@ class TestCase::Eg {
     
     
     {
-      my $div = Eg->tag("div", [$document->create_text_node("foo")]);
+      my $div = &tag("div", [$document->create_text_node("foo")]);
       
       unless ($div->tag_name eq "div") {
         return 0;
@@ -71,7 +109,7 @@ class TestCase::Eg {
     
     # attribute
     {
-      my $div = Eg->tag_("div", {attribute1 => "attributeval1"});
+      my $div = &tag_("div", {attribute1 => "attributeval1"});
       
       unless ($div->get_attribute("attribute1") eq "attributeval1") {
         return 0;
@@ -96,7 +134,7 @@ class TestCase::Eg {
     
     # has_attribute
     {
-      my $div = Eg->tag_("div", {attribute1 => "attributeval1", attribute2 => undef});
+      my $div = &tag_("div", {attribute1 => "attributeval1", attribute2 => undef});
       
       unless ($div->has_attribute("attribute1")) {
         return 0;
@@ -113,7 +151,7 @@ class TestCase::Eg {
     
     # remove_attribute
     {
-      my $div = Eg->tag_("div", {attribute1 => "attributeval1", attribute2 => "attributeval2"});
+      my $div = &tag_("div", {attribute1 => "attributeval1", attribute2 => "attributeval2"});
       
       $div->remove_attribute("attribute1");
       
@@ -126,7 +164,7 @@ class TestCase::Eg {
     
     # attribute_pairs
     {
-      my $div = Eg->tag_("div", {attr1 => "attrval1", attr2 => "attrval2"});
+      my $div = &tag_("div", {attr1 => "attrval1", attr2 => "attrval2"});
       
       my $attribute_pairs = $div->attribute_pairs;
       
@@ -137,7 +175,7 @@ class TestCase::Eg {
     
     # css
     {
-      my $div = Eg->tag_("div", {style => {css1 => "cssval1"}});
+      my $div = &tag_("div", {style => {css1 => "cssval1"}});
       
       unless ($div->css("css1") eq "cssval1") {
         return 0;
@@ -150,7 +188,7 @@ class TestCase::Eg {
     
     # set_css
     {
-      my $div = Eg->tag_("div", {style => {}});
+      my $div = &tag_("div", {style => {}});
       
       $div->set_css("css1", "cssval1");
       
@@ -162,7 +200,7 @@ class TestCase::Eg {
     
     # exists_css
     {
-      my $div = Eg->tag_("div", {style => {css1 => "cssval1", css2 => undef}});
+      my $div = &tag_("div", {style => {css1 => "cssval1", css2 => undef}});
       
       unless ($div->exists_css("css1")) {
         return 0;
@@ -179,7 +217,7 @@ class TestCase::Eg {
     
     # delete_css
     {
-      my $div = Eg->tag_("div", {style => {css1 => "cssval1", css2 => "cssval2"}});
+      my $div = &tag_("div", {style => {css1 => "cssval1", css2 => "cssval2"}});
       
       $div->remove_css("css1");
       
@@ -192,7 +230,7 @@ class TestCase::Eg {
     
     # style_pairs
     {
-      my $div = Eg->tag_("div", {style => {css1 => "cssval1", css2 => "cssval2"}});
+      my $div = &tag_("div", {style => {css1 => "cssval1", css2 => "cssval2"}});
       
       my $style_pairs = $div->style_pairs;
       
@@ -202,23 +240,23 @@ class TestCase::Eg {
     }
     
     {
-      my $div = Eg->tag_("div", {class => "foo bar", id => "foo", style => {color => "red"}},
-        [(Eg::Node)Eg->tag("div", "foo")],
+      my $div = &tag_("div", {class => "foo bar", id => "foo", style => {color => "red"}},
+        [(Eg::Node)&tag("div", "foo")],
       );
     }
     
     {
-      my $div = Eg->tag_("div", {class => "foo bar", id => "foo", style => {color => "red"}},
-        [Eg->tag("div"), Eg->tag("span", "foo")],
+      my $div = &tag_("div", {class => "foo bar", id => "foo", style => {color => "red"}},
+        [&tag("div"), &tag("span", "foo")],
       );
     }
     
     {
-      my $div = Eg->tag_("div", {class => "foo bar", id => "foo", style => {color => "red"}},
+      my $div = &tag_("div", {class => "foo bar", id => "foo", style => {color => "red"}},
         [
-          Eg->tag("div"),
+          &tag("div"),
           # Foo
-          Eg->tag("span", "foo"),
+          &tag("span", "foo"),
 
 =pod
 
@@ -226,18 +264,18 @@ Foo
 
 =cut
 
-          Eg->tag("span", "bar")
+          &tag("span", "bar")
         ],
       );
     }
     
     {
-      my $ul = Eg->tag_("ul",
+      my $ul = &tag_("ul",
         {class => "foo bar", id => "foo", style => {color => "red"}},
         [
-          Eg->tag("li", "1"),
-          Eg->tag("li", "2"),
-          Eg->tag("li", "3"),
+          &tag("li", "1"),
+          &tag("li", "2"),
+          &tag("li", "3"),
         ],
       );
       
@@ -253,12 +291,12 @@ Foo
     # child_nodes
     {
       {
-        my $ul = Eg->tag_("ul",
+        my $ul = &tag_("ul",
           {class => "foo bar", id => "foo", style => {color => "red"}},
           [
-            Eg->tag("li", "1"),
-            Eg->tag("li", "2"),
-            Eg->tag("li", "3"),
+            &tag("li", "1"),
+            &tag("li", "2"),
+            &tag("li", "3"),
           ],
         );
         
@@ -282,7 +320,7 @@ Foo
       }
       
       {
-        my $ul = Eg->tag_("ul",
+        my $ul = &tag_("ul",
           {class => "foo bar", id => "foo", style => {color => "red"}},
         );
         
@@ -295,14 +333,14 @@ Foo
     }
     
     {
-      my $table = Eg->tag_("table",
+      my $table = &tag_("table",
         {class => "foo bar", id => "foo", style => {color => "red"}},
         [
-          Eg->tag("tr", [
-            Eg->tag("td", "1-1"), Eg->tag("td", "1-2")
+          &tag("tr", [
+            &tag("td", "1-1"), &tag("td", "1-2")
           ]),
-          Eg->tag("tr", [
-            Eg->tag("td", "2-1"), Eg->tag("td", "2-2")
+          &tag("tr", [
+            &tag("td", "2-1"), &tag("td", "2-2")
           ]),
         ],
       );

@@ -8,7 +8,7 @@
     * Add the Eg::DOMImplementation class.
   [Incompatible Changes]
     * Many things are changed.
-    * Almost all tag methods are removed from the Eg class.
+    * All tag methods are removed from the Eg class.
 0.012 2024-01-13
   [New Features]
     * Add the append method to the Eg::Node class.

@@ -224,7 +224,7 @@ class Eg::Node {
         $node_name = "#document";
       }
       case &TYPE_ELEMENT_NODE : {
-        $node_name = Fn->uc($self->(Eg::Element)->tag_name);
+        $node_name = $self->(Eg::Element)->tag_name;
       }
       case &TYPE_TEXT_NODE : {
         $node_name = "#text";

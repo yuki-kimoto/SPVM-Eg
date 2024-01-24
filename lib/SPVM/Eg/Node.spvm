@@ -475,56 +475,49 @@ class Eg::Node {
         else {
           while (1) {
             # [START]Postorder traversal position
-            if (!$reference_node) {
-              
-              my $new_nodes_first = $new_nodes->[0];
-              
-              my $new_nodes_last = $new_nodes->[$new_nodes_length - 1];
-              
-              $new_nodes_last->{next_sibling} = undef;
-              
-              $new_nodes_first->{previous_sibling} = $self->{last_child};
-              weaken $new_nodes_first->{previous_sibling};
-              
-              my $last_child = $self->{last_child};
-              $self->{last_child} = $new_nodes_last;
-              
-              if ($last_child) {
-                $last_child->{next_sibling} = $new_nodes_first;
-              }
-              
-              unless ($self->{first_child}) {
-                $self->{first_child} = $new_nodes_first;
-              }
-              
-              for my $new_node (@$new_nodes) {
-                $new_node->{parent_node} = $self;
-                weaken $new_node->{parent_node};
-              }
-              
-              $finish = 1;
-              
-              last;
-            }
-            elsif ($node_cur == $reference_node) {
-              my $reference_node_parent = $reference_node->{parent_node};
-              
+            
+            my $insert = !$reference_node || $node_cur == $reference_node;
+            
+            if ($insert) {
               my $new_nodes_first = $new_nodes->[0];
               
               my $new_nodes_last = $new_nodes->[$new_nodes_length - 1];
               
               $new_nodes_last->{next_sibling} = $reference_node;
               
-              $reference_node->{previous_sibling} = $new_nodes_last;
-              weaken $reference_node->{previous_sibling};
-              
-              $new_nodes_first->{previous_sibling} = $reference_node->{previous_sibling};
-              weaken $new_nodes_first->{previous_sibling};
-              
-              $reference_node_parent->{first_child} = $new_nodes_first;
+              if (!$reference_node) {
+                
+                $new_nodes_first->{previous_sibling} = $self->{last_child};
+                weaken $new_nodes_first->{previous_sibling};
+                
+                my $last_child = $self->{last_child};
+                $self->{last_child} = $new_nodes_last;
+                
+                if ($last_child) {
+                  $last_child->{next_sibling} = $new_nodes_first;
+                }
+                
+                unless ($self->{first_child}) {
+                  $self->{first_child} = $new_nodes_first;
+                }
+                
+              }
+              elsif ($node_cur == $reference_node) {
+                my $reference_node_parent = $reference_node->{parent_node};
+                
+                $reference_node->{previous_sibling} = $new_nodes_last;
+                weaken $reference_node->{previous_sibling};
+                
+                $new_nodes_first->{previous_sibling} = $reference_node->{previous_sibling};
+                weaken $new_nodes_first->{previous_sibling};
+                
+                if ($reference_node_parent->{first_child} == $reference_node) {
+                  $reference_node_parent->{first_child} = $new_nodes_first;
+                }
+              }
               
               for my $new_node (@$new_nodes) {
-                $new_node->{parent_node} = $reference_node_parent;
+                $new_node->{parent_node} = $self;
                 weaken $new_node->{parent_node};
               }
               

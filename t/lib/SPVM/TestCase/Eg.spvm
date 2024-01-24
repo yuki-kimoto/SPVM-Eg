@@ -1,33 +1,33 @@
 class TestCase::Eg {
   use Eg;
   use Eg::Node;
-  use Eg::DOMImplementation;
+  use Eg::DOM::Implementation;
   
-  static method tag : Eg::Element ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
+  static method tag : Eg::Node::Element ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
     
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {
       if ($child_nodes_or_text is_type string) {
-        $child_nodes = [Eg::Text->new((string)$child_nodes_or_text)];
+        $child_nodes = [Eg::Node::Text->new((string)$child_nodes_or_text)];
       }
       elsif ($child_nodes_or_text isa Eg::Node[]) {
         $child_nodes = (Eg::Node[])$child_nodes_or_text;
       }
       else {
-        die "The type of \$child_nodes_or_text must inherit Eg::Element or must be string.";
+        die "The type of \$child_nodes_or_text must inherit Eg::Node::Element or must be string.";
       }
     }
     
-    my $new_element_node = Eg::Element->new($tag_name, undef, $child_nodes);
+    my $new_element_node = Eg::Node::Element->new($tag_name, undef, $child_nodes);
     
     return $new_element_node;
   }
   
-  static method tag_ : Eg::Element ($tag_name : string, $attributes : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
+  static method tag_ : Eg::Node::Element ($tag_name : string, $attributes : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {
       if ($child_nodes_or_text is_type string) {
-        $child_nodes = [Eg::Text->new((string)$child_nodes_or_text)];
+        $child_nodes = [Eg::Node::Text->new((string)$child_nodes_or_text)];
       }
       elsif ($child_nodes_or_text isa Eg::Node[]) {
         $child_nodes = (Eg::Node[])$child_nodes_or_text;
@@ -37,14 +37,14 @@ class TestCase::Eg {
       }
     }
     
-    my $new_element_node = Eg::Element->new($tag_name, $attributes, $child_nodes);
+    my $new_element_node = Eg::Node::Element->new($tag_name, $attributes, $child_nodes);
     
     return $new_element_node;
   }
   
   static method test : int () {
     
-    my $dom_impl = Eg::DOMImplementation->new;
+    my $dom_impl = Eg::DOM::Implementation->new;
     
     my $document = $dom_impl->create_html_document;
     
@@ -307,15 +307,15 @@ Foo
           return 0;
         }
         
-        unless ($child_nodes->[0]->(Eg::Element)->text eq "1") {
+        unless ($child_nodes->[0]->(Eg::Node::Element)->text eq "1") {
           return 0;
         }
         
-        unless ($child_nodes->[1]->(Eg::Element)->text eq "2") {
+        unless ($child_nodes->[1]->(Eg::Node::Element)->text eq "2") {
           return 0;
         }
         
-        unless ($child_nodes->[2]->(Eg::Element)->text eq "3") {
+        unless ($child_nodes->[2]->(Eg::Node::Element)->text eq "3") {
           return 0;
         }
       }
@@ -460,7 +460,7 @@ Foo
   static method dom_implementation : int () {
     
     {
-      my $dom_impl = Eg::DOMImplementation->new;
+      my $dom_impl = Eg::DOM::Implementation->new;
       
       my $document = $dom_impl->create_html_document;
       
@@ -472,7 +472,7 @@ Foo
         return 0;
       }
       
-      unless ($html_element is_type Eg::Element::HTML::Html) {
+      unless ($html_element is_type Eg::Node::Element::HTML::Html) {
         return 0;
       }
       
@@ -503,7 +503,7 @@ Foo
     {
       # tag_name - HTML
       {
-        my $dom_impl = Eg::DOMImplementation->new;
+        my $dom_impl = Eg::DOM::Implementation->new;
         
         my $document = $dom_impl->create_html_document;
         
@@ -526,7 +526,7 @@ Foo
       
       # tag_name - XML
       {
-        my $dom_impl = Eg::DOMImplementation->new;
+        my $dom_impl = Eg::DOM::Implementation->new;
         
         my $document = $dom_impl->create_document(undef, "root");
         
@@ -556,7 +556,7 @@ Foo
     # append_child
     {
       {
-        my $dom_impl = Eg::DOMImplementation->new;
+        my $dom_impl = Eg::DOM::Implementation->new;
         
         my $document = $dom_impl->create_html_document;
         
@@ -669,7 +669,7 @@ Foo
     # insert_before
     {
       {
-        my $dom_impl = Eg::DOMImplementation->new;
+        my $dom_impl = Eg::DOM::Implementation->new;
         
         my $document = $dom_impl->create_html_document;
         

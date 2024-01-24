@@ -52,7 +52,7 @@ class Eg::OS::Windows::API::App extends Eg::OS::API {
   
   private native static method CW_USEDEFAULT : int ();
   
-  private native method text_metrics_height : int ($text_node : Eg::Text);
+  private native method text_metrics_height : int ($text_node : Eg::Node::Text);
   
   private method document_title : string () {
     return $self->{runtime}->window->document->title;

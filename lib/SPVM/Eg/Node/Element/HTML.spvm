@@ -1,0 +1,6 @@
+# Copyright (c) 2024 Yuki Kimoto
+# MIT License
+
+class Eg::Node::Element::HTML extends Eg::Node::Element {
+  allow Eg::Node::Document;
+}

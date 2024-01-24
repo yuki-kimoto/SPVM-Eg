@@ -3,18 +3,18 @@
 
 class Eg::Node {
   allow Eg;
-  allow Eg::Document;
+  allow Eg::Node::Document;
   allow Eg::CSS::BoxBuilder;
   
   use Hash;
   use List;
   use StringBuffer;
-  use Eg::Text;
+  use Eg::Node::Text;
   use Eg::CSS::Box;
-  use Eg::Text;
-  use Eg::Comment;
-  use Eg::Document;
-  use Eg::DocumentFragment;
+  use Eg::Node::Text;
+  use Eg::Node::Comment;
+  use Eg::Node::Document;
+  use Eg::Node::DocumentFragment;
   
   enum {
     TYPE_ELEMENT_NODE = 1,
@@ -225,7 +225,7 @@ class Eg::Node {
         $node_name = "#document";
       }
       case &TYPE_ELEMENT_NODE : {
-        $node_name = $self->(Eg::Element)->tag_name;
+        $node_name = $self->(Eg::Node::Element)->tag_name;
       }
       case &TYPE_TEXT_NODE : {
         $node_name = "#text";
@@ -241,13 +241,13 @@ class Eg::Node {
     return $node_name;
   }
   
-  method owner_document : Eg::Document () {
+  method owner_document : Eg::Node::Document () {
     
     my $current_node = $self;
     
-    my $document_node = (Eg::Document)undef;
+    my $document_node = (Eg::Node::Document)undef;
     
-    unless ($current_node isa Eg::Document) {
+    unless ($current_node isa Eg::Node::Document) {
       
       while (1) {
         my $parent_node = $current_node->{parent_node};
@@ -256,8 +256,8 @@ class Eg::Node {
           last;
         }
         
-        if ($parent_node isa Eg::Document) {
-          $document_node = (Eg::Document)$current_node;
+        if ($parent_node isa Eg::Node::Document) {
+          $document_node = (Eg::Node::Document)$current_node;
           last;
         }
         else {
@@ -365,13 +365,13 @@ class Eg::Node {
       die "\$new_node cannot have its parent.";
     }
     
-    unless ($self isa Eg::Document || $self isa Eg::DocumentFragment || $self isa Eg::Element) {
-      die "The type of this instance must inherit the Eg::Document class or the Eg::DocumentFragment class or the Eg::Element class";
+    unless ($self isa Eg::Node::Document || $self isa Eg::Node::DocumentFragment || $self isa Eg::Node::Element) {
+      die "The type of this instance must inherit the Eg::Node::Document class or the Eg::Node::DocumentFragment class or the Eg::Node::Element class";
     }
     
     my $new_nodes = (Eg::Node[])undef;
     
-    if ($new_node isa Eg::DocumentFragment) {
+    if ($new_node isa Eg::Node::DocumentFragment) {
       $new_nodes = $new_node->child_nodes;
     }
     else {
@@ -383,8 +383,8 @@ class Eg::Node {
     }
     
     for my $new_node (@$new_nodes ) {
-      unless ($new_node isa Eg::Element || $new_node is_type Eg::Text || $new_node is_type Eg::Comment) {
-        die "The type of \$new_node(or each child of DocumentFragment) must inherit the Eg::Element class or is the Eg::Text class or the Eg::Comment.";
+      unless ($new_node isa Eg::Node::Element || $new_node is_type Eg::Node::Text || $new_node is_type Eg::Node::Comment) {
+        die "The type of \$new_node(or each child of Node::DocumentFragment) must inherit the Eg::Node::Element class or is the Eg::Node::Text class or the Eg::Node::Comment.";
       }
     }
     
@@ -405,7 +405,7 @@ class Eg::Node {
             # [START]Postorder traversal position
             for my $new_node (@$new_nodes ) {
               if ($new_node == $node_cur) {
-                die "\$new_node(or each child of DocumentFragment) cannot be this instance or the children of this instance or the grand children of this instance.";
+                die "\$new_node(or each child of Node::DocumentFragment) cannot be this instance or the children of this instance or the grand children of this instance.";
               }
             }
             
@@ -445,20 +445,20 @@ class Eg::Node {
     
     my $self_child_nodes = $self->child_nodes;
     
-    if ($self isa Eg::Document) {
+    if ($self isa Eg::Node::Document) {
       
       unless (@$self_child_nodes == 0) {
-        die "If the type of this instance inherits the Eg::Document class, the length of its children must be 0.";
+        die "If the type of this instance inherits the Eg::Node::Document class, the length of its children must be 0.";
       }
       
       unless ($new_nodes_length == 1) {
-        die "If the type of this instance inherits the Eg::Document class, the length of the children of \$new_node(this is Eg::DocumentFragment).";
+        die "If the type of this instance inherits the Eg::Node::Document class, the length of the children of \$new_node(this is Eg::Node::DocumentFragment).";
       }
       
       my $new_node = $new_nodes->[0];
       
-      unless ($new_node isa Eg::Element) {
-        die "If the type of this instance inherits the Eg::Document class, the type of \$new_node must inherit the Eg::Element class.";
+      unless ($new_node isa Eg::Node::Element) {
+        die "If the type of this instance inherits the Eg::Node::Document class, the type of \$new_node must inherit the Eg::Node::Element class.";
       }
     }
     

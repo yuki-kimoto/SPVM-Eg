@@ -1,0 +1,17 @@
+# Copyright (c) 2024 Yuki Kimoto
+# MIT License
+
+class Eg::Node::Comment extends Eg::Node::CharacterData {
+  allow Eg;
+  
+  # Class Methods
+  static method new : Eg::Node::Comment ($text : string) {
+    
+    my $self = new Eg::Node::Comment;
+    
+    $self->init(Eg::Node->TYPE_COMMENT_NODE, undef, $text);
+    
+    return $self;
+  }
+  
+}

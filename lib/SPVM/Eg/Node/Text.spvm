@@ -1,0 +1,18 @@
+# Copyright (c) 2024 Yuki Kimoto
+# MIT License
+
+class Eg::Node::Text extends Eg::Node::CharacterData {
+  allow Eg;
+  allow Eg::Node::Document;
+  
+  # Class Methods
+  static method new : Eg::Node::Text ($text : string) {
+    
+    my $self = new Eg::Node::Text;
+    
+    $self->init(Eg::Node->TYPE_TEXT_NODE, undef, $text);
+    
+    return $self;
+  }
+  
+}

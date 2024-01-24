@@ -1,13 +1,13 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class Eg::Window extends Eg::EventTarget {
+class Eg::Window extends Eg::Event::Target {
   allow Eg::Runtime;
   
   use Eg::API;
   use Eg::Location;
   use Eg::History;
-  use Eg::Document;
+  use Eg::Node::Document;
   
   # Class Methods
   static method new : Eg::Window () {
@@ -21,7 +21,7 @@ class Eg::Window extends Eg::EventTarget {
   
   has location : ro Eg::Location;
   
-  has document : rw Eg::Document;
+  has document : rw Eg::Node::Document;
   
   has history : ro Eg::History;
   

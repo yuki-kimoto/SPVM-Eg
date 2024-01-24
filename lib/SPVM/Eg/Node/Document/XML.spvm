@@ -1,0 +1,17 @@
+# Copyright (c) 2024 Yuki Kimoto
+# MIT License
+
+class Eg::Node::Document::XML extends Eg::Node::Document {
+  
+  allow Eg::DOM::Implementation;
+  
+  # Class Methods
+  static method new : Eg::Node::Document::XML () {
+    
+    my $self = new Eg::Node::Document::XML;
+    
+    $self->init(Eg::Node->TYPE_DOCUMENT_NODE);
+    
+    return $self;
+  }
+}

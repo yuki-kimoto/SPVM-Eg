@@ -6,7 +6,7 @@ package SPVM::Eg::Node;
 
 =head1 Name
 
-SPVM::Eg::Node - HTML Nodes, Attributes, Text.
+SPVM::Eg::Node - HTML Nodes, Attributes, Node::Text.
 
 =head1 Description
 

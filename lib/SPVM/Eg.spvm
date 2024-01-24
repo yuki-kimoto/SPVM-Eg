@@ -5,9 +5,9 @@ class Eg {
   version "0.012";
   
   use Eg::Node;
-  use Eg::Document;
-  use Eg::Element;
-  use Eg::Text;
+  use Eg::Node::Document;
+  use Eg::Node::Element;
+  use Eg::Node::Text;
   use Eg::Runtime;
   
   use Hash;
@@ -21,7 +21,7 @@ class Eg {
     return $RUNTIME->window;
   }
   
-  static method document : Eg::Document () {
+  static method document : Eg::Node::Document () {
     return &window->document;
   }
   

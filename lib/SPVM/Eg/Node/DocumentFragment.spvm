@@ -1,0 +1,4 @@
+class Eg::Node::DocumentFragment extends Eg::Node {
+  
+  # Instance Methods
+}

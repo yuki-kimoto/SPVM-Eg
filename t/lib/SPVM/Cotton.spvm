@@ -4,33 +4,33 @@ class Cotton {
   use Eg::OS;
   use Sys::OS;
   use Eg::CSS::Box;
-  use Eg::DOMImplementation;
+  use Eg::DOM::Implementation;
   
-  static method tag : Eg::Element ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
+  static method tag : Eg::Node::Element ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
     
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {
       if ($child_nodes_or_text is_type string) {
-        $child_nodes = [Eg::Text->new((string)$child_nodes_or_text)];
+        $child_nodes = [Eg::Node::Text->new((string)$child_nodes_or_text)];
       }
       elsif ($child_nodes_or_text isa Eg::Node[]) {
         $child_nodes = (Eg::Node[])$child_nodes_or_text;
       }
       else {
-        die "The type of \$child_nodes_or_text must inherit Eg::Element or must be string.";
+        die "The type of \$child_nodes_or_text must inherit Eg::Node::Element or must be string.";
       }
     }
     
-    my $new_element_node = Eg::Element->new($tag_name, undef, $child_nodes);
+    my $new_element_node = Eg::Node::Element->new($tag_name, undef, $child_nodes);
     
     return $new_element_node;
   }
   
-  static method tag_ : Eg::Element ($tag_name : string, $attributes : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
+  static method tag_ : Eg::Node::Element ($tag_name : string, $attributes : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {
       if ($child_nodes_or_text is_type string) {
-        $child_nodes = [Eg::Text->new((string)$child_nodes_or_text)];
+        $child_nodes = [Eg::Node::Text->new((string)$child_nodes_or_text)];
       }
       elsif ($child_nodes_or_text isa Eg::Node[]) {
         $child_nodes = (Eg::Node[])$child_nodes_or_text;
@@ -40,7 +40,7 @@ class Cotton {
       }
     }
     
-    my $new_element_node = Eg::Element->new($tag_name, $attributes, $child_nodes);
+    my $new_element_node = Eg::Node::Element->new($tag_name, $attributes, $child_nodes);
     
     return $new_element_node;
   }
@@ -94,7 +94,7 @@ class Cotton {
     $api->app->start_event_loop;
   }
   
-  static method document : Eg::Document () {
+  static method document : Eg::Node::Document () {
     
     my $div1 = &tag_("div",
       {style => {"background-color" => "#00FF00", "color" => "#0000FF", "font-size" => "60px", "font-weight" => "bold"}},
@@ -111,7 +111,7 @@ class Cotton {
     
     my $title = "コットン";
     
-    my $dom_impl = Eg::DOMImplementation->new;
+    my $dom_impl = Eg::DOM::Implementation->new;
     
     my $document = $dom_impl->create_html_document($title);
     

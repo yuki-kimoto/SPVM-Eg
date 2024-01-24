@@ -414,7 +414,7 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_set_default_values(SPVM_ENV* env, S
   assert(box);
   
   int32_t is_anon_box = 0;
-  if (env->is_type_by_name(env, stack, obj_node, "Eg::Text", 0)) {
+  if (env->is_type_by_name(env, stack, obj_node, "Eg::Node::Text", 0)) {
     is_anon_box = 1;
   }
   
@@ -509,7 +509,7 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant(SPVM_ENV* env, SPVM_VALU
   
   // Not document node
   if (obj_parent_node) {
-    int32_t is_root_node = env->is_type_by_name(env, stack, obj_parent_node, "Eg::Document", 0);
+    int32_t is_root_node = env->is_type_by_name(env, stack, obj_parent_node, "Eg::Node::Document", 0);
     
     obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
     if (error_id) { return error_id; }

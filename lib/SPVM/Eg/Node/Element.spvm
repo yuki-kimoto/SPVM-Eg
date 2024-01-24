@@ -1,0 +1,339 @@
+# Copyright (c) 2024 Yuki Kimoto
+# MIT License
+
+class Eg::Node::Element extends Eg::Node {
+  allow Eg;
+  allow Eg::Node::Document;
+  allow Eg::DOM::Implementation;
+  
+  use Eg::DOM::Implementation;
+  use Fn;
+  
+  has attributes_h : ro Hash of string;
+  
+  has styles_h : ro Hash of string;
+  
+  has computed_styles_h : rw Hash of string;
+  
+  has tag_name : string;
+  
+  # Class Methods
+  static method new : Eg::Node::Element ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes : Eg::Node[] = undef) {
+    
+    my $self = new Eg::Node::Element;
+    
+    unless ($tag_name) {
+      die "\$tag_namet must be defined.";
+    }
+    
+    $self->init(Eg::Node->TYPE_ELEMENT_NODE, $child_nodes);
+    
+    $self->{tag_name} = $tag_name;
+    
+    if ($attribute_pairs) {
+      $self->{attributes_h} = Hash->new($attribute_pairs);
+      
+      my $attributes_h = $self->{attributes_h};
+      
+      my $style_pairs = (object[])$attributes_h->delete("style");
+      
+      if ($style_pairs) {
+        my $styles_h = Hash->new($style_pairs);
+        
+        $self->{styles_h} = $styles_h;
+      }
+    }
+    
+    return $self;
+  }
+  
+  method get_attribute : string ($name : string) {
+    
+    unless ($name) {
+      die "\$name must be defined.";
+    }
+    
+    my $attributes_h = $self->{attributes_h};
+    
+    unless ($self->{attributes_h}) {
+      return undef;
+    }
+    
+    my $owner_document = $self->owner_document;
+    
+    if ($owner_document && $owner_document is_type Eg::Node::Document && $self isa Eg::Node::Element::HTML) {
+      $name = Fn->lc($name);
+    }
+    
+    if ($name eq "nonce") {
+      return "";
+    }
+    
+    my $attribute = $attributes_h->get_string($name);
+    
+    return $attribute;
+  }
+  
+  method set_attribute : void ($name : string, $value : string) {
+    
+    unless ($name) {
+      die "\$name must be defined.";
+    }
+    
+    unless ($value) {
+      die "\$value must be defined.";
+    }
+    
+    my $attributes_h = $self->{attributes_h};
+    
+    my $owner_document = $self->owner_document;
+    
+    if ($owner_document && $owner_document is_type Eg::Node::Document && $self isa Eg::Node::Element::HTML) {
+      $name = Fn->lc($name);
+    }
+    
+    unless ($attributes_h) {
+      $attributes_h = $self->{attributes_h} = Hash->new;
+    }
+    
+    $attributes_h->set_string($name, $value);
+  }
+  
+  method remove_attribute : void ($name : string) {
+    
+    unless ($name) {
+      die "\$name must be defined.";
+    }
+    
+    my $attributes_h = $self->{attributes_h};
+    
+    my $deleted_attribute = (string)undef;
+    
+    if ($self->{attributes_h}) {
+      $attributes_h->delete($name);
+    }
+  }
+  
+  method has_attribute : int ($name : string) {
+    
+    my $attributes_h = $self->{attributes_h};
+    
+    my $exists = 0;
+    if ($attributes_h) {
+      $exists = $attributes_h->exists($name);
+    }
+    
+    return $exists;
+  }
+  
+  method attribute_pairs : string[] () {
+    
+    my $attributes_h = $self->{attributes_h};
+    
+    my $attribute_pairs = (string[])undef;
+    
+    if ($attributes_h) {
+      my $names = $attributes_h->keys;
+      
+      Sort->sort_string_asc($names);
+      
+      my $attribute_pairs_list = StringList->new;
+      for my $name (@$names) {
+        my $value = $attributes_h->get_string($name);
+        
+        $attribute_pairs_list->push($name);
+        $attribute_pairs_list->push($value);
+      }
+      
+      $attribute_pairs = $attribute_pairs_list->to_array;
+    }
+    else {
+      $attribute_pairs = new string[0];
+    }
+    
+    return $attribute_pairs;
+  }
+  
+  method css : string ($name : string) {
+    
+    my $styles_h = $self->{styles_h};
+    
+    unless ($self->{styles_h}) {
+      return undef;
+    }
+    
+    my $css = (string)$styles_h->get($name);
+    
+    return $css;
+  }
+  
+  method set_css : void ($name : string, $value : string) {
+    
+    my $styles_h = $self->{styles_h};
+    
+    unless ($styles_h) {
+      $styles_h = $self->{styles_h} = Hash->new;
+    }
+    
+    $styles_h->set_string($name, $value);
+  }
+  
+  method exists_css : int ($name : string) {
+    
+    my $styles_h = $self->{styles_h};
+    
+    my $exists = 0;
+    if ($styles_h) {
+      $exists = $styles_h->exists($name);
+    }
+    
+    return $exists;
+  }
+  
+  method remove_css : void ($name : string) {
+    
+    my $styles_h = $self->{styles_h};
+    
+    my $deleted_css = (string)undef;
+    
+    if ($self->{styles_h}) {
+      $styles_h->delete($name);
+    }
+  }
+  
+  method style_pairs : string[] () {
+    
+    my $styles_h = $self->{styles_h};
+    
+    my $style_pairs = (string[])undef;
+    
+    if ($styles_h) {
+      my $names = $styles_h->keys;
+      
+      Sort->sort_string_asc($names);
+      
+      my $style_pairs_list = StringList->new;
+      for my $name (@$names) {
+        my $value = $styles_h->get_string($name);
+        
+        $style_pairs_list->push($name);
+        $style_pairs_list->push($value);
+      }
+      
+      $style_pairs = $style_pairs_list->to_array;
+    }
+    else {
+      $style_pairs = new string[0];
+    }
+    
+    return $style_pairs;
+  }
+  
+  method computed_style_pairs : string[] () {
+    
+    my $computed_styles_h = $self->{computed_styles_h};
+    
+    my $computed_style_pairs = (string[])undef;
+    
+    if ($computed_styles_h) {
+      my $names = $computed_styles_h->keys;
+      
+      Sort->sort_string_asc($names);
+      
+      my $computed_style_pairs_list = StringList->new;
+      for my $name (@$names) {
+        my $value = $computed_styles_h->get_string($name);
+        
+        $computed_style_pairs_list->push($name);
+        $computed_style_pairs_list->push($value);
+      }
+      
+      $computed_style_pairs = $computed_style_pairs_list->to_array;
+    }
+    else {
+      $computed_style_pairs = new string[0];
+    }
+    
+    return $computed_style_pairs;
+  }
+  
+  method text : string () {
+    my $child_nodes = $self->child_nodes;
+    
+    my $child_nodes_length = @$child_nodes;
+    
+    my $text = (string)undef;
+    
+    if ($child_nodes_length > 0) {
+      my $first_child = (Eg::Node)$child_nodes->[0];
+      
+      if ($first_child->node_type == Eg::Node->TYPE_TEXT_NODE) {
+        $text = $first_child->(Eg::Node::Text)->node_value_buffer->to_string;
+      }
+      else {
+        die "The first child is not a text node.";
+      }
+    }
+    else {
+      return "";
+    }
+    
+    return $text;
+  }
+  
+  method set_text : string ($text : string) {
+    my $child_nodes = $self->child_nodes;
+    
+    my $child_nodes_length = @$child_nodes;
+    
+    if ($child_nodes_length > 0) {
+      my $first_child = (Eg::Node)$child_nodes->[0];
+      
+      if ($first_child->node_type == Eg::Node->TYPE_TEXT_NODE) {
+        $first_child->(Eg::Node::Text)->node_value_buffer->set($text);
+      }
+      else {
+        die "The first child is not a text node.";
+      }
+    }
+    else {
+      my $text_node = Eg::DOM::Implementation->new->create_html_document->create_text_node($text);
+      
+      $self->{first_child} = $text_node;
+      
+      $self->{last_child } = $text_node;
+    }
+    
+  }
+  
+  # jQuery Instance Methods
+  method attr : string ($name : string) {
+    
+    my $attr = $self->get_attribute($name);
+    
+    return $attr;
+  }
+  
+  method set_attr : void ($name : string, $value : string) {
+    
+    $self->set_attribute($name, $value);
+  }
+  
+  method remove_attr : void ($name : string) {
+    
+    $self->remove_attribute($name);
+  }
+  
+  method tag_name : string () {
+    
+    my $tag_name = $self->{tag_name};
+    
+    # HTML
+    if ($self isa Eg::Node::Element::HTML) {
+      $tag_name = Fn->uc($tag_name);
+    }
+    
+    return $tag_name;
+  }
+  
+}

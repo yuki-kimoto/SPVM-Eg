@@ -41,6 +41,7 @@ class TestCase::Eg {
     
     return $new_element_node;
   }
+  
   static method test : int () {
     
     my $dom_impl = Eg::DOMImplementation->new;
@@ -455,4 +456,29 @@ Foo
     
     return 1;
   }
+  
+  static method dom_implementation : int () {
+    
+    {
+      my $dom_impl = Eg::DOMImplementation->new;
+      
+      my $document = $dom_impl->create_html_document;
+      
+      my $child_nodes = $document->child_nodes;
+      
+      unless (@$child_nodes == 1) {
+        return 0;
+      }
+      
+      my $html_element = (Eg::Element)$child_nodes->[0];
+      
+      unless ($html_element is_type Eg::Element::HTML::Html) {
+        return 0;
+      }
+      
+    }
+    
+    return 1;
+  }
+  
 }

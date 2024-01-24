@@ -6,6 +6,7 @@
     * Add the document method to the Eg class.
     * Add many Eg::HTMLElement classes.
     * Add the Eg::DOMImplementation class.
+    * Add the empty Eg::URL class.
   [Incompatible Changes]
     * Many things are changed.
     * All tag methods are removed from the Eg class.

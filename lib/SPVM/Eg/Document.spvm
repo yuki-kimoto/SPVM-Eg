@@ -10,7 +10,7 @@ class Eg::Document extends Eg::Node {
   
   use Hash;
   use Regex;
-  use Eg::Document::HTML;
+  use Eg::Document;
   use StringBuffer;
   
   use Eg::Element::HTML;
@@ -133,7 +133,7 @@ class Eg::Document extends Eg::Node {
     
     my $element = (Eg::Element)undef;
     
-    if ($self is_type Eg::Document::HTML) {
+    if ($self is_type Eg::Document) {
       $element = new Eg::Element::HTML;
       
       unless (Regex->new("^[a-zA-Z_]\w+$")->match($tag_name)) {

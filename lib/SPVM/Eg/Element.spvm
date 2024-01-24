@@ -60,7 +60,7 @@ class Eg::Element extends Eg::Node {
     
     my $owner_document = $self->owner_document;
     
-    if ($owner_document && $owner_document is_type Eg::Document::HTML && $self isa Eg::Element::HTML) {
+    if ($owner_document && $owner_document is_type Eg::Document && $self isa Eg::Element::HTML) {
       $name = Fn->lc($name);
     }
     
@@ -87,7 +87,7 @@ class Eg::Element extends Eg::Node {
     
     my $owner_document = $self->owner_document;
     
-    if ($owner_document && $owner_document is_type Eg::Document::HTML && $self isa Eg::Element::HTML) {
+    if ($owner_document && $owner_document is_type Eg::Document && $self isa Eg::Element::HTML) {
       $name = Fn->lc($name);
     }
     

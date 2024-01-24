@@ -41,11 +41,29 @@ class Eg::DOMImplementation {
     
     $document->{namespace_uri} = "http://www.w3.org/1999/xhtml";
     
-    my $root_element = new Eg::Element::HTML::Html;
+    my $html_element = $document->create_element("html");
     
-    $root_element->{tag_name} = "html";
+    $html_element->{tag_name} = "html";
     
-    $document->append_child($root_element);
+    $document->append_child($html_element);
+    
+    my $head_element = $document->create_element("head");
+    
+    $head_element->{tag_name} = "head";
+    
+    if ($title) {
+      my $text_node = $document->create_text_node($title);
+      
+      $head_element->append_child($text_node);
+    }
+    
+    $html_element->append_child($head_element);
+    
+    my $body_element = $document->create_element("body");
+    
+    $body_element->{tag_name} = "body";
+    
+    $html_element->append_child($body_element);
     
     return $document;
   }

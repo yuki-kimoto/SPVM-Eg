@@ -1,4 +1,4 @@
-package SPVM::Eg::URLSearchParams;
+package SPVM::Eg::URL::SearchParams;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::Eg::URLSearchParams;
 
 =head1 Name
 
-SPVM::Eg::URLSearchParams - Short Description
+SPVM::Eg::URL::SearchParams - Short Description
 
 =head1 Description
 
-The Eg::URLSearchParams class in L<SPVM> has methods to do someting.
+The Eg::URL::SearchParams class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use Eg::URLSearchParams;
+  use Eg::URL::SearchParams;
 
 =head1 Details
 

@@ -2,5 +2,5 @@
 # MIT License
 
 class Eg::Location {
-  use Eg::URLSearchParams;
+  use Eg::URL::SearchParams;
 }

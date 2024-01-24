@@ -1,4 +1,4 @@
-0.013 2024-01-23
+0.013 2024-01-24
   [New Features]
     * Add the create_element method to the Eg::Document class.
     * Add the create_text_node method to the Eg::Document class.

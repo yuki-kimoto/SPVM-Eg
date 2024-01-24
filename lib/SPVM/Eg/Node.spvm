@@ -4,6 +4,7 @@
 class Eg::Node {
   allow Eg;
   allow Eg::Document;
+  allow Eg::CSS::BoxBuilder;
   
   use Hash;
   use List;

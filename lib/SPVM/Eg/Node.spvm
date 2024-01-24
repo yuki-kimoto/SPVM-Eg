@@ -507,40 +507,19 @@ class Eg::Node {
               last;
             }
             elsif ($node_cur == $reference_node) {
-              my $reference_node_parent = (Eg::Node)undef;
-              if ($reference_node) {
-                $reference_node_parent = $reference_node->{parent_node};
-              }
-              else {
-                $reference_node_parent = $self;
-              }
+              my $reference_node_parent = $reference_node->{parent_node};
               
               my $new_nodes_first = $new_nodes->[0];
               
               my $new_nodes_last = $new_nodes->[$new_nodes_length - 1];
               
               $new_nodes_last->{next_sibling} = $reference_node;
-              if ($reference_node) {
-                $reference_node->{previous_sibling} = $new_nodes_last;
-                weaken $reference_node->{previous_sibling};
-              }
               
-              if ($reference_node) {
-                $new_nodes_first->{previous_sibling} = $reference_node->{previous_sibling};
-                weaken $new_nodes_first->{previous_sibling};
-              }
-              else {
-                $new_nodes_first->{previous_sibling} = $self->{last_child};
-                weaken $new_nodes_first->{previous_sibling};
-              }
+              $reference_node->{previous_sibling} = $new_nodes_last;
+              weaken $reference_node->{previous_sibling};
               
-              unless ($reference_node) {
-                $reference_node_parent->{last_child} = $new_nodes_last;
-                
-                unless ($reference_node_parent->{first_child}) {
-                  $reference_node_parent->{first_child} = $new_nodes_first;
-                }
-              }
+              $new_nodes_first->{previous_sibling} = $reference_node->{previous_sibling};
+              weaken $new_nodes_first->{previous_sibling};
               
               for my $new_node (@$new_nodes) {
                 $new_node->{parent_node} = $reference_node_parent;

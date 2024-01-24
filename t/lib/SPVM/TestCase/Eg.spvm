@@ -543,6 +543,31 @@ Foo
   
   static method node : int () {
     
+    # append_child
+    {
+      {
+        my $dom_impl = Eg::DOMImplementation->new;
+        
+        my $document = $dom_impl->create_html_document;
+        
+        {
+          my $root = $document->create_element("ROOT");
+          
+          my $child_1_0 = $document->create_element("CHILD_1_0");
+          
+          $root->append_child($child_1_0);
+          
+          unless ($root->first_child == $child_1_0) {
+            return 0;
+          }
+          
+          unless ($root->last_child == $child_1_0) {
+            return 0;
+          }
+        }
+      }
+    }
+    
 =pod
 
     {

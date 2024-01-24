@@ -521,6 +521,8 @@ class Eg::Node {
               $new_nodes_first->{previous_sibling} = $reference_node->{previous_sibling};
               weaken $new_nodes_first->{previous_sibling};
               
+              $reference_node_parent->{first_child} = $new_nodes_first;
+              
               for my $new_node (@$new_nodes) {
                 $new_node->{parent_node} = $reference_node_parent;
                 weaken $new_node->{parent_node};

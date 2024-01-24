@@ -656,6 +656,121 @@ Foo
       }
     }
     
+    # insert_before
+    {
+      {
+        my $dom_impl = Eg::DOMImplementation->new;
+        
+        my $document = $dom_impl->create_html_document;
+        
+        {
+          my $root = $document->create_element("ROOT");
+          
+          my $child_0 = $document->create_element("CHILD_0");
+          
+          $root->insert_before($child_0, undef);
+          
+          unless ($root->first_child == $child_0) {
+            return 0;
+          }
+          
+          unless ($root->last_child == $child_0) {
+            return 0;
+          }
+        }
+        
+        {
+          my $root = $document->create_element("ROOT");
+          
+          my $child_0 = $document->create_element("CHILD_0");
+          
+          $root->insert_before($child_0, undef);
+          
+          my $child_1 = $document->create_element("CHILD_1");
+          
+          $root->insert_before($child_1, $child_0);
+          
+          unless ($root->first_child == $child_1) {
+            return 0;
+          }
+          
+          unless ($root->last_child == $child_0) {
+            return 0;
+          }
+          
+          unless ($child_1->next_sibling == $child_0) {
+            return 0;
+          }
+          
+          unless ($child_0->previous_sibling == $child_1) {
+            return 0;
+          }
+          
+          unless ($child_1->parent_node == $root) {
+            return 0;
+          }
+          
+        }
+
+=pod
+
+        {
+          my $root = $document->create_element("ROOT");
+          
+          my $child_0 = $document->create_element("CHILD_0");
+          
+          $root->insert_before($child_0);
+          
+          my $child_1 = $document->create_element("CHILD_1");
+          
+          $root->insert_before($child_1);
+          
+          my $child_2 = $document->create_element("CHILD_2");
+          
+          $root->insert_before($child_2);
+          
+          unless ($root->first_child == $child_0) {
+            return 0;
+          }
+          
+          unless ($root->last_child == $child_2) {
+            return 0;
+          }
+          
+          unless ($child_0->next_sibling == $child_1) {
+            return 0;
+          }
+          
+          unless ($child_1->next_sibling == $child_2) {
+            return 0;
+          }
+          
+          unless ($child_1->previous_sibling == $child_0) {
+            return 0;
+          }
+          
+          unless ($child_2->previous_sibling == $child_1) {
+            return 0;
+          }
+          
+          unless ($child_0->parent_node == $root) {
+            return 0;
+          }
+          
+          unless ($child_1->parent_node == $root) {
+            return 0;
+          }
+          
+          unless ($child_2->parent_node == $root) {
+            return 0;
+          }
+        }
+
+=cut
+
+      }
+    }
+    
 =pod
 
     {

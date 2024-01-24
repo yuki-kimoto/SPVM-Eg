@@ -464,17 +464,23 @@ Foo
       
       my $document = $dom_impl->create_html_document;
       
-      my $child_nodes = $document->child_nodes;
+      my $document_child_nodes = $document->child_nodes;
       
-      unless (@$child_nodes == 1) {
+      unless (@$document_child_nodes == 1) {
         return 0;
       }
       
-      my $html_element = (Eg::Element)$child_nodes->[0];
+      my $html_element = (Eg::Element)$document_child_nodes->[0];
       
       unless ($html_element is_type Eg::Element::HTML::Html) {
         return 0;
       }
+      
+      my $html_child_nodes = $html_element->child_nodes;
+      
+      # warn @$html_child_nodes;
+      
+      # warn dump $html_child_nodes;
       
     }
     

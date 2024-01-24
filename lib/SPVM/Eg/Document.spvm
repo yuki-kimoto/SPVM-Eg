@@ -323,18 +323,20 @@ class Eg::Document extends Eg::Node {
       else {
         $element = new Eg::Element::HTML::Unknown;
       }
+      
+      $element->{tag_name} = Fn->uc($tag_name);
+      
+      my $box = Eg::CSS::Box->new;
+      
+      $element->{box} = $box;
     }
     else {
       $element = new Eg::Element;
+      
+      $element->{tag_name} = $tag_name;
     }
     
-    $element->{tag_name} = $tag_name;
-    
     $element->{node_type} = Eg::Node->TYPE_ELEMENT_NODE;
-    
-    my $box = Eg::CSS::Box->new;
-    
-    $element->{box} = $box;
     
     return $element;
   }

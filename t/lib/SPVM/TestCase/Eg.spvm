@@ -466,11 +466,29 @@ Foo
       
       my $html_element = $document->first_child;
       
+      warn;
+      
       unless ($html_element && $html_element == $document->last_child) {
         return 0;
       }
       
       unless ($html_element is_type Eg::Element::HTML::Html) {
+        return 0;
+      }
+      
+      my $head_element = $html_element->first_child;
+      
+      my $body_element = $html_element->last_child;
+      
+      unless ($head_element && $head_element == $html_element->first_child) {
+        return 0;
+      }
+      
+      unless ($body_element && $body_element == $html_element->last_child) {
+        return 0;
+      }
+      
+      unless ($head_element->next_sibling == $body_element) {
         return 0;
       }
       

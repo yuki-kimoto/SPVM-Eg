@@ -464,23 +464,15 @@ Foo
       
       my $document = $dom_impl->create_html_document;
       
-      my $document_child_nodes = $document->child_nodes;
+      my $html_element = $document->first_child;
       
-      unless (@$document_child_nodes == 1) {
+      unless ($html_element && $html_element == $document->last_child) {
         return 0;
       }
-      
-      my $html_element = (Eg::Element)$document_child_nodes->[0];
       
       unless ($html_element is_type Eg::Element::HTML::Html) {
         return 0;
       }
-      
-      my $html_child_nodes = $html_element->child_nodes;
-      
-      # warn @$html_child_nodes;
-      
-      # warn dump $html_child_nodes;
       
     }
     
@@ -822,40 +814,6 @@ Foo
         }
       }
     }
-    
-=pod
-
-    {
-      
-      $document->append_child($div);
-      
-      my $span = $document->create_element("span");
-      
-      $document->append_child($span);
-      
-      my $ul = $document->create_element("ul");
-      
-      $li->append_child($ul);
-      
-      my $body_element = $document->create_element("body");
-      
-      $li->append_child($body_element);
-      
-      my $document_child_nodes = $document->child_nodes;
-      
-      unless (@$document_child_nodes == 1) {
-        return 0;
-      }
-      
-      my $li = (Eg::Element)$document_child_nodes->[0];
-      
-      unless ($li is_type Eg::Element::HTML::Html) {
-        return 0;
-      }
-      
-    }
-    
-=cut
     
     return 1;
   }

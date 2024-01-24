@@ -20,6 +20,10 @@ ok(SPVM::TestCase::Eg->test);
 
 ok(SPVM::TestCase::Eg->dom_implementation);
 
+ok(SPVM::TestCase::Eg->node);
+
+ok(SPVM::TestCase::Eg->element);
+
 # Version check
 {
   my $version_string = SPVM::Fn->get_version_string("Eg");

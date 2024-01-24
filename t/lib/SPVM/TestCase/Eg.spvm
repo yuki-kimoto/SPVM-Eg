@@ -487,4 +487,96 @@ Foo
     return 1;
   }
   
+  static method element : int () {
+    
+    # tag_name
+    {
+      # tag_name - HTML
+      {
+        my $dom_impl = Eg::DOMImplementation->new;
+        
+        my $document = $dom_impl->create_html_document;
+        
+        {
+          my $div = $document->create_element("div");
+          
+          unless ($div->tag_name eq "DIV") {
+            return 0;
+          }
+        }
+        
+        {
+          my $div = $document->create_element("DIV");
+          
+          unless ($div->tag_name eq "DIV") {
+            return 0;
+          }
+        }
+      }
+      
+      # tag_name - XML
+      {
+        my $dom_impl = Eg::DOMImplementation->new;
+        
+        my $document = $dom_impl->create_document(undef, "root");
+        
+        {
+          my $div = $document->create_element("div");
+          
+          unless ($div->tag_name eq "div") {
+            return 0;
+          }
+        }
+        
+        {
+          my $div = $document->create_element("DIV");
+          
+          unless ($div->tag_name eq "DIV") {
+            return 0;
+          }
+        }
+      }
+    }
+    
+    return 1;
+  }
+  
+  static method node : int () {
+    
+=pod
+
+    {
+      
+      $document->append_child($div);
+      
+      my $span = $document->create_element("span");
+      
+      $document->append_child($span);
+      
+      my $ul = $document->create_element("ul");
+      
+      $li->append_child($ul);
+      
+      my $body_element = $document->create_element("body");
+      
+      $li->append_child($body_element);
+      
+      my $document_child_nodes = $document->child_nodes;
+      
+      unless (@$document_child_nodes == 1) {
+        return 0;
+      }
+      
+      my $li = (Eg::Element)$document_child_nodes->[0];
+      
+      unless ($li is_type Eg::Element::HTML::Html) {
+        return 0;
+      }
+      
+    }
+    
+=cut
+    
+    return 1;
+  }
 }

@@ -129,8 +129,6 @@ class Eg::Document extends Eg::Node {
       die "\$tag_name cannot contains \":\"";
     }
     
-    $tag_name = Fn->lc($tag_name);
-    
     my $element = (Eg::Element)undef;
     
     if ($self is_type Eg::Document) {
@@ -324,7 +322,7 @@ class Eg::Document extends Eg::Node {
         $element = new Eg::Element::HTML::Unknown;
       }
       
-      $element->{tag_name} = Fn->uc($tag_name);
+      $element->{tag_name} = Fn->lc($tag_name);
       
       my $box = Eg::CSS::Box->new;
       

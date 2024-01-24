@@ -505,11 +505,17 @@ class Eg::Node {
               elsif ($node_cur == $reference_node) {
                 my $reference_node_parent = $reference_node->{parent_node};
                 
+                my $reference_node_previous_sibling = $reference_node->{previous_sibling};
+                
                 $reference_node->{previous_sibling} = $new_nodes_last;
                 weaken $reference_node->{previous_sibling};
                 
-                $new_nodes_first->{previous_sibling} = $reference_node->{previous_sibling};
+                $new_nodes_first->{previous_sibling} = $reference_node_previous_sibling;
                 weaken $new_nodes_first->{previous_sibling};
+                
+                if ($reference_node_previous_sibling ) {
+                  $reference_node_previous_sibling->{next_sibling} = $new_nodes_first;
+                }
                 
                 if ($reference_node_parent->{first_child} == $reference_node) {
                   $reference_node_parent->{first_child} = $new_nodes_first;

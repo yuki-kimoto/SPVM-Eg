@@ -69,8 +69,8 @@ class Eg::Node::Document extends Eg::Node {
       die "\$target must be defined.";
     }
     
-    unless (Regex->new("^[a-zA-Z_]\w+$")->match($target)) {
-      die "\$target must be a valid value.";
+    unless (Regex->new("^[a-zA-Z_][\w+\-\.]*$")->match($target)) {
+      die "\$target must be a valid XML name.";
     }
     
     if ($data) {
@@ -112,6 +112,25 @@ class Eg::Node::Document extends Eg::Node {
     my $document_fragment_node = Eg::Node::DocumentFragment->new;
     
     return $document_fragment_node;
+  }
+  
+  method create_attribute : Eg::Node::Attr ($name : string) {
+    
+    unless ($name) {
+      die "\$name must be defined.";
+    }
+    
+    unless (Regex->new("^[a-zA-Z_][\w+\-\.]*$")->match($name)) {
+      die "\$name must be a valid XML name.";
+    }
+    
+    $name = Fn->lc($name);
+    
+    my $attribute_node = Eg::Node::Attr->new;
+    
+    $attribute_node->{name} = $name;
+    
+    return $attribute_node;
   }
   
 }

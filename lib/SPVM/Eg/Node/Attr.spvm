@@ -4,6 +4,13 @@
 # Attr in JavaScript
 class Eg::Node::Attr extends Eg::Node {
   
+  allow Eg::Node::Document;
+  
+  # Fields
+  has name : ro string;
+  
+  has value : ro string;
+  
   # Class Methods
   private static method new : Eg::Node::Attr () {
     
@@ -13,4 +20,15 @@ class Eg::Node::Attr extends Eg::Node {
     
     return $self;
   }
+  
+  # Instance Methods
+  method set_value : void ($value : string) {
+    
+    unless ($value) {
+      die "\$value must be defined.";
+    }
+    
+    $self->{value} = $value;
+  }
+  
 }

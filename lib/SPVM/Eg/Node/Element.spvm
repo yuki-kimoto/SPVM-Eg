@@ -11,7 +11,7 @@ class Eg::Node::Element extends Eg::Node {
   
   has attributes_h : ro Hash of string;
   
-  has styles_h : ro Hash of string;
+  has styles_h : rw Hash of string;
   
   has computed_styles_h : rw Hash of string;
   

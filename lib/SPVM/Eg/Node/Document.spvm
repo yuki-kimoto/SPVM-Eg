@@ -13,6 +13,7 @@ class Eg::Node::Document extends Eg::Node {
   use Eg::Node::ProcessingInstruction;
   use Eg::Node::DocumentType;
   use Eg::Node::ShadowRoot;
+  use Regex;
   
   use Fn;
   
@@ -68,19 +69,19 @@ class Eg::Node::Document extends Eg::Node {
       die "\$target must be defined.";
     }
     
-    my $node_value = "<?$target ";
+    unless (Regex->new("^[a-zA-Z_]\w+$")->match($target)) {
+      die "\$target must be a valid value.";
+    }
     
     if ($data) {
       if (Fn->contains($data, "?>")) {
         die "\$data cannot contain  \"?>\".";
       }
-      
-      $node_value .= $data;
     }
     
-    $node_value .= "?>";
+    my $processing_instruction_node = Eg::Node::ProcessingInstruction->new($data);
     
-    my $processing_instruction_node = Eg::Node::ProcessingInstruction->new($node_value);
+    $processing_instruction_node->{target} = $target;
     
     return $processing_instruction_node;
   }

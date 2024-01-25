@@ -6,6 +6,9 @@ class Eg::Node::ProcessingInstruction extends Eg::Node::CharacterData {
   
   allow Eg::Node::Document;
   
+  # Fields
+  has target : ro string;
+  
   # Class Methods
   private static method new : Eg::Node::ProcessingInstruction ($node_value : string) {
     

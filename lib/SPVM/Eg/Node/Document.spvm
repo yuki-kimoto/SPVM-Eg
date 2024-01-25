@@ -4,6 +4,16 @@
 # None in JavaScript
 class Eg::Node::Document extends Eg::Node {
   
+  use Eg::Node::Element;
+  use Eg::Node::Text;
+  use Eg::Node::Comment;
+  use Eg::Node::DocumentFragment;
+  use Eg::Node::Attr;
+  use Eg::Node::CDATASection;
+  use Eg::Node::ProcessingInstruction;
+  use Eg::Node::DocumentType;
+  use Eg::Node::ShadowRoot;
+  
   # Fields
   has namespace_uri : protected string;
   
@@ -37,6 +47,17 @@ class Eg::Node::Document extends Eg::Node {
     my $comment_node = Eg::Node::Comment->new($node_value);
     
     return $comment_node;
+  }
+  
+  method create_cdata_section : Eg::Node::CDATASection ($node_value : string) {
+    
+    unless ($node_value) {
+      die "\$node_value must be defined.";
+    }
+    
+    my $cdata_section_node = Eg::Node::CDATASection->new($node_value);
+    
+    return $cdata_section_node;
   }
   
   method create_element : Eg::Node::Element ($tag_name : string) {

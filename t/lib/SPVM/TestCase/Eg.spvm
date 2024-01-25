@@ -61,12 +61,31 @@ class TestCase::Eg {
     
     my $attributes_h = Hash->new($attribute_pairs);
     
-    my $style_pairs = (object[])$attributes_h->delete("style");
+    my $style_pairs = $attributes_h->delete("style");
     
     if ($style_pairs) {
-      my $styles_h = Hash->new($style_pairs);
-      
-      $new_element_node->set_styles_h($styles_h);
+      if ($style_pairs isa string) {
+        my $styles_h = Hash->new;
+        
+        my $css_text = (string)$style_pairs;
+        
+        my $style_pairs_text = Fn->split(";", $css_text);
+        
+        for my $style_pair_text (@$style_pairs_text) {
+          my $style_name_value = Fn->split(":", $style_pair_text);
+          
+          my $style_name = $style_name_value->[0];
+          
+          my $style_value = $style_name_value->[1];
+          
+          $styles_h->set_string($style_name, $style_value);
+        }
+      }
+      else {
+        my $styles_h = Hash->new((object[])$style_pairs);
+        
+        $new_element_node->set_styles_h($styles_h);
+      }
     }
     
     for my $attribute_name (@{$attributes_h->keys}) {

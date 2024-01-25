@@ -67,9 +67,6 @@ class Eg::Node {
       $self->{node_value_buffer} = $node_value_buffer;
     }
     
-    my $box = Eg::CSS::Box->new;
-    
-    $self->{box} = $box;
   }
   
   method child_nodes : Eg::Node[] () {

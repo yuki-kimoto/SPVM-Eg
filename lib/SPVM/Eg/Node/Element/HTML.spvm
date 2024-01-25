@@ -10,6 +10,8 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
   # Fields
   has styles_h : rw Hash of string;
   
+  has css_text : rw string;
+  
   has computed_styles_h : rw Hash of string;
   
   # Class Methods

@@ -78,7 +78,11 @@ class TestCase::Eg {
           
           my $style_value = $style_name_value->[1];
           
+          warn "$style_name $style_value";
+          
           $styles_h->set_string($style_name, $style_value);
+          
+          $new_element_node->set_styles_h($styles_h);
         }
       }
       else {
@@ -144,7 +148,7 @@ class TestCase::Eg {
     }
     
     {
-      my $div = &tag_("div", {style => {color => "red"}});
+      my $div = &tag_("div", {style => "color:red;"});
       
       unless ($div->css("color") eq "red") {
         return 0;
@@ -232,7 +236,7 @@ class TestCase::Eg {
     
     # css
     {
-      my $div = &tag_("div", {style => {css1 => "cssval1"}});
+      my $div = &tag_("div", {style => "css1:cssval1;"});
       
       unless ($div->css("css1") eq "cssval1") {
         return 0;
@@ -245,7 +249,7 @@ class TestCase::Eg {
     
     # style_pairs
     {
-      my $div = &tag_("div", {style => {css1 => "cssval1", css2 => "cssval2"}});
+      my $div = &tag_("div", {style => "css1:cssval1;css2:cssval2;"});
       
       my $style_pairs = $div->style_pairs;
       
@@ -255,19 +259,19 @@ class TestCase::Eg {
     }
     
     {
-      my $div = &tag_("div", {class => "foo bar", id => "foo", style => {color => "red"}},
+      my $div = &tag_("div", {class => "foo bar", id => "foo", style => "color:red;"},
         [(Eg::Node)&tag("div", "foo")],
       );
     }
     
     {
-      my $div = &tag_("div", {class => "foo bar", id => "foo", style => {color => "red"}},
+      my $div = &tag_("div", {class => "foo bar", id => "foo", style => "color:red;"},
         [&tag("div"), &tag("span", "foo")],
       );
     }
     
     {
-      my $div = &tag_("div", {class => "foo bar", id => "foo", style => {color => "red"}},
+      my $div = &tag_("div", {class => "foo bar", id => "foo", style => "color:red;"},
         [
           &tag("div"),
           # Foo
@@ -286,7 +290,7 @@ Foo
     
     {
       my $ul = &tag_("ul",
-        {class => "foo bar", id => "foo", style => {color => "red"}},
+        {class => "foo bar", id => "foo", style => "color:red;"},
         [
           &tag("li", "1"),
           &tag("li", "2"),
@@ -307,7 +311,7 @@ Foo
     {
       {
         my $ul = &tag_("ul",
-          {class => "foo bar", id => "foo", style => {color => "red"}},
+          {class => "foo bar", id => "foo", style => "color:red;"},
           [
             &tag("li", "1"),
             &tag("li", "2"),
@@ -336,7 +340,7 @@ Foo
       
       {
         my $ul = &tag_("ul",
-          {class => "foo bar", id => "foo", style => {color => "red"}},
+          {class => "foo bar", id => "foo", style => "color:red;"},
         );
         
         my $child_nodes = $ul->child_nodes;
@@ -349,7 +353,7 @@ Foo
     
     {
       my $table = &tag_("table",
-        {class => "foo bar", id => "foo", style => {color => "red"}},
+        {class => "foo bar", id => "foo", style => "color:red;"},
         [
           &tag("tr", [
             &tag("td", "1-1"), &tag("td", "1-2")

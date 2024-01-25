@@ -3,7 +3,7 @@ class TestCase::Eg {
   use Eg::Node;
   use Eg::DOM::Implementation;
   
-  static method tag : Eg::Node::Element ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
+  static method tag : Eg::Node::Element::HTML ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
     
     my $dom_impl = Eg::DOM::Implementation->new;
     
@@ -33,7 +33,7 @@ class TestCase::Eg {
     return $new_element_node;
   }
   
-  static method tag_ : Eg::Node::Element ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
+  static method tag_ : Eg::Node::Element::HTML ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
     my $dom_impl = Eg::DOM::Implementation->new;
     
     my $document = $dom_impl->create_html_document;

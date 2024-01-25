@@ -1,6 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
+# CDATASection in JavaScript
 class Eg::Node::CDATASection extends Eg::Node::Text {
   
   # Class Methods

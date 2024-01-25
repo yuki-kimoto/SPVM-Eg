@@ -1,6 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
+# Text in JavaScript
 class Eg::Node::Text extends Eg::Node::CharacterData {
   allow Eg;
   allow Eg::Node::Document;

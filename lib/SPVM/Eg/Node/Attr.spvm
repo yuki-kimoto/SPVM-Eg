@@ -1,6 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
+# Attr in JavaScript
 class Eg::Node::Attr extends Eg::Node {
   
   # Class Methods

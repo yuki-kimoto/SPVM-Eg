@@ -1,6 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
+# ProcessingInstruction in JavaScript
 class Eg::Node::ProcessingInstruction extends Eg::Node::CharacterData {
   
   # Class Methods

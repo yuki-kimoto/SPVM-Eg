@@ -45,9 +45,9 @@ class Eg::CSS::BoxBuilder {
         $node_cur->{box} = Eg::CSS::Box->new;
       }
       
-      if ($node_cur is_type Eg::Node::Element) {
-       $node_cur->(Eg::Node::Element)->set_computed_styles_h($node_cur->(Eg::Node::Element)->styles_h);
-       $self->build_box_styles($node_cur);
+      if ($node_cur isa Eg::Node::Element) {
+        $node_cur->(Eg::Node::Element)->set_computed_styles_h($node_cur->(Eg::Node::Element)->styles_h);
+        $self->build_box_styles($node_cur);
       }
       
       $self->build_box_set_default_values($node_cur);

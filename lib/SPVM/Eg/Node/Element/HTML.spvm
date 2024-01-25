@@ -48,29 +48,6 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
     $styles_h->set_string($name, $value);
   }
   
-  method exists_css : int ($name : string) {
-    
-    my $styles_h = $self->{styles_h};
-    
-    my $exists = 0;
-    if ($styles_h) {
-      $exists = $styles_h->exists($name);
-    }
-    
-    return $exists;
-  }
-  
-  method remove_css : void ($name : string) {
-    
-    my $styles_h = $self->{styles_h};
-    
-    my $deleted_css = (string)undef;
-    
-    if ($self->{styles_h}) {
-      $styles_h->delete($name);
-    }
-  }
-  
   method style_pairs : string[] () {
     
     my $styles_h = $self->{styles_h};

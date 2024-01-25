@@ -236,36 +236,6 @@ class TestCase::Eg {
       
     }
     
-    # exists_css
-    {
-      my $div = &tag_("div", {style => {css1 => "cssval1", css2 => undef}});
-      
-      unless ($div->exists_css("css1")) {
-        return 0;
-      }
-      
-      unless ($div->exists_css("css2")) {
-        return 0;
-      }
-      
-      if ($div->exists_css("css3")) {
-        return 0;
-      }
-    }
-    
-    # delete_css
-    {
-      my $div = &tag_("div", {style => {css1 => "cssval1", css2 => "cssval2"}});
-      
-      $div->remove_css("css1");
-      
-      $div->remove_css("css3");
-      
-      unless (Array->equals_string($div->style_pairs, ["css2" => "cssval2"])) {
-        return 0;
-      }
-    }
-    
     # style_pairs
     {
       my $div = &tag_("div", {style => {css1 => "cssval1", css2 => "cssval2"}});

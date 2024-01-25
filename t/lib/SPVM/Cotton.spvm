@@ -21,12 +21,18 @@ class Cotton {
       }
     }
     
-    my $new_element_node = Eg::Node::Element->new($tag_name, undef, $child_nodes);
+    my $new_element_node = Eg::Node::Element->new($tag_name);
+    
+    if ($child_nodes) {
+      for my $child_node (@$child_nodes) {
+        $new_element_node->append_child($child_node);
+      }
+    }
     
     return $new_element_node;
   }
   
-  static method tag_ : Eg::Node::Element ($tag_name : string, $attributes : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
+  static method tag_ : Eg::Node::Element ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {
       if ($child_nodes_or_text is_type string) {
@@ -40,7 +46,31 @@ class Cotton {
       }
     }
     
-    my $new_element_node = Eg::Node::Element->new($tag_name, $attributes, $child_nodes);
+    my $new_element_node = Eg::Node::Element->new($tag_name);
+    
+    if ($child_nodes) {
+      for my $child_node (@$child_nodes) {
+        $new_element_node->append_child($child_node);
+      }
+    }
+    
+    my $attributes_h = Hash->new($attribute_pairs);
+    
+    my $style_pairs = (object[])$attributes_h->delete("style");
+    
+    if ($style_pairs) {
+      my $styles_h = Hash->new($style_pairs);
+      
+      $new_element_node->set_styles_h($styles_h);
+    }
+    
+    for my $attribute_name (@{$attributes_h->keys}) {
+      my $attribute_value = $attributes_h->get($attribute_name);
+      
+      if ($attribute_value) {
+        $new_element_node->set_attribute($attribute_name, (string)$attribute_value);
+      }
+    }
     
     return $new_element_node;
   }

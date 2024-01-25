@@ -18,7 +18,13 @@ class TestCase::Eg {
       }
     }
     
-    my $new_element_node = Eg::Node::Element->new($tag_name, undef, $child_nodes);
+    my $new_element_node = Eg::Node::Element->new($tag_name);
+    
+    if ($child_nodes) {
+      for my $child_node (@$child_nodes) {
+        $new_element_node->append_child($child_node);
+      }
+    }
     
     return $new_element_node;
   }
@@ -37,7 +43,13 @@ class TestCase::Eg {
       }
     }
     
-    my $new_element_node = Eg::Node::Element->new($tag_name, undef, $child_nodes);
+    my $new_element_node = Eg::Node::Element->new($tag_name);
+    
+    if ($child_nodes) {
+      for my $child_node (@$child_nodes) {
+        $new_element_node->append_child($child_node);
+      }
+    }
     
     my $attributes_h = Hash->new($attribute_pairs);
     

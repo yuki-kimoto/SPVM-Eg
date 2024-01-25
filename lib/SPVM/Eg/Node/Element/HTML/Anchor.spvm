@@ -2,7 +2,6 @@
 # MIT License
 
 class Eg::Node::Element::HTML::Anchor extends Eg::Node::Element::HTML {
-  allow Eg::Node::Document;
   
   # Class Methods
   static method new : Eg::Node::Element::HTML::Anchor () {

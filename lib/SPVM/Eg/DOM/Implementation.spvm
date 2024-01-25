@@ -3,9 +3,9 @@
 
 class Eg::DOM::Implementation {
   
+  use Eg::Node::Element;
   use Eg::Node::Document;
   use Eg::Node::Document::XML;
-  use Eg::Node::Element::HTML::Html;
   
   # Class Methods
   static method new : Eg::DOM::Implementation () {
@@ -22,11 +22,11 @@ class Eg::DOM::Implementation {
       die "\$qualified_name_str must be defined.";
     }
     
-    my $document = new Eg::Node::Document::XML;
+    my $document = Eg::Node::Document::XML->new;
     
     $document->{namespace_uri} = $namespace_uri;
     
-    my $root_element = new Eg::Node::Element;
+    my $root_element = Eg::Node::Element->new;
     
     $root_element->{tag_name} = $qualified_name_str;
     
@@ -37,7 +37,7 @@ class Eg::DOM::Implementation {
   
   method create_html_document : Eg::Node::Document ($title : string = undef) {
     
-    my $document = new Eg::Node::Document;
+    my $document = Eg::Node::Document->new;
     
     $document->{namespace_uri} = "http://www.w3.org/1999/xhtml";
     

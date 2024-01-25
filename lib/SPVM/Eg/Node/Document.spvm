@@ -155,187 +155,187 @@ class Eg::Node::Document extends Eg::Node {
       }
       
       if ($tag_name eq "a") {
-        $element = new Eg::Node::Element::HTML::Anchor;
+        $element = Eg::Node::Element::HTML::Anchor->new;
       }
       elsif ($tag_name eq "area") {
-        $element = new Eg::Node::Element::HTML::Area;
+        $element = Eg::Node::Element::HTML::Area->new;
       }
       elsif ($tag_name eq "audio") {
-        $element = new Eg::Node::Element::HTML::Audio;
+        $element = Eg::Node::Element::HTML::Audio->new;
       }
       elsif ($tag_name eq "base") {
-        $element = new Eg::Node::Element::HTML::Base;
+        $element = Eg::Node::Element::HTML::Base->new;
       }
       elsif ($tag_name eq "body") {
-        $element = new Eg::Node::Element::HTML::Body;
+        $element = Eg::Node::Element::HTML::Body->new;
       }
       elsif ($tag_name eq "br") {
-        $element = new Eg::Node::Element::HTML::BR;
+        $element = Eg::Node::Element::HTML::BR->new;
       }
       elsif ($tag_name eq "button") {
-        $element = new Eg::Node::Element::HTML::Button;
+        $element = Eg::Node::Element::HTML::Button->new;
       }
       elsif ($tag_name eq "canvas") {
-        $element = new Eg::Node::Element::HTML::Canvas;
+        $element = Eg::Node::Element::HTML::Canvas->new;
       }
       elsif ($tag_name eq "datalist") {
-        $element = new Eg::Node::Element::HTML::DataList;
+        $element = Eg::Node::Element::HTML::DataList->new;
       }
       elsif ($tag_name eq "details") {
-        $element = new Eg::Node::Element::HTML::Details;
+        $element = Eg::Node::Element::HTML::Details->new;
       }
       elsif ($tag_name eq "dialog") {
-        $element = new Eg::Node::Element::HTML::Dialog;
+        $element = Eg::Node::Element::HTML::Dialog->new;
       }
       elsif ($tag_name eq "div") {
-        $element = new Eg::Node::Element::HTML::Div;
+        $element = Eg::Node::Element::HTML::Div->new;
       }
       elsif ($tag_name eq "dl") {
-        $element = new Eg::Node::Element::HTML::DList;
+        $element = Eg::Node::Element::HTML::DList->new;
       }
       elsif ($tag_name eq "embed") {
-        $element = new Eg::Node::Element::HTML::Embed;
+        $element = Eg::Node::Element::HTML::Embed->new;
       }
       elsif ($tag_name eq "fieldset") {
-        $element = new Eg::Node::Element::HTML::FieldSet;
+        $element = Eg::Node::Element::HTML::FieldSet->new;
       }
       elsif ($tag_name eq "font") {
-        $element = new Eg::Node::Element::HTML::Font;
+        $element = Eg::Node::Element::HTML::Font->new;
       }
       elsif ($tag_name eq "form") {
-        $element = new Eg::Node::Element::HTML::Form;
+        $element = Eg::Node::Element::HTML::Form->new;
       }
       elsif ($tag_name eq "frame") {
-        $element = new Eg::Node::Element::HTML::Frame;
+        $element = Eg::Node::Element::HTML::Frame->new;
       }
       elsif ($tag_name eq "head") {
-        $element = new Eg::Node::Element::HTML::Head;
+        $element = Eg::Node::Element::HTML::Head->new;
       }
       elsif ($tag_name eq "h1" || $tag_name eq "h2" || $tag_name eq "h3" || $tag_name eq "h4" || $tag_name eq "h5" || $tag_name eq "h6") {
-        $element = new Eg::Node::Element::HTML::Heading;
+        $element = Eg::Node::Element::HTML::Heading->new;
       }
       elsif ($tag_name eq "hr") {
-        $element = new Eg::Node::Element::HTML::HR;
+        $element = Eg::Node::Element::HTML::HR->new;
       }
       elsif ($tag_name eq "html") {
-        $element = new Eg::Node::Element::HTML::Html;
+        $element = Eg::Node::Element::HTML::Html->new;
       }
       elsif ($tag_name eq "iframe") {
-        $element = new Eg::Node::Element::HTML::IFrame;
+        $element = Eg::Node::Element::HTML::IFrame->new;
       }
       elsif ($tag_name eq "image") {
-        $element = new Eg::Node::Element::HTML::Image;
+        $element = Eg::Node::Element::HTML::Image->new;
       }
       elsif ($tag_name eq "input") {
-        $element = new Eg::Node::Element::HTML::Input;
+        $element = Eg::Node::Element::HTML::Input->new;
       }
       elsif ($tag_name eq "label") {
-        $element = new Eg::Node::Element::HTML::Label;
+        $element = Eg::Node::Element::HTML::Label->new;
       }
       elsif ($tag_name eq "legend") {
-        $element = new Eg::Node::Element::HTML::Legend;
+        $element = Eg::Node::Element::HTML::Legend->new;
       }
       elsif ($tag_name eq "li") {
-        $element = new Eg::Node::Element::HTML::LI;
+        $element = Eg::Node::Element::HTML::LI->new;
       }
       elsif ($tag_name eq "link") {
-        $element = new Eg::Node::Element::HTML::Link;
+        $element = Eg::Node::Element::HTML::Link->new;
       }
       elsif ($tag_name eq "map") {
-        $element = new Eg::Node::Element::HTML::Map;
+        $element = Eg::Node::Element::HTML::Map->new;
       }
       elsif ($tag_name eq "menu") {
-        $element = new Eg::Node::Element::HTML::Menu;
+        $element = Eg::Node::Element::HTML::Menu->new;
       }
       elsif ($tag_name eq "meta") {
-        $element = new Eg::Node::Element::HTML::Meta;
+        $element = Eg::Node::Element::HTML::Meta->new;
       }
       elsif ($tag_name eq "meter") {
-        $element = new Eg::Node::Element::HTML::Meter;
+        $element = Eg::Node::Element::HTML::Meter->new;
       }
       elsif ($tag_name eq "del" || $tag_name eq "ins") {
-        $element = new Eg::Node::Element::HTML::Mod;
+        $element = Eg::Node::Element::HTML::Mod->new;
       }
       elsif ($tag_name eq "ol") {
-        $element = new Eg::Node::Element::HTML::OList;
+        $element = Eg::Node::Element::HTML::OList->new;
       }
       elsif ($tag_name eq "object") {
-        $element = new Eg::Node::Element::HTML::Object;
+        $element = Eg::Node::Element::HTML::Object->new;
       }
       elsif ($tag_name eq "optgroup") {
-        $element = new Eg::Node::Element::HTML::OptGroup;
+        $element = Eg::Node::Element::HTML::OptGroup->new;
       }
       elsif ($tag_name eq "option") {
-        $element = new Eg::Node::Element::HTML::Option;
+        $element = Eg::Node::Element::HTML::Option->new;
       }
       elsif ($tag_name eq "p") {
-        $element = new Eg::Node::Element::HTML::Paragraph;
+        $element = Eg::Node::Element::HTML::Paragraph->new;
       }
       elsif ($tag_name eq "param") {
-        $element = new Eg::Node::Element::HTML::Param;
+        $element = Eg::Node::Element::HTML::Param->new;
       }
       elsif ($tag_name eq "picture") {
-        $element = new Eg::Node::Element::HTML::Picture;
+        $element = Eg::Node::Element::HTML::Picture->new;
       }
       elsif ($tag_name eq "pre") {
-        $element = new Eg::Node::Element::HTML::Pre;
+        $element = Eg::Node::Element::HTML::Pre->new;
       }
       elsif ($tag_name eq "progress") {
-        $element = new Eg::Node::Element::HTML::Progress;
+        $element = Eg::Node::Element::HTML::Progress->new;
       }
       elsif ($tag_name eq "blockquote" || $tag_name eq "q") {
-        $element = new Eg::Node::Element::HTML::Quote;
+        $element = Eg::Node::Element::HTML::Quote->new;
       }
       elsif ($tag_name eq "script") {
-        $element = new Eg::Node::Element::HTML::Script;
+        $element = Eg::Node::Element::HTML::Script->new;
       }
       elsif ($tag_name eq "select") {
-        $element = new Eg::Node::Element::HTML::Select;
+        $element = Eg::Node::Element::HTML::Select->new;
       }
       elsif ($tag_name eq "source") {
-        $element = new Eg::Node::Element::HTML::Source;
+        $element = Eg::Node::Element::HTML::Source->new;
       }
       elsif ($tag_name eq "span") {
-        $element = new Eg::Node::Element::HTML::Span;
+        $element = Eg::Node::Element::HTML::Span->new;
       }
       elsif ($tag_name eq "style") {
-        $element = new Eg::Node::Element::HTML::Style;
+        $element = Eg::Node::Element::HTML::Style->new;
       }
       elsif ($tag_name eq "caption") {
-        $element = new Eg::Node::Element::HTML::TableCaption;
+        $element = Eg::Node::Element::HTML::TableCaption->new;
       }
       elsif ($tag_name eq "th" || $tag_name eq "td") {
-        $element = new Eg::Node::Element::HTML::TableCell;
+        $element = Eg::Node::Element::HTML::TableCell->new;
       }
       elsif ($tag_name eq "colgroup" || $tag_name eq "col") {
-        $element = new Eg::Node::Element::HTML::TableCol;
+        $element = Eg::Node::Element::HTML::TableCol->new;
       }
       elsif ($tag_name eq "table") {
-        $element = new Eg::Node::Element::HTML::Table;
+        $element = Eg::Node::Element::HTML::Table->new;
       }
       elsif ($tag_name eq "tr") {
-        $element = new Eg::Node::Element::HTML::TableRow;
+        $element = Eg::Node::Element::HTML::TableRow->new;
       }
       elsif ($tag_name eq "thead" || $tag_name eq "tbody" || $tag_name eq "tfoot") {
-        $element = new Eg::Node::Element::HTML::TableSection;
+        $element = Eg::Node::Element::HTML::TableSection->new;
       }
       elsif ($tag_name eq "textarea") {
-        $element = new Eg::Node::Element::HTML::TextArea;
+        $element = Eg::Node::Element::HTML::TextArea->new;
       }
       elsif ($tag_name eq "title") {
-        $element = new Eg::Node::Element::HTML::Title;
+        $element = Eg::Node::Element::HTML::Title->new;
       }
       elsif ($tag_name eq "track") {
-        $element = new Eg::Node::Element::HTML::Track;
+        $element = Eg::Node::Element::HTML::Track->new;
       }
       elsif ($tag_name eq "ul") {
-        $element = new Eg::Node::Element::HTML::UList;
+        $element = Eg::Node::Element::HTML::UList->new;
       }
       elsif ($tag_name eq "video") {
-        $element = new Eg::Node::Element::HTML::Video;
+        $element = Eg::Node::Element::HTML::Video->new;
       }
       else {
-        $element = new Eg::Node::Element::HTML::Unknown;
+        $element = Eg::Node::Element::HTML::Unknown->new;
       }
       
       $element->{tag_name} = Fn->lc($tag_name);

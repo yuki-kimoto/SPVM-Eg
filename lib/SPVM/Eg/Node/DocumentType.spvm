@@ -1,6 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
+# DocumentType in JavaScript
 class Eg::Node::DocumentType extends Eg::Node {
   
   # Class Methods

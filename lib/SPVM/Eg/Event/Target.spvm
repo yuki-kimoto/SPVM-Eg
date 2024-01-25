@@ -1,6 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
+# EventTarget in JavaScript
 class Eg::Event::Target {
   
   # Class Methods

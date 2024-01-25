@@ -1,6 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
+# Element in JavaScript
 class Eg::Node::Element extends Eg::Node {
   allow Eg;
   allow Eg::Node::Document;

@@ -1,6 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
+# ShadowRoot in JavaScript
 class Eg::Node::ShadowRoot extends Eg::Node::DocumentFragment {
   
   static method new : Eg::Node::ShadowRoot () {

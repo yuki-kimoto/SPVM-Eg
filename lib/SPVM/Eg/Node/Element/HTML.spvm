@@ -1,6 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
+# HTMLElement in JavaScript
 class Eg::Node::Element::HTML extends Eg::Node::Element {
   allow Eg::Node::Document;
   allow Eg::Node::Element;

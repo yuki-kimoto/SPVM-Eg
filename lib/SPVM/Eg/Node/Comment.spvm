@@ -1,6 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
+# CharacterData in JavaScript
 class Eg::Node::Comment extends Eg::Node::CharacterData {
   allow Eg;
   

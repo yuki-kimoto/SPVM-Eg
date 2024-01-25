@@ -8,10 +8,14 @@ class Cotton {
   
   static method tag : Eg::Node::Element ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
     
+    my $dom_impl = Eg::DOM::Implementation->new;
+    
+    my $document = $dom_impl->create_html_document;
+    
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {
       if ($child_nodes_or_text is_type string) {
-        $child_nodes = [Eg::Node::Text->new((string)$child_nodes_or_text)];
+        $child_nodes = [$document->create_text_node((string)$child_nodes_or_text)];
       }
       elsif ($child_nodes_or_text isa Eg::Node[]) {
         $child_nodes = (Eg::Node[])$child_nodes_or_text;
@@ -20,10 +24,6 @@ class Cotton {
         die "The type of \$child_nodes_or_text must inherit Eg::Node::Element or must be string.";
       }
     }
-    
-    my $dom_impl = Eg::DOM::Implementation->new;
-    
-    my $document = $dom_impl->create_html_document;
     
     my $new_element_node = $document->create_element($tag_name);
     
@@ -37,10 +37,14 @@ class Cotton {
   }
   
   static method tag_ : Eg::Node::Element ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
+    my $dom_impl = Eg::DOM::Implementation->new;
+    
+    my $document = $dom_impl->create_html_document;
+    
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {
       if ($child_nodes_or_text is_type string) {
-        $child_nodes = [Eg::Node::Text->new((string)$child_nodes_or_text)];
+        $child_nodes = [$document->create_text_node((string)$child_nodes_or_text)];
       }
       elsif ($child_nodes_or_text isa Eg::Node[]) {
         $child_nodes = (Eg::Node[])$child_nodes_or_text;
@@ -49,10 +53,6 @@ class Cotton {
         die "The type of \$child_nodes_or_text must inherit Eg::Node or must be string.";
       }
     }
-    
-    my $dom_impl = Eg::DOM::Implementation->new;
-    
-    my $document = $dom_impl->create_html_document;
     
     my $new_element_node = $document->create_element($tag_name);
     

@@ -21,7 +21,11 @@ class Cotton {
       }
     }
     
-    my $new_element_node = Eg::Node::Element->new($tag_name);
+    my $dom_impl = Eg::DOM::Implementation->new;
+    
+    my $document = $dom_impl->create_html_document;
+    
+    my $new_element_node = $document->create_element($tag_name);
     
     if ($child_nodes) {
       for my $child_node (@$child_nodes) {
@@ -46,7 +50,11 @@ class Cotton {
       }
     }
     
-    my $new_element_node = Eg::Node::Element->new($tag_name);
+    my $dom_impl = Eg::DOM::Implementation->new;
+    
+    my $document = $dom_impl->create_html_document;
+    
+    my $new_element_node = $document->create_element($tag_name);
     
     if ($child_nodes) {
       for my $child_node (@$child_nodes) {

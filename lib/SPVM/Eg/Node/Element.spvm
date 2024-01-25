@@ -9,6 +9,8 @@ class Eg::Node::Element extends Eg::Node {
   use Eg::DOM::Implementation;
   use Fn;
   
+  use Eg::Node::Element::HTML;
+  
   has attributes_h : ro Hash of string;
   
   has styles_h : rw Hash of string;
@@ -18,9 +20,9 @@ class Eg::Node::Element extends Eg::Node {
   has tag_name : string;
   
   # Class Methods
-  static method new : Eg::Node::Element ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes : Eg::Node[] = undef) {
+  static method new : Eg::Node::Element::HTML ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes : Eg::Node[] = undef) {
     
-    my $self = new Eg::Node::Element;
+    my $self = new Eg::Node::Element::HTML;
     
     unless ($tag_name) {
       die "\$tag_namet must be defined.";

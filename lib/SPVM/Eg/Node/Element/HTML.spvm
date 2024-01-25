@@ -3,6 +3,7 @@
 
 class Eg::Node::Element::HTML extends Eg::Node::Element {
   allow Eg::Node::Document;
+  allow Eg::Node::Element;
   
   # Class Methods
   static method new : Eg::Node::Element::HTML () {

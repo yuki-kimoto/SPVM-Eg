@@ -19,36 +19,7 @@ class Eg::Node::Element extends Eg::Node {
   
   has tag_name : string;
   
-  # Class Methods
-  static method new : Eg::Node::Element::HTML ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes : Eg::Node[] = undef) {
-    
-    my $self = new Eg::Node::Element::HTML;
-    
-    unless ($tag_name) {
-      die "\$tag_namet must be defined.";
-    }
-    
-    $self->init(Eg::Node->TYPE_ELEMENT_NODE, $child_nodes);
-    
-    $self->{tag_name} = $tag_name;
-    
-    if ($attribute_pairs) {
-      $self->{attributes_h} = Hash->new($attribute_pairs);
-      
-      my $attributes_h = $self->{attributes_h};
-      
-      my $style_pairs = (object[])$attributes_h->delete("style");
-      
-      if ($style_pairs) {
-        my $styles_h = Hash->new($style_pairs);
-        
-        $self->{styles_h} = $styles_h;
-      }
-    }
-    
-    return $self;
-  }
-  
+  # Instance Methods
   method get_attribute : string ($name : string) {
     
     unless ($name) {

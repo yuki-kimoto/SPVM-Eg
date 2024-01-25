@@ -68,7 +68,6 @@ lib/SPVM/Eg/Node/Element/HTML/Button.spvm
 lib/SPVM/Eg/Node/Element/HTML/Canvas.pm
 lib/SPVM/Eg/Node/Element/HTML/Canvas.spvm
 lib/SPVM/Eg/Node/Element/HTML/Col.pm
-lib/SPVM/Eg/Node/Element/HTML/Col.spvm
 lib/SPVM/Eg/Node/Element/HTML/DataList.pm
 lib/SPVM/Eg/Node/Element/HTML/DataList.spvm
 lib/SPVM/Eg/Node/Element/HTML/Details.pm
@@ -80,7 +79,6 @@ lib/SPVM/Eg/Node/Element/HTML/Div.spvm
 lib/SPVM/Eg/Node/Element/HTML/DList.pm
 lib/SPVM/Eg/Node/Element/HTML/DList.spvm
 lib/SPVM/Eg/Node/Element/HTML/DO.pm
-lib/SPVM/Eg/Node/Element/HTML/DO.spvm
 lib/SPVM/Eg/Node/Element/HTML/Embed.pm
 lib/SPVM/Eg/Node/Element/HTML/Embed.spvm
 lib/SPVM/Eg/Node/Element/HTML/FieldSet.pm

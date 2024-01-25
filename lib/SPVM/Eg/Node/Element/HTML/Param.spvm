@@ -3,4 +3,14 @@
 
 class Eg::Node::Element::HTML::Param extends Eg::Node::Element::HTML {
   allow Eg::Node::Document;
+  
+  # Class Methods
+  static method new : Eg::Node::Element::HTML::Param () {
+    
+    my $self = new Eg::Node::Element::HTML::Param;
+    
+    $self->SUPER::init;
+    
+    return $self;
+  }
 }

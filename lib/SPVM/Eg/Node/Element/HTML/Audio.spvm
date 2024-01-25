@@ -3,4 +3,14 @@
 
 class Eg::Node::Element::HTML::Audio extends Eg::Node::Element::HTML::Media {
   allow Eg::Node::Document;
+  
+  # Class Methods
+  static method new : Eg::Node::Element::HTML::Audio () {
+    
+    my $self = new Eg::Node::Element::HTML::Audio;
+    
+    $self->SUPER::init;
+    
+    return $self;
+  }
 }

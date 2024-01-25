@@ -3,4 +3,14 @@
 
 class Eg::Node::Element::HTML::Track extends Eg::Node::Element::HTML {
   allow Eg::Node::Document;
+  
+  # Class Methods
+  static method new : Eg::Node::Element::HTML::Track () {
+    
+    my $self = new Eg::Node::Element::HTML::Track;
+    
+    $self->SUPER::init;
+    
+    return $self;
+  }
 }

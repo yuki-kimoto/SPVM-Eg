@@ -3,4 +3,14 @@
 
 class Eg::Node::Element::HTML::Label extends Eg::Node::Element::HTML {
   allow Eg::Node::Document;
+  
+  # Class Methods
+  static method new : Eg::Node::Element::HTML::Label () {
+    
+    my $self = new Eg::Node::Element::HTML::Label;
+    
+    $self->SUPER::init;
+    
+    return $self;
+  }
 }

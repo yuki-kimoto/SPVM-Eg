@@ -34,8 +34,6 @@ class Eg::Node::Document::XML extends Eg::Node::Document {
     
     $element->{tag_name} = $tag_name;
     
-    $element->{node_type} = Eg::Node->TYPE_ELEMENT_NODE;
-    
     return $element;
   }
   

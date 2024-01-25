@@ -7,4 +7,26 @@ class Eg::Node::Document extends Eg::Node {
   # Fields
   has namespace_uri : protected string;
   
+  method create_text_node : Eg::Node::Text ($node_value : string) {
+    
+    unless ($node_value) {
+      die "\$node_value must be defined.";
+    }
+    
+    my $text_node = Eg::Node::Text->new($node_value);
+    
+    return $text_node;
+  }
+  
+  method create_comment : Eg::Node::Comment ($node_value : string) {
+    
+    unless ($node_value) {
+      die "\$node_value must be defined.";
+    }
+    
+    my $comment_node = Eg::Node::Comment->new($node_value);
+    
+    return $comment_node;
+  }
+  
 }

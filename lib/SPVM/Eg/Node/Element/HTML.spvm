@@ -37,17 +37,6 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
     return $css;
   }
   
-  method set_css : void ($name : string, $value : string) {
-    
-    my $styles_h = $self->{styles_h};
-    
-    unless ($styles_h) {
-      $styles_h = $self->{styles_h} = Hash->new;
-    }
-    
-    $styles_h->set_string($name, $value);
-  }
-  
   method style_pairs : string[] () {
     
     my $styles_h = $self->{styles_h};

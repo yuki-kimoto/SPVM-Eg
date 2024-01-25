@@ -224,18 +224,6 @@ class TestCase::Eg {
       }
     }
     
-    # set_css
-    {
-      my $div = &tag_("div", {style => {}});
-      
-      $div->set_css("css1", "cssval1");
-      
-      unless ($div->css("css1") eq "cssval1") {
-        return 0;
-      }
-      
-    }
-    
     # style_pairs
     {
       my $div = &tag_("div", {style => {css1 => "cssval1", css2 => "cssval2"}});

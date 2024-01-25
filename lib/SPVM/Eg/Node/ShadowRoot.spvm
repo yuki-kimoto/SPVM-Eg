@@ -8,7 +8,7 @@ class Eg::Node::ShadowRoot extends Eg::Node::DocumentFragment {
     
     my $self = new Eg::Node::ShadowRoot;
     
-    $self->init(Eg::Node->TYPE_DOCUMENT_FRAGMENT_NODE);
+    $self->SUPER::init(Eg::Node->TYPE_DOCUMENT_FRAGMENT_NODE);
     
     return $self;
   }

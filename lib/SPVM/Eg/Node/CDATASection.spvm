@@ -9,7 +9,7 @@ class Eg::Node::CDATASection extends Eg::Node::Text {
     
     my $self = new Eg::Node::CDATASection;
     
-    $self->init(Eg::Node->TYPE_CDATA_SECTION_NODE, undef, $text);
+    $self->SUPER::init(Eg::Node->TYPE_CDATA_SECTION_NODE, $text);
     
     return $self;
   }

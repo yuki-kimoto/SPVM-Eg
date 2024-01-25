@@ -90,16 +90,16 @@ class Eg::Node::Document extends Eg::Node {
 
   has title : rw string;
   
-  has nodes_h : Hash;
-  
   # Class Methods
   static method new : Eg::Node::Document ($root_node : Eg::Node::Element = undef) {
     
     my $self = new Eg::Node::Document;
     
-    $self->init(Eg::Node->TYPE_DOCUMENT_NODE, [$root_node]);
+    $self->SUPER::init(Eg::Node->TYPE_DOCUMENT_NODE);
     
-    $self->{nodes_h} = Hash->new;
+    if ($root_node) {
+      $self->append_child($root_node);
+    }
     
     return $self;
   }

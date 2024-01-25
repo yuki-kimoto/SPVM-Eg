@@ -6,17 +6,13 @@ class Eg::Node::CharacterData extends Eg::Node {
   allow Eg;
   
   # Instance Methods
-  protected method init : void ($node_type : int, $child_nodes : Eg::Node[] = undef, $text : string = undef) {
+  protected method init : void ($node_type : int, $text : string = undef) {
     
     unless ($text) {
       die "\$text must be defined.";
     }
     
-    if ($child_nodes) {
-      die "\$child_nodes cannot be defined.";
-    }
-    
-    $self->SUPER::init($node_type, $child_nodes);
+    $self->SUPER::init($node_type);
     
     my $node_value_buffer = StringBuffer->new;
     

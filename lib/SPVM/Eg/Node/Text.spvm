@@ -11,7 +11,7 @@ class Eg::Node::Text extends Eg::Node::CharacterData {
     
     my $self = new Eg::Node::Text;
     
-    $self->init(Eg::Node->TYPE_TEXT_NODE, undef, $text);
+    $self->SUPER::init(Eg::Node->TYPE_TEXT_NODE, $text);
     
     return $self;
   }

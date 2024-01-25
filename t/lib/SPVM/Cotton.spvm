@@ -36,7 +36,7 @@ class Cotton {
     return $new_element_node;
   }
   
-  static method tag_ : Eg::Node::Element ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
+  static method tag_ : Eg::Node::Element::HTML ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
     my $dom_impl = Eg::DOM::Implementation->new;
     
     my $document = $dom_impl->create_html_document;
@@ -64,12 +64,40 @@ class Cotton {
     
     my $attributes_h = Hash->new($attribute_pairs);
     
-    my $style_pairs = (object[])$attributes_h->delete("style");
+    my $style_pairs = $attributes_h->delete("style");
     
     if ($style_pairs) {
-      my $styles_h = Hash->new($style_pairs);
-      
-      $new_element_node->set_styles_h($styles_h);
+      if ($style_pairs isa string) {
+        my $styles_h = Hash->new;
+        
+        my $css_text = (string)$style_pairs;
+        
+        my $style_pairs_text = Fn->split(";", $css_text);
+        
+        for my $style_pair_text (@$style_pairs_text) {
+          
+          unless (length $style_pair_text) {
+            next;
+          }
+          
+          my $style_name_value = Fn->split(":", $style_pair_text);
+          
+          my $style_name = $style_name_value->[0];
+          
+          my $style_value = $style_name_value->[1];
+          
+          warn "$style_name $style_value";
+          
+          $styles_h->set_string($style_name, $style_value);
+          
+          $new_element_node->set_styles_h($styles_h);
+        }
+      }
+      else {
+        my $styles_h = Hash->new((object[])$style_pairs);
+        
+        $new_element_node->set_styles_h($styles_h);
+      }
     }
     
     for my $attribute_name (@{$attributes_h->keys}) {
@@ -135,16 +163,16 @@ class Cotton {
   static method document : Eg::Node::Document::HTML () {
     
     my $div1 = &tag_("div",
-      {style => {"background-color" => "#00FF00", "color" => "#0000FF", "font-size" => "60px", "font-weight" => "bold"}},
+      {style => "background-color:#00FF00;color:#0000FF;font-size:60px;font-weight:bold;"},
       "あああああ"
     );
     
     my $elements = [
       $div1,
-      &tag_("div",{style => {left => "300px", top => "400px", width => "100px", height => "100px", "background-color" => "#FF0000"}}),
-      &tag_("div",{style => {left => "400px", top => "500px", width => "100px", height => "100px", "background-color" => "#FF0000"}}),
-      &tag_("div",{style => {left => "100px", top => "100px", width => "100px", height => "100px", "background-color" => "#FFFF00"}}),
-      &tag_("div",{style => {left => "200px", top => "200px", width => "100px", height => "100px", "background-color" => "#FFFF00"}}),
+      &tag_("div",{style => "left:300px;top:400px;width:100px;height:100px;background-color:#FF0000;"}),
+      &tag_("div",{style => "left:400px;top:500px;width:100px;height:100px;background-color:#FF0000;"}),
+      &tag_("div",{style => "left:100px;top:100px;width:100px;height:100px;background-color:#FFFF00;"}),
+      &tag_("div",{style => "left:200px;top:200px;width:100px;height:100px;background-color:#FFFF00;"}),
     ];
     
     my $title = "コットン";

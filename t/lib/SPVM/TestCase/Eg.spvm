@@ -72,6 +72,11 @@ class TestCase::Eg {
         my $style_pairs_text = Fn->split(";", $css_text);
         
         for my $style_pair_text (@$style_pairs_text) {
+          
+          unless (length $style_pair_text) {
+            next;
+          }
+          
           my $style_name_value = Fn->split(":", $style_pair_text);
           
           my $style_name = $style_name_value->[0];

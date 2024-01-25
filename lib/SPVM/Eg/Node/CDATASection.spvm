@@ -1,6 +1,15 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class Eg::Node::CDATASection {
+class Eg::Node::CDATASection extends Eg::Node::Text {
   
+  # Class Methods
+  static method new : Eg::Node::CDATASection ($text : string) {
+    
+    my $self = new Eg::Node::CDATASection;
+    
+    $self->init(Eg::Node->TYPE_CDATA_SECTION_NODE, undef, $text);
+    
+    return $self;
+  }
 }

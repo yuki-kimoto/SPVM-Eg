@@ -1,6 +1,15 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class Eg::Node::Attr {
+class Eg::Node::Attr extends Eg::Node {
   
+  # Class Methods
+  static method new : Eg::Node::Attr () {
+    
+    my $self = new Eg::Node::Attr;
+    
+    $self->init(Eg::Node->TYPE_ATTRIBUTE_NODE);
+    
+    return $self;
+  }
 }

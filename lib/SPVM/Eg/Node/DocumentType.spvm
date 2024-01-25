@@ -1,6 +1,15 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class Eg::Node::DocumentType {
+class Eg::Node::DocumentType extends Eg::Node {
   
+  # Class Methods
+  static method new : Eg::Node::DocumentType () {
+    
+    my $self = new Eg::Node::DocumentType;
+    
+    $self->init(Eg::Node->TYPE_DOCUMENT_TYPE_NODE);
+    
+    return $self;
+  }
 }

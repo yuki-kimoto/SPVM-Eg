@@ -3,4 +3,11 @@
 
 class Eg::Event::Target {
   
+  # Class Methods
+  static method new : Eg::Event::Target () {
+    
+    my $self = new Eg::Event::Target;
+    
+    return $self;
+  }
 }

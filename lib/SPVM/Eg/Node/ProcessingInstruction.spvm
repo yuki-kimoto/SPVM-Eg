@@ -1,6 +1,15 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class Eg::Node::ProcessingInstruction {
+class Eg::Node::ProcessingInstruction extends Eg::Node::CharacterData {
   
+  # Class Methods
+  static method new : Eg::Node::ProcessingInstruction () {
+    
+    my $self = new Eg::Node::ProcessingInstruction;
+    
+    $self->init(Eg::Node->TYPE_PROCESSING_INSTRUCTION_NODE, undef, undef);
+    
+    return $self;
+  }
 }

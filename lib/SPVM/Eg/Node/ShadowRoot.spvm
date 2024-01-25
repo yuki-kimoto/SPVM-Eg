@@ -1,6 +1,14 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class Eg::Node::ShadowRoot {
+class Eg::Node::ShadowRoot extends Eg::Node::DocumentFragment {
   
+  static method new : Eg::Node::ShadowRoot () {
+    
+    my $self = new Eg::Node::ShadowRoot;
+    
+    $self->init(Eg::Node->TYPE_DOCUMENT_FRAGMENT_NODE);
+    
+    return $self;
+  }
 }

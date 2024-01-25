@@ -1,4 +1,13 @@
 class Eg::Node::DocumentFragment extends Eg::Node {
   
-  # Instance Methods
+  # Class Methods
+  static method new : Eg::Node::DocumentFragment () {
+    
+    my $self = new Eg::Node::DocumentFragment;
+    
+    $self->init(Eg::Node->TYPE_DOCUMENT_FRAGMENT_NODE);
+    
+    return $self;
+  }
+  
 }

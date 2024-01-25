@@ -10,8 +10,18 @@ class Eg::Node::Document extends Eg::Node {
   
   use Hash;
   use Regex;
-  use Eg::Node::Document;
   use StringBuffer;
+  
+  use Eg::Node::Element;
+  use Eg::Node::Text;
+  use Eg::Node::Comment;
+  use Eg::Node::Document;
+  use Eg::Node::DocumentFragment;
+  use Eg::Node::Attr;
+  use Eg::Node::CDATASection;
+  use Eg::Node::ProcessingInstruction;
+  use Eg::Node::DocumentType;
+  use Eg::Node::ShadowRoot;
   
   use Eg::Node::Element::HTML;
   use Eg::Node::Element::HTML::Unknown;

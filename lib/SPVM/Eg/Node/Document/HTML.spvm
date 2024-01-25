@@ -106,29 +106,25 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     $self->SUPER::init({node_type => Eg::Node->TYPE_DOCUMENT_NODE});
   }
   
-  method document_element : Eg::Node::Element () {
-    my $root_node = (Eg::Node::Element)$self->first_child;
+  method document_element : Eg::Node::Element::HTML () {
+    my $root_node = (Eg::Node::Element::HTML)$self->SUPER::document_element;
     
     return $root_node;
   }
   
-  method head : Eg::Node::Element () {
+  method head : Eg::Node::Element::HTML () {
     my $root_node = $self->document_element;
     
-    return (Eg::Node::Element)$root_node->first_child;
+    return (Eg::Node::Element::HTML)$root_node->first_child;
   }
   
-  method body : Eg::Node::Element () {
+  method body : Eg::Node::Element::HTML () {
     my $root_node = $self->document_element;
     
-    return (Eg::Node::Element)$root_node->first_child->next_sibling;
+    return (Eg::Node::Element::HTML)$root_node->first_child->next_sibling;
   }
   
-  method parent_node : Eg::Node () {
-    return undef;
-  }
-  
-  method create_element : Eg::Node::Element ($tag_name : string) {
+  method create_element : Eg::Node::Element::HTML ($tag_name : string) {
     
     unless ($tag_name) {
       die "\$tag_name must be defined.";

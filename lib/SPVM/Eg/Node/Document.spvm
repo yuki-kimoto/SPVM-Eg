@@ -106,4 +106,11 @@ class Eg::Node::Document extends Eg::Node {
     return $element;
   }
   
+  method create_document_fragment : Eg::Node::DocumentFragment () {
+    
+    my $document_fragment_node = Eg::Node::DocumentFragment->new;
+    
+    return $document_fragment_node;
+  }
+  
 }

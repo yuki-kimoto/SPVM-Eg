@@ -4,6 +4,8 @@
 # DocumentFragment in JavaScript
 class Eg::Node::DocumentFragment extends Eg::Node {
   
+  allow Eg::Node::Document;
+  
   # Class Methods
   private static method new : Eg::Node::DocumentFragment () {
     

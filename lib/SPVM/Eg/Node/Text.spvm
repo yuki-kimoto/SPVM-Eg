@@ -4,7 +4,7 @@
 # Text in JavaScript
 class Eg::Node::Text extends Eg::Node::CharacterData {
   allow Eg;
-  allow Eg::Node::Document;
+  allow Eg::Node::Document::HTML;
   
   # Class Methods
   static method new : Eg::Node::Text ($node_value : string) {

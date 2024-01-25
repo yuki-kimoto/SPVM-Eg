@@ -132,7 +132,7 @@ class Cotton {
     $api->app->start_event_loop;
   }
   
-  static method document : Eg::Node::Document () {
+  static method document : Eg::Node::Document::HTML () {
     
     my $div1 = &tag_("div",
       {style => {"background-color" => "#00FF00", "color" => "#0000FF", "font-size" => "60px", "font-weight" => "bold"}},

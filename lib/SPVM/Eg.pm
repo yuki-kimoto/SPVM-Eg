@@ -36,7 +36,7 @@ L<SPVM::Eg - Github|https://github.com/yuki-kimoto/SPVM-Eg>
 
 =head2 document
 
-  static method document : Eg::Node::Document ();
+  static method document : Eg::Node::Document::HTML ();
 
 =head1 Author
 

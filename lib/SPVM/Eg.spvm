@@ -5,7 +5,7 @@ class Eg {
   version "0.013";
   
   use Eg::Node;
-  use Eg::Node::Document;
+  use Eg::Node::Document::HTML;
   use Eg::Node::Element;
   use Eg::Node::Text;
   use Eg::Runtime;
@@ -21,7 +21,7 @@ class Eg {
     return $RUNTIME->window;
   }
   
-  static method document : Eg::Node::Document () {
+  static method document : Eg::Node::Document::HTML () {
     return &window->document;
   }
   

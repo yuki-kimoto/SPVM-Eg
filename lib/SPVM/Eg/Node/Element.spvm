@@ -5,6 +5,8 @@
 class Eg::Node::Element extends Eg::Node {
   allow Eg;
   allow Eg::Node::Document;
+  allow Eg::Node::Document::HTML;
+  allow Eg::Node::Document::XML;
   allow Eg::DOM::Implementation;
   
   use Eg::DOM::Implementation;
@@ -18,7 +20,7 @@ class Eg::Node::Element extends Eg::Node {
   
   has computed_styles_h : rw Hash of string;
   
-  has tag_name : string;
+  has tag_name : protected string;
   
   # Class Methods
   static method new : Eg::Node::Element () {

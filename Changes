@@ -1,6 +1,8 @@
 0.014 2024-01-25
   [New Features]
     * Add many Node child classes.
+  [Incompatible Changes]
+    * Rename the Eg::Node::Document class to Eg::Node::Document::HTML, and add Eg::Node::Document.
 0.013 2024-01-24
   [New Features]
     * Add the create_element method to the Eg::Document class.

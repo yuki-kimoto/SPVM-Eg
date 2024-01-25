@@ -1,6 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
+# XMLDocument in JavaScript
 class Eg::Node::Document::XML extends Eg::Node::Document {
   
   allow Eg::DOM::Implementation;
@@ -14,4 +15,28 @@ class Eg::Node::Document::XML extends Eg::Node::Document {
     
     return $self;
   }
+  
+  method create_element : Eg::Node::Element ($tag_name : string) {
+    
+    unless ($tag_name) {
+      die "\$tag_name must be defined.";
+    }
+    
+    unless (length $tag_name) {
+      die "\$tag_name must have its length.";
+    }
+    
+    if (Fn->contains($tag_name, ":")) {
+      die "\$tag_name cannot contains \":\"";
+    }
+    
+    my $element = Eg::Node::Element->new;
+    
+    $element->{tag_name} = $tag_name;
+    
+    $element->{node_type} = Eg::Node->TYPE_ELEMENT_NODE;
+    
+    return $element;
+  }
+  
 }

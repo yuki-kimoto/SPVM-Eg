@@ -4,7 +4,7 @@
 class Eg::DOM::Implementation {
   
   use Eg::Node::Element;
-  use Eg::Node::Document;
+  use Eg::Node::Document::HTML;
   use Eg::Node::Document::XML;
   
   # Class Methods
@@ -35,9 +35,9 @@ class Eg::DOM::Implementation {
     return $document;
   }
   
-  method create_html_document : Eg::Node::Document ($title : string = undef) {
+  method create_html_document : Eg::Node::Document::HTML ($title : string = undef) {
     
-    my $document = Eg::Node::Document->new;
+    my $document = Eg::Node::Document::HTML->new;
     
     $document->{namespace_uri} = "http://www.w3.org/1999/xhtml";
     

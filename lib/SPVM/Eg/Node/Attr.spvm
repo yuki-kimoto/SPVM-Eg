@@ -5,7 +5,7 @@
 class Eg::Node::Attr extends Eg::Node {
   
   # Class Methods
-  static method new : Eg::Node::Attr () {
+  private static method new : Eg::Node::Attr () {
     
     my $self = new Eg::Node::Attr;
     

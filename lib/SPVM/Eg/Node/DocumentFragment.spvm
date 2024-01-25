@@ -5,7 +5,7 @@
 class Eg::Node::DocumentFragment extends Eg::Node {
   
   # Class Methods
-  static method new : Eg::Node::DocumentFragment () {
+  private static method new : Eg::Node::DocumentFragment () {
     
     my $self = new Eg::Node::DocumentFragment;
     

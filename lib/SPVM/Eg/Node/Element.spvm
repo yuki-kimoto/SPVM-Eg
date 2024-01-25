@@ -23,7 +23,7 @@ class Eg::Node::Element extends Eg::Node {
   has tag_name : protected string;
   
   # Class Methods
-  static method new : Eg::Node::Element () {
+  private static method new : Eg::Node::Element () {
     
     my $self = new Eg::Node::Element;
     

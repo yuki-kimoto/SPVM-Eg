@@ -4,7 +4,7 @@
 # ShadowRoot in JavaScript
 class Eg::Node::ShadowRoot extends Eg::Node::DocumentFragment {
   
-  static method new : Eg::Node::ShadowRoot () {
+  private static method new : Eg::Node::ShadowRoot () {
     
     my $self = new Eg::Node::ShadowRoot;
     

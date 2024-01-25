@@ -8,7 +8,7 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
   allow Eg::Node::Document::HTML;
   
   # Class Methods
-  static method new : Eg::Node::Element::HTML () {
+  private static method new : Eg::Node::Element::HTML () {
     
     my $self = new Eg::Node::Element::HTML;
     

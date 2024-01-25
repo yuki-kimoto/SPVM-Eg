@@ -4,8 +4,10 @@
 # ProcessingInstruction in JavaScript
 class Eg::Node::ProcessingInstruction extends Eg::Node::CharacterData {
   
+  allow Eg::Node::Document;
+  
   # Class Methods
-  static method new : Eg::Node::ProcessingInstruction ($node_value : string) {
+  private static method new : Eg::Node::ProcessingInstruction ($node_value : string) {
     
     my $self = new Eg::Node::ProcessingInstruction;
     

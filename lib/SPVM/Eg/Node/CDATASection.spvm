@@ -4,8 +4,10 @@
 # CDATASection in JavaScript
 class Eg::Node::CDATASection extends Eg::Node::Text {
   
+  allow Eg::Node::Document;
+  
   # Class Methods
-  static method new : Eg::Node::CDATASection ($node_value : string) {
+  private static method new : Eg::Node::CDATASection ($node_value : string) {
     
     my $self = new Eg::Node::CDATASection;
     

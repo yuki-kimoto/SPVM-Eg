@@ -3,10 +3,11 @@
 
 # CharacterData in JavaScript
 class Eg::Node::Comment extends Eg::Node::CharacterData {
-  allow Eg;
+  
+  allow Eg::Node::Document;
   
   # Class Methods
-  static method new : Eg::Node::Comment ($node_value : string) {
+  private static method new : Eg::Node::Comment ($node_value : string) {
     
     my $self = new Eg::Node::Comment;
     

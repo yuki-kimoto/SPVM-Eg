@@ -88,7 +88,7 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
   has title : rw string;
   
   # Class Methods
-  static method new : Eg::Node::Document::HTML ($root_node : Eg::Node::Element = undef) {
+  private static method new : Eg::Node::Document::HTML ($root_node : Eg::Node::Element = undef) {
     
     my $self = new Eg::Node::Document::HTML;
     

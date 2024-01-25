@@ -6,11 +6,11 @@ class Eg::Node::Comment extends Eg::Node::CharacterData {
   allow Eg;
   
   # Class Methods
-  static method new : Eg::Node::Comment ($text : string) {
+  static method new : Eg::Node::Comment ($node_value : string) {
     
     my $self = new Eg::Node::Comment;
     
-    $self->SUPER::init(Eg::Node->TYPE_COMMENT_NODE, $text);
+    $self->SUPER::init({node_type => Eg::Node->TYPE_COMMENT_NODE, node_value => $node_value});
     
     return $self;
   }

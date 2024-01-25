@@ -48,9 +48,24 @@ class Eg::Node {
   # Class Methods
   
   # Instance Methods
-  protected method init : void ($node_type : int) {
+  protected method init : void ($options : object[] = undef) {
     
-    $self->{node_type} = $node_type;
+    my $options_h = Hash->new($options);
+    
+    if ($options_h->exists("node_type")) {
+      
+      my $node_type = $options_h->get_int("node_type");
+      
+      $self->{node_type} = $node_type;
+    }
+    
+    my $node_value = $options_h->get_or_default_string("node_value", undef);
+    
+    if ($node_value) {
+      my $node_value_buffer = StringBuffer->new($node_value);
+      
+      $self->{node_value_buffer} = $node_value_buffer;
+    }
     
     my $box = Eg::CSS::Box->new;
     

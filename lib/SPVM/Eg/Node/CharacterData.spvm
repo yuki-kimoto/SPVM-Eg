@@ -5,20 +5,20 @@
 class Eg::Node::CharacterData extends Eg::Node {
   allow Eg;
   
+  use Hash;
+  
   # Instance Methods
-  protected method init : void ($node_type : int, $text : string = undef) {
+  protected method init : void ($options : object[] = undef) {
     
-    unless ($text) {
-      die "\$text must be defined.";
+    my $options_h = Hash->new($options);
+    
+    my $node_value = $options_h->get_or_default_string("node_value", undef);
+    
+    unless ($node_value) {
+      die "The \node_value option must be defined.";
     }
     
-    $self->SUPER::init($node_type);
-    
-    my $node_value_buffer = StringBuffer->new;
-    
-    $node_value_buffer->push($text);
-    
-    $self->{node_value_buffer} = $node_value_buffer;
+    $self->SUPER::init($options);
   }
   
   method data : string () {

@@ -7,11 +7,11 @@ class Eg::Node::Text extends Eg::Node::CharacterData {
   allow Eg::Node::Document;
   
   # Class Methods
-  static method new : Eg::Node::Text ($text : string) {
+  static method new : Eg::Node::Text ($node_value : string) {
     
     my $self = new Eg::Node::Text;
     
-    $self->SUPER::init(Eg::Node->TYPE_TEXT_NODE, $text);
+    $self->SUPER::init({node_type => Eg::Node->TYPE_TEXT_NODE, node_value => $node_value});
     
     return $self;
   }

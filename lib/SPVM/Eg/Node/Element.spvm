@@ -21,6 +21,11 @@ class Eg::Node::Element extends Eg::Node {
   has tag_name : string;
   
   # Instance Methods
+  protected method init : void ($options : object[] = undef) {
+    
+    $self->SUPER::init({node_type => Eg::Node->TYPE_ELEMENT_NODE});
+  }
+  
   method get_attribute : string ($name : string) {
     
     unless ($name) {

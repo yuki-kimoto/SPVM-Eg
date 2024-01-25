@@ -5,11 +5,11 @@
 class Eg::Node::ProcessingInstruction extends Eg::Node::CharacterData {
   
   # Class Methods
-  static method new : Eg::Node::ProcessingInstruction ($text : string) {
+  static method new : Eg::Node::ProcessingInstruction ($node_value : string) {
     
     my $self = new Eg::Node::ProcessingInstruction;
     
-    $self->SUPER::init(Eg::Node->TYPE_PROCESSING_INSTRUCTION_NODE, $text);
+    $self->SUPER::init({node_type => Eg::Node->TYPE_PROCESSING_INSTRUCTION_NODE, node_value => $node_value});
     
     return $self;
   }

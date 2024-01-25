@@ -11,7 +11,7 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
     
     my $self = new Eg::Node::Element::HTML;
     
-    $self->SUPER::init(Eg::Node->TYPE_ELEMENT_NODE);
+    $self->SUPER::init;
     
     return $self;
   }

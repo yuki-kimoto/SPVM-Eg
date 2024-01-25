@@ -9,7 +9,7 @@ class Eg::Node::DocumentType extends Eg::Node {
     
     my $self = new Eg::Node::DocumentType;
     
-    $self->SUPER::init(Eg::Node->TYPE_DOCUMENT_TYPE_NODE);
+    $self->SUPER::init({node_type => Eg::Node->TYPE_DOCUMENT_TYPE_NODE});
     
     return $self;
   }

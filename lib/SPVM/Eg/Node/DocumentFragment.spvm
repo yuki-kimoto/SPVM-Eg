@@ -9,7 +9,7 @@ class Eg::Node::DocumentFragment extends Eg::Node {
     
     my $self = new Eg::Node::DocumentFragment;
     
-    $self->SUPER::init(Eg::Node->TYPE_DOCUMENT_FRAGMENT_NODE);
+    $self->SUPER::init({node_type => Eg::Node->TYPE_DOCUMENT_FRAGMENT_NODE});
     
     return $self;
   }

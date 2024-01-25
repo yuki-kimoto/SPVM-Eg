@@ -10,7 +10,7 @@ class Eg::Node::Document::XML extends Eg::Node::Document {
     
     my $self = new Eg::Node::Document::XML;
     
-    $self->init(Eg::Node->TYPE_DOCUMENT_NODE);
+    $self->SUPER::init;
     
     return $self;
   }

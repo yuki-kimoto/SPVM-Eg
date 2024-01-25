@@ -9,7 +9,7 @@ class Eg::Node::Attr extends Eg::Node {
     
     my $self = new Eg::Node::Attr;
     
-    $self->SUPER::init(Eg::Node->TYPE_ATTRIBUTE_NODE);
+    $self->SUPER::init({node_type => Eg::Node->TYPE_ATTRIBUTE_NODE});
     
     return $self;
   }

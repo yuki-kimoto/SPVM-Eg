@@ -5,11 +5,11 @@
 class Eg::Node::CDATASection extends Eg::Node::Text {
   
   # Class Methods
-  static method new : Eg::Node::CDATASection ($text : string) {
+  static method new : Eg::Node::CDATASection ($node_value : string) {
     
     my $self = new Eg::Node::CDATASection;
     
-    $self->SUPER::init(Eg::Node->TYPE_CDATA_SECTION_NODE, $text);
+    $self->SUPER::init({node_value => $node_value});
     
     return $self;
   }

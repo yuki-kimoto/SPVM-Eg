@@ -14,6 +14,8 @@ class Eg::Node::Document extends Eg::Node {
   use Eg::Node::DocumentType;
   use Eg::Node::ShadowRoot;
   
+  use Fn;
+  
   # Fields
   has namespace_uri : protected string;
   
@@ -58,6 +60,29 @@ class Eg::Node::Document extends Eg::Node {
     my $cdata_section_node = Eg::Node::CDATASection->new($node_value);
     
     return $cdata_section_node;
+  }
+  
+  method create_processing_instruction : Eg::Node::ProcessingInstruction ($target : string, $data : string) {
+    
+    unless ($target) {
+      die "\$target must be defined.";
+    }
+    
+    my $node_value = "<?$target ";
+    
+    if ($data) {
+      if (Fn->contains($data, "?>")) {
+        die "\$data cannot contain  \"?>\".";
+      }
+      
+      $node_value .= $data;
+    }
+    
+    $node_value .= "?>";
+    
+    my $processing_instruction_node = Eg::Node::ProcessingInstruction->new($node_value);
+    
+    return $processing_instruction_node;
   }
   
   method create_element : Eg::Node::Element ($tag_name : string) {

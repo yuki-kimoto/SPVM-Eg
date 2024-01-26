@@ -109,34 +109,6 @@ class Eg::Node::Element extends Eg::Node {
     return $exists;
   }
   
-  method attribute_pairs : string[] () {
-    
-    my $attributes_h = $self->{attributes_h};
-    
-    my $attribute_pairs = (string[])undef;
-    
-    if ($attributes_h) {
-      my $names = $attributes_h->keys;
-      
-      Sort->sort_string_asc($names);
-      
-      my $attribute_pairs_list = StringList->new;
-      for my $name (@$names) {
-        my $value = $attributes_h->get_string($name);
-        
-        $attribute_pairs_list->push($name);
-        $attribute_pairs_list->push($value);
-      }
-      
-      $attribute_pairs = $attribute_pairs_list->to_array;
-    }
-    else {
-      $attribute_pairs = new string[0];
-    }
-    
-    return $attribute_pairs;
-  }
-  
   method get_attribute_names : string[] () {
     
     my $attributes_h = $self->{attributes_h};

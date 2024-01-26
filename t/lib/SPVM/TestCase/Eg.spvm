@@ -2,6 +2,26 @@ class TestCase::Eg {
   use Eg;
   use Eg::Node;
   use Eg::DOM::Implementation;
+  use Eg::Node::Element::HTML;
+  
+  static method attribute_pairs : string[] ($element : Eg::Node::Element::HTML) {
+    
+    my $names = $element->get_attribute_names;
+    
+    Sort->sort_string_asc($names);
+    
+    my $attribute_pairs_list = StringList->new;
+    for my $name (@$names) {
+      my $value = $element->get_attribute($name);
+      
+      $attribute_pairs_list->push($name);
+      $attribute_pairs_list->push($value);
+    }
+    
+    my $attribute_pairs = $attribute_pairs_list->to_array;
+    
+    return $attribute_pairs;
+  }
   
   static method tag : Eg::Node::Element::HTML ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
     
@@ -193,7 +213,7 @@ class TestCase::Eg {
       
       $div->remove_attribute("attribute3");
       
-      unless (Array->equals_string($div->attribute_pairs, ["attribute2" => "attributeval2"])) {
+      unless (Array->equals_string(&attribute_pairs($div), ["attribute2" => "attributeval2"])) {
         return 0;
       }
     }
@@ -202,9 +222,7 @@ class TestCase::Eg {
     {
       my $div = &tag_("div", {attr1 => "attrval1", attr2 => "attrval2"});
       
-      my $attribute_pairs = $div->attribute_pairs;
-      
-      unless (Array->equals_string($attribute_pairs, ["attr1", "attrval1", "attr2", "attrval2"])) {
+      unless (Array->equals_string(&attribute_pairs($div), ["attr1", "attrval1", "attr2", "attrval2"])) {
         return 0;
       }
     }

@@ -86,8 +86,6 @@ class Cotton {
           
           my $style_value = $style_name_value->[1];
           
-          warn "$style_name $style_value";
-          
           $styles_h->set_string($style_name, $style_value);
           
           $new_element_node->set_styles_h($styles_h);

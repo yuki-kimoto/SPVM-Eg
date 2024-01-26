@@ -137,6 +137,23 @@ class Eg::Node::Element extends Eg::Node {
     return $attribute_pairs;
   }
   
+  method get_attribute_names : string[] () {
+    
+    my $attributes_h = $self->{attributes_h};
+    
+    my $names = (string[])undef;
+    if ($attributes_h) {
+      $names = $attributes_h->keys;
+      
+      Sort->sort_string_asc($names);
+    }
+    else {
+      $names = new string[0];
+    }
+    
+    return $names;
+  }
+  
   method text : string () {
     my $child_nodes = $self->child_nodes;
     

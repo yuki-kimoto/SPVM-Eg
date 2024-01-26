@@ -89,6 +89,10 @@ class Cotton {
           $styles_h->set_string($style_name, $style_value);
           
           $new_element_node->set_styles_h($styles_h);
+          
+          my $style = $new_element_node->style;
+          
+          $style->set_property($style_name, $style_value);
         }
       }
       else {

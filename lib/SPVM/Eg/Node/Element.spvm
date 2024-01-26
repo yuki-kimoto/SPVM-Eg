@@ -46,10 +46,6 @@ class Eg::Node::Element extends Eg::Node {
       return undef;
     }
     
-    if ($self isa Eg::Node::Element::HTML) {
-      $name = Fn->lc($name);
-    }
-    
     my $attribute = $attributes_h->get_string($name);
     
     return $attribute;
@@ -66,10 +62,6 @@ class Eg::Node::Element extends Eg::Node {
     }
     
     my $attributes_h = $self->{attributes_h};
-    
-    if ($self isa Eg::Node::Element::HTML) {
-      $name = Fn->lc($name);
-    }
     
     unless ($attributes_h) {
       $attributes_h = $self->{attributes_h} = Hash->new;

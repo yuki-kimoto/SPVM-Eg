@@ -30,4 +30,23 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
     $self->SUPER::init;
   }
   
+  method get_attribute : string ($name : string) {
+    
+    if ($name) {
+      $name = Fn->lc($name);
+    }
+    
+    my $attribute = $self->SUPER::get_attribute($name);
+    
+    return $attribute;
+  }
+  
+  method set_attribute : void ($name : string, $value : string) {
+    
+    if ($name) {
+      $name = Fn->lc($name);
+    }
+    
+    $self->SUPER::set_attribute($name, $value);
+  }
 }

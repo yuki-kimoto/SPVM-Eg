@@ -401,52 +401,6 @@ Foo
       }
     }
     
-    # jQuery
-    {
-      # attr
-      {
-        my $div = $document->create_element("div");
-        
-        $div->set_attribute(attr1 => "attrval1");
-        
-        unless ($div->attr("attr1") eq "attrval1") {
-          return 0;
-        }
-        
-        if ($div->attr("attr2")) {
-          return 0;
-        }
-      }
-      
-      # set_attr
-      {
-        my $div = $document->create_element("div");
-        
-        $div->set_attr("attr1", "attrval1");
-        
-        unless ($div->attr("attr1") eq "attrval1") {
-          return 0;
-        }
-        
-      }
-      
-      # remove_attr
-      {
-        my $div = $document->create_element("div");
-        
-        $div->set_attribute(attr1 => "attrval1");
-        $div->set_attribute(attr2 => "attrval2");
-        
-        $div->remove_attr("attr1");
-        
-        $div->remove_attr("attr3");
-        
-        unless (Array->equals_string($div->attribute_pairs, ["attr2" => "attrval2"])) {
-          return 0;
-        }
-      }
-    }
-    
     return 1;
   }
   

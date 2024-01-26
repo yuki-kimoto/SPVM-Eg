@@ -186,24 +186,6 @@ class Eg::Node::Element extends Eg::Node {
     
   }
   
-  # jQuery Instance Methods
-  method attr : string ($name : string) {
-    
-    my $attr = $self->get_attribute($name);
-    
-    return $attr;
-  }
-  
-  method set_attr : void ($name : string, $value : string) {
-    
-    $self->set_attribute($name, $value);
-  }
-  
-  method remove_attr : void ($name : string) {
-    
-    $self->remove_attribute($name);
-  }
-  
   method tag_name : string () {
     
     my $tag_name = $self->{tag_name};

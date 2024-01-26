@@ -25,7 +25,7 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
   # Instance Methods
   protected method init : void ($options : object[] = undef) {
     
-    $self->{style} = Eg::CSS::StyleDeclaration->new($self);
+    $self->{style} = Eg::CSS::StyleDeclaration->new;
     
     $self->SUPER::init;
   }
@@ -34,17 +34,34 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
     
     if ($name) {
       $name = Fn->lc($name);
+      
+      if ($name eq "style" && $self->has_attribute($name)) {
+        return $self->style->css_text;
+      }
     }
     
-    my $attribute = $self->SUPER::get_attribute($name);
+    my $attribute_value = $self->SUPER::get_attribute($name);
     
-    return $attribute;
+    return $attribute_value;
   }
   
   method set_attribute : void ($name : string, $value : string) {
     
     if ($name) {
       $name = Fn->lc($name);
+      
+      if ($name eq "style") {
+        
+        unless ($value) {
+          die "\$value must be defined.";
+        }
+        
+        $self->style->set_css_text($value);
+        
+        $self->SUPER::set_attribute($name, "dummy");
+        
+        return;
+      }
     }
     
     $self->SUPER::set_attribute($name, $value);

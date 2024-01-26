@@ -406,8 +406,6 @@ int32_t SPVM__Eg__OS__Windows__API__App__text_metrics_height(SPVM_ENV* env, SPVM
   int32_t width = box->width;
   int32_t font_size = box->font_size;
   
-  spvm_warn("LINE %d %d", __LINE__, font_size);
-  
   DWRITE_FONT_WEIGHT font_weight_native = DWRITE_FONT_WEIGHT_NORMAL;
   DWRITE_FONT_STYLE font_style_native = DWRITE_FONT_STYLE_NORMAL;
   
@@ -517,7 +515,16 @@ int32_t SPVM__Eg__OS__Windows__API__App__paint_node(SPVM_ENV* env, SPVM_VALUE* s
   if (text) {
     
     int32_t font_size = box->font_size;
+    
     DWRITE_FONT_WEIGHT font_weight_native = DWRITE_FONT_WEIGHT_NORMAL;
+    
+    int32_t font_weight = box->font_weight_value_type;
+    
+    if (box->font_weight_value_type == EG_CSS_BOX_C_VALUE_TYPE_FONT_WEIGHT_BOLD) {
+      
+      font_weight_native = DWRITE_FONT_WEIGHT_BOLD;
+    }
+    
     DWRITE_FONT_STYLE font_style_native = DWRITE_FONT_STYLE_NORMAL;
     
     const int16_t* text_utf16 = encode_utf16(env, stack, text);

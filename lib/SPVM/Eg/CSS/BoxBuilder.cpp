@@ -287,6 +287,7 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_styles(SPVM_ENV* env, SPVM_VALUE* s
               style_value_type = EG_CSS_BOX_C_VALUE_TYPE_FONT_WEIGHT_NORMAL;
             }
             else if (strcmp(style_value, "bold") == 0) {
+              
               style_value_type = EG_CSS_BOX_C_VALUE_TYPE_FONT_WEIGHT_BOLD;
             }
             

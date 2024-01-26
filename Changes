@@ -1,6 +1,10 @@
 0.015 2024-01-26
   [New Features]
     * Add many CSS child classes.
+    * Support font-weight:bold;
+    * Support font-style:italic.
+  [Bug Fix]
+    * Fix Wide character encoding.
 0.014 2024-01-25
   [New Features]
     * Add many Node child classes.

@@ -18,6 +18,23 @@ static const char* FILE_NAME = "Eg/OS/Windows/API/App.cpp";
 
 extern "C" {
 
+// UTF-8をワイド文字に変換する関数
+wchar_t* UTF8ToWideChar(const char* str, size_t* len) {
+  // 必要なサイズを取得
+  size_t size = MultiByteToWideChar(CP_UTF8, 0, str, -1, NULL, 0);
+
+  // メモリを確保
+  wchar_t* wideStr = new wchar_t[size];
+
+  // 変換
+  MultiByteToWideChar(CP_UTF8, 0, str, -1, wideStr, size);
+
+  // 長さを設定
+  *len = size;
+
+  return wideStr;
+}
+
 static LRESULT CALLBACK window_procedure(HWND window_handle , UINT message , WPARAM wparam , LPARAM lparam);
 
 static int32_t paint_event_handler(SPVM_ENV* env, SPVM_VALUE* stack, void* obj_self);
@@ -521,14 +538,17 @@ int32_t SPVM__Eg__OS__Windows__API__App__paint_node(SPVM_ENV* env, SPVM_VALUE* s
     int32_t font_weight = box->font_weight_value_type;
     
     if (box->font_weight_value_type == EG_CSS_BOX_C_VALUE_TYPE_FONT_WEIGHT_BOLD) {
-      
       font_weight_native = DWRITE_FONT_WEIGHT_BOLD;
     }
     
     DWRITE_FONT_STYLE font_style_native = DWRITE_FONT_STYLE_NORMAL;
     
-    const int16_t* text_utf16 = encode_utf16(env, stack, text);
-    int32_t text_utf16_length = strlen((char*)text_utf16) / 2;
+    if (box->font_style_value_type == EG_CSS_BOX_C_VALUE_TYPE_FONT_STYLE_ITALIC) {
+      spvm_warn("LINE %d", __LINE__);
+      font_style_native = DWRITE_FONT_STYLE_ITALIC;
+    }
+    
+    spvm_warn("LINE %d %s", __LINE__, text);
     
     D2D1::ColorF color_f = {0};
     color_f = D2D1::ColorF(box->color_red, box->color_green, box->color_blue, box->color_alpha);
@@ -554,6 +574,9 @@ int32_t SPVM__Eg__OS__Windows__API__App__paint_node(SPVM_ENV* env, SPVM_VALUE* s
       &text_format
     );
     
+    size_t text_utf16_length = -1;
+    const WCHAR* text_utf16 = UTF8ToWideChar(text, &text_utf16_length);
+    
     IDWriteTextLayout* text_layout = NULL;
     hresult = direct_write_factory->CreateTextLayout(
           (const WCHAR*)text_utf16
@@ -563,6 +586,8 @@ int32_t SPVM__Eg__OS__Windows__API__App__paint_node(SPVM_ENV* env, SPVM_VALUE* s
         , 0
         , &text_layout
     );
+    
+    delete text_utf16;
     
     if (FAILED(hresult)) {
       return env->die(env, stack, "IDWriteFactory#CreateTextLayout() failed.", __func__, FILE_NAME, __LINE__);
@@ -580,5 +605,6 @@ int32_t SPVM__Eg__OS__Windows__API__App__paint_node(SPVM_ENV* env, SPVM_VALUE* s
   
   return 0;
 }
+
 
 }

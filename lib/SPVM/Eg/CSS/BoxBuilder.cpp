@@ -287,13 +287,30 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_styles(SPVM_ENV* env, SPVM_VALUE* s
               style_value_type = EG_CSS_BOX_C_VALUE_TYPE_FONT_WEIGHT_NORMAL;
             }
             else if (strcmp(style_value, "bold") == 0) {
-              
               style_value_type = EG_CSS_BOX_C_VALUE_TYPE_FONT_WEIGHT_BOLD;
             }
             
             box->font_weight_value_type = style_value_type;
           }
         }
+        else if (strcmp(style_name, "font-style") == 0) {
+          if (!(style_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN)) {
+            box->font_style_value_type = style_value_type;
+          }
+          else {
+            int32_t style_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN;
+            
+            if (strcmp(style_value, "normal") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_FONT_STYLE_NORMAL;
+            }
+            else if (strcmp(style_value, "italic") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_FONT_STYLE_ITALIC;
+            }
+            
+            box->font_style_value_type = style_value_type;
+          }
+        }
+        
         
         break;
       }
@@ -457,6 +474,10 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_set_default_values(SPVM_ENV* env, S
     if (box->font_weight_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
       box->font_weight_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT;
     }
+    
+    if (box->font_style_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
+      box->font_style_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT;
+    }
   }
   else {
     if (box->background_color_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
@@ -489,7 +510,11 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_set_default_values(SPVM_ENV* env, S
     }
     
     if (box->font_weight_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
-      box->font_weight_value_type = EG_CSS_BOX_C_VALUE_TYPE_FONT_WEIGHT_BOLD;
+      box->font_weight_value_type = EG_CSS_BOX_C_VALUE_TYPE_FONT_WEIGHT_NORMAL;
+    }
+    
+    if (box->font_style_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
+      box->font_style_value_type = EG_CSS_BOX_C_VALUE_TYPE_FONT_STYLE_NORMAL;
     }
   }
   
@@ -586,6 +611,10 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant(SPVM_ENV* env, SPVM_VALU
     
     if (box->font_weight_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
       box->font_weight_value_type = parent_box->font_weight_value_type;
+    }
+    
+    if (box->font_style_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
+      box->font_style_value_type = parent_box->font_style_value_type;
     }
   }
   

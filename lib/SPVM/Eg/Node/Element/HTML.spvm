@@ -12,12 +12,6 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
   # Fields
   has styles_h : rw Hash of string;
   
-  has css_text : rw string;
-  
-  has computed_styles_h : rw Hash of string;
-  
-  has computed_style : ro Eg::CSS::StyleDeclaration;
-  
   has style : ro Eg::CSS::StyleDeclaration;
   
   # Class Methods
@@ -77,34 +71,6 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
     }
     
     return $style_pairs;
-  }
-  
-  method computed_style_pairs : string[] () {
-    
-    my $computed_styles_h = $self->{computed_styles_h};
-    
-    my $computed_style_pairs = (string[])undef;
-    
-    if ($computed_styles_h) {
-      my $names = $computed_styles_h->keys;
-      
-      Sort->sort_string_asc($names);
-      
-      my $computed_style_pairs_list = StringList->new;
-      for my $name (@$names) {
-        my $value = $computed_styles_h->get_string($name);
-        
-        $computed_style_pairs_list->push($name);
-        $computed_style_pairs_list->push($value);
-      }
-      
-      $computed_style_pairs = $computed_style_pairs_list->to_array;
-    }
-    else {
-      $computed_style_pairs = new string[0];
-    }
-    
-    return $computed_style_pairs;
   }
   
 }

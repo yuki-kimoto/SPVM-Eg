@@ -81,12 +81,6 @@ class TestCase::Eg {
     
     my $attributes_h = Hash->new($attribute_pairs);
     
-    my $css_text = $attributes_h->delete_or_default_string("style", undef);
-    
-    if ($css_text) {
-      $new_element_node->style->set_css_text($css_text);
-    }
-    
     for my $attribute_name (@{$attributes_h->keys}) {
       my $attribute_value = $attributes_h->get($attribute_name);
       

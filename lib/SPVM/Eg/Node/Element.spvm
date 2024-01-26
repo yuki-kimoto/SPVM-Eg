@@ -50,10 +50,6 @@ class Eg::Node::Element extends Eg::Node {
       $name = Fn->lc($name);
     }
     
-    if ($name eq "nonce") {
-      return "";
-    }
-    
     my $attribute = $attributes_h->get_string($name);
     
     return $attribute;

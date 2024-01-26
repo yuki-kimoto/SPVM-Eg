@@ -12,20 +12,30 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
   # Fields
   has styles_h : rw Hash of string;
   
-  has style : ro Eg::CSS::StyleDeclaration;
-  
   has css_text : rw string;
   
   has computed_styles_h : rw Hash of string;
+  
+  has computed_style : ro Eg::CSS::StyleDeclaration;
+  
+  has style : ro Eg::CSS::StyleDeclaration;
   
   # Class Methods
   private static method new : Eg::Node::Element::HTML () {
     
     my $self = new Eg::Node::Element::HTML;
     
-    $self->SUPER::init;
+    $self->init;
     
     return $self;
+  }
+  
+  # Instance Methods
+  protected method init : void ($options : object[] = undef) {
+    
+    $self->{style} = Eg::CSS::StyleDeclaration->new;
+    
+    $self->SUPER::init;
   }
   
   method css : string ($name : string) {

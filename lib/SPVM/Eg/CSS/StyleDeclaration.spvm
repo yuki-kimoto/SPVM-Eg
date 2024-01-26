@@ -3,6 +3,8 @@
 
 class Eg::CSS::StyleDeclaration {
   
+  allow Eg::Node::Element::HTML;
+  
   use Eg::CSS::Rule;
   
   # Fields

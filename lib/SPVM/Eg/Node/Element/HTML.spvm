@@ -25,7 +25,7 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
   # Instance Methods
   protected method init : void ($options : object[] = undef) {
     
-    $self->{style} = Eg::CSS::StyleDeclaration->new;
+    $self->{style} = Eg::CSS::StyleDeclaration->new($self);
     
     $self->SUPER::init;
   }

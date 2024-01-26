@@ -12,12 +12,17 @@ class Eg::CSS::StyleDeclaration {
   
   has styles_h : Hash of string;
   
+  has parent_element : Eg::Node::Element::HTML;
+  
   # Class Method
-  private static method new : Eg::CSS::StyleDeclaration () {
+  private static method new : Eg::CSS::StyleDeclaration ($parent_element : Eg::Node::Element::HTML = undef) {
     
     my $self = new Eg::CSS::StyleDeclaration;
     
     $self->{styles_h} = Hash->new;
+    
+    $self->{parent_element} = $parent_element;
+    weaken $self->{parent_element};
     
     return $self;
   }

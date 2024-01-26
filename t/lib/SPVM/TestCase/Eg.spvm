@@ -87,8 +87,6 @@ class TestCase::Eg {
           
           $new_element_node->set_styles_h($styles_h);
           
-          my $computed_style = $new_element_node->computed_style;
-          
           my $style = $new_element_node->style;
           
           $style->set_property($style_name, $style_value);
@@ -260,7 +258,7 @@ class TestCase::Eg {
     {
       my $div = &tag_("div", {style => "css1:cssval1;css2:cssval2;"});
       
-      my $style_pairs = $div->style_pairs;
+      my $style_pairs = $div->style->to_pairs;
       
       unless (Array->equals_string($style_pairs, ["css1", "cssval1", "css2", "cssval2"])) {
         return 0;

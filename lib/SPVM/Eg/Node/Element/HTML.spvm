@@ -45,32 +45,4 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
     return $css;
   }
   
-  method style_pairs : string[] () {
-    
-    my $styles_h = $self->{styles_h};
-    
-    my $style_pairs = (string[])undef;
-    
-    if ($styles_h) {
-      my $names = $styles_h->keys;
-      
-      Sort->sort_string_asc($names);
-      
-      my $style_pairs_list = StringList->new;
-      for my $name (@$names) {
-        my $value = $styles_h->get_string($name);
-        
-        $style_pairs_list->push($name);
-        $style_pairs_list->push($value);
-      }
-      
-      $style_pairs = $style_pairs_list->to_array;
-    }
-    else {
-      $style_pairs = new string[0];
-    }
-    
-    return $style_pairs;
-  }
-  
 }

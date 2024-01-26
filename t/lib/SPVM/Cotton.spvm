@@ -64,42 +64,10 @@ class Cotton {
     
     my $attributes_h = Hash->new($attribute_pairs);
     
-    my $style_pairs = $attributes_h->delete("style");
+    my $css_text = $attributes_h->delete_or_default_string("style", undef);
     
-    if ($style_pairs) {
-      if ($style_pairs isa string) {
-        my $styles_h = Hash->new;
-        
-        my $css_text = (string)$style_pairs;
-        
-        my $style_pairs_text = Fn->split(";", $css_text);
-        
-        for my $style_pair_text (@$style_pairs_text) {
-          
-          unless (length $style_pair_text) {
-            next;
-          }
-          
-          my $style_name_value = Fn->split(":", $style_pair_text);
-          
-          my $style_name = $style_name_value->[0];
-          
-          my $style_value = $style_name_value->[1];
-          
-          $styles_h->set_string($style_name, $style_value);
-          
-          $new_element_node->set_styles_h($styles_h);
-          
-          my $style = $new_element_node->style;
-          
-          $style->set_property($style_name, $style_value);
-        }
-      }
-      else {
-        my $styles_h = Hash->new((object[])$style_pairs);
-        
-        $new_element_node->set_styles_h($styles_h);
-      }
+    if ($css_text) {
+      $new_element_node->style->set_css_text($css_text);
     }
     
     for my $attribute_name (@{$attributes_h->keys}) {

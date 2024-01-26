@@ -10,8 +10,6 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
   use Eg::CSS::StyleDeclaration;
   
   # Fields
-  has styles_h : rw Hash of string;
-  
   has style : ro Eg::CSS::StyleDeclaration;
   
   # Class Methods

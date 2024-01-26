@@ -32,17 +32,4 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
     $self->SUPER::init;
   }
   
-  method css : string ($name : string) {
-    
-    my $styles_h = $self->{styles_h};
-    
-    unless ($self->{styles_h}) {
-      return undef;
-    }
-    
-    my $css = (string)$styles_h->get($name);
-    
-    return $css;
-  }
-  
 }

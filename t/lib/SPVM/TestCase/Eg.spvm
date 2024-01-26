@@ -157,7 +157,7 @@ class TestCase::Eg {
     {
       my $div = &tag_("div", {style => "color:red;"});
       
-      unless ($div->css("color") eq "red") {
+      unless ($div->style->get_property_value("color") eq "red") {
         return 0;
       }
     }
@@ -245,11 +245,11 @@ class TestCase::Eg {
     {
       my $div = &tag_("div", {style => "css1:cssval1;"});
       
-      unless ($div->css("css1") eq "cssval1") {
+      unless ($div->style->get_property_value("css1") eq "cssval1") {
         return 0;
       }
       
-      if ($div->css("css2")) {
+      if ($div->style->get_property_value("css2")) {
         return 0;
       }
     }

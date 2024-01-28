@@ -216,6 +216,26 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_styles(SPVM_ENV* env, SPVM_VALUE* s
             }
           }
         }
+        else if (strcmp(style_name, "bottom") == 0) {
+          if (!(style_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN)) {
+            box->bottom_value_type = style_value_type;
+          }
+          else {
+            if (strcmp(style_value, "auto") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_BOTTOM_AUTO;
+            }
+            else {
+              double bottom;
+              int32_t style_value_type = 0;
+              int32_t success = parse_css_length_value(env, stack, style_value, style_value_length, &style_value_type, &bottom);
+              
+              if (success) {
+                box->bottom_value_type = style_value_type;
+                box->bottom = (int32_t)bottom;
+              }
+            }
+          }
+        }
         
         break;
       }
@@ -362,6 +382,31 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_styles(SPVM_ENV* env, SPVM_VALUE* s
         
         break;
       }
+      case 'r' : {
+        
+        if (strcmp(style_name, "right") == 0) {
+          if (!(style_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN)) {
+            box->right_value_type = style_value_type;
+          }
+          else {
+            if (strcmp(style_value, "auto") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_RIGHT_AUTO;
+            }
+            else {
+              double right;
+              int32_t style_value_type = 0;
+              int32_t success = parse_css_length_value(env, stack, style_value, style_value_length, &style_value_type, &right);
+              
+              if (success) {
+                box->right_value_type = style_value_type;
+                box->right = (int32_t)right;
+              }
+            }
+          }
+        }
+        
+        break;
+      }
       case 't' : {
         
         if (strcmp(style_name, "top") == 0) {
@@ -474,12 +519,20 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_set_default_values(SPVM_ENV* env, S
       box->color_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT;
     }
     
+    if (box->left_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
+      box->left_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT;
+    }
+    
     if (box->top_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
       box->top_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT;
     }
     
-    if (box->left_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
-      box->left_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT;
+    if (box->right_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
+      box->right_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT;
+    }
+    
+    if (box->bottom_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
+      box->bottom_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT;
     }
     
     if (box->width_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
@@ -516,12 +569,20 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_set_default_values(SPVM_ENV* env, S
       box->color_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT;
     }
     
+    if (box->left_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
+      box->left_value_type = EG_CSS_BOX_C_VALUE_TYPE_LEFT_AUTO;
+    }
+    
     if (box->top_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
       box->top_value_type = EG_CSS_BOX_C_VALUE_TYPE_TOP_AUTO;
     }
     
-    if (box->left_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
-      box->left_value_type = EG_CSS_BOX_C_VALUE_TYPE_LEFT_AUTO;
+    if (box->right_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
+      box->right_value_type = EG_CSS_BOX_C_VALUE_TYPE_RIGHT_AUTO;
+    }
+    
+    if (box->bottom_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
+      box->bottom_value_type = EG_CSS_BOX_C_VALUE_TYPE_BOTTOM_AUTO;
     }
     
     if (box->width_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
@@ -615,6 +676,14 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant(SPVM_ENV* env, SPVM_VALU
     
     if (box->top_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
       box->top = parent_box->top;
+    }
+    
+    if (box->right_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
+      box->right = parent_box->right;
+    }
+    
+    if (box->bottom_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
+      box->bottom = parent_box->bottom;
     }
     
     if (box->width_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {

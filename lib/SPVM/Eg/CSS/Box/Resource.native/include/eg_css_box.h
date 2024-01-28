@@ -78,6 +78,8 @@ struct eg_css_box {
   const char* text;
   int32_t left;
   int32_t top;
+  int32_t right;
+  int32_t bottom;
   int32_t width;
   int32_t height;
   float color_red;
@@ -93,6 +95,8 @@ struct eg_css_box {
   int8_t is_anon_box;
   int8_t left_value_type;
   int8_t top_value_type;
+  int8_t right_value_type;
+  int8_t bottom_value_type;
   int8_t width_value_type;
   int8_t height_value_type;
   int8_t color_value_type;

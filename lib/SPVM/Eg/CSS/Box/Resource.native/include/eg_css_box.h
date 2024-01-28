@@ -62,6 +62,14 @@ enum {
   EG_CSS_BOX_C_VALUE_TYPE_FONT_STYLE_ITALIC,
 };
 
+enum {
+  EG_CSS_BOX_C_VALUE_TYPE_FONT_STYLE_STATIC = 16,
+  EG_CSS_BOX_C_VALUE_TYPE_FONT_STYLE_RELATIVE,
+  EG_CSS_BOX_C_VALUE_TYPE_FONT_STYLE_ABSOLUTE,
+  EG_CSS_BOX_C_VALUE_TYPE_FONT_STYLE_FIXED,
+  EG_CSS_BOX_C_VALUE_TYPE_FONT_STYLE_STICKY,
+};
+
 struct eg_css_box {
   struct eg_css_box* first_child;
   struct eg_css_box* last_child;
@@ -92,4 +100,5 @@ struct eg_css_box {
   int8_t font_size_value_type;
   int8_t font_weight_value_type;
   int8_t font_style_value_type;
+  int8_t font_position_value_type;
 };

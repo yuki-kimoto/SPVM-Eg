@@ -241,9 +241,6 @@ MANIFEST			This list of files
 MANIFEST.SKIP
 README.md
 t/basic.t
-t/cotton.config
-t/cotton.production.config
-t/lib/SPVM/Cotton.spvm
 t/lib/SPVM/Eg/OS/Windows.spvm
 t/lib/SPVM/Eg/OS/Windows/API/App.config
 t/lib/SPVM/Eg/OS/Windows/API/App.cpp
@@ -253,5 +250,8 @@ t/lib/SPVM/Eg/OS/Windows/API/Window.cpp
 t/lib/SPVM/Eg/OS/Windows/API/Window.spvm
 t/lib/SPVM/Eg/OS/Windows/HWND.spvm
 t/lib/SPVM/Eg/OS/Windows/ID2D1HwndRenderTarget.spvm
+t/lib/SPVM/Engine.spvm
 t/lib/SPVM/TestCase/Eg.spvm
 t/README.md
+t/spvm-engine.config
+t/spvm-engine.production.config

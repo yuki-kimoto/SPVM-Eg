@@ -1,4 +1,4 @@
-class Cotton {
+class Engine {
   use Eg;
   use Eg::Runtime;
   use Eg::OS;

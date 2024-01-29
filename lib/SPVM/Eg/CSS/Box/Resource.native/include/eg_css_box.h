@@ -70,6 +70,22 @@ enum {
   EG_CSS_BOX_C_VALUE_TYPE_POSITION_STICKY,
 };
 
+enum {
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_BLOCK = 16,
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_INLINE,
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_INLINE_BLOCK,
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_FLEX,
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_INLINE_FLEX,
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_GRID,
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_INLINE_GRID,
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_FLOW_ROOT,
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_NONE,
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_CONTENTS,
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_TABLE,
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_TABLE_ROW,
+  EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_LIST_ITEM,
+};
+
 struct eg_css_box {
   struct eg_css_box* first_child;
   struct eg_css_box* last_child;
@@ -105,6 +121,7 @@ struct eg_css_box {
   int8_t font_weight_value_type;
   int8_t font_style_value_type;
   int8_t position_value_type;
+  int8_t display_value_type;
   int32_t computed_left;
   int32_t computed_top;
   int32_t computed_width;

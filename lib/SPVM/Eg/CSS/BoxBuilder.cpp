@@ -275,6 +275,55 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_styles(SPVM_ENV* env, SPVM_VALUE* s
         
         break;
       }
+      case 'd' : {
+        
+        if (strcmp(style_name, "display") == 0) {
+          if (!(style_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN)) {
+            box->display_value_type = style_value_type;
+          }
+          else {
+            int32_t style_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN;
+            
+            if (strcmp(style_value, "block") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_BLOCK;
+            }
+            else if (strcmp(style_value, "inline") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_INLINE;
+            }
+            else if (strcmp(style_value, "inline-block") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_INLINE_BLOCK;
+            }
+            else if (strcmp(style_value, "flex") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_FLEX;
+            }
+            else if (strcmp(style_value, "inline-flex") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_INLINE_FLEX;
+            }
+            else if (strcmp(style_value, "grid") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_GRID;
+            }
+            else if (strcmp(style_value, "flow-root") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_FLOW_ROOT;
+            }
+            else if (strcmp(style_value, "contents") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_CONTENTS;
+            }
+            else if (strcmp(style_value, "table") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_TABLE;
+            }
+            else if (strcmp(style_value, "table-row") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_TABLE_ROW;
+            }
+            else if (strcmp(style_value, "list-item") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_LIST_ITEM;
+            }
+            
+            box->display_value_type = style_value_type;
+          }
+        }
+        
+        break;
+      }
       case 'f' : {
         
         if (strcmp(style_name, "font-size") == 0) {
@@ -566,6 +615,10 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_set_default_values(SPVM_ENV* env, S
       box->position_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT;
     }
     
+    if (box->display_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
+      box->display_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT;
+    }
+    
   }
   else {
     if (box->background_color_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
@@ -615,6 +668,10 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_set_default_values(SPVM_ENV* env, S
     
     if (box->position_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
       box->position_value_type = EG_CSS_BOX_C_VALUE_TYPE_POSITION_STATIC;
+    }
+    
+    if (box->display_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN) {
+      box->display_value_type = EG_CSS_BOX_C_VALUE_TYPE_DISPLAY_BLOCK;
     }
     
   }
@@ -733,6 +790,10 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant(SPVM_ENV* env, SPVM_VALU
     
     if (box->position_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
       box->position_value_type = parent_box->position_value_type;
+    }
+    
+    if (box->display_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
+      box->display_value_type = parent_box->display_value_type;
     }
     
   }

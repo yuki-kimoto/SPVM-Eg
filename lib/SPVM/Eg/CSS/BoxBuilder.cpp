@@ -330,30 +330,6 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_styles(SPVM_ENV* env, SPVM_VALUE* s
             box->font_style_value_type = style_value_type;
           }
         }
-        else if (strcmp(style_name, "position") == 0) {
-          if (!(style_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN)) {
-            box->position_value_type = style_value_type;
-          }
-          else {
-            int32_t style_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN;
-            
-            if (strcmp(style_value, "static") == 0) {
-              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_POSITION_STATIC;
-            }
-            else if (strcmp(style_value, "relative") == 0) {
-              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_POSITION_RELATIVE;
-            }
-            else if (strcmp(style_value, "absolute") == 0) {
-              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_POSITION_ABSOLUTE;
-            }
-            
-            else if (strcmp(style_value, "sticky") == 0) {
-              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_POSITION_STICKY;
-            }
-            
-            box->position_value_type = style_value_type;
-          }
-        }
         
         break;
       }
@@ -377,6 +353,37 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_styles(SPVM_ENV* env, SPVM_VALUE* s
                 box->left = (int32_t)left;
               }
             }
+          }
+        }
+        
+        break;
+      }
+      case 'p' : {
+        
+        if (strcmp(style_name, "position") == 0) {
+          if (!(style_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN)) {
+            box->position_value_type = style_value_type;
+          }
+          else {
+            int32_t style_value_type = EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_UNKNOWN;
+            
+            if (strcmp(style_value, "static") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_POSITION_STATIC;
+            }
+            else if (strcmp(style_value, "relative") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_POSITION_RELATIVE;
+            }
+            else if (strcmp(style_value, "absolute") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_POSITION_ABSOLUTE;
+            }
+            else if (strcmp(style_value, "fixed") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_POSITION_FIXED;
+            }
+            else if (strcmp(style_value, "sticky") == 0) {
+              style_value_type = EG_CSS_BOX_C_VALUE_TYPE_POSITION_STICKY;
+            }
+            
+            box->position_value_type = style_value_type;
           }
         }
         
@@ -829,6 +836,16 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant_compute_position(SPVM_EN
         box->computed_left = parent_box->computed_left;
       }
     }
+    
+    box->computed_width = box->width;
+    
+    box->computed_height = box->height;
+  }
+  else if (box->position_value_type == EG_CSS_BOX_C_VALUE_TYPE_POSITION_FIXED) {
+    
+    box->computed_top = box->top;
+    
+    box->computed_left = box->left;
     
     box->computed_width = box->width;
     

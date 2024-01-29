@@ -477,7 +477,7 @@ int32_t SPVM__Eg__OS__Windows__API__App__paint_node(SPVM_ENV* env, SPVM_VALUE* s
   
   struct eg_css_box* box = (struct eg_css_box*)env->get_pointer(env, stack, obj_box);
   
-  D2D1_RECT_F box_rect = D2D1::RectF(box->left, box->top, box->left + box->width + 1, box->top + box->height + 1);
+  D2D1_RECT_F box_rect = D2D1::RectF(box->computed_left, box->computed_top, box->computed_left + box->computed_width + 1, box->computed_top + box->computed_height + 1);
   
   // Renderer
   stack[0].oval = obj_self;

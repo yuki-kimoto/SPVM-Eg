@@ -795,53 +795,18 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant_compute_position(SPVM_EN
   if (error_id) { return error_id; }
   
   void* obj_previous_sibling_box = NULL;
-
-/*
-
-  // Not document node
-  if (obj_parent_node) {
-    int32_t is_root_node = env->is_type_by_name(env, stack, obj_parent_node, "Eg::Node::Document::HTML", 0);
-    
-    obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
-    if (error_id) { return error_id; }
-    struct eg_css_box* parent_box = (struct eg_css_box*)env->get_pointer(env, stack, obj_parent_box);
-    
-    if (box->position_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
-      box->position_value_type = parent_box->position_value_type;
+  
+  if (box->position_value_type == EG_CSS_BOX_C_VALUE_TYPE_POSITION_STATIC) {
+    if (obj_previous_sibling_node) {
+      void* obj_previous_sibling_box = env->get_field_object_by_name(env, stack, obj_previous_sibling_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+      if (error_id) { return error_id; }
+      struct eg_css_box* previous_sibling_box = NULL;
+      if (obj_previous_sibling_box) {
+        previous_sibling_box = (struct eg_css_box*)env->get_pointer(env, stack, obj_previous_sibling_box);
+      }
     }
-    
-    if (box->left_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
-      box->left = parent_box->left;
-    }
-    
-    if (box->top_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
-      box->top = parent_box->top;
-    }
-    
-    if (box->right_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
-      box->right = parent_box->right;
-    }
-    
-    if (box->bottom_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
-      box->bottom = parent_box->bottom;
-    }
-    
-    if (box->width_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
-      box->width = parent_box->width;
-    }
-    
-    if (box->height_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
-      box->height = parent_box->height;
-    }
-    
-    else if (box->width_value_type == EG_CSS_BOX_C_VALUE_TYPE_WIDTH_AUTO) {
-        box->width = parent_box->width;
-    }
-    
   }
-
-*/
-
+  
   return 0;
 }
 

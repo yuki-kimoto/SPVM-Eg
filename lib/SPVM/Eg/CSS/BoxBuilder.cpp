@@ -814,6 +814,14 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant_compute_position(SPVM_EN
   if (box->position_value_type == EG_CSS_BOX_C_VALUE_TYPE_POSITION_STATIC) {
     if (obj_previous_sibling_box) {
       struct eg_css_box* previous_sibling_box = (struct eg_css_box*)env->get_pointer(env, stack, obj_previous_sibling_box);
+      
+    }
+    else if (obj_parent_box) {
+      struct eg_css_box* parent_box = (struct eg_css_box*)env->get_pointer(env, stack, obj_parent_box);
+      
+    }
+    else {
+      
     }
   }
   

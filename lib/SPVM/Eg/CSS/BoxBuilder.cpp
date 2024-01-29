@@ -799,21 +799,21 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant_compute_position(SPVM_EN
   void* obj_parent_node = env->get_field_object_by_name(env, stack, obj_node, "parent_node", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
-  void* obj_parent_box = NULL;
+  void* obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+  if (error_id) { return error_id; }
   
   void* obj_previous_sibling_node = env->get_field_object_by_name(env, stack, obj_node, "previous_sibling", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
   void* obj_previous_sibling_box = NULL;
+  if (obj_previous_sibling_node) {
+    obj_previous_sibling_box = env->get_field_object_by_name(env, stack, obj_previous_sibling_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+    if (error_id) { return error_id; }
+  }
   
   if (box->position_value_type == EG_CSS_BOX_C_VALUE_TYPE_POSITION_STATIC) {
-    if (obj_previous_sibling_node) {
-      void* obj_previous_sibling_box = env->get_field_object_by_name(env, stack, obj_previous_sibling_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
-      if (error_id) { return error_id; }
-      struct eg_css_box* previous_sibling_box = NULL;
-      if (obj_previous_sibling_box) {
-        previous_sibling_box = (struct eg_css_box*)env->get_pointer(env, stack, obj_previous_sibling_box);
-      }
+    if (obj_previous_sibling_box) {
+      struct eg_css_box* previous_sibling_box = (struct eg_css_box*)env->get_pointer(env, stack, obj_previous_sibling_box);
     }
   }
   

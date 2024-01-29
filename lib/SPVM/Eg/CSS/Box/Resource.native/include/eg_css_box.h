@@ -105,4 +105,8 @@ struct eg_css_box {
   int8_t font_weight_value_type;
   int8_t font_style_value_type;
   int8_t position_value_type;
+  int32_t computed_left;
+  int32_t computed_top;
+  int32_t computed_width;
+  int32_t computed_height;
 };

@@ -7,7 +7,7 @@
 
 #include "re2/re2.h"
 
-#include "eg_css_box.h" 
+#include "eg_css_box.h"
 
 static const char* FILE_NAME = "Eg/CSS/BoxBuilder.cpp";
 

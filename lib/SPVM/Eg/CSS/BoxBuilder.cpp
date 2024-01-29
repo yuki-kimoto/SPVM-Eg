@@ -750,22 +750,25 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_ascendant(SPVM_ENV* env, SPVM_VALUE
   void* obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
+  stack[0].oval = obj_node;
+  env->call_instance_method_by_name(env, stack, "node_value", 1, &error_id, __func__, FILE_NAME, __LINE__);
+  if (error_id) { return error_id; }
+  void* obj_text = stack[0].oval;
+  
+  const char* text = NULL;
+  if (obj_text) {
+    text = env->get_chars(env, stack, obj_text);
+  }
+  
   // Not document node
   if (obj_parent_box) {
     
     if (error_id) { return error_id; }
     struct eg_css_box* parent_box = (struct eg_css_box*)env->get_pointer(env, stack, obj_parent_box);
     
-    stack[0].oval = obj_node;
-    env->call_instance_method_by_name(env, stack, "node_value", 1, &error_id, __func__, FILE_NAME, __LINE__);
-    if (error_id) { return error_id; }
-    void* obj_text = stack[0].oval;
-    
-    if (obj_text) {
-      box->text = env->get_chars(env, stack, obj_text);
-    }
-    
-    if (box->text) {
+    if (text) {
+      box->text = text;
+      
       stack[0].oval = obj_self;
       stack[1].oval = obj_node;
       env->call_instance_method_by_name(env, stack, "text_metrics_height", 2, &error_id, __func__, FILE_NAME, __LINE__);

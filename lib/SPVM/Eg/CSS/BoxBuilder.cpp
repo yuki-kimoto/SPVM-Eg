@@ -633,15 +633,20 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant(SPVM_ENV* env, SPVM_VALU
   void* obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
+  int32_t is_root = 0;
+  
+  if (obj_parent_node) {
+    is_root = env->is_type_by_name(env, stack, obj_parent_node, "Eg::Node::Document::HTML", 0);
+  }
+  
   // Not document node
   if (obj_parent_box) {
-    int32_t is_root_node = env->is_type_by_name(env, stack, obj_parent_node, "Eg::Node::Document::HTML", 0);
     
     if (error_id) { return error_id; }
     struct eg_css_box* parent_box = (struct eg_css_box*)env->get_pointer(env, stack, obj_parent_box);
     
     if (box->color_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
-      if (is_root_node) {
+      if (is_root) {
         box->color_red = 0;
         box->color_green = 0;
         box->color_blue = 0;
@@ -656,7 +661,7 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant(SPVM_ENV* env, SPVM_VALU
     }
     
     if (box->background_color_value_type == EG_CSS_BOX_C_VALUE_TYPE_GLOBAL_INHERIT) {
-      if (is_root_node) {
+      if (is_root) {
         box->color_red = 1;
         box->color_green = 1;
         box->color_blue = 1;
@@ -690,7 +695,7 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant(SPVM_ENV* env, SPVM_VALU
       box->width = parent_box->width;
     }
     else if (box->width_value_type == EG_CSS_BOX_C_VALUE_TYPE_WIDTH_AUTO) {
-      if (is_root_node) {
+      if (is_root) {
         stack[0].oval = obj_self;
         env->call_instance_method_by_name(env, stack, "inner_width", 0, &error_id, __func__, FILE_NAME, __LINE__);
         if (error_id) { return error_id; }

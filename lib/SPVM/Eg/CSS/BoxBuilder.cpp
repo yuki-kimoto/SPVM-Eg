@@ -630,13 +630,13 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant(SPVM_ENV* env, SPVM_VALU
   void* obj_parent_node = env->get_field_object_by_name(env, stack, obj_node, "parent_node", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
-  void* obj_parent_box = NULL;
+  void* obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+  if (error_id) { return error_id; }
   
   // Not document node
-  if (obj_parent_node) {
+  if (obj_parent_box) {
     int32_t is_root_node = env->is_type_by_name(env, stack, obj_parent_node, "Eg::Node::Document::HTML", 0);
     
-    obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
     if (error_id) { return error_id; }
     struct eg_css_box* parent_box = (struct eg_css_box*)env->get_pointer(env, stack, obj_parent_box);
     

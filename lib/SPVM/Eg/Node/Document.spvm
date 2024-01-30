@@ -20,14 +20,25 @@ class Eg::Node::Document extends Eg::Node {
   # Fields
   has namespace_uri : protected string;
   
-  method parent_node : Eg::Node () {
-    return undef;
-  }
-  
-  method document_element : Eg::Node::Element () {
-    my $root_node = (Eg::Node::Element)$self->first_child;
+  method create_element : Eg::Node::Element ($tag_name : string) {
     
-    return $root_node;
+    unless ($tag_name) {
+      die "\$tag_name must be defined.";
+    }
+    
+    unless (length $tag_name) {
+      die "\$tag_name must have its length.";
+    }
+    
+    if (Fn->contains($tag_name, ":")) {
+      die "\$tag_name cannot contains \":\"";
+    }
+    
+    my $element = Eg::Node::Element->new;
+    
+    $element->{tag_name} = $tag_name;
+    
+    return $element;
   }
   
   method create_text_node : Eg::Node::Text ($node_value : string) {
@@ -86,27 +97,6 @@ class Eg::Node::Document extends Eg::Node {
     return $processing_instruction_node;
   }
   
-  method create_element : Eg::Node::Element ($tag_name : string) {
-    
-    unless ($tag_name) {
-      die "\$tag_name must be defined.";
-    }
-    
-    unless (length $tag_name) {
-      die "\$tag_name must have its length.";
-    }
-    
-    if (Fn->contains($tag_name, ":")) {
-      die "\$tag_name cannot contains \":\"";
-    }
-    
-    my $element = Eg::Node::Element->new;
-    
-    $element->{tag_name} = $tag_name;
-    
-    return $element;
-  }
-  
   method create_document_fragment : Eg::Node::DocumentFragment () {
     
     my $document_fragment_node = Eg::Node::DocumentFragment->new;
@@ -131,6 +121,17 @@ class Eg::Node::Document extends Eg::Node {
     $attribute_node->{name} = $name;
     
     return $attribute_node;
+  }
+  
+  method parent_node : Eg::Node () {
+    return undef;
+  }
+  
+  method document_element : Eg::Node::Element () {
+    
+    my $root_node = (Eg::Node::Element)$self->first_child;
+    
+    return $root_node;
   }
   
 }

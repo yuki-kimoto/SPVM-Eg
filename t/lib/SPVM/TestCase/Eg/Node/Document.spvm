@@ -57,4 +57,5 @@ class TestCase::Eg::Node::Document {
     
     return 1;
   }
+  
 }

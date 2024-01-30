@@ -1,4 +1,4 @@
-class TestCase::Eg {
+class TestCase::Eg::Node {
   use Eg;
   use Eg::Node;
   use Eg::DOM::Implementation;

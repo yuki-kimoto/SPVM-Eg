@@ -5,14 +5,25 @@ class Eg::Node::Element::HTML::Unknown extends Eg::Node::Element::HTML {
   
   allow Eg::Node::Document::HTML;
   allow Eg::Node;
+  allow Eg::Node::Element;
+  allow Eg::Node::Element::HTML;
   
   # Class Methods
-  private static method new : Eg::Node::Element::HTML::Unknown () {
+  static method new : Eg::Node::Element::HTML::Unknown () {
     
     my $self = new Eg::Node::Element::HTML::Unknown;
     
     $self->SUPER::init;
     
     return $self;
+  }
+  
+  method clone : Eg::Node::Element::HTML::Unknown () {
+    
+    my $cloned = new Eg::Node::Element::HTML::Unknown;
+    
+    $self->SUPER::clone_to($cloned);
+    
+    return $cloned;
   }
 }

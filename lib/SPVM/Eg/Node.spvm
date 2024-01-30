@@ -580,7 +580,11 @@ class Eg::Node {
     
     return $new_node_tree;
   }
-
+  
+  protected method clone_to : void ($cloned : Eg::Node) {
+    
+  }
+  
 =pod void elements
 
 <area>

@@ -267,6 +267,7 @@ t/lib/SPVM/Eg/OS/Windows/ID2D1HwndRenderTarget.spvm
 t/lib/SPVM/Engine.spvm
 t/lib/SPVM/TestCase/Eg/DOM/Implementation.spvm
 t/lib/SPVM/TestCase/Eg/Node.spvm
+t/lib/SPVM/TestCase/Eg/Node/Document.spvm
 t/README.md
 t/spvm-engine.config
 t/spvm-engine.production.config

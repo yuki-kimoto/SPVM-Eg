@@ -9,8 +9,9 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
   
   use Eg::CSS::StyleDeclaration;
   
-  # Fields
-  has style : ro Eg::CSS::StyleDeclaration;
+  method style : Eg::CSS::StyleDeclaration () {
+    return $self->{style};
+  }
   
   # Class Methods
   private static method new : Eg::Node::Element::HTML () {

@@ -155,6 +155,8 @@ lib/SPVM/Eg/Node/Element/HTML/Link.pm
 lib/SPVM/Eg/Node/Element/HTML/Link.spvm
 lib/SPVM/Eg/Node/Element/HTML/Map.pm
 lib/SPVM/Eg/Node/Element/HTML/Map.spvm
+lib/SPVM/Eg/Node/Element/HTML/Marquee.pm
+lib/SPVM/Eg/Node/Element/HTML/Marquee.spvm
 lib/SPVM/Eg/Node/Element/HTML/Media.pm
 lib/SPVM/Eg/Node/Element/HTML/Media.spvm
 lib/SPVM/Eg/Node/Element/HTML/Menu.pm
@@ -173,12 +175,16 @@ lib/SPVM/Eg/Node/Element/HTML/OptGroup.pm
 lib/SPVM/Eg/Node/Element/HTML/OptGroup.spvm
 lib/SPVM/Eg/Node/Element/HTML/Option.pm
 lib/SPVM/Eg/Node/Element/HTML/Option.spvm
+lib/SPVM/Eg/Node/Element/HTML/Output.pm
+lib/SPVM/Eg/Node/Element/HTML/Output.spvm
 lib/SPVM/Eg/Node/Element/HTML/Paragraph.pm
 lib/SPVM/Eg/Node/Element/HTML/Paragraph.spvm
 lib/SPVM/Eg/Node/Element/HTML/Param.pm
 lib/SPVM/Eg/Node/Element/HTML/Param.spvm
 lib/SPVM/Eg/Node/Element/HTML/Picture.pm
 lib/SPVM/Eg/Node/Element/HTML/Picture.spvm
+lib/SPVM/Eg/Node/Element/HTML/Portal.pm
+lib/SPVM/Eg/Node/Element/HTML/Portal.spvm
 lib/SPVM/Eg/Node/Element/HTML/Pre.pm
 lib/SPVM/Eg/Node/Element/HTML/Pre.spvm
 lib/SPVM/Eg/Node/Element/HTML/Progress.pm

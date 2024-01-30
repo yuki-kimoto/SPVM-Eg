@@ -215,8 +215,12 @@ lib/SPVM/Eg/Node/Element/HTML/TableRow.pm
 lib/SPVM/Eg/Node/Element/HTML/TableRow.spvm
 lib/SPVM/Eg/Node/Element/HTML/TableSection.pm
 lib/SPVM/Eg/Node/Element/HTML/TableSection.spvm
+lib/SPVM/Eg/Node/Element/HTML/Template.pm
+lib/SPVM/Eg/Node/Element/HTML/Template.spvm
 lib/SPVM/Eg/Node/Element/HTML/TextArea.pm
 lib/SPVM/Eg/Node/Element/HTML/TextArea.spvm
+lib/SPVM/Eg/Node/Element/HTML/Time.pm
+lib/SPVM/Eg/Node/Element/HTML/Time.spvm
 lib/SPVM/Eg/Node/Element/HTML/Title.pm
 lib/SPVM/Eg/Node/Element/HTML/Title.spvm
 lib/SPVM/Eg/Node/Element/HTML/Track.pm

@@ -12,6 +12,8 @@ class Eg::Node::Element::HTML::HR extends Eg::Node::Element::HTML {
     
     $self->SUPER::init;
     
+    $self->{is_void} = 1;
+    
     return $self;
   }
 }

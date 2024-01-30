@@ -19,6 +19,8 @@ class Eg::Node::Element extends Eg::Node {
   
   has tag_name : protected string;
   
+  has is_void : protected byte;
+  
   # Class Methods
   private static method new : Eg::Node::Element () {
     

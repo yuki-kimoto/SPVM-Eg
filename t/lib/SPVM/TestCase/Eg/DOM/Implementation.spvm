@@ -52,12 +52,14 @@ class TestCase::Eg::DOM::Implementation {
           }
         }
       }
-      
+    }
+    
     return 1;
   }
   
   static method create_document : int () {
     
+    {
       # tag_name - XML
       {
         my $dom_impl = Eg::DOM::Implementation->new;

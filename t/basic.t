@@ -8,6 +8,8 @@ BEGIN { $ENV{SPVM_BUILD_DIR} = "$FindBin::Bin/.spvm_build"; }
 
 use SPVM 'TestCase::Eg::Node';
 
+use SPVM 'TestCase::Eg::DOM::Implementation';
+
 use SPVM 'Eg';
 use SPVM::Eg;
 use SPVM 'Fn';
@@ -18,11 +20,13 @@ my $start_memory_blocks_count = $api->get_memory_blocks_count;
 
 ok(SPVM::TestCase::Eg::Node->test);
 
-ok(SPVM::TestCase::Eg::Node->dom_implementation);
-
 ok(SPVM::TestCase::Eg::Node->node);
 
 ok(SPVM::TestCase::Eg::Node->element);
+
+ok(SPVM::TestCase::Eg::DOM::Implementation->create_html_document);
+
+ok(SPVM::TestCase::Eg::DOM::Implementation->create_document);
 
 # Version check
 {

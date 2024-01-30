@@ -54,6 +54,7 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
   use Eg::Node::Element::HTML::LI;
   use Eg::Node::Element::HTML::Link;
   use Eg::Node::Element::HTML::Map;
+  use Eg::Node::Element::HTML::Marquee;
   use Eg::Node::Element::HTML::Media;
   use Eg::Node::Element::HTML::Menu;
   use Eg::Node::Element::HTML::Meta;
@@ -63,6 +64,7 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
   use Eg::Node::Element::HTML::Object;
   use Eg::Node::Element::HTML::OptGroup;
   use Eg::Node::Element::HTML::Option;
+  use Eg::Node::Element::HTML::Output;
   use Eg::Node::Element::HTML::Paragraph;
   use Eg::Node::Element::HTML::Param;
   use Eg::Node::Element::HTML::Picture;
@@ -292,8 +294,32 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     elsif ($tag_name eq "head") {
       $element = Eg::Node::Element::HTML::Head->new;
     }
-    elsif ($tag_name eq "h1" || $tag_name eq "h2" || $tag_name eq "h3" || $tag_name eq "h4" || $tag_name eq "h5" || $tag_name eq "h6") {
+    elsif ($tag_name eq "h1") {
       $element = Eg::Node::Element::HTML::Heading->new;
+    }
+    elsif ($tag_name eq "h2") {
+      $element = Eg::Node::Element::HTML::Heading->new;
+    }
+    elsif ($tag_name eq "h3") {
+      $element = Eg::Node::Element::HTML::Heading->new;
+    }
+    elsif ($tag_name eq "h4") {
+      $element = Eg::Node::Element::HTML::Heading->new;
+    }
+    elsif ($tag_name eq "h5") {
+      $element = Eg::Node::Element::HTML::Heading->new;
+    }
+    elsif ($tag_name eq "h6") {
+      $element = Eg::Node::Element::HTML::Heading->new;
+    }
+    elsif ($tag_name eq "head") {
+      $element = Eg::Node::Element::HTML::Head->new;
+    }
+    elsif ($tag_name eq "header") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "hgroup") {
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "hr") {
       $element = Eg::Node::Element::HTML::HR->new;
@@ -301,14 +327,26 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     elsif ($tag_name eq "html") {
       $element = Eg::Node::Element::HTML::Html->new;
     }
+    elsif ($tag_name eq "i") {
+      $element = Eg::Node::Element::HTML->new;
+    }
     elsif ($tag_name eq "iframe") {
       $element = Eg::Node::Element::HTML::IFrame->new;
     }
     elsif ($tag_name eq "image") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "img") {
       $element = Eg::Node::Element::HTML::Image->new;
     }
     elsif ($tag_name eq "input") {
       $element = Eg::Node::Element::HTML::Input->new;
+    }
+    elsif ($tag_name eq "ins") {
+      $element = Eg::Node::Element::HTML::Mod->new;
+    }
+    elsif ($tag_name eq "kbd") {
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "label") {
       $element = Eg::Node::Element::HTML::Label->new;
@@ -322,11 +360,23 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     elsif ($tag_name eq "link") {
       $element = Eg::Node::Element::HTML::Link->new;
     }
+    elsif ($tag_name eq "main") {
+      $element = Eg::Node::Element::HTML->new;
+    }
     elsif ($tag_name eq "map") {
       $element = Eg::Node::Element::HTML::Map->new;
     }
+    elsif ($tag_name eq "mark") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "marquee") {
+      $element = Eg::Node::Element::HTML::Marquee->new;
+    }
     elsif ($tag_name eq "menu") {
       $element = Eg::Node::Element::HTML::Menu->new;
+    }
+    elsif ($tag_name eq "menuitem") {
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "meta") {
       $element = Eg::Node::Element::HTML::Meta->new;
@@ -334,20 +384,35 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     elsif ($tag_name eq "meter") {
       $element = Eg::Node::Element::HTML::Meter->new;
     }
-    elsif ($tag_name eq "del" || $tag_name eq "ins") {
-      $element = Eg::Node::Element::HTML::Mod->new;
+    elsif ($tag_name eq "nav") {
+      $element = Eg::Node::Element::HTML->new;
     }
-    elsif ($tag_name eq "ol") {
-      $element = Eg::Node::Element::HTML::OList->new;
+    elsif ($tag_name eq "nobr") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "noembed") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "noframes") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "noscript") {
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "object") {
       $element = Eg::Node::Element::HTML::Object->new;
+    }
+    elsif ($tag_name eq "ol") {
+      $element = Eg::Node::Element::HTML::OList->new;
     }
     elsif ($tag_name eq "optgroup") {
       $element = Eg::Node::Element::HTML::OptGroup->new;
     }
     elsif ($tag_name eq "option") {
       $element = Eg::Node::Element::HTML::Option->new;
+    }
+    elsif ($tag_name eq "output") {
+      $element = Eg::Node::Element::HTML::Output->new;
     }
     elsif ($tag_name eq "p") {
       $element = Eg::Node::Element::HTML::Paragraph->new;
@@ -358,14 +423,35 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     elsif ($tag_name eq "picture") {
       $element = Eg::Node::Element::HTML::Picture->new;
     }
+    elsif ($tag_name eq "plaintext") {
+      $element = Eg::Node::Element::HTML::Picture->new;
+    }
+    elsif ($tag_name eq "portal") {
+      $element = Eg::Node::Element::HTML::Picture->new;
+    }
     elsif ($tag_name eq "pre") {
       $element = Eg::Node::Element::HTML::Pre->new;
     }
     elsif ($tag_name eq "progress") {
       $element = Eg::Node::Element::HTML::Progress->new;
     }
-    elsif ($tag_name eq "blockquote" || $tag_name eq "q") {
+    elsif ($tag_name eq "q") {
       $element = Eg::Node::Element::HTML::Quote->new;
+    }
+    elsif ($tag_name eq "rb") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "rp") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "rt") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "rtc") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "ruby") {
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "script") {
       $element = Eg::Node::Element::HTML::Script->new;

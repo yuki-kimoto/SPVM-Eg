@@ -4,6 +4,7 @@
 # Element in JavaScript
 class Eg::Node::Element extends Eg::Node {
   allow Eg;
+  allow Eg::Node;
   allow Eg::Node::Document;
   allow Eg::Node::Document::HTML;
   allow Eg::Node::Document::XML;

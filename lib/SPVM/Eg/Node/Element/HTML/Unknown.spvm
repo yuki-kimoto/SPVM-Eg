@@ -18,12 +18,4 @@ class Eg::Node::Element::HTML::Unknown extends Eg::Node::Element::HTML {
     return $self;
   }
   
-  method clone : Eg::Node::Element::HTML::Unknown () {
-    
-    my $cloned = new Eg::Node::Element::HTML::Unknown;
-    
-    $self->SUPER::clone_to($cloned);
-    
-    return $cloned;
-  }
 }

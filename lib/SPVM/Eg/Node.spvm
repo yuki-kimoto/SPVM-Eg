@@ -18,6 +18,8 @@ class Eg::Node {
   
   use Eg::Node::Element::HTML::Unknown;
   
+  use Native::MethodCall;
+  
   enum {
     TYPE_ELEMENT_NODE = 1,
     TYPE_ATTRIBUTE_NODE = 2,
@@ -581,8 +583,32 @@ class Eg::Node {
     return $new_node_tree;
   }
   
-  protected method clone_to : void ($cloned : Eg::Node) {
+  protected method clone : Eg::Node () {
     
+    my $class_name = type_name $self;
+    
+    my $error_id = 0;
+    my $cloned = (Eg::Node)Native::MethodCall->new_class_method($class_name, "new")->call(new object[0]);
+    
+    if ($self->{node_value_buffer}) {
+      $self->{node_value_buffer} = StringBuffer->new($self->{node_value_buffer}->to_string);
+    }
+    
+    if ($cloned isa Eg::Node::Element) {
+      
+      if ($self->(Eg::Node::Element)->{attributes_h}) {
+        $cloned->(Eg::Node::Element)->{attributes_h} = $self->(Eg::Node::Element)->{attributes_h}->clone;
+      }
+      
+      $cloned->(Eg::Node::Element)->{tag_name} = copy $self->(Eg::Node::Element)->{tag_name};
+      
+      if ($cloned isa Eg::Node::Element::HTML) {
+        
+      }
+      
+    }
+    
+    return $cloned;
   }
   
 =pod void elements

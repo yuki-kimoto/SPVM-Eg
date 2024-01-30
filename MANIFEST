@@ -108,6 +108,8 @@ lib/SPVM/Eg/Node/Element/HTML/Button.spvm
 lib/SPVM/Eg/Node/Element/HTML/Canvas.pm
 lib/SPVM/Eg/Node/Element/HTML/Canvas.spvm
 lib/SPVM/Eg/Node/Element/HTML/Col.pm
+lib/SPVM/Eg/Node/Element/HTML/Data.pm
+lib/SPVM/Eg/Node/Element/HTML/Data.spvm
 lib/SPVM/Eg/Node/Element/HTML/DataList.pm
 lib/SPVM/Eg/Node/Element/HTML/DataList.spvm
 lib/SPVM/Eg/Node/Element/HTML/Details.pm

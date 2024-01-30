@@ -35,6 +35,8 @@ class Eg::Node {
   # Fields
   has node_type : ro int;
   
+  has tag_name : protected string;
+  
   has parent_node : ro Eg::Node;
   
   has next_sibling : ro Eg::Node;

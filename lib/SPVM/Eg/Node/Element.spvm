@@ -17,8 +17,6 @@ class Eg::Node::Element extends Eg::Node {
   
   has attributes_h : ro Hash of string;
   
-  has tag_name : protected string;
-  
   has is_void_element : protected byte;
   
   # Class Methods

@@ -17,6 +17,7 @@ class Eg::Node {
   use Eg::Node::DocumentFragment;
   
   use Eg::Node::Element::HTML::Unknown;
+  use Eg::CSS::StyleDeclaration;
   
   enum {
     TYPE_ELEMENT_NODE = 1,
@@ -46,6 +47,12 @@ class Eg::Node {
   has node_value_buffer : ro protected StringBuffer;
   
   has box : Eg::CSS::Box;
+  
+  has attributes_h : protected Hash of string;
+  
+  has tag_name : protected string;
+  
+  has style : protected Eg::CSS::StyleDeclaration;
   
   # Class Methods
   

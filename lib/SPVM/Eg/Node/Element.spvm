@@ -14,12 +14,9 @@ class Eg::Node::Element extends Eg::Node {
   
   use Eg::Node::Element::HTML;
   
-  # Fields
   has attributes_h : ro Hash of string;
   
   has tag_name : protected string;
-  
-  has style : protected Eg::CSS::StyleDeclaration;
   
   # Class Methods
   private static method new : Eg::Node::Element () {

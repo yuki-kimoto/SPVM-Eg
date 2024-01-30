@@ -195,6 +195,8 @@ lib/SPVM/Eg/Node/Element/HTML/Script.pm
 lib/SPVM/Eg/Node/Element/HTML/Script.spvm
 lib/SPVM/Eg/Node/Element/HTML/Select.pm
 lib/SPVM/Eg/Node/Element/HTML/Select.spvm
+lib/SPVM/Eg/Node/Element/HTML/Slot.pm
+lib/SPVM/Eg/Node/Element/HTML/Slot.spvm
 lib/SPVM/Eg/Node/Element/HTML/Source.pm
 lib/SPVM/Eg/Node/Element/HTML/Source.spvm
 lib/SPVM/Eg/Node/Element/HTML/Span.pm

@@ -76,13 +76,16 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
   use Eg::Node::Element::HTML::Source;
   use Eg::Node::Element::HTML::Span;
   use Eg::Node::Element::HTML::Style;
+  use Eg::Node::Element::HTML::Slot;
   use Eg::Node::Element::HTML::TableCaption;
   use Eg::Node::Element::HTML::TableCell;
   use Eg::Node::Element::HTML::TableCol;
   use Eg::Node::Element::HTML::Table;
   use Eg::Node::Element::HTML::TableRow;
   use Eg::Node::Element::HTML::TableSection;
+  use Eg::Node::Element::HTML::Template;
   use Eg::Node::Element::HTML::TextArea;
+  use Eg::Node::Element::HTML::Time;
   use Eg::Node::Element::HTML::Title;
   use Eg::Node::Element::HTML::Track;
   use Eg::Node::Element::HTML::UList;
@@ -157,7 +160,7 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
       $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "address") {
-      $element = Eg::Node::Element::HTML::Area->new;
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "area") {
       $element = Eg::Node::Element::HTML::Area->new;
@@ -177,13 +180,7 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     elsif ($tag_name eq "base") {
       $element = Eg::Node::Element::HTML::Base->new;
     }
-    elsif ($tag_name eq "base") {
-      $element = Eg::Node::Element::HTML::Base->new;
-    }
     elsif ($tag_name eq "bdi") {
-      $element = Eg::Node::Element::HTML->new;
-    }
-    elsif ($tag_name eq "bdo") {
       $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "bdo") {
@@ -206,9 +203,6 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     }
     elsif ($tag_name eq "canvas") {
       $element = Eg::Node::Element::HTML::Canvas->new;
-    }
-    elsif ($tag_name eq "caption") {
-      $element = Eg::Node::Element::HTML::TableCaption->new;
     }
     elsif ($tag_name eq "caption") {
       $element = Eg::Node::Element::HTML::TableCaption->new;
@@ -290,9 +284,6 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     }
     elsif ($tag_name eq "frameset") {
       $element = Eg::Node::Element::HTML->new;
-    }
-    elsif ($tag_name eq "head") {
-      $element = Eg::Node::Element::HTML::Head->new;
     }
     elsif ($tag_name eq "h1") {
       $element = Eg::Node::Element::HTML::Heading->new;
@@ -424,7 +415,7 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
       $element = Eg::Node::Element::HTML::Picture->new;
     }
     elsif ($tag_name eq "plaintext") {
-      $element = Eg::Node::Element::HTML::Picture->new;
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "portal") {
       $element = Eg::Node::Element::HTML::Picture->new;
@@ -453,11 +444,29 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     elsif ($tag_name eq "ruby") {
       $element = Eg::Node::Element::HTML->new;
     }
+    elsif ($tag_name eq "s") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "samp") {
+      $element = Eg::Node::Element::HTML->new;
+    }
     elsif ($tag_name eq "script") {
       $element = Eg::Node::Element::HTML::Script->new;
     }
+    elsif ($tag_name eq "search") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "section") {
+      $element = Eg::Node::Element::HTML->new;
+    }
     elsif ($tag_name eq "select") {
       $element = Eg::Node::Element::HTML::Select->new;
+    }
+    elsif ($tag_name eq "slot") {
+      $element = Eg::Node::Element::HTML::Slot->new;
+    }
+    elsif ($tag_name eq "small") {
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "source") {
       $element = Eg::Node::Element::HTML::Source->new;
@@ -465,41 +474,80 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     elsif ($tag_name eq "span") {
       $element = Eg::Node::Element::HTML::Span->new;
     }
+    elsif ($tag_name eq "strike") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "strong") {
+      $element = Eg::Node::Element::HTML->new;
+    }
     elsif ($tag_name eq "style") {
       $element = Eg::Node::Element::HTML::Style->new;
     }
-    elsif ($tag_name eq "caption") {
-      $element = Eg::Node::Element::HTML::TableCaption->new;
+    elsif ($tag_name eq "sub") {
+      $element = Eg::Node::Element::HTML->new;
     }
-    elsif ($tag_name eq "th" || $tag_name eq "td") {
-      $element = Eg::Node::Element::HTML::TableCell->new;
+    elsif ($tag_name eq "summary") {
+      $element = Eg::Node::Element::HTML->new;
     }
-    elsif ($tag_name eq "colgroup" || $tag_name eq "col") {
-      $element = Eg::Node::Element::HTML::TableCol->new;
+    elsif ($tag_name eq "sup") {
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "table") {
       $element = Eg::Node::Element::HTML::Table->new;
     }
-    elsif ($tag_name eq "tr") {
-      $element = Eg::Node::Element::HTML::TableRow->new;
-    }
-    elsif ($tag_name eq "thead" || $tag_name eq "tbody" || $tag_name eq "tfoot") {
+    elsif ($tag_name eq "tbody") {
       $element = Eg::Node::Element::HTML::TableSection->new;
+    }
+    elsif ($tag_name eq "td") {
+      $element = Eg::Node::Element::HTML::TableCell->new;
+    }
+    elsif ($tag_name eq "template") {
+      $element = Eg::Node::Element::HTML::Template->new;
     }
     elsif ($tag_name eq "textarea") {
       $element = Eg::Node::Element::HTML::TextArea->new;
     }
+    elsif ($tag_name eq "tfoot") {
+      $element = Eg::Node::Element::HTML::TableSection->new;
+    }
+    elsif ($tag_name eq "th") {
+      $element = Eg::Node::Element::HTML::TableCell->new;
+    }
+    elsif ($tag_name eq "thead") {
+      $element = Eg::Node::Element::HTML::TableSection->new;
+    }
+    elsif ($tag_name eq "time") {
+      $element = Eg::Node::Element::HTML::Time->new;
+    }
     elsif ($tag_name eq "title") {
       $element = Eg::Node::Element::HTML::Title->new;
+    }
+    elsif ($tag_name eq "tr") {
+      $element = Eg::Node::Element::HTML::TableRow->new;
     }
     elsif ($tag_name eq "track") {
       $element = Eg::Node::Element::HTML::Track->new;
     }
+    elsif ($tag_name eq "tt") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "u") {
+      $element = Eg::Node::Element::HTML->new;
+    }
     elsif ($tag_name eq "ul") {
       $element = Eg::Node::Element::HTML::UList->new;
     }
+    elsif ($tag_name eq "var") {
+      $element = Eg::Node::Element::HTML->new;
+    }
     elsif ($tag_name eq "video") {
       $element = Eg::Node::Element::HTML::Video->new;
+    }
+    elsif ($tag_name eq "wbr") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "xmp") {
+      $element = Eg::Node::Element::HTML->new;
     }
     else {
       $element = Eg::Node::Element::HTML::Unknown->new;

@@ -1,8 +1,9 @@
-0.015 2024-01-27
+0.015 2024-01-30
   [New Features]
     * Add many CSS child classes.
     * Support font-weight:bold;
     * Support font-style:italic.
+    * The create_element method in the Eg::Node::Document can parse all HTML tags.
   [Bug Fix]
     * Fix Wide character encoding.
 0.014 2024-01-25

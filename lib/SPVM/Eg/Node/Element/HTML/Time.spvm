@@ -1,0 +1,17 @@
+# Copyright (c) 2024 Yuki Kimoto
+# MIT License
+
+class Eg::Node::Element::HTML::Time extends Eg::Node::Element::HTML {
+  
+  allow Eg::Node::Document::HTML;
+  
+  # Class Methods
+  private static method new : Eg::Node::Element::HTML::Time () {
+    
+    my $self = new Eg::Node::Element::HTML::Time;
+    
+    $self->SUPER::init;
+    
+    return $self;
+  }
+}

@@ -16,6 +16,8 @@ class Eg::Node {
   use Eg::Node::Document;
   use Eg::Node::DocumentFragment;
   
+  use Eg::Node::Element::HTML::Unknown;
+  
   enum {
     TYPE_ELEMENT_NODE = 1,
     TYPE_ATTRIBUTE_NODE = 2,
@@ -493,14 +495,50 @@ class Eg::Node {
   
   method clone_node : Eg::Node ($deep : int = 0) {
     
+    my $new_parent_node_stack = List->new(new Eg::Node[0]);
+    
+    my $new_previous_sibling_cur = (Eg::Node)undef;
+    
     my $node_root = (Eg::Node)$self;
     my $node_cur = $node_root;
     my $finish = 0;
+    
+    my $new_node_tree = (Eg::Node)undef;
     while ($node_cur) {
       
       # [START]Preorder traversal position
+      my $new_node = Eg::Node::Element::HTML::Unknown->new;
+      
+      if ($node_cur == $node_root) {
+        $new_node_tree = $new_node;
+      }
+      
+      unless ($deep) {
+        last;
+      }
+      
+      if ($node_cur->{parent_node}) {
+        if ($new_parent_node_stack->length > 0) {
+          my $new_parent_node = (Eg::Node)$new_parent_node_stack->get($new_parent_node_stack->length - 1);
+          $new_node->{parent_node} = $new_parent_node;
+          weaken $new_node->{parent_node};
+          unless ($new_parent_node->{first_child}) {
+            $new_parent_node->{first_child} = $new_node;
+          }
+        }
+      }
+      
+      if ($new_previous_sibling_cur) {
+        $new_node->{previous_sibling} = $new_previous_sibling_cur;
+        weaken $new_node->{previous_sibling};
+        
+        $new_previous_sibling_cur->{next_sibling} = $new_node;
+      }
       
       if ($node_cur->first_child) {
+        
+        $new_parent_node_stack->push($new_node);
+        
         $node_cur = (Eg::Node)$node_cur->first_child;
       }
       else {
@@ -516,11 +554,21 @@ class Eg::Node {
           
           # Next sibling
           if ($node_cur->next_sibling) {
+            $new_previous_sibling_cur = $new_node;
+            
             $node_cur = $node_cur->next_sibling;
             last;
           }
           # Next is parent
           else {
+            if ($new_parent_node_stack->length > 0) {
+              my $new_parent_node = (Eg::Node)$new_parent_node_stack->get($new_parent_node_stack->length - 1);
+              
+              $new_parent_node->{last_child} = $new_node;
+              
+              $new_parent_node_stack->pop;
+            }
+            
             $node_cur = $node_cur->parent_node;
           }
         }
@@ -530,7 +578,7 @@ class Eg::Node {
       }
     }
     
-    die "\$child_node is not found.";
+    return $new_node_tree;
   }
 
 =pod void elements

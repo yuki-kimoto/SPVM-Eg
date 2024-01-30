@@ -31,6 +31,7 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
   use Eg::Node::Element::HTML::BR;
   use Eg::Node::Element::HTML::Button;
   use Eg::Node::Element::HTML::Canvas;
+  use Eg::Node::Element::HTML::Data;
   use Eg::Node::Element::HTML::DataList;
   use Eg::Node::Element::HTML::Details;
   use Eg::Node::Element::HTML::Dialog;
@@ -147,14 +148,50 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     if ($tag_name eq "a") {
       $element = Eg::Node::Element::HTML::Anchor->new;
     }
+    elsif ($tag_name eq "abbr") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "acronym") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "address") {
+      $element = Eg::Node::Element::HTML::Area->new;
+    }
     elsif ($tag_name eq "area") {
       $element = Eg::Node::Element::HTML::Area->new;
+    }
+    elsif ($tag_name eq "article") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "aside") {
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "audio") {
       $element = Eg::Node::Element::HTML::Audio->new;
     }
+    elsif ($tag_name eq "b") {
+      $element = Eg::Node::Element::HTML->new;
+    }
     elsif ($tag_name eq "base") {
       $element = Eg::Node::Element::HTML::Base->new;
+    }
+    elsif ($tag_name eq "base") {
+      $element = Eg::Node::Element::HTML::Base->new;
+    }
+    elsif ($tag_name eq "bdi") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "bdo") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "bdo") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "big") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "blockquote") {
+      $element = Eg::Node::Element::HTML::Quote->new;
     }
     elsif ($tag_name eq "body") {
       $element = Eg::Node::Element::HTML::Body->new;
@@ -168,14 +205,50 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     elsif ($tag_name eq "canvas") {
       $element = Eg::Node::Element::HTML::Canvas->new;
     }
+    elsif ($tag_name eq "caption") {
+      $element = Eg::Node::Element::HTML::TableCaption->new;
+    }
+    elsif ($tag_name eq "caption") {
+      $element = Eg::Node::Element::HTML::TableCaption->new;
+    }
+    elsif ($tag_name eq "center") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "cite") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "code") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "col") {
+      $element = Eg::Node::Element::HTML::TableCol->new;
+    }
+    elsif ($tag_name eq "colgroup") {
+      $element = Eg::Node::Element::HTML::TableCol->new;
+    }
+    elsif ($tag_name eq "data") {
+      $element = Eg::Node::Element::HTML::Data->new;
+    }
     elsif ($tag_name eq "datalist") {
       $element = Eg::Node::Element::HTML::DataList->new;
+    }
+    elsif ($tag_name eq "dd") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "del") {
+      $element = Eg::Node::Element::HTML::Mod->new;
     }
     elsif ($tag_name eq "details") {
       $element = Eg::Node::Element::HTML::Details->new;
     }
+    elsif ($tag_name eq "dfn") {
+      $element = Eg::Node::Element::HTML->new;
+    }
     elsif ($tag_name eq "dialog") {
       $element = Eg::Node::Element::HTML::Dialog->new;
+    }
+    elsif ($tag_name eq "dir") {
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "div") {
       $element = Eg::Node::Element::HTML::Div->new;
@@ -183,20 +256,38 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     elsif ($tag_name eq "dl") {
       $element = Eg::Node::Element::HTML::DList->new;
     }
+    elsif ($tag_name eq "dt") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "em") {
+      $element = Eg::Node::Element::HTML->new;
+    }
     elsif ($tag_name eq "embed") {
       $element = Eg::Node::Element::HTML::Embed->new;
     }
     elsif ($tag_name eq "fieldset") {
       $element = Eg::Node::Element::HTML::FieldSet->new;
     }
+    elsif ($tag_name eq "figcaption") {
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "figure") {
+      $element = Eg::Node::Element::HTML->new;
+    }
     elsif ($tag_name eq "font") {
       $element = Eg::Node::Element::HTML::Font->new;
+    }
+    elsif ($tag_name eq "footer") {
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "form") {
       $element = Eg::Node::Element::HTML::Form->new;
     }
     elsif ($tag_name eq "frame") {
-      $element = Eg::Node::Element::HTML::Frame->new;
+      $element = Eg::Node::Element::HTML->new;
+    }
+    elsif ($tag_name eq "frameset") {
+      $element = Eg::Node::Element::HTML->new;
     }
     elsif ($tag_name eq "head") {
       $element = Eg::Node::Element::HTML::Head->new;

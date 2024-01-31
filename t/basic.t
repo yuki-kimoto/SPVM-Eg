@@ -12,6 +12,10 @@ use SPVM 'TestCase::Eg::DOM::Implementation';
 
 use SPVM 'TestCase::Eg::Node::Document';
 
+use SPVM 'TestCase::Eg::Node::Document::HTML';
+
+use SPVM 'TestCase::Eg::Node::Document::XML';
+
 use SPVM 'Eg';
 use SPVM::Eg;
 use SPVM 'Fn';
@@ -26,9 +30,11 @@ ok(SPVM::TestCase::Eg::Node->node);
 
 ok(SPVM::TestCase::Eg::Node->element);
 
-ok(SPVM::TestCase::Eg::Node::Document->create_element);
-
 ok(SPVM::TestCase::Eg::Node::Document->create_text_node);
+
+ok(SPVM::TestCase::Eg::Node::Document::HTML->create_element);
+
+ok(SPVM::TestCase::Eg::Node::Document::XML->create_element);
 
 ok(SPVM::TestCase::Eg::DOM::Implementation->create_html_document);
 

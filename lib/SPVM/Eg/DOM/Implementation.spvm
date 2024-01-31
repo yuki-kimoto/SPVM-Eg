@@ -17,7 +17,7 @@ class Eg::DOM::Implementation {
   }
   
   # Instance Methods
-  method create_document : Eg::Node::Document::XML ($namespace_uri : string, $qualified_name_str : string) {
+  method create_document : Eg::Node::Document::XML ($namespace_uri : string, $qualified_name_str : string, $document_type : Eg::Node::DocumentType = undef) {
     
     unless ($qualified_name_str) {
       die "\$qualified_name_str must be defined.";
@@ -26,6 +26,8 @@ class Eg::DOM::Implementation {
     my $document = Eg::Node::Document::XML->new;
     
     $document->{namespace_uri} = $namespace_uri;
+    
+    $document->{document_type} = $document_type;
     
     my $root_element = Eg::Node::Element->new;
     

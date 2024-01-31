@@ -20,6 +20,8 @@ class Eg::Node::Document extends Eg::Node {
   # Fields
   has namespace_uri : protected string;
   
+  has document_type : Eg::Node::DocumentType;
+  
   method create_element : Eg::Node::Element ($tag_name : string) { "Not Implemented."; }
   
   method create_text_node : Eg::Node::Text ($node_value : string) {

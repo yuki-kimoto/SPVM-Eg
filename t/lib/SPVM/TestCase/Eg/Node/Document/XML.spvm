@@ -8,12 +8,12 @@ class TestCase::Eg::Node::Document::XML {
     
     my $dom_impl = Eg::DOM::Implementation->new;
     
-    my $document = $dom_impl->create_document;
+    my $document = $dom_impl->create_document(undef, "http://namespace");
     
     {
       my $element = $document->create_element("div");
       
-      unless ($element is_type Eg::Node::Element::HTML::Div) {
+      unless ($element is_type Eg::Node::Element) {
         return 0;
       }
       

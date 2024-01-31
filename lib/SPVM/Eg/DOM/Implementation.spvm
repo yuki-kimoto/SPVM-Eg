@@ -69,18 +69,6 @@ class Eg::DOM::Implementation {
   
   method create_document_type : Eg::Node::DocumentType ($qualified_name_str : string, $public_id : string, $system_id : string) {
     
-    unless ($qualified_name_str) {
-      die "\$qualified_name_str must be defined.";
-    }
-    
-    unless ($public_id) {
-      die "\$public_id must be defined.";
-    }
-    
-    unless ($system_id) {
-      die "\$system_id must be defined.";
-    }
-    
     my $document_type = Eg::Node::DocumentType->new($qualified_name_str, $public_id, $system_id);
     
     return $document_type;

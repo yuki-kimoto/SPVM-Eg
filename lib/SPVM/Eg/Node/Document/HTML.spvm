@@ -2,6 +2,7 @@
 # MIT License
 
 # Document in JavaScript
+# This class represents HTML document
 class Eg::Node::Document::HTML extends Eg::Node::Document {
   allow Eg;
   allow Eg::Node;

@@ -6,11 +6,11 @@ our $VERSION = "0.015";
 
 =head1 Name
 
-SPVM::Eg - HTML
+SPVM::Eg - Components of SPVM Engine
 
 =head1 Description
 
-The Eg class in L<SPVM> provides components of web platform SPVM Engine.
+The Eg class in L<SPVM> provides components of a web platform SPVM Engine.
 
 =head1 Usage
 
@@ -19,24 +19,38 @@ The Eg class in L<SPVM> provides components of web platform SPVM Engine.
   my $document = Eg->document;
   
   my $div = $document->create_element("div");
-    
-  $div->set_attribute(atrr => "value");
   
-  $div->set_text("foo");
+  $div->set_attribute("class", "foo");
   
-=head1 Repository
-
-L<SPVM::Eg - Github|https://github.com/yuki-kimoto/SPVM-Eg>
-
+  $div->set_text("Hello World!");
+  
 =head1 Class Methods
 
 =head2 window
 
-  static method window : Eg::Window ();
+C<static method window : L<Eg::Window|SPVM::Eg::Window> ();
 
 =head2 document
 
-  static method document : Eg::Node::Document::HTML ();
+  static method document : L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML> ();
+
+=head1 Classes
+
+=item * L<Eg::Window|SPVM::Eg::Window>
+
+=item * L<Eg::DOM::Implementation|SPVM::Eg::DOM::Implementation>
+
+=item * L<Eg::Node::Document::XML|SPVM::Eg::Node::Document::XML>
+
+=item * L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML>
+
+=item * L<Eg::Node::Document|SPVM::Eg::Node::Document>
+
+=item * L<Eg::Node::DocumentType|SPVM::Eg::Node::DocumentType>
+
+=head1 Repository
+
+L<SPVM::Eg - Github|https://github.com/yuki-kimoto/SPVM-Eg>
 
 =head1 Author
 

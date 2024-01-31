@@ -38,6 +38,13 @@ class Eg::DOM::Implementation {
     return $document;
   }
   
+  method create_document_type : Eg::Node::DocumentType ($qualified_name_str : string, $public_id : string, $system_id : string) {
+    
+    my $document_type = Eg::Node::DocumentType->new($qualified_name_str, $public_id, $system_id);
+    
+    return $document_type;
+  }
+  
   method create_html_document : Eg::Node::Document::HTML ($title : string = undef) {
     
     my $document = Eg::Node::Document::HTML->new;
@@ -65,13 +72,6 @@ class Eg::DOM::Implementation {
     $html_element->append_child($body_element);
     
     return $document;
-  }
-  
-  method create_document_type : Eg::Node::DocumentType ($qualified_name_str : string, $public_id : string, $system_id : string) {
-    
-    my $document_type = Eg::Node::DocumentType->new($qualified_name_str, $public_id, $system_id);
-    
-    return $document_type;
   }
   
 }

@@ -81,13 +81,7 @@ class Eg::DOM::Implementation {
       die "\$system_id must be defined.";
     }
     
-    my $document_type = Eg::Node::DocumentType->new;
-    
-    $document_type->{name} = $qualified_name_str;
-    
-    $document_type->{public_id} = $public_id;
-    
-    $document_type->{system_id} = $system_id;
+    my $document_type = Eg::Node::DocumentType->new($qualified_name_str, $public_id, $system_id);
     
     return $document_type;
   }

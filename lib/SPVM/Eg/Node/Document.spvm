@@ -20,26 +20,7 @@ class Eg::Node::Document extends Eg::Node {
   # Fields
   has namespace_uri : protected string;
   
-  method create_element : Eg::Node::Element ($tag_name : string) {
-    
-    unless ($tag_name) {
-      die "\$tag_name must be defined.";
-    }
-    
-    unless (length $tag_name) {
-      die "\$tag_name must have its length.";
-    }
-    
-    if (Fn->contains($tag_name, ":")) {
-      die "\$tag_name cannot contains \":\"";
-    }
-    
-    my $element = Eg::Node::Element->new;
-    
-    $element->{node_name} = $tag_name;
-    
-    return $element;
-  }
+  method create_element : Eg::Node::Element ($tag_name : string) { "Not Implemented."; }
   
   method create_text_node : Eg::Node::Text ($node_value : string) {
     
@@ -74,29 +55,6 @@ class Eg::Node::Document extends Eg::Node {
     return $cdata_section_node;
   }
   
-  method create_processing_instruction : Eg::Node::ProcessingInstruction ($target : string, $data : string) {
-    
-    unless ($target) {
-      die "\$target must be defined.";
-    }
-    
-    unless (Regex->new("^[a-zA-Z_][\w+\-\.]*$")->match($target)) {
-      die "\$target must be a valid XML name.";
-    }
-    
-    if ($data) {
-      if (Fn->contains($data, "?>")) {
-        die "\$data cannot contain  \"?>\".";
-      }
-    }
-    
-    my $processing_instruction_node = Eg::Node::ProcessingInstruction->new($data);
-    
-    $processing_instruction_node->{target} = $target;
-    
-    return $processing_instruction_node;
-  }
-  
   method create_document_fragment : Eg::Node::DocumentFragment () {
     
     my $document_fragment_node = Eg::Node::DocumentFragment->new;
@@ -119,6 +77,29 @@ class Eg::Node::Document extends Eg::Node {
     my $attribute_node = Eg::Node::Attr->new($name);
     
     return $attribute_node;
+  }
+  
+  method create_processing_instruction : Eg::Node::ProcessingInstruction ($target : string, $data : string) {
+    
+    unless ($target) {
+      die "\$target must be defined.";
+    }
+    
+    unless (Regex->new("^[a-zA-Z_][\w+\-\.]*$")->match($target)) {
+      die "\$target must be a valid XML name.";
+    }
+    
+    if ($data) {
+      if (Fn->contains($data, "?>")) {
+        die "\$data cannot contain  \"?>\".";
+      }
+    }
+    
+    my $processing_instruction_node = Eg::Node::ProcessingInstruction->new($data);
+    
+    $processing_instruction_node->{target} = $target;
+    
+    return $processing_instruction_node;
   }
   
   method parent_node : Eg::Node () {

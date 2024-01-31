@@ -51,6 +51,8 @@ class Eg::Node {
   
   has box : Eg::CSS::Box;
   
+  has owner_document : ro Eg::Node::Document;
+  
   # Class Methods
   
   # Instance Methods
@@ -153,34 +155,6 @@ class Eg::Node {
   }
   
   method node_name : string () { die "Not implmeneted"; }
-  
-  method owner_document : Eg::Node::Document () {
-    
-    my $current_node = $self;
-    
-    my $document_node = (Eg::Node::Document)undef;
-    
-    unless ($current_node isa Eg::Node::Document) {
-      
-      while (1) {
-        my $parent_node = $current_node->{parent_node};
-        
-        unless ($parent_node) {
-          last;
-        }
-        
-        if ($parent_node isa Eg::Node::Document) {
-          $document_node = (Eg::Node::Document)$current_node;
-          last;
-        }
-        else {
-          $current_node = $parent_node;
-        }
-      }
-    }
-    
-    return $document_node;
-  }
   
   method remove_child : Eg::Node ($child_node : Eg::Node) {
     unless ($child_node) {

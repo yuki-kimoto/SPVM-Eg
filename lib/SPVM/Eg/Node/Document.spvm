@@ -142,4 +142,9 @@ class Eg::Node::Document extends Eg::Node {
     return $node_name;
   }
   
+  method owner_document : Eg::Node::Document () {
+    
+    return undef;
+  }
+  
 }

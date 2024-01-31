@@ -112,7 +112,7 @@ class Engine {
   }
   
   # Class Methods
-  static method main : int ($start_file : string, $args : string[]) {
+  static method main : int () {
     my $runtime = Eg::Runtime->new;
     
     my $os = (Eg::OS)undef;

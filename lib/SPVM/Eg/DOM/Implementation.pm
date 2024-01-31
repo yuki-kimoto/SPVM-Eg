@@ -16,19 +16,9 @@ This class is a port of L<DOMImplementation|https://developer.mozilla.org/ja/doc
 
 =head1 Usage
 
-  use Eg::DOM::Implementation;
+  my $xml_document = Eg->implementation->create_document("http://www.w3.org/1999/xhtml", "html");
   
-  my $domimpl = Eg::DOM::Implementation->new;
-  
-  my $xml_document = $domimpl->create_document("http://www.w3.org/1999/xhtml", "html");
-  
-  my $html_document = $domimpl->create_html_document("Title");
-
-=head1 Class Methods
-
-C<static method new : L<Eg::DOM::Implementation|SPVM::Eg::DOM::Implementation> ();>
-
-Creates a new L<Eg::DOM::Implementation|SPVM::Eg::DOM::Implementation> object.
+  my $html_document = Eg->implementation->create_html_document("Title");
 
 =head1 Instance Methods
 

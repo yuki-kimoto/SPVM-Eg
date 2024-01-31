@@ -113,7 +113,8 @@ class Engine {
   
   # Class Methods
   static method main : int ($start_file : string, $args : string[]) {
-    my $runtime = Eg::Runtime->new;
+    
+    my $runtime = Eg->Runtime;
     
     my $os = (Eg::OS)undef;
     
@@ -128,8 +129,6 @@ class Engine {
     }
     
     $os->build_runtime($runtime);
-    
-    Eg->SET_RUNTIME($runtime);
     
     my $document = &document;
     

@@ -116,9 +116,7 @@ class Eg::Node::Document extends Eg::Node {
     
     $name = Fn->lc($name);
     
-    my $attribute_node = Eg::Node::Attr->new;
-    
-    $attribute_node->{name} = $name;
+    my $attribute_node = Eg::Node::Attr->new($name);
     
     return $attribute_node;
   }

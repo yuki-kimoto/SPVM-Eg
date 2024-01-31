@@ -12,11 +12,13 @@ class Eg::Node::Attr extends Eg::Node {
   has value : ro string;
   
   # Class Methods
-  private static method new : Eg::Node::Attr () {
+  private static method new : Eg::Node::Attr ($name : string) {
     
     my $self = new Eg::Node::Attr;
     
     $self->SUPER::init({node_type => Eg::Node->TYPE_ATTRIBUTE_NODE});
+    
+    $self->{value} = "";
     
     return $self;
   }

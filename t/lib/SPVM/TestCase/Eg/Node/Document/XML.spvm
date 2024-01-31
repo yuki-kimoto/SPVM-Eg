@@ -1,14 +1,14 @@
 class TestCase::Eg::Node::Document::XML {
   
+  use Eg;
+  
   use Eg::DOM::Implementation;
   
   use Eg::Node::Document::XML;
   
   static method create_element : int () {
     
-    my $dom_impl = Eg::DOM::Implementation->new;
-    
-    my $document = $dom_impl->create_document(undef, "http://namespace");
+    my $document = Eg->implementation->create_document(undef, "http://namespace");
     
     {
       my $element = $document->create_element("div");

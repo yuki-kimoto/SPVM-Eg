@@ -25,9 +25,7 @@ class TestCase::Eg::Node {
   
   static method tag : Eg::Node::Element::HTML ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
     
-    my $dom_impl = Eg::DOM::Implementation->new;
-    
-    my $document = $dom_impl->create_html_document;
+    my $document = Eg->implementation->create_html_document;
     
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {
@@ -54,9 +52,8 @@ class TestCase::Eg::Node {
   }
   
   static method tag_ : Eg::Node::Element::HTML ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
-    my $dom_impl = Eg::DOM::Implementation->new;
     
-    my $document = $dom_impl->create_html_document;
+    my $document = Eg->implementation->create_html_document;
     
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {
@@ -94,9 +91,7 @@ class TestCase::Eg::Node {
   
   static method test : int () {
     
-    my $dom_impl = Eg::DOM::Implementation->new;
-    
-    my $document = $dom_impl->create_html_document;
+    my $document = Eg->implementation->create_html_document;
     
     {
       unless (Eg::Node->TYPE_ELEMENT_NODE == 1) {
@@ -422,9 +417,8 @@ Foo
     {
       # tag_name - HTML
       {
-        my $dom_impl = Eg::DOM::Implementation->new;
         
-        my $document = $dom_impl->create_html_document;
+        my $document = Eg->implementation->create_html_document;
         
         {
           my $div = $document->create_element("div");
@@ -445,9 +439,7 @@ Foo
       
       # tag_name - XML
       {
-        my $dom_impl = Eg::DOM::Implementation->new;
-        
-        my $document = $dom_impl->create_document(undef, "root");
+        my $document = Eg->implementation->create_document(undef, "root");
         
         {
           my $div = $document->create_element("div");
@@ -475,9 +467,7 @@ Foo
     # append_child
     {
       {
-        my $dom_impl = Eg::DOM::Implementation->new;
-        
-        my $document = $dom_impl->create_html_document;
+        my $document = Eg->implementation->create_html_document;
         
         {
           my $root = $document->create_element("ROOT");
@@ -588,9 +578,7 @@ Foo
     # insert_before
     {
       {
-        my $dom_impl = Eg::DOM::Implementation->new;
-        
-        my $document = $dom_impl->create_html_document;
+        my $document = Eg->implementation->create_html_document;
         
         {
           my $root = $document->create_element("ROOT");

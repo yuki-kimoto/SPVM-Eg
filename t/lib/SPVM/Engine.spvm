@@ -29,9 +29,7 @@ class Engine {
     
     my $title = "コットン";
     
-    my $dom_impl = Eg::DOM::Implementation->new;
-    
-    my $document = $dom_impl->create_html_document($title);
+    my $document = Eg->implementation->create_html_document($title);
     
     for my $element (@$elements) {
       $document->body->append_child($element);
@@ -44,9 +42,7 @@ class Engine {
   
   static method tag : Eg::Node::Element ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
     
-    my $dom_impl = Eg::DOM::Implementation->new;
-    
-    my $document = $dom_impl->create_html_document;
+    my $document = Eg->implementation->create_html_document;
     
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {
@@ -73,9 +69,8 @@ class Engine {
   }
   
   static method tag_ : Eg::Node::Element::HTML ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
-    my $dom_impl = Eg::DOM::Implementation->new;
     
-    my $document = $dom_impl->create_html_document;
+    my $document = Eg->implementation->create_html_document;
     
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {
@@ -113,7 +108,8 @@ class Engine {
   
   # Class Methods
   static method main : int () {
-    my $runtime = Eg::Runtime->new;
+    
+    my $runtime = Eg->RUNTIME;
     
     my $os = (Eg::OS)undef;
     
@@ -128,8 +124,6 @@ class Engine {
     }
     
     $os->build_runtime($runtime);
-    
-    Eg->SET_RUNTIME($runtime);
     
     my $document = &document;
     

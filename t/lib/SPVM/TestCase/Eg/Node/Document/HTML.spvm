@@ -1,14 +1,14 @@
 class TestCase::Eg::Node::Document::HTML {
   
+  use Eg;
+  
   use Eg::DOM::Implementation;
   
   use Eg::Node::Document::HTML;
   
   static method create_element : int () {
     
-    my $dom_impl = Eg::DOM::Implementation->new;
-    
-    my $document = $dom_impl->create_html_document;
+    my $document = Eg->implementation->create_html_document;
     
     {
       my $element = $document->create_element("div");

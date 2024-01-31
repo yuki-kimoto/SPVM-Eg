@@ -3,13 +3,15 @@
 
 class Eg::DOM::Implementation {
   
+  allow Eg::Window;
+  
   use Eg::Node::Element;
   use Eg::Node::Document::HTML;
   use Eg::Node::Document::XML;
   use Eg::Node::DocumentType;
   
   # Class Methods
-  static method new : Eg::DOM::Implementation () {
+  private static method new : Eg::DOM::Implementation () {
     
     my $self = new Eg::DOM::Implementation;
     

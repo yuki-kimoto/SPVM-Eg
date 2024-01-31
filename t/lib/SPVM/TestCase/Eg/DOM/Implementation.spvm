@@ -5,9 +5,7 @@ class TestCase::Eg::DOM::Implementation {
   static method create_html_document : int () {
     
     {
-      my $dom_impl = Eg::DOM::Implementation->new;
-      
-      my $document = $dom_impl->create_html_document;
+      my $document = Eg->implementation->create_html_document;
       
       my $html_element = $document->first_child;
       
@@ -40,9 +38,7 @@ class TestCase::Eg::DOM::Implementation {
     {
       # tag_name - HTML
       {
-        my $dom_impl = Eg::DOM::Implementation->new;
-        
-        my $document = $dom_impl->create_html_document;
+        my $document = Eg->implementation->create_html_document;
         
         {
           my $div = $document->create_element("div");
@@ -62,9 +58,7 @@ class TestCase::Eg::DOM::Implementation {
     {
       # tag_name - XML
       {
-        my $dom_impl = Eg::DOM::Implementation->new;
-        
-        my $document = $dom_impl->create_document(undef, "root");
+        my $document = Eg->implementation->create_document(undef, "root");
         
         {
           my $div = $document->create_element("div");

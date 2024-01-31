@@ -8,11 +8,16 @@ class Eg::Window extends Eg::Event::Target {
   use Eg::Location;
   use Eg::History;
   use Eg::Node::Document::HTML;
+  use Eg::DOM::Implementation;
   
   # Class Methods
   static method new : Eg::Window () {
     
     my $self = new Eg::Window;
+    
+    my $implementation = Eg::DOM::Implementation->new;
+    
+    $self->{implementation} = $implementation;
     
     return $self;
   }
@@ -22,6 +27,8 @@ class Eg::Window extends Eg::Event::Target {
   has location : ro Eg::Location;
   
   has document : rw Eg::Node::Document::HTML;
+  
+  has implementation : rw Eg::DOM::Implementation;
   
   has history : ro Eg::History;
   

@@ -553,7 +553,9 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
       $element = Eg::Node::Element::HTML::Unknown->new;
     }
     
-    $element->{tag_name} = Fn->lc($tag_name);
+    $tag_name = Fn->lc($tag_name);;
+    
+    $element->{node_name} = $tag_name;
     
     return $element;
   }

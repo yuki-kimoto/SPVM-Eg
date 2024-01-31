@@ -29,7 +29,7 @@ class Eg::DOM::Implementation {
     
     my $root_element = Eg::Node::Element->new;
     
-    $root_element->{tag_name} = $qualified_name_str;
+    $root_element->{node_name} = $qualified_name_str;
     
     $document->append_child($root_element);
     

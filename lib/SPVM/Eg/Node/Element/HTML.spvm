@@ -66,4 +66,13 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
     
     $self->SUPER::set_attribute($name, $value);
   }
+  
+  method tag_name : string () {
+    
+    my $tag_name = $self->{node_name};
+    
+    $tag_name = Fn->uc($tag_name);
+    
+    return $tag_name;
+  }
 }

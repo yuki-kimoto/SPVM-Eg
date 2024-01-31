@@ -35,7 +35,7 @@ class Eg::Node {
   # Fields
   has node_type : ro int;
   
-  has tag_name : protected string;
+  has node_name : protected string;
   
   has parent_node : ro Eg::Node;
   
@@ -152,32 +152,7 @@ class Eg::Node {
     return $root_node;
   }
   
-  method node_name : string () {
-    
-    my $node_name = (string)undef;
-    
-    my $node_type = $self->{node_type};
-    
-    switch ($node_type) {
-      case &TYPE_DOCUMENT_NODE : {
-        $node_name = "#document";
-      }
-      case &TYPE_ELEMENT_NODE : {
-        $node_name = $self->(Eg::Node::Element)->tag_name;
-      }
-      case &TYPE_TEXT_NODE : {
-        $node_name = "#text";
-      }
-      case &TYPE_COMMENT_NODE : {
-        $node_name = "#comment";
-      }
-      default : {
-        die "The node type $node_type is not supported.";
-      }
-    }
-    
-    return $node_name;
-  }
+  method node_name : string () { die "Not implmeneted"; }
   
   method owner_document : Eg::Node::Document () {
     
@@ -602,7 +577,7 @@ class Eg::Node {
         $cloned->(Eg::Node::Element)->{attributes_h} = $self->(Eg::Node::Element)->{attributes_h}->clone;
       }
       
-      $cloned->(Eg::Node::Element)->{tag_name} = copy $self->(Eg::Node::Element)->{tag_name};
+      $cloned->(Eg::Node::Element)->{node_name} = copy $self->(Eg::Node::Element)->{node_name};
       
       if ($cloned isa Eg::Node::Element::HTML) {
         

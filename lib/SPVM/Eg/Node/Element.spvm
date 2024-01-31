@@ -166,12 +166,7 @@ class Eg::Node::Element extends Eg::Node {
   
   method tag_name : string () {
     
-    my $tag_name = $self->{tag_name};
-    
-    # HTML
-    if ($self isa Eg::Node::Element::HTML) {
-      $tag_name = Fn->uc($tag_name);
-    }
+    my $tag_name = $self->{node_name};
     
     return $tag_name;
   }

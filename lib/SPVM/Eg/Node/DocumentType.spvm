@@ -22,4 +22,12 @@ class Eg::Node::DocumentType extends Eg::Node {
     
     return $self;
   }
+  
+  method node_name : string () {
+    
+    my $node_name = $self->{name};
+    
+    return $node_name;
+  }
+  
 }

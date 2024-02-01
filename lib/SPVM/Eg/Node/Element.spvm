@@ -3,23 +3,19 @@
 
 # Element in JavaScript
 class Eg::Node::Element extends Eg::Node {
-  allow Eg;
   allow Eg::Node;
   allow Eg::Node::Document;
-  allow Eg::Node::Document::HTML;
   allow Eg::Node::Document::XML;
-  allow Eg::DOM::Implementation;
   
-  use Eg::DOM::Implementation;
   use Fn;
   
   use Eg::Node::Element::HTML;
   
-  has namespace_uri : protected string;
-  
-  has attributes_h : ro Hash of string;
+  has namespace_uri : ro protected string;
   
   has is_void_element : protected byte;
+  
+  has attributes_h : protected Hash of string;
   
   # Class Methods
   private static method new : Eg::Node::Element ($options : object[] = undef) {

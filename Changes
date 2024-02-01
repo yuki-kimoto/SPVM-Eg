@@ -1,8 +1,11 @@
-0.016 2024-01-31
+0.016 2024-02-01
   [Document Improvement]
     * Add the doc of Eg::DOM::Implementation.
     * Add the doc of Eg::Node::Document::XML.
-    
+    * Add the doc of Eg::Node::Document::HTML.
+  [Internal Changes]
+    * An Eg::Node object have owner document.
+  
 0.015 2024-01-30
   [New Features]
     * Add many CSS child classes.

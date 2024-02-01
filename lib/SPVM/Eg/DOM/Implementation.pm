@@ -30,27 +30,19 @@ Creates and returns an L<Eg::Node::Document::XML|SPVM::Eg::Node::Document::XML>.
 
 For details, see the L<DOMImplementation.createDocument|https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createDocument> method in JavaScript.
 
-Exceptions:
-
-$qualified_name_str must be defined. Otherwise an exception is thrown.
-
 =head2 create_document_type
 
   method create_document_type : L<Eg::Node::DocumentType|SPVM::Eg::Node::DocumentType> ($qualified_name_str : string, $public_id : string, $system_id : string);
 
-Returns a L<Eg::Node::DocumentType|SPVM::Eg::Node::DocumentType> object. 
+Creates and returns a L<Eg::Node::DocumentType|SPVM::Eg::Node::DocumentType> object. 
 
 For details, see the L<DOMImplementation.createDocumentType|https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createDocumentType> method in JavaScript.
-
-Exceptions:
-
-Exceptions the L<new|SPVM::Eg::Node::DocumentType/"new"> method in the Eg::Node::DocumentType class throws could be thrown.
 
 =head2 create_html_document
 
   method create_html_document : L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML> ($title : string = undef);
 
-Creates a new L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML> object.
+Creates and returns a new L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML> object.
 
 For details, see the L<DOMImplementation.createHTMLDocument|https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createHTMLDocument> in JavaScript.
 

@@ -2,7 +2,7 @@
 # MIT License
 
 class Eg {
-  version "0.015";
+  version "0.016";
   
   use Eg::Node;
   use Eg::Node::Document::HTML;

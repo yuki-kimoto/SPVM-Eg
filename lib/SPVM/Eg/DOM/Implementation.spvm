@@ -4,17 +4,20 @@
 class Eg::DOM::Implementation {
   
   allow Eg::Node::Document;
-  allow Eg::Window;
   
-  use Eg::Node::Element;
   use Eg::Node::Document::HTML;
   use Eg::Node::Document::XML;
   use Eg::Node::DocumentType;
   
+  has owner_document : Eg::Node::Document;
+  
   # Class Methods
-  private static method new : Eg::DOM::Implementation () {
+  private static method new : Eg::DOM::Implementation ($owner_document : Eg::Node::Document) {
     
     my $self = new Eg::DOM::Implementation;
+    
+    $self->{owner_document} = $owner_document;
+    weaken $self->{owner_document};
     
     return $self;
   }

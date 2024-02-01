@@ -23,6 +23,17 @@ class Eg::Node::Document extends Eg::Node {
   
   has document_type : protected Eg::Node::DocumentType;
   
+  has implementation : rw Eg::DOM::Implementation;
+  
+  method init : void ($options : object[] = undef) {
+    
+    $self->SUPER::init($options);
+    
+    my $implementation = Eg::DOM::Implementation->new;
+    
+    $self->{implementation} = $implementation;
+  }
+  
   method create_element : Eg::Node::Element ($tag_name : string) {
     
     unless ($tag_name) {

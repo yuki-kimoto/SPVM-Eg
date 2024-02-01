@@ -8,7 +8,7 @@ class TestCase::Eg::Node::Document::HTML {
   
   static method create_element : int () {
     
-    my $document = Eg->implementation->create_html_document;
+    my $document = Eg->document->implementation->create_html_document;
     
     {
       my $element = $document->create_element("div");

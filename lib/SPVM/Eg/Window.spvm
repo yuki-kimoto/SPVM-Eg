@@ -15,10 +15,6 @@ class Eg::Window extends Eg::Event::Target {
     
     my $self = new Eg::Window;
     
-    my $implementation = Eg::DOM::Implementation->new;
-    
-    $self->{implementation} = $implementation;
-    
     my $document = Eg::Node::Document::HTML->new;
     
     $self->{document} = $document;
@@ -31,8 +27,6 @@ class Eg::Window extends Eg::Event::Target {
   has location : ro Eg::Location;
   
   has document : rw Eg::Node::Document::HTML;
-  
-  has implementation : rw Eg::DOM::Implementation;
   
   has history : ro Eg::History;
   

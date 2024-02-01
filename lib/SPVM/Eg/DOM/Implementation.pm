@@ -16,9 +16,9 @@ This class is a port of L<DOMImplementation|https://developer.mozilla.org/ja/doc
 
 =head1 Usage
 
-  my $xml_document = Eg->implementation->create_document("http://www.w3.org/1999/xhtml", "html");
+  my $xml_document = Eg->document->implementation->create_document("http://www.w3.org/1999/xhtml", "html");
   
-  my $html_document = Eg->implementation->create_html_document("Title");
+  my $html_document = Eg->document->implementation->create_html_document("Title");
 
 =head1 Instance Methods
 

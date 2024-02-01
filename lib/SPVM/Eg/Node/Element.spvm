@@ -155,7 +155,7 @@ class Eg::Node::Element extends Eg::Node {
       }
     }
     else {
-      my $text_node = Eg->implementation->create_html_document->create_text_node($text);
+      my $text_node = Eg->document->implementation->create_html_document->create_text_node($text);
       
       $self->{first_child} = $text_node;
       

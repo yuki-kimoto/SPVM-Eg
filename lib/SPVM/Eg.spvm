@@ -30,8 +30,4 @@ class Eg {
     return &window->document;
   }
   
-  static method implementation : Eg::DOM::Implementation () {
-    return &window->implementation;
-  }
-  
 }

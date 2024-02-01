@@ -29,7 +29,7 @@ class Engine {
     
     my $title = "コットン";
     
-    my $document = Eg->implementation->create_html_document($title);
+    my $document = Eg->document->implementation->create_html_document($title);
     
     for my $element (@$elements) {
       $document->body->append_child($element);
@@ -42,7 +42,7 @@ class Engine {
   
   static method tag : Eg::Node::Element ($tag_name : string, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
     
-    my $document = Eg->implementation->create_html_document;
+    my $document = Eg->document->implementation->create_html_document;
     
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {
@@ -70,7 +70,7 @@ class Engine {
   
   static method tag_ : Eg::Node::Element::HTML ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
     
-    my $document = Eg->implementation->create_html_document;
+    my $document = Eg->document->implementation->create_html_document;
     
     my $child_nodes = (Eg::Node[])undef;
     if ($child_nodes_or_text) {

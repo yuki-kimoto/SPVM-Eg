@@ -6,52 +6,32 @@ package SPVM::Eg::Node::Text;
 
 =head1 Name
 
-SPVM::Eg::Node::Text - Short Description
+SPVM::Eg::Node::Text - Text in JavaScript
 
 =head1 Description
 
-The Eg::Node::Text class in L<SPVM> has methods to do someting.
+The Eg::Node::Text class in L<SPVM> represents a text node in a DOM tree.
+
+This class is a port of L<Text|https://developer.mozilla.org/en-US/docs/Web/API/Text> in JavaScript.
 
 =head1 Usage
 
-  use Eg::Node::Text;
+  my $text_node = Eg->document->create_text_node("Hello World!");
 
-=head1 Details
+=head1 Inheritance
 
-
-
-=head1 Interfaces
-
-
-
-=head1 Enumerations
-
-
-
-=head1 Fields
-
-
-
-=head1 Class Methods
-
-
+L<Eg::Node::CharacterData|SPVM::Eg::Node::CharacterData>
 
 =head1 Instance Methods
 
+  method node_name : string ();
 
+Returns the name of the current node as a string.
 
-
-=head1 Repository
-
-
-
-=head1 Author
-
-Yuki Kimoto C<kimoto.yuki@gmail.com>
+For details, see L<Node.nodeName|https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeName> in JavaScript.
 
 =head1 Copyright & License
 
 Copyright (c) 2024 Yuki Kimoto
 
 MIT License
-

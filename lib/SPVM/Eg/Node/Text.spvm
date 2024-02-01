@@ -6,7 +6,7 @@ class Eg::Node::Text extends Eg::Node::CharacterData {
   
   allow Eg::Node::Document;
   
-  use Array;
+  use Fn;
   
   # Class Methods
   private static method new : Eg::Node::Text ($options : object[] = undef) {

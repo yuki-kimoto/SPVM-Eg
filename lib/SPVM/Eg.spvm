@@ -6,14 +6,7 @@ class Eg {
   
   use Eg::Node;
   use Eg::Node::Document::HTML;
-  use Eg::Node::Element;
-  use Eg::Node::Text;
   use Eg::Runtime;
-  use Eg::DOM::Implementation;
-  
-  use Hash;
-  use List;
-  use StringBuffer;
   
   our $RUNTIME : rw Eg::Runtime;
   

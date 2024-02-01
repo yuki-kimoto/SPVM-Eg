@@ -6,12 +6,14 @@ class Eg::Node::Text extends Eg::Node::CharacterData {
   
   allow Eg::Node::Document;
   
+  use Array;
+  
   # Class Methods
-  private static method new : Eg::Node::Text ($node_value : string) {
+  private static method new : Eg::Node::Text ($options : object[] = undef) {
     
     my $self = new Eg::Node::Text;
     
-    $self->SUPER::init({node_type => Eg::Node->TYPE_TEXT_NODE, node_value => $node_value});
+    $self->SUPER::init(Array->merge_object($options, {node_type => Eg::Node->TYPE_TEXT_NODE}));
     
     return $self;
   }

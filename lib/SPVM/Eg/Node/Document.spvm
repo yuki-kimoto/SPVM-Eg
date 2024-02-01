@@ -61,7 +61,7 @@ class Eg::Node::Document extends Eg::Node {
       die "\$node_value must be defined.";
     }
     
-    my $text_node = Eg::Node::Text->new($node_value);
+    my $text_node = Eg::Node::Text->new({node_value => $node_value});
     
     return $text_node;
   }

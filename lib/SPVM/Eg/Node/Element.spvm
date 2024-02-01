@@ -20,11 +20,11 @@ class Eg::Node::Element extends Eg::Node {
   has is_void_element : protected byte;
   
   # Class Methods
-  private static method new : Eg::Node::Element () {
+  private static method new : Eg::Node::Element ($options : object[] = undef) {
     
     my $self = new Eg::Node::Element;
     
-    $self->init;
+    $self->init($options);
     
     return $self;
   }
@@ -32,7 +32,13 @@ class Eg::Node::Element extends Eg::Node {
   # Instance Methods
   protected method init : void ($options : object[] = undef) {
     
-    $self->SUPER::init({node_type => Eg::Node->TYPE_ELEMENT_NODE});
+    unless ($options) {
+      $options = new object[0];
+    }
+    
+    $options = Array->merge_object($options, {node_type => Eg::Node->TYPE_ELEMENT_NODE});
+    
+    $self->SUPER::init($options);
   }
   
   method get_attribute : string ($name : string) {

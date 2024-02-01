@@ -7,11 +7,11 @@ class Eg::Node::Document::XML extends Eg::Node::Document {
   allow Eg::DOM::Implementation;
   
   # Class Methods
-  private static method new : Eg::Node::Document::XML ($namespace_uri : string, $qualified_name_str : string, $self_type : Eg::Node::DocumentType = undef) {
+  private static method new : Eg::Node::Document::XML ($namespace_uri : string, $qualified_name_str : string, $self_type : Eg::Node::DocumentType = undef, $options : object[] = undef) {
     
     my $self = new Eg::Node::Document::XML;
     
-    $self->SUPER::init;
+    $self->SUPER::init($options);
     
     unless ($qualified_name_str) {
       die "\$qualified_name_str must be defined.";

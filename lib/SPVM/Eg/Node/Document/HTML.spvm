@@ -96,11 +96,11 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
   has title : rw string;
   
   # Class Methods
-  private static method new : Eg::Node::Document::HTML ($title : string = undef) {
+  private static method new : Eg::Node::Document::HTML ($title : string = undef, $options : object[] = undef) {
     
     my $self = new Eg::Node::Document::HTML;
     
-    $self->init;
+    $self->SUPER::init($options);
     
     $self->{namespace_uri} = "http://www.w3.org/1999/xhtml";
     
@@ -125,11 +125,6 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     $html_element->append_child($body_element);
     
     return $self;
-  }
-  
-  protected method init : void ($options : object[] = undef) {
-    
-    $self->SUPER::init({node_type => Eg::Node->TYPE_DOCUMENT_NODE});
   }
   
   method document_element : Eg::Node::Element::HTML () {

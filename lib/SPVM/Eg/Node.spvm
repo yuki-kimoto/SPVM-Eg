@@ -63,8 +63,10 @@ class Eg::Node {
     if ($options_h->exists("node_type")) {
       
       my $node_type = $options_h->get_int("node_type");
-      
       $self->{node_type} = $node_type;
+    }
+    else {
+      die "The \"node_type\" option must be defined.";
     }
     
     my $node_value = $options_h->get_or_default_string("node_value", undef);

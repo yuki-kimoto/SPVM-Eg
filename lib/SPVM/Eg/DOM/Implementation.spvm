@@ -22,23 +22,9 @@ class Eg::DOM::Implementation {
   # Instance Methods
   method create_document : Eg::Node::Document::XML ($namespace_uri : string, $qualified_name_str : string, $document_type : Eg::Node::DocumentType = undef) {
     
-    unless ($qualified_name_str) {
-      die "\$qualified_name_str must be defined.";
-    }
+    my $xml_document = Eg::Node::Document::XML->new($namespace_uri, $qualified_name_str, $document_type);
     
-    my $document = Eg::Node::Document::XML->new;
-    
-    $document->{namespace_uri} = $namespace_uri;
-    
-    $document->{document_type} = $document_type;
-    
-    my $root_element = Eg::Node::Element->new;
-    
-    $root_element->{node_name} = $qualified_name_str;
-    
-    $document->append_child($root_element);
-    
-    return $document;
+    return $xml_document;
   }
   
   method create_document_type : Eg::Node::DocumentType ($qualified_name_str : string, $public_id : string, $system_id : string) {

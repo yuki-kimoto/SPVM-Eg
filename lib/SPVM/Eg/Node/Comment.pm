@@ -10,13 +10,13 @@ SPVM::Eg::Node::Comment - Comment in JavaScript
 
 =head1 Description
 
-The Eg::Node::Comment class in L<SPVM> represents a comment node in a DOM tree.
+The Eg::Node::Comment class in L<SPVM> represents textual notations within markup.
 
 This class is a port of L<Comment|https://developer.mozilla.org/en-US/docs/Web/API/Comment> in JavaScript.
 
 =head1 Usage
 
-  my $comment_node = Eg->document->create_comment("Hello World!");
+  my $comment_node = Eg->document->create_comment("Comment");
 
 =head1 Inheritance
 

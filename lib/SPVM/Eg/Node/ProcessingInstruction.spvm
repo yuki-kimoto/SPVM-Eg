@@ -10,11 +10,11 @@ class Eg::Node::ProcessingInstruction extends Eg::Node::CharacterData {
   has target : ro string;
   
   # Class Methods
-  private static method new : Eg::Node::ProcessingInstruction ($node_value : string) {
+  private static method new : Eg::Node::ProcessingInstruction ($options : object[] = undef) {
     
     my $self = new Eg::Node::ProcessingInstruction;
     
-    $self->SUPER::init({node_type => Eg::Node->TYPE_PROCESSING_INSTRUCTION_NODE, node_value => $node_value});
+    $self->SUPER::init(Array->merge_object($options, {node_type => Eg::Node->TYPE_PROCESSING_INSTRUCTION_NODE}));
     
     return $self;
   }

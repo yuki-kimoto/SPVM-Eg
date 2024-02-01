@@ -128,7 +128,7 @@ class Eg::Node::Document extends Eg::Node {
       }
     }
     
-    my $processing_instruction_node = Eg::Node::ProcessingInstruction->new($data);
+    my $processing_instruction_node = Eg::Node::ProcessingInstruction->new({node_value => $data});
     
     $processing_instruction_node->{target} = $target;
     

@@ -3,6 +3,7 @@
 
 class Eg::DOM::Implementation {
   
+  allow Eg::Node::Document;
   allow Eg::Window;
   
   use Eg::Node::Element;
@@ -49,31 +50,9 @@ class Eg::DOM::Implementation {
   
   method create_html_document : Eg::Node::Document::HTML ($title : string = undef) {
     
-    my $document = Eg::Node::Document::HTML->new;
+    my $html_document = Eg::Node::Document::HTML->new($title);
     
-    $document->{namespace_uri} = "http://www.w3.org/1999/xhtml";
-    
-    my $html_element = $document->create_element("html");
-    
-    $document->append_child($html_element);
-    
-    my $head_element = $document->create_element("head");
-    
-    if ($title) {
-      my $text_node = $document->create_text_node($title);
-      
-      my $title_element = $document->create_element("title");
-      
-      $title_element->append_child($text_node);
-    }
-    
-    $html_element->append_child($head_element);
-    
-    my $body_element = $document->create_element("body");
-    
-    $html_element->append_child($body_element);
-    
-    return $document;
+    return $html_document;
   }
   
 }

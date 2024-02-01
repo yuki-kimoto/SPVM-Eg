@@ -7,6 +7,7 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
   allow Eg;
   allow Eg::Node;
   allow Eg::DOM::Implementation;
+  allow Eg::Window;
   
   use Hash;
   use Regex;
@@ -95,15 +96,33 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
   has title : rw string;
   
   # Class Methods
-  private static method new : Eg::Node::Document::HTML ($root_node : Eg::Node::Element = undef) {
+  private static method new : Eg::Node::Document::HTML ($title : string = undef) {
     
     my $self = new Eg::Node::Document::HTML;
     
     $self->init;
     
-    if ($root_node) {
-      $self->append_child($root_node);
+    $self->{namespace_uri} = "http://www.w3.org/1999/xhtml";
+    
+    my $html_element = $self->create_element("html");
+    
+    $self->append_child($html_element);
+    
+    my $head_element = $self->create_element("head");
+    
+    if ($title) {
+      my $text_node = $self->create_text_node($title);
+      
+      my $title_element = $self->create_element("title");
+      
+      $title_element->append_child($text_node);
     }
+    
+    $html_element->append_child($head_element);
+    
+    my $body_element = $self->create_element("body");
+    
+    $html_element->append_child($body_element);
     
     return $self;
   }

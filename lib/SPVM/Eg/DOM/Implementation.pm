@@ -28,7 +28,7 @@ C<method create_document : L<Eg::Node::Document::XML|SPVM::Eg::Node::Document::X
 
 Creates and returns an L<Eg::Node::Document::XML|SPVM::Eg::Node::Document::XML>.
 
-For details, see the L<DOMImplementation.createDocument|https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createDocument> method in JavaScript.
+For details, see L<DOMImplementation.createDocument|https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createDocument> in JavaScript.
 
 =head2 create_document_type
 
@@ -36,7 +36,7 @@ For details, see the L<DOMImplementation.createDocument|https://developer.mozill
 
 Creates and returns a L<Eg::Node::DocumentType|SPVM::Eg::Node::DocumentType> object. 
 
-For details, see the L<DOMImplementation.createDocumentType|https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createDocumentType> method in JavaScript.
+For details, see L<DOMImplementation.createDocumentType|https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createDocumentType> in JavaScript.
 
 =head2 create_html_document
 
@@ -44,7 +44,7 @@ For details, see the L<DOMImplementation.createDocumentType|https://developer.mo
 
 Creates and returns a new L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML> object.
 
-For details, see the L<DOMImplementation.createHTMLDocument|https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createHTMLDocument> in JavaScript.
+For details, see L<DOMImplementation.createHTMLDocument|https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createHTMLDocument> in JavaScript.
 
 =head1 Related Classes
 

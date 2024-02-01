@@ -34,6 +34,8 @@ class Eg::DOM::Implementation {
     
     my $document_type = Eg::Node::DocumentType->new($qualified_name_str, $public_id, $system_id);
     
+    $document_type->{owner_document} = $self->{owner_document};
+    
     return $document_type;
   }
   

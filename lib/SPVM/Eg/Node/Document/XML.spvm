@@ -21,7 +21,7 @@ class Eg::Node::Document::XML extends Eg::Node::Document {
     
     $self->{document_type} = $self_type;
     
-    my $root_element = Eg::Node::Element->new;
+    my $root_element = Eg::Node::Element->new({owner_document => $self});
     
     $root_element->{node_name} = $qualified_name_str;
     

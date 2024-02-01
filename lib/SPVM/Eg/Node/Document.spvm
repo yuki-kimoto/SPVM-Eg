@@ -54,7 +54,7 @@ class Eg::Node::Document extends Eg::Node {
       die "\$tag_name cannot contains \":\"";
     }
     
-    my $element = Eg::Node::Element->new;
+    my $element = Eg::Node::Element->new({owner_document => $self});
     
     $element->{node_name} = $tag_name;
     
@@ -67,7 +67,7 @@ class Eg::Node::Document extends Eg::Node {
       die "\$node_value must be defined.";
     }
     
-    my $text_node = Eg::Node::Text->new({node_value => $node_value});
+    my $text_node = Eg::Node::Text->new({owner_document => $self, node_value => $node_value});
     
     return $text_node;
   }
@@ -78,7 +78,7 @@ class Eg::Node::Document extends Eg::Node {
       die "\$node_value must be defined.";
     }
     
-    my $comment_node = Eg::Node::Comment->new({node_value => $node_value});
+    my $comment_node = Eg::Node::Comment->new({owner_document => $self, node_value => $node_value});
     
     return $comment_node;
   }
@@ -89,14 +89,14 @@ class Eg::Node::Document extends Eg::Node {
       die "\$node_value must be defined.";
     }
     
-    my $cdata_section_node = Eg::Node::CDATASection->new({node_value => $node_value});
+    my $cdata_section_node = Eg::Node::CDATASection->new({owner_document => $self, node_value => $node_value});
     
     return $cdata_section_node;
   }
   
   method create_document_fragment : Eg::Node::DocumentFragment () {
     
-    my $document_fragment_node = Eg::Node::DocumentFragment->new;
+    my $document_fragment_node = Eg::Node::DocumentFragment->new({owner_document => $self});
     
     return $document_fragment_node;
   }
@@ -113,7 +113,7 @@ class Eg::Node::Document extends Eg::Node {
     
     $name = Fn->lc($name);
     
-    my $attribute_node = Eg::Node::Attr->new($name);
+    my $attribute_node = Eg::Node::Attr->new($name, {owner_document => $self});
     
     return $attribute_node;
   }
@@ -134,7 +134,7 @@ class Eg::Node::Document extends Eg::Node {
       }
     }
     
-    my $processing_instruction_node = Eg::Node::ProcessingInstruction->new({node_value => $data});
+    my $processing_instruction_node = Eg::Node::ProcessingInstruction->new({owner_document => $self, node_value => $data});
     
     $processing_instruction_node->{target} = $target;
     
@@ -157,11 +157,6 @@ class Eg::Node::Document extends Eg::Node {
     my $node_name = "#document";
     
     return $node_name;
-  }
-  
-  method owner_document : Eg::Node::Document () {
-    
-    return undef;
   }
   
 }

@@ -60,6 +60,18 @@ class Eg::Node {
     
     my $options_h = Hash->new($options);
     
+    if ($options_h->exists("owner_document")) {
+      
+      my $owner_document = (Eg::Node::Document)$options_h->get("owner_document");
+      $self->{owner_document} = $owner_document;
+      weaken $self->{owner_document};
+    }
+    else {
+      unless ($self isa Eg::Node::Document) {
+        die "If the node does not inherit the Eg::Node::Document class, the \"owner_document\" option must be defined.";
+      }
+    }
+    
     if ($options_h->exists("node_type")) {
       
       my $node_type = $options_h->get_int("node_type");

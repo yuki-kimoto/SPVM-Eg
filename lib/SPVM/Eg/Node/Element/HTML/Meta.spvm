@@ -10,7 +10,7 @@ class Eg::Node::Element::HTML::Meta extends Eg::Node::Element::HTML {
     
     my $self = new Eg::Node::Element::HTML::Meta;
     
-    $self->SUPER::init(Array->merge_object($options, {is_void_element => 1}));
+    $self->SUPER::init(Eg->merge_options_v2($options, {is_void_element => 1}));
     
     return $self;
   }

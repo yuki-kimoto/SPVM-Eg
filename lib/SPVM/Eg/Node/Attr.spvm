@@ -20,7 +20,7 @@ class Eg::Node::Attr extends Eg::Node {
       $options = {};
     }
     
-    $self->SUPER::init(Fn->merge_options($options, {node_type => Eg::Node->TYPE_ATTRIBUTE_NODE}));
+    $self->SUPER::init(Eg->merge_options_v2($options, {node_type => Eg::Node->TYPE_ATTRIBUTE_NODE}));
     
     $self->{name} = $name;
     

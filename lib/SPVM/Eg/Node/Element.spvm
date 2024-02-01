@@ -36,7 +36,7 @@ class Eg::Node::Element extends Eg::Node {
       $options = new object[0];
     }
     
-    $options = Array->merge_object($options, {node_type => Eg::Node->TYPE_ELEMENT_NODE});
+    $options = Eg->merge_options_v2($options, {node_type => Eg::Node->TYPE_ELEMENT_NODE});
     
     $self->SUPER::init($options);
   }

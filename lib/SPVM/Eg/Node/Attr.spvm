@@ -12,11 +12,17 @@ class Eg::Node::Attr extends Eg::Node {
   has value : ro string;
   
   # Class Methods
-  private static method new : Eg::Node::Attr ($name : string) {
+  private static method new : Eg::Node::Attr ($name : string, $options : object[] = undef) {
     
     my $self = new Eg::Node::Attr;
     
-    $self->SUPER::init({node_type => Eg::Node->TYPE_ATTRIBUTE_NODE});
+    unless ($options) {
+      $options = {};
+    }
+    
+    $self->SUPER::init(Fn->merge_options($options, {node_type => Eg::Node->TYPE_ATTRIBUTE_NODE}));
+    
+    $self->{name} = $name;
     
     $self->{value} = "";
     

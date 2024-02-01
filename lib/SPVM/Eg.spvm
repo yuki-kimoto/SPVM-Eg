@@ -30,4 +30,19 @@ class Eg {
     return &window->document;
   }
   
+  # Temporary
+  static method merge_options_v2 : object[] ($options1 : object[], $options2 : object[]) {
+    unless ($options1) {
+      $options1 = {};
+    }
+    
+    unless ($options2) {
+      $options2 = {};;
+    }
+    
+    my $merged_options = Fn->merge_options($options1, $options2);
+    
+    return $merged_options;
+  }
+  
 }

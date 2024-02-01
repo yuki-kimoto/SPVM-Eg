@@ -13,11 +13,11 @@ class Eg::Node::Element::HTML extends Eg::Node::Element {
   has style : ro Eg::CSS::StyleDeclaration;
   
   # Class Methods
-  private static method new : Eg::Node::Element::HTML () {
+  private static method new : Eg::Node::Element::HTML ($options : object[] = undef) {
     
     my $self = new Eg::Node::Element::HTML;
     
-    $self->init;
+    $self->init($options);
     
     return $self;
   }

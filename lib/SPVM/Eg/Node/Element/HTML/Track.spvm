@@ -12,7 +12,7 @@ class Eg::Node::Element::HTML::Track extends Eg::Node::Element::HTML {
     
     my $self = new Eg::Node::Element::HTML::Track;
     
-    $self->SUPER::init(Array->merge_object({is_void_element => 1}, $options));
+    $self->SUPER::init(Array->merge_object($options, {is_void_element => 1}));
     
     return $self;
   }

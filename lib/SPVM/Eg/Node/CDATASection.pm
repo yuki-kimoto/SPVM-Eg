@@ -24,7 +24,7 @@ L<Eg::Node::CharacterData|SPVM::Eg::Node::CharacterData>
 
 =head1 Instance Methods
 
-  method node_name : string ();
+C<method node_name : string ();>
 
 Returns the name of the current node as a string.
 

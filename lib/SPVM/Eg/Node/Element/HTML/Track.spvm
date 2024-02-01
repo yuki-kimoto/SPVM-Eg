@@ -5,14 +5,14 @@ class Eg::Node::Element::HTML::Track extends Eg::Node::Element::HTML {
   
   allow Eg::Node::Document::HTML;
   
+  use Array;
+  
   # Class Methods
-  private static method new : Eg::Node::Element::HTML::Track () {
+  private static method new : Eg::Node::Element::HTML::Track ($options : object[] = undef) {
     
     my $self = new Eg::Node::Element::HTML::Track;
     
-    $self->SUPER::init;
-    
-    $self->{is_void_element} = 1;
+    $self->SUPER::init(Array->merge_object({is_void_element => 1}, $options));
     
     return $self;
   }

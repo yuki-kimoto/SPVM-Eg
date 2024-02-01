@@ -6,13 +6,11 @@ class Eg::Node::Element::HTML::Link extends Eg::Node::Element::HTML {
   allow Eg::Node::Document::HTML;
   
   # Class Methods
-  private static method new : Eg::Node::Element::HTML::Link () {
+  private static method new : Eg::Node::Element::HTML::Link ($options : object[] = undef) {
     
     my $self = new Eg::Node::Element::HTML::Link;
     
-    $self->SUPER::init;
-    
-    $self->{is_void_element} = 1;
+    $self->SUPER::init(Array->merge_object({is_void_element => 1}, $options));
     
     return $self;
   }

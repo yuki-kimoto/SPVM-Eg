@@ -9,11 +9,11 @@ class Eg::Node::Element::HTML::Unknown extends Eg::Node::Element::HTML {
   allow Eg::Node::Element::HTML;
   
   # Class Methods
-  static method new : Eg::Node::Element::HTML::Unknown () {
+  static method new : Eg::Node::Element::HTML::Unknown ($options : object[] = undef) {
     
     my $self = new Eg::Node::Element::HTML::Unknown;
     
-    $self->SUPER::init;
+    $self->SUPER::init($options);
     
     return $self;
   }

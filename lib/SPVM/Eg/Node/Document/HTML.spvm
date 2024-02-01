@@ -100,9 +100,9 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     
     $self->SUPER::init($options);
     
-    $self->{namespace_uri} = "http://www.w3.org/1999/xhtml";
-    
     my $html_element = $self->create_element("html");
+    
+    $html_element->{namespace_uri} = "http://www.w3.org/1999/xhtml";
     
     $self->append_child($html_element);
     

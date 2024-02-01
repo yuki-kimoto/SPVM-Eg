@@ -17,13 +17,13 @@ class Eg::Node::Document::XML extends Eg::Node::Document {
       die "\$qualified_name_str must be defined.";
     }
     
-    $self->{namespace_uri} = $namespace_uri;
-    
     $self->{document_type} = $self_type;
     
     my $root_element = Eg::Node::Element->new({owner_document => $self});
     
     $root_element->{node_name} = $qualified_name_str;
+    
+    $root_element->{namespace_uri} = $namespace_uri;
     
     $self->append_child($root_element);
     

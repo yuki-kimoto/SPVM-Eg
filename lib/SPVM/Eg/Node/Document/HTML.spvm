@@ -92,8 +92,6 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
   use Eg::Node::Element::HTML::Track;
   use Eg::Node::Element::HTML::UList;
   use Eg::Node::Element::HTML::Video;
-
-  has title : rw string;
   
   # Class Methods
   private static method new : Eg::Node::Document::HTML ($title : string = undef, $options : object[] = undef) {

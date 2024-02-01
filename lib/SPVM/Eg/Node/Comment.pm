@@ -6,7 +6,7 @@ package SPVM::Eg::Node::Comment;
 
 =head1 Name
 
-SPVM::Eg::Node::Comment - Short Description
+SPVM::Eg::Node::Comment - Comment in JavaScript
 
 =head1 Description
 

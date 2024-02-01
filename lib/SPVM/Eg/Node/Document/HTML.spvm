@@ -127,24 +127,7 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
     return $self;
   }
   
-  method document_element : Eg::Node::Element::HTML () {
-    my $root_node = (Eg::Node::Element::HTML)$self->SUPER::document_element;
-    
-    return $root_node;
-  }
-  
-  method head : Eg::Node::Element::HTML () {
-    my $root_node = $self->document_element;
-    
-    return (Eg::Node::Element::HTML)$root_node->first_child;
-  }
-  
-  method body : Eg::Node::Element::HTML () {
-    my $root_node = $self->document_element;
-    
-    return (Eg::Node::Element::HTML)$root_node->first_child->next_sibling;
-  }
-  
+  # Instance Methods
   method create_element : Eg::Node::Element::HTML ($tag_name : string) {
     
     unless ($tag_name) {
@@ -570,9 +553,25 @@ class Eg::Node::Document::HTML extends Eg::Node::Document {
       $element = Eg::Node::Element::HTML::Unknown->new({owner_document => $self, node_name => $tag_name});
     }
     
-    $element->{node_name} = $tag_name;
-    
     return $element;
+  }
+  
+  method document_element : Eg::Node::Element::HTML () {
+    my $root_node = (Eg::Node::Element::HTML)$self->SUPER::document_element;
+    
+    return $root_node;
+  }
+  
+  method head : Eg::Node::Element::HTML () {
+    my $root_node = $self->document_element;
+    
+    return (Eg::Node::Element::HTML)$root_node->first_child;
+  }
+  
+  method body : Eg::Node::Element::HTML () {
+    my $root_node = $self->document_element;
+    
+    return (Eg::Node::Element::HTML)$root_node->first_child->next_sibling;
   }
   
 }

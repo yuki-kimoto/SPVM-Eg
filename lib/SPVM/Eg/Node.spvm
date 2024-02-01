@@ -89,6 +89,9 @@ class Eg::Node {
       $self->{node_value_buffer} = $node_value_buffer;
     }
     
+    my $node_name = $options_h->get_or_default_string("node_name", undef);
+    
+    $self->{node_name} = $node_name;
   }
   
   method child_nodes : Eg::Node[] () {

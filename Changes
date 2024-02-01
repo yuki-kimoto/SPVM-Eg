@@ -5,7 +5,8 @@
     * Add the doc of Eg::Node::Document::HTML.
   [Internal Changes]
     * An Eg::Node object have owner document.
-  
+  [Incompatible Changes]
+    * Many things are changed.
 0.015 2024-01-30
   [New Features]
     * Add many CSS child classes.

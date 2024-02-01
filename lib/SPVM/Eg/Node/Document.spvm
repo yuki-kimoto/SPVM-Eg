@@ -15,30 +15,17 @@ class Eg::Node::Document extends Eg::Node {
   use Eg::Node::DocumentType;
   use Eg::Node::ShadowRoot;
   use Regex;
-  
   use Fn;
   
   # Fields
-  has document_type : ro protected Eg::Node::DocumentType;
+  has doctype : ro protected Eg::Node::DocumentType;
   
   has implementation : ro Eg::DOM::Implementation;
   
   has title : protected string;
   
-  method title : string () {
-    return $self->{title};
-  }
-  
-  method set_title : string ($title : string) {
-    
-    unless ($title) {
-      die "\$title must be defined.";
-    }
-    
-    $self->{title} = $title;
-  }
-  
-  method init : void ($options : object[] = undef) {
+  # Instance Methods
+  protected method init : void ($options : object[] = undef) {
     
     unless ($options) {
       $options = new object[0];
@@ -51,6 +38,19 @@ class Eg::Node::Document extends Eg::Node {
     my $implementation = Eg::DOM::Implementation->new($self);
     
     $self->{implementation} = $implementation;
+  }
+  
+  method title : string () {
+    return $self->{title};
+  }
+  
+  method set_title : string ($title : string) {
+    
+    unless ($title) {
+      die "\$title must be defined.";
+    }
+    
+    $self->{title} = $title;
   }
   
   method create_element : Eg::Node::Element ($tag_name : string) {

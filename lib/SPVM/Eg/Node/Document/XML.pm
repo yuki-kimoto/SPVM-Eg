@@ -16,7 +16,10 @@ This class is a port of L<XMLDocument|https://developer.mozilla.org/en-US/docs/W
 
 =head1 Usage
 
-  my $xml_document = Eg->document->implementation->create_document;
+  my $xml_document = Eg->document->implementation->create_document(
+    "http://www.w3.org/1999/xhtml",
+    "html",
+  );
   
   my $element = $xml_document->create_element("div");
 

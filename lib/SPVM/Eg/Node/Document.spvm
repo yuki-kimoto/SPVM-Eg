@@ -72,7 +72,7 @@ class Eg::Node::Document extends Eg::Node {
       die "\$node_value must be defined.";
     }
     
-    my $comment_node = Eg::Node::Comment->new($node_value);
+    my $comment_node = Eg::Node::Comment->new({node_value => $node_value});
     
     return $comment_node;
   }
@@ -83,7 +83,7 @@ class Eg::Node::Document extends Eg::Node {
       die "\$node_value must be defined.";
     }
     
-    my $cdata_section_node = Eg::Node::CDATASection->new($node_value);
+    my $cdata_section_node = Eg::Node::CDATASection->new({node_value => $node_value});
     
     return $cdata_section_node;
   }

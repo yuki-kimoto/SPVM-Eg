@@ -8,7 +8,7 @@ class TestCase::Eg::Node::Document::XML {
   
   static method create_element : int () {
     
-    my $document = Eg->document->implementation->create_document(undef, "my:root");
+    my $document = Eg->document->implementation->create_document(undef, "root");
     
     {
       my $element = $document->create_element("div");

@@ -6,13 +6,13 @@ package SPVM::Eg::Node::Document;
 
 =head1 Name
 
-SPVM::Eg::Node::Document - Document(only XML document features) in JavaScript
+SPVM::Eg::Node::Document - Document in JavaScript
 
 =head1 Description
 
 The Eg::Node::Document class in L<SPVM> represents any XML/HTML page which is the DOM tree. This class itself is an abstruct class.
 
-This class is a port of L<Document(only XML features)|https://developer.mozilla.org/en-US/docs/Web/API/Document> in JavaScript.
+This class is a port of L<Document|https://developer.mozilla.org/en-US/docs/Web/API/Document> in JavaScript.
 
 =head1 Usage
 

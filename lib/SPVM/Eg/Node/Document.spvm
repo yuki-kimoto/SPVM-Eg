@@ -1,8 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-# None in JavaScript
-# This class represents XML document
+# Document in JavaScript
 class Eg::Node::Document extends Eg::Node {
   
   allow Eg::DOM::Implementation;

@@ -111,6 +111,14 @@ Creates a new attribute node, and returns it.
 
 For details, see L<Document.createAttribute|https://developer.mozilla.org/en-US/docs/Web/API/Document/createAttribute> in JavaScript.
 
+=head2 create_attribute_ns
+
+C<method create_attribute_ns : L<Eg::Node::Attr|SPVM::Eg::Node::Attr> ($namespace_uri : string, $qualified_name : string);>
+
+Creates a new attribute node with the specified namespace URI and qualified name, and returns it.
+
+For details, see L<Document.createAttributeNS|https://developer.mozilla.org/en-US/docs/Web/API/Document/createAttributeNS> in JavaScript.
+
 =head2 create_processing_instruction
 
 C<method create_processing_instruction : L<Eg::Node::ProcessingInstruction|SPVM::Eg::Node::ProcessingInstruction> ($target : string, $data : string);>

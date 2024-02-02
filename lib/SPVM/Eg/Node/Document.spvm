@@ -74,6 +74,33 @@ class Eg::Node::Document extends Eg::Node {
     return $element;
   }
   
+  method create_element_ns : Eg::Node::Element ($namespace_uri : string, $qualified_name : string) {
+    
+    unless ($namespace_uri) {
+      die "\$namespace_uri must be defined.";
+    }
+    
+    unless ($qualified_name) {
+      die "\$qualified_name must be defined.";
+    }
+    
+    unless (length $qualified_name) {
+      die "\$qualified_name must have its length.";
+    }
+    
+    unless (Regex->new("^([a-zA-Z_][\w+\-\.]*:)?[a-zA-Z_][\w+\-\.]*$")->match($qualified_name)) {
+      die "\$qualified_name must be a valid XML name.";
+    }
+    
+    my $element = Eg::Node::Element->new({owner_document => $self});
+    
+    $element->{namespace_uri} = $namespace_uri;
+    
+    $element->{node_name} = $qualified_name;
+    
+    return $element;
+  }
+  
   method create_text_node : Eg::Node::Text ($node_value : string) {
     
     unless ($node_value) {

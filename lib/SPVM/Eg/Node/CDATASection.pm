@@ -22,14 +22,6 @@ This class is a port of L<CDATASection|https://developer.mozilla.org/en-US/docs/
 
 L<Eg::Node::CharacterData|SPVM::Eg::Node::CharacterData>
 
-=head1 Instance Methods
-
-C<method node_name : string ();>
-
-Returns the name of the current node as a string.
-
-For details, see L<Node.nodeName|https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeName> in JavaScript.
-
 =head1 Copyright & License
 
 Copyright (c) 2024 Yuki Kimoto

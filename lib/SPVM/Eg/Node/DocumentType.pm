@@ -54,16 +54,6 @@ Retunrs the URL of the associated DTD.
 
 For details, see L<DocumentType.systemId|https://developer.mozilla.org/en-US/docs/Web/API/DocumentType/systemId> in JavaScript.
 
-=head1 Instance Methods
-
-=head2 node_name
-
-C<method node_name : string ();>
-
-Returns the node name.
-
-For details, see L<Node.nodeName|https://developer.mozilla.org/ja/docs/Web/API/Node/nodeName> in JavaScript.
-
 =head1 Copyright & License
 
 Copyright (c) 2024 Yuki Kimoto

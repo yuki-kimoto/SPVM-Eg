@@ -143,14 +143,6 @@ Returns the <body> or <frameset> node of the current document, or undef if no su
 
 For details, see L<Document.body|https://developer.mozilla.org/en-US/docs/Web/API/Document/body> in JavaScript.
 
-=head2 node_name
-
-C<method node_name : string ();>
-
-Returns the node name.
-
-For details, see L<Node.nodeName|https://developer.mozilla.org/ja/docs/Web/API/Node/nodeName> in JavaScript.
-
 =head1 Well Known Child Classes
 
 =over 2

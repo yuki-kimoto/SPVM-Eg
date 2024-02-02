@@ -10,7 +10,7 @@ SPVM::Eg::Node::ShadowRoot - ShadowRoot in JavaScript
 
 =head1 Description
 
-The Eg::Node::ShadowRoot class in L<SPVM> the root node of a DOM subtree that is rendered separately from a document's main DOM tree.
+The Eg::Node::ShadowRoot class in L<SPVM> represents the root node of a DOM subtree that is rendered separately from a document's main DOM tree.
 
 This class is a port of L<ShadowRoot|https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot> in JavaScript.
 

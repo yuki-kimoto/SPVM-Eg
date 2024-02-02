@@ -6,6 +6,7 @@ class Eg::Node::Element extends Eg::Node {
   allow Eg::Node;
   allow Eg::Node::Document;
   allow Eg::Node::Document::XML;
+  allow Eg::Node::Document::HTML;
   
   use Fn;
   

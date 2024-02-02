@@ -3,7 +3,7 @@
 
 class Eg::Node::Element::HTML::Picture extends Eg::Node::Element::HTML {
   
-  allow Eg::Node::Document::HTML;
+  allow Eg::Node::Document;
   
   # Class Methods
   private static method new : Eg::Node::Element::HTML::Picture ($options : object[] = undef) {

@@ -48,7 +48,7 @@ class TestCase::Eg::Node {
       }
     }
     
-    return $new_element_node;
+    return (Eg::Node::Element::HTML)$new_element_node;
   }
   
   static method tag_ : Eg::Node::Element::HTML ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {    
@@ -86,7 +86,7 @@ class TestCase::Eg::Node {
       }
     }
     
-    return $new_element_node;
+    return (Eg::Node::Element::HTML)$new_element_node;
   }
   
   static method test : int () {

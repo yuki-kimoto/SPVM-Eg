@@ -171,7 +171,47 @@ class Eg::Node {
     return $root_node;
   }
   
-  method node_name : string () { die "Not implmeneted"; }
+  method node_name : string () {
+    
+    my $node_type = $self->{node_type};
+    
+    my $node_name = (string)undef;
+    
+    switch ($node_type) {
+      case &TYPE_ATTRIBUTE_NODE: {
+        $node_name = $self->(Eg::Node::Attr)->name;
+      }
+      case &TYPE_CDATA_SECTION_NODE: {
+        $node_name = "#cdata-section";
+      }
+      case &TYPE_COMMENT_NODE: {
+        $node_name = "#comment";
+      }
+      case &TYPE_DOCUMENT_NODE: {
+        $node_name = "#document";
+      }
+      case &TYPE_DOCUMENT_FRAGMENT_NODE: {
+        $node_name = "#document-fragment";
+      }
+      case &TYPE_DOCUMENT_TYPE_NODE: {
+        $node_name = $self->(Eg::Node::DocumentType)->name;
+      }
+      case &TYPE_ELEMENT_NODE: {
+        $node_name = $self->(Eg::Node::Element)->tag_name;
+      }
+      case &TYPE_PROCESSING_INSTRUCTION_NODE: {
+        $node_name = $self->(Eg::Node::ProcessingInstruction)->target;
+      }
+      case &TYPE_TEXT_NODE: {
+        $node_name = "#text";
+      }
+      default: {
+        die "[Unexpected Error]Unknown node type.";
+      }
+    }
+    
+    return $node_name;
+  }
   
   method remove_child : Eg::Node ($child_node : Eg::Node) {
     unless ($child_node) {
@@ -578,24 +618,4 @@ class Eg::Node {
     
     return $cloned;
   }
-  
-=pod void elements
-
-<area>
-<base>
-<br>
-<col>
-<embed>
-<hr>
-<img>
-<input>
-<link>
-<meta>
-<param>
-<source>
-<track>
-<wbr>
-
-=cut
-
 }

@@ -16,11 +16,4 @@ class Eg::Node::DocumentFragment extends Eg::Node {
     return $self;
   }
   
-  method node_name : string () {
-    
-    my $node_name = "#document-fragment";
-    
-    return $node_name;
-  }
-  
 }

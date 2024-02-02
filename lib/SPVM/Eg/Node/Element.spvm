@@ -175,5 +175,4 @@ class Eg::Node::Element extends Eg::Node {
     
     return $tag_name;
   }
-  
 }

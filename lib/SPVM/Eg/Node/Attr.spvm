@@ -39,11 +39,4 @@ class Eg::Node::Attr extends Eg::Node {
     $self->{value} = $value;
   }
   
-  method node_name : string () {
-    
-    my $node_name = $self->{name};
-    
-    return $node_name;
-  }
-  
 }

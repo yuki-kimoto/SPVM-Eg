@@ -41,12 +41,4 @@ class Eg::Node::DocumentType extends Eg::Node {
     return $self;
   }
   
-  # Instance Methods
-  method node_name : string () {
-    
-    my $node_name = $self->{name};
-    
-    return $node_name;
-  }
-  
 }

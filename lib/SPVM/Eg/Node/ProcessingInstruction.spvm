@@ -4,7 +4,7 @@
 # ProcessingInstruction in JavaScript
 class Eg::Node::ProcessingInstruction extends Eg::Node::CharacterData {
   
-  allow Eg::Node::Document::XML;
+  allow Eg::Node::Document;
   
   # Fields
   has target : ro string;

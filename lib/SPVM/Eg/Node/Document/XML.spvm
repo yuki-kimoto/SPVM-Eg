@@ -28,27 +28,4 @@ class Eg::Node::Document::XML extends Eg::Node::Document {
     return $self;
   }
   
-  method create_processing_instruction : Eg::Node::ProcessingInstruction ($target : string, $data : string) {
-    
-    unless ($target) {
-      die "\$target must be defined.";
-    }
-    
-    unless (Regex->new("^[a-zA-Z_][\w+\-\.]*$")->match($target)) {
-      die "\$target must be a valid XML name.";
-    }
-    
-    if ($data) {
-      if (Fn->contains($data, "?>")) {
-        die "\$data cannot contain  \"?>\".";
-      }
-    }
-    
-    my $processing_instruction_node = Eg::Node::ProcessingInstruction->new({owner_document => $self, node_value => $data});
-    
-    $processing_instruction_node->{target} = $target;
-    
-    return $processing_instruction_node;
-  }
-  
 }

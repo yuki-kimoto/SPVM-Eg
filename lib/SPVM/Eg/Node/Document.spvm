@@ -710,6 +710,13 @@ class Eg::Node::Document extends Eg::Node {
     return $attribute_node;
   }
   
+  method create_attribute_ns : Eg::Node::Attr ($namespace_uri : string, $qualified_name : string) {
+    
+    my $attribute_node = Eg::Node::Attr->new_with_namespace_uri($namespace_uri, $qualified_name, {owner_document => $self});
+    
+    return $attribute_node;
+  }
+  
   method create_processing_instruction : Eg::Node::ProcessingInstruction ($target : string, $data : string) {
     
     unless ($target) {

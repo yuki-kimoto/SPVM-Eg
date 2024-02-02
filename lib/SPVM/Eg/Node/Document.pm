@@ -67,7 +67,7 @@ For details, see L<Document.title|https://developer.mozilla.org/en-US/docs/Web/A
 
 C<method create_element : L<Eg::Node::Element|SPVM::Eg::Node::Element> ($tag_name : string);>
 
-Creates the XML element specified by $tag_name.
+In an HTML document, this method creates the HTML element specified by $tag_name, or an L<Eg::Node::Element::HTML::Unknown|SPVM::Eg::Node::Element::HTML::Unknown> if $tag_name isn't recognized.
 
 For details, see L<Document.createElement|https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement> in JavaScript.
 
@@ -126,6 +126,22 @@ C<method document_element : L<Eg::Node::Element|SPVM::Eg::Node::Element> ();>
 Returns the element that is the root element of the document (for example, the <html> element for HTML documents).
 
 For details, see L<Document.documentElement|https://developer.mozilla.org/en-US/docs/Web/API/Document/documentElement> in JavaScript.
+
+=head2 head
+
+C<method head : L<Eg::Node::Element|SPVM::Eg::Node::Element> ();>
+
+Returns the head element of the current document.
+
+For details, see L<Document.head|https://developer.mozilla.org/en-US/docs/Web/API/Document/head> in JavaScript.
+
+=head2 body
+
+C<method body : L<Eg::Node::Element|SPVM::Eg::Node::Element> ();>
+
+Returns the <body> or <frameset> node of the current document, or undef if no such element exists.
+
+For details, see L<Document.body|https://developer.mozilla.org/en-US/docs/Web/API/Document/body> in JavaScript.
 
 =head2 node_name
 

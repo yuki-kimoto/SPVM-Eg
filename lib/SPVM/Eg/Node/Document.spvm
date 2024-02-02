@@ -5,8 +5,6 @@
 # This class represents XML document
 class Eg::Node::Document extends Eg::Node {
   
-  allow Eg;
-  allow Eg::Node;
   allow Eg::DOM::Implementation;
   allow Eg::Window;
   

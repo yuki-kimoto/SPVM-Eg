@@ -6,10 +6,26 @@ class Eg::Node::Attr extends Eg::Node {
   
   allow Eg::Node::Document;
   
+  use Fn;
+  use Eg::Node::Element;
+  
   # Fields
   has name : ro string;
   
   has value : ro string;
+  
+  method set_value : void ($value : string) {
+    
+    unless ($value) {
+      die "\$value must be defined.";
+    }
+    
+    $self->{value} = $value;
+  }
+  
+  has namespace_uri : ro string;
+  
+  has owner_element : ro Eg::Node::Element;
   
   # Class Methods
   private static method new : Eg::Node::Attr ($name : string, $options : object[] = undef) {
@@ -29,14 +45,58 @@ class Eg::Node::Attr extends Eg::Node {
     return $self;
   }
   
-  # Instance Methods
-  method set_value : void ($value : string) {
+  private static method new_with_namespace_uri : Eg::Node::Attr ($namespace_uri : string, $name : string, $options : object[] = undef) {
     
-    unless ($value) {
-      die "\$value must be defined.";
+    my $self = &new($name, $options);
+    
+    $self->{namespace_uri} = $namespace_uri;
+    
+    return $self;
+  }
+  
+  # Instance Method
+  method local_name : string () {
+    
+    my $namespace_uri = $self->{namespace_uri};
+    
+    my $name = $self->{name};
+    
+    my $local_name = (string)undef;
+    
+    if ($namespace_uri) {
+      if (Fn->contains($name, ":")) {
+        my $prefix_and_local_name = Fn->split(":", $name);
+        
+        $local_name = $prefix_and_local_name->[1];
+      }
+      else {
+        $local_name = $name;
+      }
+    }
+    else {
+      $local_name = $name;
     }
     
-    $self->{value} = $value;
+    return $name;
+  }
+  
+  method prefix : string () {
+    
+    my $namespace_uri = $self->{namespace_uri};
+    
+    my $name = $self->{name};
+    
+    my $prefix = (string)undef;
+    
+    if ($namespace_uri) {
+      if (Fn->contains($name, ":")) {
+        my $prefix_and_local_name = Fn->split(":", $name);
+        
+        $prefix = $prefix_and_local_name->[0];
+      }
+    }
+    
+    return $name;
   }
   
 }

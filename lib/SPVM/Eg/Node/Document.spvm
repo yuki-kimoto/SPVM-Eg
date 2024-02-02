@@ -63,10 +63,6 @@ class Eg::Node::Document extends Eg::Node {
       die "\$tag_name must have its length.";
     }
     
-    if (Fn->contains($tag_name, ":")) {
-      die "\$tag_name cannot contains \":\"";
-    }
-    
     my $element = Eg::Node::Element->new({owner_document => $self});
     
     $element->{node_name} = $tag_name;

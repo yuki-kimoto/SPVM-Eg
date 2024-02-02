@@ -30,11 +30,17 @@ class Eg::Node::Attr extends Eg::Node {
   # Class Methods
   private static method new : Eg::Node::Attr ($name : string, $options : object[] = undef) {
     
-    my $self = new Eg::Node::Attr;
-    
-    unless ($options) {
-      $options = {};
+    unless ($name) {
+      die "\$name must be defined.";
     }
+    
+    unless (Regex->new("^[a-zA-Z_][\w+\-\.]*$")->match($name)) {
+      die "\$name must be a valid name.";
+    }
+    
+    $name = Fn->lc($name);
+    
+    my $self = new Eg::Node::Attr;
     
     $self->SUPER::init(Eg->merge_options_v2($options, {node_type => Eg::Node->TYPE_ATTRIBUTE_NODE}));
     
@@ -45,9 +51,31 @@ class Eg::Node::Attr extends Eg::Node {
     return $self;
   }
   
-  private static method new_with_namespace_uri : Eg::Node::Attr ($namespace_uri : string, $name : string, $options : object[] = undef) {
+  private static method new_ns : Eg::Node::Attr ($namespace_uri : string, $qualified_name : string, $options : object[] = undef) {
     
-    my $self = &new($name, $options);
+    unless ($namespace_uri) {
+      die "\$namespace_uri must be defined.";
+    }
+    
+    unless ($qualified_name) {
+      die "\$qualified_name must be defined.";
+    }
+    
+    unless (length $qualified_name) {
+      die "\$qualified_name must have its length.";
+    }
+    
+    unless (Regex->new("^([a-zA-Z_][\w+\-\.]*:)?[a-zA-Z_][\w+\-\.]*$")->match($qualified_name)) {
+      die "\$qualified_name must be a valid name.";
+    }
+    
+    my $self = new Eg::Node::Attr;
+    
+    $self->SUPER::init(Eg->merge_options_v2($options, {node_type => Eg::Node->TYPE_ATTRIBUTE_NODE}));
+    
+    $self->{name} = $qualified_name;
+    
+    $self->{value} = "";
     
     $self->{namespace_uri} = $namespace_uri;
     

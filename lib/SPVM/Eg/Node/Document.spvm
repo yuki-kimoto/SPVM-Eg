@@ -695,16 +695,6 @@ class Eg::Node::Document extends Eg::Node {
   
   method create_attribute : Eg::Node::Attr ($name : string) {
     
-    unless ($name) {
-      die "\$name must be defined.";
-    }
-    
-    unless (Regex->new("^[a-zA-Z_][\w+\-\.]*$")->match($name)) {
-      die "\$name must be a valid XML name.";
-    }
-    
-    $name = Fn->lc($name);
-    
     my $attribute_node = Eg::Node::Attr->new($name, {owner_document => $self});
     
     return $attribute_node;
@@ -712,7 +702,7 @@ class Eg::Node::Document extends Eg::Node {
   
   method create_attribute_ns : Eg::Node::Attr ($namespace_uri : string, $qualified_name : string) {
     
-    my $attribute_node = Eg::Node::Attr->new_with_namespace_uri($namespace_uri, $qualified_name, {owner_document => $self});
+    my $attribute_node = Eg::Node::Attr->new_ns($namespace_uri, $qualified_name, {owner_document => $self});
     
     return $attribute_node;
   }

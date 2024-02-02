@@ -5,21 +5,23 @@ class Eg {
   version "0.016";
   
   use Eg::Node;
-  use Eg::Node::Document::HTML;
+  use Eg::Node::Document;
   use Eg::Runtime;
   
   our $RUNTIME : rw Eg::Runtime;
   
   INIT {
+    
     $RUNTIME = Eg::Runtime->new;
   }
   
   # Class Methods
   static method window : Eg::Window () {
+    
     return $RUNTIME->window;
   }
   
-  static method document : Eg::Node::Document::HTML () {
+  static method document : Eg::Node::Document () {
     return &window->document;
   }
   

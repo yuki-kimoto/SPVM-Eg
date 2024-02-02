@@ -80,8 +80,6 @@ lib/SPVM/Eg/Node/Comment.pm
 lib/SPVM/Eg/Node/Comment.spvm
 lib/SPVM/Eg/Node/Document.pm
 lib/SPVM/Eg/Node/Document.spvm
-lib/SPVM/Eg/Node/Document/HTML.pm
-lib/SPVM/Eg/Node/Document/HTML.spvm
 lib/SPVM/Eg/Node/Document/XML.pm
 lib/SPVM/Eg/Node/Document/XML.spvm
 lib/SPVM/Eg/Node/DocumentFragment.pm

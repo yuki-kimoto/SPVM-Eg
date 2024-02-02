@@ -700,7 +700,7 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant(SPVM_ENV* env, SPVM_VALU
   int32_t is_root = 0;
   
   if (obj_parent_node) {
-    is_root = env->is_type_by_name(env, stack, obj_parent_node, "Eg::Node::Document::HTML", 0);
+    is_root = env->is_type_by_name(env, stack, obj_parent_node, "Eg::Node::Document", 0);
   }
   
   // Not document node

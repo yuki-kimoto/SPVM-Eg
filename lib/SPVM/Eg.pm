@@ -32,7 +32,7 @@ C<static method window : L<Eg::Window|SPVM::Eg::Window> ();
 
 =head2 document
 
-  static method document : L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML> ();
+  static method document : L<Eg::Node::Document|SPVM::Eg::Node::Document> ();
 
 =head1 Classes
 
@@ -42,7 +42,7 @@ C<static method window : L<Eg::Window|SPVM::Eg::Window> ();
 
 =item * L<Eg::Node::Document::XML|SPVM::Eg::Node::Document::XML>
 
-=item * L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML>
+=item * L<Eg::Node::Document|SPVM::Eg::Node::Document>
 
 =item * L<Eg::Node::Document|SPVM::Eg::Node::Document>
 

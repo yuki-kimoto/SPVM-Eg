@@ -139,7 +139,7 @@ For details, see L<Node.nodeName|https://developer.mozilla.org/ja/docs/Web/API/N
 
 =over 2
 
-=item * L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML>
+=item * L<Eg::Node::Document|SPVM::Eg::Node::Document>
 
 =item * L<Eg::Node::Document::XML|SPVM::Eg::Node::Document::XML>
 

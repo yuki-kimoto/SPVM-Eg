@@ -6,7 +6,7 @@ class Engine {
   use Eg::CSS::Box;
   use Eg::DOM::Implementation;
   
-  static method document : Eg::Node::Document::HTML () {
+  static method document : Eg::Node::Document () {
     
     my $div1 = &tag_("div",
       {style => "background-color:#00FF00;color:#0000FF;font-size:60px;font-weight:bold;font-style:italic;"},

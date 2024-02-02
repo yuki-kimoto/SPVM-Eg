@@ -73,7 +73,6 @@ class Eg::Node {
     }
     
     if ($options_h->exists("node_type")) {
-      
       my $node_type = $options_h->get_int("node_type");
       $self->{node_type} = $node_type;
     }
@@ -92,6 +91,7 @@ class Eg::Node {
     my $node_name = $options_h->get_or_default_string("node_name", undef);
     
     $self->{node_name} = $node_name;
+    
   }
   
   method child_nodes : Eg::Node[] () {

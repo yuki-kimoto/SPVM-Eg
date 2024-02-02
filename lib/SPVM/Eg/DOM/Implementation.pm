@@ -40,9 +40,9 @@ For details, see L<DOMImplementation.createDocumentType|https://developer.mozill
 
 =head2 create_html_document
 
-  method create_html_document : L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML> ($title : string = undef);
+  method create_html_document : L<Eg::Node::Document|SPVM::Eg::Node::Document> ($title : string = undef);
 
-Creates and returns a new L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML> object.
+Creates and returns a new L<Eg::Node::Document|SPVM::Eg::Node::Document> object.
 
 For details, see L<DOMImplementation.createHTMLDocument|https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createHTMLDocument> in JavaScript.
 
@@ -52,7 +52,7 @@ For details, see L<DOMImplementation.createHTMLDocument|https://developer.mozill
 
 =item * L<Eg::Node::Document::XML|SPVM::Eg::Node::Document::XML>
 
-=item * L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML>
+=item * L<Eg::Node::Document|SPVM::Eg::Node::Document>
 
 =item * L<Eg::Node::Document|SPVM::Eg::Node::Document>
 

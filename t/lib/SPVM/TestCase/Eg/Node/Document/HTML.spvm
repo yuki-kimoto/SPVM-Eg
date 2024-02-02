@@ -1,10 +1,10 @@
-class TestCase::Eg::Node::Document::HTML {
+class TestCase::Eg::Node::Document {
   
   use Eg;
   
   use Eg::DOM::Implementation;
   
-  use Eg::Node::Document::HTML;
+  use Eg::Node::Document;
   
   static method create_element : int () {
     

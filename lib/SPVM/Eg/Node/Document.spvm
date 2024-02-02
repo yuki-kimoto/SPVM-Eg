@@ -113,6 +113,38 @@ class Eg::Node::Document extends Eg::Node {
   
   has title : protected string;
   
+  # Class Methods
+  private static method new : Eg::Node::Document ($title : string = undef, $options : object[] = undef) {
+    
+    my $self = new Eg::Node::Document;
+    
+    $self->init($options);
+    
+    my $html_element = $self->create_element("html");
+    
+    $html_element->{namespace_uri} = "http://www.w3.org/1999/xhtml";
+    
+    $self->append_child($html_element);
+    
+    my $head_element = $self->create_element("head");
+    
+    if ($title) {
+      my $text_node = $self->create_text_node($title);
+      
+      my $title_element = $self->create_element("title");
+      
+      $title_element->append_child($text_node);
+    }
+    
+    $html_element->append_child($head_element);
+    
+    my $body_element = $self->create_element("body");
+    
+    $html_element->append_child($body_element);
+    
+    return $self;
+  }
+  
   # Instance Methods
   protected method init : void ($options : object[] = undef) {
     
@@ -144,11 +176,11 @@ class Eg::Node::Document extends Eg::Node {
   
   method create_element : Eg::Node::Element ($tag_name : string) {
     
-    if ($self isa Eg::Node::Document::HTML) {
-      return $self->create_element_html($tag_name);
+    if ($self isa Eg::Node::Document::XML) {
+      return $self->create_element_xml($tag_name);
     }
     else {
-      return $self->create_element_xml($tag_name);
+      return $self->create_element_html($tag_name);
     }
   }
   

@@ -5,7 +5,7 @@
 class Eg::Node::Element::HTML extends Eg::Node::Element {
   allow Eg::Node::Document;
   allow Eg::Node::Element;
-  allow Eg::Node::Document::HTML;
+  allow Eg::Node::Document;
   
   use Eg::CSS::StyleDeclaration;
   

@@ -1,3 +1,12 @@
+0.017 2024-02-01
+  [Document Improvement]
+    * Add and improve many documents.
+  [New Features]
+    * Implement the methods in Eg::Node::Attr.
+    * Add some methods in Eg::Node::Document.
+  [Incompatible Changes]
+    * The implementation location of the methods is now fully aligned with JavaScript.
+      For example, tag_name is moved from Eg::Node::Element::HTML to Eg::Node::Element.
 0.016 2024-02-01
   [Document Improvement]
     * Add the doc of Eg::DOM::Implementation.

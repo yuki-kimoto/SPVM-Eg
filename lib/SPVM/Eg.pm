@@ -1,6 +1,6 @@
 package SPVM::Eg;
 
-our $VERSION = "0.016";
+our $VERSION = "0.017";
 
 1;
 
@@ -21,8 +21,6 @@ The Eg class in L<SPVM> provides components of a web platform SPVM Engine.
   my $div = $document->create_element("div");
   
   $div->set_attribute("class", "foo");
-  
-  $div->set_text("Hello World!");
   
 =head1 Class Methods
 

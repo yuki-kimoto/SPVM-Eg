@@ -12,6 +12,8 @@ class Eg::Node::Element extends Eg::Node {
   
   use Eg::Node::Element::HTML;
   
+  use Eg::CSS::StyleDeclaration;
+  
   has namespace_uri : ro protected string;
   
   has is_void_element : protected byte;
@@ -46,6 +48,14 @@ class Eg::Node::Element extends Eg::Node {
       die "\$name must be defined.";
     }
     
+    if ($self isa Eg::Node::Element::HTML) {
+      $name = Fn->lc($name);
+      
+      if ($name eq "style" && $self->has_attribute($name)) {
+        return $self->style->css_text;
+      }
+    }
+    
     my $attributes_h = $self->{attributes_h};
     
     unless ($self->{attributes_h}) {
@@ -61,6 +71,19 @@ class Eg::Node::Element extends Eg::Node {
     
     unless ($name) {
       die "\$name must be defined.";
+    }
+    
+    if ($self isa Eg::Node::Element::HTML) {
+      $name = Fn->lc($name);
+      
+      if ($name eq "style") {
+        
+        unless ($value) {
+          die "\$value must be defined.";
+        }
+        
+        $self->style->set_css_text($value);
+      }
     }
     
     unless ($value) {
@@ -173,6 +196,14 @@ class Eg::Node::Element extends Eg::Node {
     
     my $tag_name = $self->{node_name};
     
+    if ($self isa Eg::Node::Element::HTML) {
+      $tag_name = Fn->uc($tag_name);
+    }
+    
     return $tag_name;
   }
+  
+  method style : Eg::CSS::StyleDeclaration () { die "Not implemented."; }
+  
+
 }

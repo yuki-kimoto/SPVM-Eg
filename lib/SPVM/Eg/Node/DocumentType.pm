@@ -32,7 +32,7 @@ L<Eg::Node|SPVM::Eg::Node>
 
 =head2 name
 
-  has name : ro string;
+C<has name : ro string;>
 
 Retunrs the type of the document.
 
@@ -40,7 +40,7 @@ For details, see L<DocumentType.name|https://developer.mozilla.org/en-US/docs/We
 
 =head2 public_id
 
-  has public_id : ro string;
+C<has public_id : ro string;>
 
 Retunrs a formal identifier of the document.
 
@@ -48,7 +48,7 @@ For details, see L<DocumentType.publicId|https://developer.mozilla.org/en-US/doc
 
 =head2 system_id
 
-  has system_id : ro string;
+C<has system_id : ro string;>
 
 Retunrs the URL of the associated DTD.
 

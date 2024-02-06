@@ -61,7 +61,11 @@ sub MY::postamble {
   unless ($no_build_spvm_modules) {
     require SPVM::Builder::Util::API;
     
+    local @INC = @INC;
+    unshift @INC, 'lib';
     
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('Eg::CSS::Box');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('Eg::CSS::BoxBuilder');
     
   }
   

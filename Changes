@@ -1,3 +1,6 @@
+0.018 2024-02-07
+  [Bug Fix]
+    * Fix the bug that Eg::CSS::Box and Eg::CSS::BoxBuilder are not compiled in make.
 0.017 2024-02-01
   [Document Improvement]
     * Add and improve many documents.

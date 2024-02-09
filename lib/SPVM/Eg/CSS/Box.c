@@ -4,7 +4,7 @@
 #include "spvm_native.h"
 
 #include "eg_css_box.h"
-
+ 
 static const char* FILE_NAME = "Eg/CSS/Box.cpp";
 
 int32_t SPVM__Eg__CSS__Box__new(SPVM_ENV* env, SPVM_VALUE* stack) {

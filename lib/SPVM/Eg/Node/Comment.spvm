@@ -16,11 +16,4 @@ class Eg::Node::Comment extends Eg::Node::CharacterData {
     return $self;
   }
   
-  method node_name : string () {
-    
-    my $node_name = "#comment";
-    
-    return $node_name;
-  }
-  
 }

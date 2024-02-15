@@ -3,23 +3,22 @@
 
 # Element in JavaScript
 class Eg::Node::Element extends Eg::Node {
-  allow Eg;
   allow Eg::Node;
   allow Eg::Node::Document;
-  allow Eg::Node::Document::HTML;
   allow Eg::Node::Document::XML;
-  allow Eg::DOM::Implementation;
+  allow Eg::Node::Document;
   
-  use Eg::DOM::Implementation;
   use Fn;
   
   use Eg::Node::Element::HTML;
   
-  has namespace_uri : protected string;
+  use Eg::CSS::StyleDeclaration;
   
-  has attributes_h : ro Hash of string;
+  has namespace_uri : ro protected string;
   
   has is_void_element : protected byte;
+  
+  has attributes_h : protected Hash of string;
   
   # Class Methods
   private static method new : Eg::Node::Element ($options : object[] = undef) {
@@ -49,6 +48,14 @@ class Eg::Node::Element extends Eg::Node {
       die "\$name must be defined.";
     }
     
+    if ($self isa Eg::Node::Element::HTML) {
+      $name = Fn->lc($name);
+      
+      if ($name eq "style" && $self->has_attribute($name)) {
+        return $self->style->css_text;
+      }
+    }
+    
     my $attributes_h = $self->{attributes_h};
     
     unless ($self->{attributes_h}) {
@@ -64,6 +71,19 @@ class Eg::Node::Element extends Eg::Node {
     
     unless ($name) {
       die "\$name must be defined.";
+    }
+    
+    if ($self isa Eg::Node::Element::HTML) {
+      $name = Fn->lc($name);
+      
+      if ($name eq "style") {
+        
+        unless ($value) {
+          die "\$value must be defined.";
+        }
+        
+        $self->style->set_css_text($value);
+      }
     }
     
     unless ($value) {
@@ -176,7 +196,14 @@ class Eg::Node::Element extends Eg::Node {
     
     my $tag_name = $self->{node_name};
     
+    if ($self isa Eg::Node::Element::HTML) {
+      $tag_name = Fn->uc($tag_name);
+    }
+    
     return $tag_name;
   }
   
+  method style : Eg::CSS::StyleDeclaration () { die "Not implemented."; }
+  
+
 }

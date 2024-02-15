@@ -19,9 +19,7 @@ class Eg::Node::Document::XML extends Eg::Node::Document {
     
     $self->{doctype} = $document_type;
     
-    my $root_element = Eg::Node::Element->new({owner_document => $self});
-    
-    $root_element->{node_name} = $qualified_name_str;
+    my $root_element = $self->create_element($qualified_name_str);
     
     $root_element->{namespace_uri} = $namespace_uri;
     

@@ -1,0 +1,3 @@
+    Gets the linkgs of SPVM modules for POD
+    
+      find lib | grep -P '\.pm$' | perl -p -e 's/\.pm$//' | sort | perl -p -e 'chomp;s|lib/SPVM/||; s|/|::|g; $_ = "=item * L<$_|SPVM::$_>\n\n";'

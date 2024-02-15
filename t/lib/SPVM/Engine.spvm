@@ -6,7 +6,7 @@ class Engine {
   use Eg::CSS::Box;
   use Eg::DOM::Implementation;
   
-  static method document : Eg::Node::Document::HTML () {
+  static method document : Eg::Node::Document () {
     
     my $div1 = &tag_("div",
       {style => "background-color:#00FF00;color:#0000FF;font-size:60px;font-weight:bold;font-style:italic;"},
@@ -65,7 +65,7 @@ class Engine {
       }
     }
     
-    return $new_element_node;
+    return (Eg::Node::Element::HTML)$new_element_node;
   }
   
   static method tag_ : Eg::Node::Element::HTML ($tag_name : string, $attribute_pairs : object[] = undef, $child_nodes_or_text : object of Eg::Node[]|string = undef) {
@@ -103,7 +103,7 @@ class Engine {
       }
     }
     
-    return $new_element_node;
+    return (Eg::Node::Element::HTML)$new_element_node;
   }
   
   # Class Methods

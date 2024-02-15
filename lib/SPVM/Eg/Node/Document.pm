@@ -6,13 +6,13 @@ package SPVM::Eg::Node::Document;
 
 =head1 Name
 
-SPVM::Eg::Node::Document - Document(only XML document features) in JavaScript
+SPVM::Eg::Node::Document - Document in JavaScript
 
 =head1 Description
 
 The Eg::Node::Document class in L<SPVM> represents any XML/HTML page which is the DOM tree. This class itself is an abstruct class.
 
-This class is a port of L<Document(only XML features)|https://developer.mozilla.org/en-US/docs/Web/API/Document> in JavaScript.
+This class is a port of L<Document|https://developer.mozilla.org/en-US/docs/Web/API/Document> in JavaScript.
 
 =head1 Usage
 
@@ -67,7 +67,7 @@ For details, see L<Document.title|https://developer.mozilla.org/en-US/docs/Web/A
 
 C<method create_element : L<Eg::Node::Element|SPVM::Eg::Node::Element> ($tag_name : string);>
 
-Creates the XML element specified by $tag_name.
+In an HTML document, this method creates the HTML element specified by $tag_name, or an L<Eg::Node::Element::HTML::Unknown|SPVM::Eg::Node::Element::HTML::Unknown> if $tag_name isn't recognized.
 
 For details, see L<Document.createElement|https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement> in JavaScript.
 
@@ -111,6 +111,14 @@ Creates a new attribute node, and returns it.
 
 For details, see L<Document.createAttribute|https://developer.mozilla.org/en-US/docs/Web/API/Document/createAttribute> in JavaScript.
 
+=head2 create_attribute_ns
+
+C<method create_attribute_ns : L<Eg::Node::Attr|SPVM::Eg::Node::Attr> ($namespace_uri : string, $qualified_name : string);>
+
+Creates a new attribute node with the specified namespace URI and qualified name, and returns it.
+
+For details, see L<Document.createAttributeNS|https://developer.mozilla.org/en-US/docs/Web/API/Document/createAttributeNS> in JavaScript.
+
 =head2 create_processing_instruction
 
 C<method create_processing_instruction : L<Eg::Node::ProcessingInstruction|SPVM::Eg::Node::ProcessingInstruction> ($target : string, $data : string);>
@@ -127,19 +135,27 @@ Returns the element that is the root element of the document (for example, the <
 
 For details, see L<Document.documentElement|https://developer.mozilla.org/en-US/docs/Web/API/Document/documentElement> in JavaScript.
 
-=head2 node_name
+=head2 head
 
-C<method node_name : string ();>
+C<method head : L<Eg::Node::Element|SPVM::Eg::Node::Element> ();>
 
-Returns the node name.
+Returns the head element of the current document.
 
-For details, see L<Node.nodeName|https://developer.mozilla.org/ja/docs/Web/API/Node/nodeName> in JavaScript.
+For details, see L<Document.head|https://developer.mozilla.org/en-US/docs/Web/API/Document/head> in JavaScript.
+
+=head2 body
+
+C<method body : L<Eg::Node::Element|SPVM::Eg::Node::Element> ();>
+
+Returns the <body> or <frameset> node of the current document, or undef if no such element exists.
+
+For details, see L<Document.body|https://developer.mozilla.org/en-US/docs/Web/API/Document/body> in JavaScript.
 
 =head1 Well Known Child Classes
 
 =over 2
 
-=item * L<Eg::Node::Document::HTML|SPVM::Eg::Node::Document::HTML>
+=item * L<Eg::Node::Document|SPVM::Eg::Node::Document>
 
 =item * L<Eg::Node::Document::XML|SPVM::Eg::Node::Document::XML>
 

@@ -32,7 +32,7 @@ L<Eg::Node|SPVM::Eg::Node>
 
 =head2 name
 
-  has name : ro string;
+C<has name : ro string;>
 
 Retunrs the type of the document.
 
@@ -40,7 +40,7 @@ For details, see L<DocumentType.name|https://developer.mozilla.org/en-US/docs/We
 
 =head2 public_id
 
-  has public_id : ro string;
+C<has public_id : ro string;>
 
 Retunrs a formal identifier of the document.
 
@@ -48,21 +48,11 @@ For details, see L<DocumentType.publicId|https://developer.mozilla.org/en-US/doc
 
 =head2 system_id
 
-  has system_id : ro string;
+C<has system_id : ro string;>
 
 Retunrs the URL of the associated DTD.
 
 For details, see L<DocumentType.systemId|https://developer.mozilla.org/en-US/docs/Web/API/DocumentType/systemId> in JavaScript.
-
-=head1 Instance Methods
-
-=head2 node_name
-
-C<method node_name : string ();>
-
-Returns the node name.
-
-For details, see L<Node.nodeName|https://developer.mozilla.org/ja/docs/Web/API/Node/nodeName> in JavaScript.
 
 =head1 Copyright & License
 

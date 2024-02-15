@@ -16,11 +16,4 @@ class Eg::Node::CDATASection extends Eg::Node::Text {
     return $self;
   }
   
-  method node_name : string () {
-    
-    my $node_name = "#cdata-section";
-    
-    return $node_name;
-  }
-  
 }

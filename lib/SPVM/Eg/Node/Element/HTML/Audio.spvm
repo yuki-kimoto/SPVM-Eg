@@ -3,7 +3,7 @@
 
 class Eg::Node::Element::HTML::Audio extends Eg::Node::Element::HTML::Media {
   
-  allow Eg::Node::Document::HTML;
+  allow Eg::Node::Document;
   
   # Class Methods
   private static method new : Eg::Node::Element::HTML::Audio ($options : object[] = undef) {

@@ -5,7 +5,7 @@ class Eg::DOM::Implementation {
   
   allow Eg::Node::Document;
   
-  use Eg::Node::Document::HTML;
+  use Eg::Node::Document;
   use Eg::Node::Document::XML;
   use Eg::Node::DocumentType;
   
@@ -39,9 +39,9 @@ class Eg::DOM::Implementation {
     return $document_type;
   }
   
-  method create_html_document : Eg::Node::Document::HTML ($title : string = undef) {
+  method create_html_document : Eg::Node::Document ($title : string = undef) {
     
-    my $html_document = Eg::Node::Document::HTML->new($title);
+    my $html_document = Eg::Node::Document->new($title);
     
     return $html_document;
   }

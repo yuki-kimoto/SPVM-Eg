@@ -1,3 +1,4 @@
+.gitattributes
 .github/workflows/linux-ubuntu-latest-32bit.yml
 .github/workflows/linux-ubuntu-latest-perl-5.8.9.yml
 .github/workflows/linux-ubuntu-latest.yml
@@ -19,6 +20,7 @@ lib/SPVM/Eg/CSS/Box.config
 lib/SPVM/Eg/CSS/Box.spvm
 lib/SPVM/Eg/CSS/Box/Resource.config
 lib/SPVM/Eg/CSS/Box/Resource.native/include/eg_css_box.h
+lib/SPVM/Eg/CSS/Box/Resource.spvm
 lib/SPVM/Eg/CSS/BoxBuilder.config
 lib/SPVM/Eg/CSS/BoxBuilder.cpp
 lib/SPVM/Eg/CSS/BoxBuilder.spvm

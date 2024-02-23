@@ -107,7 +107,7 @@ class Engine {
   }
   
   # Class Methods
-  static method main : int () {
+  static method main : void () {
     
     my $runtime = Eg->RUNTIME;
     

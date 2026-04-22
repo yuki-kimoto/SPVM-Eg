@@ -2,9 +2,15 @@ class {
   use Eg;
   use Eg::OS;
   use Sys::OS;
-  use Resource::Utf8proc;
   
-  static method main : int () {
+  # Resources
+  use Resource::Utf8proc;
+  use Resource::RE2;
+  use Eg::CSS::Box::Resource;
+  use Sys::Resource::Windows;
+  use Resource::SocketUtil;
+  
+  static method main : void () {
     
     my $runtime = Eg->RUNTIME;
     

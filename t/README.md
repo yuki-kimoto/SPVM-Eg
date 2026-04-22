@@ -9,10 +9,10 @@ spvm-engine is a portable application example using SPVM::Eg.
 # Executable File Generating
 
   # Compile Engine - development mode
-  spvmcc -o t/.spvm_build/spvm-engine -I lib -I t/lib t/spvm-engine.spvm
+  spvmcc -B t/.spvm_build -o t/.spvm_build/spvm-engine -I lib -I t/lib t/spvm-engine.spvm
   
   # Compile Engine - producetion mode
-  spvmcc -o t/.spvm_build/spvm-engine -I lib -I t/lib t/spvm-engine.spvm
+  spvmcc -B t/.spvm_build -o t/.spvm_build/spvm-engine -I lib -I t/lib t/spvm-engine.spvm
 
 # Run Application
 

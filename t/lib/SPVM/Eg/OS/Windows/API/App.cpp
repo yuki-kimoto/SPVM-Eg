@@ -32,7 +32,7 @@ static wchar_t* to_wide_char(const char* str, size_t* len) {
 
 static LRESULT CALLBACK window_procedure(HWND window_handle , UINT message , WPARAM wparam , LPARAM lparam);
 
-static int32_t paint_event_handler(SPVM_ENV* env, SPVM_VALUE* stack, void* obj_self);
+static int32_t paint_event_handler(SPVM_ENV* env, SPVM_VALUE* stack, SPVM_OBJ* obj_self);
 
 static void alert(SPVM_ENV* env, SPVM_VALUE* stack, const char* message);
 
@@ -43,7 +43,7 @@ struct Vertex {
 
 int32_t SPVM__Eg__OS__Windows__API__App__open_main_window_native(SPVM_ENV* env, SPVM_VALUE* stack) {
   
-  void* obj_self = stack[0].oval;
+  SPVM_OBJ* obj_self = stack[0].oval;
   
   int32_t window_left = stack[1].ival;
   
@@ -92,7 +92,7 @@ int32_t SPVM__Eg__OS__Windows__API__App__open_main_window_native(SPVM_ENV* env, 
     window_parent_window_handle, window_id, instance_handle, window_wm_create_lparam
   );
   
-  void* obj_window_handle = env->new_pointer_object_by_name(env, stack, "Eg::OS::Windows::HWND", window_handle, &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_window_handle = env->new_pointer_object_by_name(env, stack, "Eg::OS::Windows::HWND", window_handle, &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
   stack[0].oval = obj_self;
@@ -221,7 +221,7 @@ static LRESULT CALLBACK window_procedure(HWND window_handle , UINT message , WPA
   
   static SPVM_ENV* env;
   static SPVM_VALUE* stack;
-  static void* obj_self;
+  static SPVM_OBJ* obj_self;
   
   switch (message) {
     case WM_DESTROY: {
@@ -264,14 +264,14 @@ static void alert(SPVM_ENV* env, SPVM_VALUE* stack, const char* message) {
   delete message_wc;
 }
 
-static int32_t paint_event_handler(SPVM_ENV* env, SPVM_VALUE* stack, void* obj_self) {
+static int32_t paint_event_handler(SPVM_ENV* env, SPVM_VALUE* stack, SPVM_OBJ* obj_self) {
   int32_t error_id = 0;
   
   stack[0].oval = obj_self;
   stack[1].oval = env->new_string_nolen(env, stack, "window_handle");
   env->call_instance_method_by_name(env, stack, "get_data", 2, &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
-  void* obj_window_handle = stack[0].oval;
+  SPVM_OBJ* obj_window_handle = stack[0].oval;
   
   HWND window_handle = (HWND)env->get_pointer(env, stack, obj_window_handle);
   
@@ -280,7 +280,7 @@ static int32_t paint_event_handler(SPVM_ENV* env, SPVM_VALUE* stack, void* obj_s
     stack[0].oval = obj_self;
     env->call_instance_method_by_name(env, stack, "document_title", 1, &error_id, __func__, FILE_NAME, __LINE__);
     if (error_id) { return error_id; }
-    void* obj_document_title = stack[0].oval;
+    SPVM_OBJ* obj_document_title = stack[0].oval;
     
     const char* document_title = env->get_chars(env, stack, obj_document_title);
     
@@ -328,7 +328,7 @@ static int32_t paint_event_handler(SPVM_ENV* env, SPVM_VALUE* stack, void* obj_s
       return 1;
     }
     
-    void* obj_renderer = env->new_pointer_object_by_name(env, stack, "Eg::OS::Windows::ID2D1HwndRenderTarget", renderer, &error_id, __func__, FILE_NAME, __LINE__);
+    SPVM_OBJ* obj_renderer = env->new_pointer_object_by_name(env, stack, "Eg::OS::Windows::ID2D1HwndRenderTarget", renderer, &error_id, __func__, FILE_NAME, __LINE__);
     
     stack[0].oval = obj_self;
     stack[1].oval = env->new_string_nolen(env, stack, "renderer");
@@ -385,14 +385,14 @@ int32_t SPVM__Eg__OS__Windows__API__App__text_metrics_height(SPVM_ENV* env, SPVM
   
   int32_t error_id = 0;
   
-  void* obj_self = stack[0].oval;
-  void* obj_text_node = stack[1].oval;
+  SPVM_OBJ* obj_self = stack[0].oval;
+  SPVM_OBJ* obj_text_node = stack[1].oval;
   
   if (!obj_text_node) {
     return env->die(env, stack, "$text_node must be defined.", __func__, FILE_NAME, __LINE__);
   }
   
-  void* obj_box = env->get_field_object_by_name(env, stack, obj_text_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_box = env->get_field_object_by_name(env, stack, obj_text_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
   struct eg_css_box* box = (struct eg_css_box*)env->get_pointer(env, stack, obj_box);
@@ -460,15 +460,15 @@ int32_t SPVM__Eg__OS__Windows__API__App__paint_node(SPVM_ENV* env, SPVM_VALUE* s
   
   int32_t error_id = 0;
   
-  void* obj_self = stack[0].oval;
+  SPVM_OBJ* obj_self = stack[0].oval;
   
-  void* obj_node = stack[1].oval;
+  SPVM_OBJ* obj_node = stack[1].oval;
   
   if (!obj_node) {
     return env->die(env, stack, "$node must be defined.", __func__, FILE_NAME, __LINE__);
   }
   
-  void* obj_box = env->get_field_object_by_name(env, stack, obj_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_box = env->get_field_object_by_name(env, stack, obj_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
   if (!obj_box) {
@@ -484,7 +484,7 @@ int32_t SPVM__Eg__OS__Windows__API__App__paint_node(SPVM_ENV* env, SPVM_VALUE* s
   stack[1].oval = env->new_string_nolen(env, stack, "renderer");
   env->call_instance_method_by_name(env, stack, "get_data", 2, &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
-  void* obj_renderer = stack[0].oval;
+  SPVM_OBJ* obj_renderer = stack[0].oval;
   assert(obj_renderer);
   ID2D1HwndRenderTarget* renderer = (ID2D1HwndRenderTarget*)env->get_pointer(env, stack, obj_renderer);
   

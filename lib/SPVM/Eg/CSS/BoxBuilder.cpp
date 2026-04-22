@@ -136,10 +136,10 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_styles(SPVM_ENV* env, SPVM_VALUE* s
   
   int32_t error_id = 0;
   
-  void* obj_self = stack[0].oval;
-  void* obj_node = stack[1].oval;
+  SPVM_OBJ* obj_self = stack[0].oval;
+  SPVM_OBJ* obj_node = stack[1].oval;
   
-  void* obj_box = env->get_field_object_by_name(env, stack, obj_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_box = env->get_field_object_by_name(env, stack, obj_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
   assert(obj_box);
@@ -151,18 +151,18 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_styles(SPVM_ENV* env, SPVM_VALUE* s
   stack[0].oval = obj_node;
   env->call_instance_method_by_name(env, stack, "style", 1, &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
-  void* obj_style = stack[0].oval;
+  SPVM_OBJ* obj_style = stack[0].oval;
   
   stack[0].oval = obj_style;
   env->call_instance_method_by_name(env, stack, "to_pairs", 1, &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
-  void* obj_style_pairs = stack[0].oval;
+  SPVM_OBJ* obj_style_pairs = stack[0].oval;
   
   int32_t style_pairs_length = env->length(env, stack, obj_style_pairs);
   
   for (int32_t i = 0; i < style_pairs_length; i += 2) {
-    void* obj_style_name = env->get_elem_object(env, stack, obj_style_pairs, i);
-    void* obj_style_value = env->get_elem_object(env, stack, obj_style_pairs, i + 1);
+    SPVM_OBJ* obj_style_name = env->get_elem_object(env, stack, obj_style_pairs, i);
+    SPVM_OBJ* obj_style_value = env->get_elem_object(env, stack, obj_style_pairs, i + 1);
     
     const char* style_name = env->get_chars(env, stack, obj_style_name);
     const char* style_value = env->get_chars(env, stack, obj_style_value);
@@ -548,10 +548,10 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_set_default_values(SPVM_ENV* env, S
   
   int32_t error_id = 0;
   
-  void* obj_self = stack[0].oval;
-  void* obj_node = stack[1].oval;
+  SPVM_OBJ* obj_self = stack[0].oval;
+  SPVM_OBJ* obj_node = stack[1].oval;
   
-  void* obj_box = env->get_field_object_by_name(env, stack, obj_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_box = env->get_field_object_by_name(env, stack, obj_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
   assert(obj_box);
@@ -683,18 +683,18 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant(SPVM_ENV* env, SPVM_VALU
   
   int32_t error_id = 0;
   
-  void* obj_self = stack[0].oval;
-  void* obj_node = stack[1].oval;
+  SPVM_OBJ* obj_self = stack[0].oval;
+  SPVM_OBJ* obj_node = stack[1].oval;
   
-  void* obj_box = env->get_field_object_by_name(env, stack, obj_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_box = env->get_field_object_by_name(env, stack, obj_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
   struct eg_css_box* box = (struct eg_css_box*)env->get_pointer(env, stack, obj_box);
   
-  void* obj_parent_node = env->get_field_object_by_name(env, stack, obj_node, "parent_node", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_parent_node = env->get_field_object_by_name(env, stack, obj_node, "parent_node", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
-  void* obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
   int32_t is_root = 0;
@@ -805,23 +805,23 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_ascendant(SPVM_ENV* env, SPVM_VALUE
   
   int32_t error_id = 0;
   
-  void* obj_self = stack[0].oval;
-  void* obj_node = stack[1].oval;
+  SPVM_OBJ* obj_self = stack[0].oval;
+  SPVM_OBJ* obj_node = stack[1].oval;
   
-  void* obj_box = env->get_field_object_by_name(env, stack, obj_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_box = env->get_field_object_by_name(env, stack, obj_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   struct eg_css_box* box = (struct eg_css_box*)env->get_pointer(env, stack, obj_box);
   
-  void* obj_parent_node = env->get_field_object_by_name(env, stack, obj_node, "parent_node", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_parent_node = env->get_field_object_by_name(env, stack, obj_node, "parent_node", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
-  void* obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
   stack[0].oval = obj_node;
   env->call_instance_method_by_name(env, stack, "node_value", 1, &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
-  void* obj_text = stack[0].oval;
+  SPVM_OBJ* obj_text = stack[0].oval;
   
   const char* text = NULL;
   if (obj_text) {
@@ -856,24 +856,24 @@ int32_t SPVM__Eg__CSS__BoxBuilder__build_box_descendant_compute_position(SPVM_EN
   
   int32_t error_id = 0;
   
-  void* obj_self = stack[0].oval;
-  void* obj_node = stack[1].oval;
+  SPVM_OBJ* obj_self = stack[0].oval;
+  SPVM_OBJ* obj_node = stack[1].oval;
   
-  void* obj_box = env->get_field_object_by_name(env, stack, obj_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_box = env->get_field_object_by_name(env, stack, obj_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
   struct eg_css_box* box = (struct eg_css_box*)env->get_pointer(env, stack, obj_box);
   
-  void* obj_parent_node = env->get_field_object_by_name(env, stack, obj_node, "parent_node", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_parent_node = env->get_field_object_by_name(env, stack, obj_node, "parent_node", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
-  void* obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_parent_box = env->get_field_object_by_name(env, stack, obj_parent_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
-  void* obj_previous_sibling_node = env->get_field_object_by_name(env, stack, obj_node, "previous_sibling", &error_id, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_previous_sibling_node = env->get_field_object_by_name(env, stack, obj_node, "previous_sibling", &error_id, __func__, FILE_NAME, __LINE__);
   if (error_id) { return error_id; }
   
-  void* obj_previous_sibling_box = NULL;
+  SPVM_OBJ* obj_previous_sibling_box = NULL;
   if (obj_previous_sibling_node) {
     obj_previous_sibling_box = env->get_field_object_by_name(env, stack, obj_previous_sibling_node, "box", &error_id, __func__, FILE_NAME, __LINE__);
     if (error_id) { return error_id; }

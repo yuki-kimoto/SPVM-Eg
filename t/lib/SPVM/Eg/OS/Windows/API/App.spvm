@@ -30,7 +30,7 @@ class Eg::OS::Windows::API::App extends Eg::OS::API {
     
     my $width = $options_h->exists("width") ? $options_h->get("width")->(int) : &CW_USEDEFAULT;
     
-    my $height = $options_h->exists("height") ? $options_h->get("height)->(int) : &CW_USEDEFAULT;
+    my $height = $options_h->exists("height") ? $options_h->get("height")->(int) : &CW_USEDEFAULT;
     
     $self->open_main_window_native($left, $top, $width, $height);
   }

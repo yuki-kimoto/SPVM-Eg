@@ -232,7 +232,7 @@ static LRESULT CALLBACK window_procedure(HWND window_handle , UINT message , WPA
       CREATESTRUCT* create_struct = (CREATESTRUCT*)lparam;
       void** wm_create_args = (void**)create_struct->lpCreateParams;
       env = (SPVM_ENV*)wm_create_args[0];
-      obj_self = (void*)wm_create_args[1];
+      obj_self = (SPVM_OBJ*)wm_create_args[1];
       stack = (SPVM_VALUE*)wm_create_args[2];
       
       return 0;

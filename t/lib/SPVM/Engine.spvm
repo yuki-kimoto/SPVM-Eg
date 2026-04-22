@@ -105,37 +105,4 @@ class Engine {
     
     return (Eg::Node::Element::HTML)$new_element_node;
   }
-  
-  # Class Methods
-  static method main : int () {
-    
-    my $runtime = Eg->RUNTIME;
-    
-    my $os = (Eg::OS)undef;
-    
-    if (Sys::OS->is_windows) {
-      if (require Eg::OS::Windows) {
-        $os = Eg::OS::Windows->new;
-      }
-    }
-    
-    unless ($os) {
-      die "This system is not supported.";
-    }
-    
-    $os->build_runtime($runtime);
-    
-    my $document = &document;
-    
-    my $window = $runtime->window;
-    
-    $window->set_document($document);
-    
-    my $api = $runtime->api;
-    
-    $api->app->open_main_window;
-    
-    $api->app->start_event_loop;
-  }
-  
 }

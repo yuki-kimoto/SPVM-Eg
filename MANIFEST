@@ -7,6 +7,7 @@
 .github/workflows/windows-latest.yml
 .gitignore
 Changes
+Development.txt
 lib/SPVM/Eg.pm
 lib/SPVM/Eg.spvm
 lib/SPVM/Eg/API.pm
@@ -272,3 +273,4 @@ t/lib/SPVM/TestCase/Eg/Node/Document/XML.spvm
 t/README.md
 t/spvm-engine.config
 t/spvm-engine.production.config
+t/spvm-engine.spvm

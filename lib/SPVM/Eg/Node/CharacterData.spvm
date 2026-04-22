@@ -12,7 +12,7 @@ class Eg::Node::CharacterData extends Eg::Node {
     
     my $options_h = Hash->new($options);
     
-    my $node_value = $options_h->get_or_default_string("node_value", undef);
+    my $node_value = $options_h->get("node_value")->(string) // (string)undef;
     
     unless ($node_value) {
       die "The \node_value option must be defined.";

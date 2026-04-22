@@ -73,14 +73,14 @@ class Eg::Node {
     }
     
     if ($options_h->exists("node_type")) {
-      my $node_type = $options_h->get_int("node_type");
+      my $node_type = $options_h->get("node_type")->(int);
       $self->{node_type} = $node_type;
     }
     else {
       die "The \"node_type\" option must be defined.";
     }
     
-    my $node_value = $options_h->get_or_default_string("node_value", undef);
+    my $node_value = $options_h->get("node_value")->(string) // (string)undef;
     
     if ($node_value) {
       my $node_value_buffer = StringBuffer->new($node_value);
@@ -88,7 +88,7 @@ class Eg::Node {
       $self->{node_value_buffer} = $node_value_buffer;
     }
     
-    my $node_name = $options_h->get_or_default_string("node_name", undef);
+    my $node_name = $options_h->get("node_name")->(string) // (string)undef;
     
     $self->{node_name} = $node_name;
     

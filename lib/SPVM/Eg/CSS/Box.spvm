@@ -1,5 +1,7 @@
 class Eg::CSS::Box : pointer {
   
+  use Eg::CSS::Box::Resource;
+  
   # Class Methods
   native static method new : Eg::CSS::Box ();
   

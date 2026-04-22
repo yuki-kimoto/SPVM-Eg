@@ -24,13 +24,13 @@ class Eg::OS::Windows::API::App extends Eg::OS::API {
     
     my $options_h = Hash->new($options);
     
-    my $left = $options_h->get_or_default_int("left", &CW_USEDEFAULT);
+    my $left = $options_h->exists("left") ? $options_h->get("left")->(int) : &CW_USEDEFAULT;
     
-    my $top = $options_h->get_or_default_int("top", &CW_USEDEFAULT);
+    my $top = $options_h->exists("top") ? $options_h->get("top")->(int) : &CW_USEDEFAULT;
     
-    my $width = $options_h->get_or_default_int("width", &CW_USEDEFAULT);
+    my $width = $options_h->exists("width") ? $options_h->get("width")->(int) : &CW_USEDEFAULT;
     
-    my $height = $options_h->get_or_default_int("height", &CW_USEDEFAULT);
+    my $height = $options_h->exists("height") ? $options_h->get("height)->(int) : &CW_USEDEFAULT;
     
     $self->open_main_window_native($left, $top, $width, $height);
   }

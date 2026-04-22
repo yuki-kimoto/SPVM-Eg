@@ -62,7 +62,7 @@ class Eg::Node::Element extends Eg::Node {
       return undef;
     }
     
-    my $attribute = $attributes_h->get_string($name);
+    my $attribute = $attributes_h->get($name)->(string);
     
     return $attribute;
   }
@@ -96,7 +96,7 @@ class Eg::Node::Element extends Eg::Node {
       $attributes_h = $self->{attributes_h} = Hash->new;
     }
     
-    $attributes_h->set_string($name, $value);
+    $attributes_h->set($name, $value);
   }
   
   method remove_attribute : void ($name : string) {

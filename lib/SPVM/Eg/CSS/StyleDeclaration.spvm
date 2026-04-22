@@ -31,7 +31,7 @@ class Eg::CSS::StyleDeclaration {
     
     my $styles_h = $self->{styles_h};
     
-    my $value = $styles_h->get_string($name);
+    my $value = $styles_h->get($name)->(string);
     
     return $value;
   }
@@ -61,7 +61,7 @@ class Eg::CSS::StyleDeclaration {
     
     my $styles_h = $self->{styles_h};
     
-    $styles_h->set_string($name, $value);
+    $styles_h->set($name, $value);
   }
   
   method css_text : string () {
@@ -75,7 +75,7 @@ class Eg::CSS::StyleDeclaration {
     my $css_text_buffer = StringBuffer->new;
     
     for my $name (@$names) {
-      my $value = $styles_h->get_string($name);
+      my $value = $styles_h->get($name)->(string);
       
       my $css_text_each = "$name:$value;";
       
@@ -117,7 +117,7 @@ class Eg::CSS::StyleDeclaration {
         die "\$text_value contains an invalid style value:\"$style_value\".";
       }
       
-      $new_styles_h->set_string($style_name, $style_value);
+      $new_styles_h->set($style_name, $style_value);
     }
     
     $self->{styles_h} = $new_styles_h;
@@ -136,7 +136,7 @@ class Eg::CSS::StyleDeclaration {
       
       my $style_pairs_list = StringList->new;
       for my $name (@$names) {
-        my $value = $styles_h->get_string($name);
+        my $value = $styles_h->get($name)->(string);
         
         $style_pairs_list->push($name);
         $style_pairs_list->push($value);
